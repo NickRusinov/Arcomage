@@ -136,6 +136,10 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Arcomage.Domain\Arcomage.Domain\Arcomage.Domain.csproj">
+      <Project>{67f9d3a8-f71e-4428-913f-c37ae82cdb24}</Project>
+      <Name>Arcomage.Domain</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Arcomage.Forms\Arcomage.Forms.csproj">
       <Project>{F954C105-454C-4D5E-9A5F-F77EE80B3139}</Project>
       <Name>Arcomage.Forms</Name>
