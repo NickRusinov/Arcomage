@@ -39,6 +39,27 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cards\BasicWallCard.cs" />
+    <Compile Include="Cards\BigWallCard.cs" />
+    <Compile Include="Cards\ReinforcedWallCard.cs" />
+    <Compile Include="Cards\StripMineCard.cs" />
+    <Compile Include="Cards\NewEquipmentCard.cs" />
+    <Compile Include="Cards\CollapseCard.cs" />
+    <Compile Include="Cards\EarthquakeCard.cs" />
+    <Compile Include="Cards\SecretRoomCard.cs" />
+    <Compile Include="Cards\TremorsCard.cs" />
+    <Compile Include="Cards\FoundationsCard.cs" />
+    <Compile Include="Cards\InnovationsCard.cs" />
+    <Compile Include="Cards\SturdyWallCard.cs" />
+    <Compile Include="Cards\CoppingTheTechCard.cs" />
+    <Compile Include="Cards\WorkOvertimeCard.cs" />
+    <Compile Include="Cards\DwarvenMinersCard.cs" />
+    <Compile Include="Cards\MotherLodeCard.cs" />
+    <Compile Include="Cards\MinersCard.cs" />
+    <Compile Include="Cards\FriendlyTerrainCard.cs" />
+    <Compile Include="Cards\LuckyCacheCard.cs" />
+    <Compile Include="Cards\BrickShortageCard.cs" />
+    <Compile Include="Cards\ClassicCard.cs" />
     <Compile Include="Entities\Buildings.cs" />
     <Compile Include="Entities\Card.cs" />
     <Compile Include="Entities\CardDeck.cs" />
@@ -50,6 +71,7 @@
     <Compile Include="Entities\Resources.cs" />
     <Compile Include="IActivable.cs" />
     <Compile Include="IIdentifiable.cs" />
+    <Compile Include="Internal\GameExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />

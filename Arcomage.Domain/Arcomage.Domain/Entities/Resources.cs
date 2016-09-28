@@ -3,21 +3,58 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Math;
 
 namespace Arcomage.Domain.Entities
 {
     public class Resources
     {
-        public int Quarry { get; set; }
+        private int quarry;
 
-        public int Bricks { get; set; }
+        private int bricks;
 
-        public int Magic { get; set; }
+        private int magic;
 
-        public int Gems { get; set; }
+        private int gems;
 
-        public int Dungeons { get; set; }
+        private int dungeons;
 
-        public int Recruits { get; set; }
+        private int recruits;
+
+        public int Quarry
+        {
+            get { return quarry; }
+            set { quarry = Max(value, 0); }
+        }
+
+        public int Bricks
+        {
+            get { return bricks; }
+            set { bricks = Max(value, 0); }
+        }
+
+        public int Magic
+        {
+            get { return magic; }
+            set { magic = Max(value, 0); }
+        }
+
+        public int Gems
+        {
+            get { return gems; }
+            set { gems = Max(value, 0); }
+        }
+
+        public int Dungeons
+        {
+            get { return dungeons; }
+            set { dungeons = Max(value, 0); }
+        }
+
+        public int Recruits
+        {
+            get { return recruits; }
+            set { recruits = Max(value, 0); }
+        }
     }
 }

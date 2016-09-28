@@ -48,6 +48,26 @@
   </Choose>
   <ItemGroup>
     <Compile Include="AutoFixtureAttribute.cs" />
+    <Compile Include="Cards\BasicWallCardTests.cs" />
+    <Compile Include="Cards\BigWallCardTests.cs" />
+    <Compile Include="Cards\BrickShortageCardTests.cs" />
+    <Compile Include="Cards\CollapseCardTests.cs" />
+    <Compile Include="Cards\CoppingTheTechCardTests.cs" />
+    <Compile Include="Cards\DwarvenMinersCardTests.cs" />
+    <Compile Include="Cards\EarthquakeCardTests.cs" />
+    <Compile Include="Cards\FoundationsCardTests.cs" />
+    <Compile Include="Cards\FriendlyTerrainCardTests.cs" />
+    <Compile Include="Cards\InnovationsCardTests.cs" />
+    <Compile Include="Cards\LuckyCacheCardTests.cs" />
+    <Compile Include="Cards\MinersCardTests.cs" />
+    <Compile Include="Cards\MotherLodeCardTests.cs" />
+    <Compile Include="Cards\NewEquipmentCardTests.cs" />
+    <Compile Include="Cards\ReinforcedWallCardTests.cs" />
+    <Compile Include="Cards\SecretRoomCardTests.cs" />
+    <Compile Include="Cards\StripMineCardTests.cs" />
+    <Compile Include="Cards\SturdyWallCardTests.cs" />
+    <Compile Include="Cards\TremorsCardTests.cs" />
+    <Compile Include="Cards\WorkOvertimeCardTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
