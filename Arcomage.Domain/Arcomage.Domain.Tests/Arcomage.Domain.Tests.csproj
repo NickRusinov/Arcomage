@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{6A53B74A-A692-4717-A15A-F3B23182A25C}</ProjectGuid>
+    <ProjectGuid>{232FCA44-AA7A-4250-BA13-51C8B7781312}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Arcomage.Domain.Tests</RootNamespace>
@@ -47,10 +47,18 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="AutoFixtureAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="project.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Arcomage.Domain\Arcomage.Domain.csproj">
+      <Project>{61c19e09-c14b-49ea-a2a6-0d70c348f4ef}</Project>
+      <Name>Arcomage.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
