@@ -11,6 +11,8 @@ namespace Arcomage.MonoGame.Droid.Elements
     {
         public Texture2D Texture { get; set; }
 
+        public SpriteEffects Effects { get; set; } = SpriteEffects.None;
+
         public override void Draw(SpriteBatch spriteBatch, Rectangle drawRectangle, GameTime gameTime)
         {
             spriteBatch.Draw(Texture, 
@@ -20,7 +22,7 @@ namespace Arcomage.MonoGame.Droid.Elements
                 rotation: Rotation, 
                 origin: Vector2.Zero, 
                 scale: new Vector2(drawRectangle.Width * SizeX / Texture.Width, drawRectangle.Height * SizeY / Texture.Height), 
-                effects: SpriteEffects.None, 
+                effects: Effects, 
                 layerDepth: 0);
         }
     }

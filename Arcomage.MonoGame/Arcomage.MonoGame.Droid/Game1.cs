@@ -54,15 +54,21 @@ namespace Arcomage.MonoGame.Droid
             FontStorage.Instance.LoadFonts(Content);
 
             var cardViewModel = new CardViewModel { Identifier = "Undefined", ResourceMode = "Gems", ResourcePrice = 5 };
+            var bricksViewModel = new ResourceViewModel { Identifier = "Bricks", Delta = 2, Value = 5 };
+            var gemsViewModel = new ResourceViewModel { Identifier = "Gems", Delta = 2, Value = 5 };
+            var recruitsViewModel = new ResourceViewModel { Identifier = "Recruits", Delta = 2, Value = 5 };
+            var resourcesViewModel = new ResourcesViewModel { Bricks = bricksViewModel, Gems = gemsViewModel, Recruits = recruitsViewModel };
 
             var ge = new GameElement { PositionX = 0.0f, PositionY = 0.0f, SizeX = 1.0f, SizeY = 1.0f };
+            var re1 = new ResourcesElement(resourcesViewModel, false) { PositionX = 0.005f, PositionY = 0.005f, SizeX = 0.16f, SizeY = 0.6f };
+            var re2 = new ResourcesElement(resourcesViewModel, true) { PositionX = 0.835f, PositionY = 0.005f, SizeX = 0.16f, SizeY = 0.6f };
             var ce1 = new CardElement(cardViewModel) { PositionX = 0.2f, PositionY = 0.7f, SizeX = 0.1f, SizeY = 0.3f };
             var ce2 = new CardElement(cardViewModel) { PositionX = 0.3f, PositionY = 0.7f, SizeX = 0.1f, SizeY = 0.3f };
             var ce3 = new CardElement(cardViewModel) { PositionX = 0.4f, PositionY = 0.7f, SizeX = 0.1f, SizeY = 0.3f };
             var ce4 = new CardElement(cardViewModel) { PositionX = 0.5f, PositionY = 0.7f, SizeX = 0.1f, SizeY = 0.3f };
             var ce5 = new CardElement(cardViewModel) { PositionX = 0.6f, PositionY = 0.7f, SizeX = 0.1f, SizeY = 0.3f };
             var ce6 = new CardElement(cardViewModel) { PositionX = 0.7f, PositionY = 0.7f, SizeX = 0.1f, SizeY = 0.3f };
-            elementCollection.AddRange(new Element[] { ge, ce1, ce2, ce3, ce4, ce5, ce6 });
+            elementCollection.AddRange(new Element[] { ge, re1, re2, ce1, ce2, ce3, ce4, ce5, ce6 });
 
             // TODO: use this.Content to load your game content here
         }

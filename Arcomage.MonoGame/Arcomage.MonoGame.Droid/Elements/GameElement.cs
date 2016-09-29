@@ -8,10 +8,10 @@ namespace Arcomage.MonoGame.Droid.Elements
     public class GameElement : PanelElement
     {
         private readonly SpriteElement gameBackgroundElement = new SpriteElement
-            { PositionX = 0.0f, PositionY = 0.0f, SizeX = 1.0f, SizeY = 0.6f };
+            { PositionX = 0.0f, PositionY = 0.0f, SizeX = 1.0f, SizeY = 0.625f };
 
         private readonly SpriteElement gameCardsBackgroundElement = new SpriteElement
-            { PositionX = 0.0f, PositionY = 0.6f, SizeX = 1.0f, SizeY = 0.4f };
+            { PositionX = 0.0f, PositionY = 0.625f, SizeX = 1.0f, SizeY = 0.375f };
 
         private readonly SpriteElement gameBorderImageElement = new SpriteElement
             { PositionX = 0.0f, PositionY = 0.0f, SizeX = 1.0f, SizeY = 1.0f };

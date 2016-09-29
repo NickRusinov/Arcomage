@@ -16,6 +16,9 @@ namespace Arcomage.MonoGame.Droid
         public void LoadFonts(ContentManager content)
         {
             fonts.Add("CardPriceFont", content.Load<SpriteFont>("CardPriceFont"));
+
+            fonts.Add("ResourceDeltaFont", content.Load<SpriteFont>("ResourceDeltaFont"));
+            fonts.Add("ResourceValueFont", content.Load<SpriteFont>("ResourceValueFont"));
         }
 
         public SpriteFont ResolveFont(string fontName)
