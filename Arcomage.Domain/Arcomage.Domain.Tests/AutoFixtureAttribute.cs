@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Arcomage.Domain.Entities;
+using Arcomage.Domain.Tests.Internal;
 using Ploeh.AutoFixture;
 using Ploeh.AutoFixture.AutoMoq;
 using Ploeh.AutoFixture.Xunit2;
@@ -15,6 +16,10 @@ namespace Arcomage.Domain.Tests
         public AutoFixtureAttribute()
         {
             Fixture.Customize(new AutoConfiguredMoqCustomization());
+            
+            Fixture.Register((IFixture f) => new FakeRandom() as Random);
+
+            Fixture.Register((IFixture f) => Enumerable.Range(0, 3).Select(_ => f.Create<Card>()).ToList() as IReadOnlyCollection<Card>);
 
             Fixture.Register((IFixture f) => CreateBuildings(f));
             Fixture.Register((IFixture f) => CreateResources(f));

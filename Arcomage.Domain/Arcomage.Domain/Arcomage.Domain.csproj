@@ -39,6 +39,8 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CardDecks\ClassicCardDeck.cs" />
+    <Compile Include="CardDecks\InfinityCardDeck.cs" />
     <Compile Include="Cards\BasicWallCard.cs" />
     <Compile Include="Cards\BigWallCard.cs" />
     <Compile Include="Cards\ReinforcedWallCard.cs" />

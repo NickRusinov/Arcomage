@@ -48,6 +48,8 @@
   </Choose>
   <ItemGroup>
     <Compile Include="AutoFixtureAttribute.cs" />
+    <Compile Include="CardDecks\ClassicCardDeckTests.cs" />
+    <Compile Include="CardDecks\InfinityCardDeckTests.cs" />
     <Compile Include="Cards\BasicWallCardTests.cs" />
     <Compile Include="Cards\BigWallCardTests.cs" />
     <Compile Include="Cards\BrickShortageCardTests.cs" />
@@ -69,6 +71,7 @@
     <Compile Include="Cards\TremorsCardTests.cs" />
     <Compile Include="Cards\WorkOvertimeCardTests.cs" />
     <Compile Include="GameConditions\ClassicGameConditionTests.cs" />
+    <Compile Include="Internal\FakeRandom.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
