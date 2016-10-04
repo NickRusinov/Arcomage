@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Arcomage.Domain.Entities;
+using Arcomage.Domain.Internal;
 
 namespace Arcomage.Domain.Cards
 {
@@ -18,7 +19,7 @@ namespace Arcomage.Domain.Cards
         
         public override void Activate(Game game)
         {
-            game.PlayerMode = (PlayerMode)((int)(game.PlayerMode + 1) % 2);
+            game.PlayerMode = game.PlayerMode.GetAdversary();
         }
     }
 }

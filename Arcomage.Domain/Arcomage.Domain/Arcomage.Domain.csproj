@@ -69,10 +69,15 @@
     <Compile Include="Entities\PlayerMode.cs" />
     <Compile Include="Entities\ResourceMode.cs" />
     <Compile Include="Entities\Resources.cs" />
+    <Compile Include="Entities\GameCondition.cs" />
+    <Compile Include="Entities\WinResult.cs" />
+    <Compile Include="GameConditions\ClassicGameCondition.cs" />
     <Compile Include="IActivable.cs" />
     <Compile Include="IIdentifiable.cs" />
     <Compile Include="Internal\GameExtensions.cs" />
+    <Compile Include="Internal\PlayerModeExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="GameConditions\IWinResultFactory.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

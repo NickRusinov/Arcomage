@@ -68,6 +68,7 @@
     <Compile Include="Cards\SturdyWallCardTests.cs" />
     <Compile Include="Cards\TremorsCardTests.cs" />
     <Compile Include="Cards\WorkOvertimeCardTests.cs" />
+    <Compile Include="GameConditions\ClassicGameConditionTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

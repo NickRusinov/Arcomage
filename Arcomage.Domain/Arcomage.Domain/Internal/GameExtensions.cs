@@ -9,20 +9,22 @@ namespace Arcomage.Domain.Internal
 {
     internal static class GameExtensions
     {
-        public static Player GetCurrentPlayer(this Game game)
+        public static Player GetPlayer(this Game game, PlayerMode playerMode)
         {
-            if (game.PlayerMode == PlayerMode.FirstPlayer)
+            if (game.PlayerMode == playerMode)
                 return game.FirstPlayer;
 
             return game.SecondPlayer;
         }
 
+        public static Player GetCurrentPlayer(this Game game)
+        {
+            return game.GetPlayer(PlayerMode.FirstPlayer);
+        }
+
         public static Player GetAdversaryPlayer(this Game game)
         {
-            if (game.PlayerMode == PlayerMode.SecondPlayer)
-                return game.FirstPlayer;
-
-            return game.SecondPlayer;
+            return game.GetPlayer(PlayerMode.SecondPlayer);
         }
     }
 }
