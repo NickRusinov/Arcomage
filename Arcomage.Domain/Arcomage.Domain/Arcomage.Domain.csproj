@@ -80,6 +80,13 @@
     <Compile Include="Internal\PlayerModeExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GameConditions\IWinResultFactory.cs" />
+    <Compile Include="Services\DiscardCardService.cs" />
+    <Compile Include="Services\IActivateCardService.cs" />
+    <Compile Include="Services\IDiscardCardService.cs" />
+    <Compile Include="Services\IPlayCardService.cs" />
+    <Compile Include="Services\IReplaceCardService.cs" />
+    <Compile Include="Services\IReplacePlayerService.cs" />
+    <Compile Include="Services\PlayCardService.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

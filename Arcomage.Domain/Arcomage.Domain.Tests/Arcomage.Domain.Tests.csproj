@@ -73,6 +73,8 @@
     <Compile Include="GameConditions\ClassicGameConditionTests.cs" />
     <Compile Include="Internal\FakeRandom.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\DiscardCardServiceTests.cs" />
+    <Compile Include="Services\PlayCardServiceTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
