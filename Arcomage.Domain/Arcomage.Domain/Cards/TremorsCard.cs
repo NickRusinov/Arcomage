@@ -7,18 +7,15 @@ using Arcomage.Domain.Entities;
 
 namespace Arcomage.Domain.Cards
 {
-    public class TremorsCard : ClassicCard
+    public class TremorsCard : BricksCard
     {
-        public TremorsCard()
-            : base("Tremors", 7, ResourceMode.Bricks)
-        {
-
-        }
+        public override int ResourcePrice { get; set; } = 7;
 
         public override void Activate(Game game)
         {
             game.FirstPlayer.Buildings.Wall -= 5;
             game.SecondPlayer.Buildings.Wall -= 5;
+            // TODO PlayAgain
         }
     }
 }

@@ -8,20 +8,14 @@ using Arcomage.Domain.Internal;
 
 namespace Arcomage.Domain.Cards
 {
-    public class WorkOvertimeCard : ClassicCard
+    public class WorkOvertimeCard : BricksCard
     {
-        public WorkOvertimeCard()
-            : base("WorkOvertime", 2, ResourceMode.Bricks)
-        {
-
-        }
+        public override int ResourcePrice { get; set; } = 2;
 
         public override void Activate(Game game)
         {
             game.GetCurrentPlayer().Buildings.Wall += 5;
             game.GetCurrentPlayer().Resources.Gems -= 6;
-
-            base.Activate(game);
         }
     }
 }

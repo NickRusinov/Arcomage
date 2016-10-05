@@ -8,20 +8,14 @@ using Arcomage.Domain.Internal;
 
 namespace Arcomage.Domain.Cards
 {
-    public class CoppingTheTechCard : ClassicCard
+    public class CoppingTheTechCard : BricksCard
     {
-        public CoppingTheTechCard()
-            : base("CoppingTheTech", 5, ResourceMode.Bricks)
-        {
-
-        }
+        public override int ResourcePrice { get; set; } = 5;
 
         public override void Activate(Game game)
         {
             if (game.GetCurrentPlayer().Resources.Quarry < game.GetAdversaryPlayer().Resources.Quarry)
                 game.GetCurrentPlayer().Resources.Quarry = game.GetAdversaryPlayer().Resources.Quarry;
-
-            base.Activate(game);
         }
     }
 }

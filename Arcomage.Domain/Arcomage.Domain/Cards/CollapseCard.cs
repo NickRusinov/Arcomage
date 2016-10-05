@@ -8,19 +8,13 @@ using Arcomage.Domain.Internal;
 
 namespace Arcomage.Domain.Cards
 {
-    public class CollapseCard : ClassicCard
+    public class CollapseCard : BricksCard
     {
-        public CollapseCard()
-            : base("Collapse", 4, ResourceMode.Bricks)
-        {
-
-        }
+        public override int ResourcePrice { get; set; } = 4;
 
         public override void Activate(Game game)
         {
             game.GetAdversaryPlayer().Resources.Quarry -= 1;
-
-            base.Activate(game);
         }
     }
 }

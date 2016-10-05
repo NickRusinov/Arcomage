@@ -8,19 +8,13 @@ using Arcomage.Domain.Internal;
 
 namespace Arcomage.Domain.Cards
 {
-    public class BasicWallCard : ClassicCard
+    public class BasicWallCard : BricksCard
     {
-        public BasicWallCard()
-            : base("BasicWall", 2, ResourceMode.Bricks)
-        {
-
-        }
+        public override int ResourcePrice { get; set; } = 2;
 
         public override void Activate(Game game)
         {
             game.GetCurrentPlayer().Buildings.Wall += 3;
-
-            base.Activate(game);
         }
     }
 }

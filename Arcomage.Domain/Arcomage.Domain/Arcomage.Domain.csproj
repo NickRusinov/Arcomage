@@ -43,6 +43,7 @@
     <Compile Include="CardDecks\InfinityCardDeck.cs" />
     <Compile Include="Cards\BasicWallCard.cs" />
     <Compile Include="Cards\BigWallCard.cs" />
+    <Compile Include="Cards\BricksCard.cs" />
     <Compile Include="Cards\ReinforcedWallCard.cs" />
     <Compile Include="Cards\StripMineCard.cs" />
     <Compile Include="Cards\NewEquipmentCard.cs" />
@@ -61,7 +62,6 @@
     <Compile Include="Cards\FriendlyTerrainCard.cs" />
     <Compile Include="Cards\LuckyCacheCard.cs" />
     <Compile Include="Cards\BrickShortageCard.cs" />
-    <Compile Include="Cards\ClassicCard.cs" />
     <Compile Include="Entities\Buildings.cs" />
     <Compile Include="Entities\Card.cs" />
     <Compile Include="Entities\CardDeck.cs" />
@@ -69,7 +69,6 @@
     <Compile Include="Entities\Game.cs" />
     <Compile Include="Entities\Player.cs" />
     <Compile Include="Entities\PlayerMode.cs" />
-    <Compile Include="Entities\ResourceMode.cs" />
     <Compile Include="Entities\Resources.cs" />
     <Compile Include="Entities\GameCondition.cs" />
     <Compile Include="Entities\WinResult.cs" />

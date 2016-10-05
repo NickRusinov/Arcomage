@@ -8,18 +8,15 @@ using Arcomage.Domain.Internal;
 
 namespace Arcomage.Domain.Cards
 {
-    public class LuckyCacheCard : ClassicCard
+    public class LuckyCacheCard : BricksCard
     {
-        public LuckyCacheCard()
-            : base("LuckyCache", 0, ResourceMode.Bricks)
-        {
-
-        }
+        public override int ResourcePrice { get; set; } = 0;
 
         public override void Activate(Game game)
         {
             game.GetCurrentPlayer().Resources.Bricks += 2;
             game.GetCurrentPlayer().Resources.Gems += 2;
+            // TODO PlayAgain
         }
     }
 }

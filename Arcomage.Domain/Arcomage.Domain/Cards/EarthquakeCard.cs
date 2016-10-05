@@ -7,20 +7,14 @@ using Arcomage.Domain.Entities;
 
 namespace Arcomage.Domain.Cards
 {
-    public class EarthquakeCard : ClassicCard
+    public class EarthquakeCard : BricksCard
     {
-        public EarthquakeCard()
-            : base("Earthquake", 0, ResourceMode.Bricks)
-        {
-
-        }
+        public override int ResourcePrice { get; set; } = 0;
 
         public override void Activate(Game game)
         {
             game.FirstPlayer.Resources.Quarry -= 1;
             game.SecondPlayer.Resources.Quarry -= 1;
-
-            base.Activate(game);
         }
     }
 }

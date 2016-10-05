@@ -8,17 +8,14 @@ using Arcomage.Domain.Internal;
 
 namespace Arcomage.Domain.Cards
 {
-    public class FriendlyTerrainCard : ClassicCard
+    public class FriendlyTerrainCard : BricksCard
     {
-        public FriendlyTerrainCard()
-            : base("FriendlyTerrain", 1, ResourceMode.Bricks)
-        {
-
-        }
+        public override int ResourcePrice { get; set; } = 1;
 
         public override void Activate(Game game)
         {
             game.GetCurrentPlayer().Buildings.Wall += 1;
+            // TODO PlayAgain
         }
     }
 }

@@ -10,9 +10,11 @@ namespace Arcomage.Domain.Entities
     {
         public string Identifier { get; set; }
 
-        public int ResourcePrice { get; set; }
+        public abstract int ResourcePrice { get; set; }
 
-        public ResourceMode ResourceMode { get; set; }
+        public abstract bool IsEnoughResources(Resources resources);
+
+        public abstract void PaymentResources(Resources resources);
 
         public abstract void Activate(Game game);
     }

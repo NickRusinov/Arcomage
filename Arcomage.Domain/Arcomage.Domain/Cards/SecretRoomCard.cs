@@ -8,17 +8,14 @@ using Arcomage.Domain.Internal;
 
 namespace Arcomage.Domain.Cards
 {
-    public class SecretRoomCard : ClassicCard
+    public class SecretRoomCard : BricksCard
     {
-        public SecretRoomCard()
-            : base("SecretRoom", 8, ResourceMode.Bricks)
-        {
-
-        }
+        public override int ResourcePrice { get; set; } = 8;
 
         public override void Activate(Game game)
         {
             game.GetCurrentPlayer().Resources.Magic += 1;
+            // TODO PlayAgain
         }
     }
 }

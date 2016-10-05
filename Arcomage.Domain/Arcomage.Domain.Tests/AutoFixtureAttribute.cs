@@ -19,7 +19,7 @@ namespace Arcomage.Domain.Tests
             
             Fixture.Register((IFixture f) => new FakeRandom() as Random);
 
-            Fixture.Register((IFixture f) => Enumerable.Range(0, 3).Select(_ => f.Create<Card>()).ToList() as IReadOnlyCollection<Card>);
+            Fixture.Register((IFixture f) => f.CreateMany<Card>().ToList() as IReadOnlyCollection<Card>);
 
             Fixture.Register((IFixture f) => CreateBuildings(f));
             Fixture.Register((IFixture f) => CreateResources(f));

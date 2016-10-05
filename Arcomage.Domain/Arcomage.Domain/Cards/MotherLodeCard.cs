@@ -8,13 +8,9 @@ using Arcomage.Domain.Internal;
 
 namespace Arcomage.Domain.Cards
 {
-    public class MotherLodeCard : ClassicCard
+    public class MotherLodeCard : BricksCard
     {
-        public MotherLodeCard()
-            : base("MotherLode", 4, ResourceMode.Bricks)
-        {
-
-        }
+        public override int ResourcePrice { get; set; } = 4;
 
         public override void Activate(Game game)
         {
@@ -22,8 +18,6 @@ namespace Arcomage.Domain.Cards
                 game.GetCurrentPlayer().Resources.Quarry += 2;
             else
                 game.GetCurrentPlayer().Resources.Quarry += 1;
-
-            base.Activate(game);
         }
     }
 }
