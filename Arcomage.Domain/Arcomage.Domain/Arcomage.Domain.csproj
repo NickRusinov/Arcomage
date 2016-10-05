@@ -41,6 +41,20 @@
   <ItemGroup>
     <Compile Include="CardDecks\ClassicCardDeck.cs" />
     <Compile Include="CardDecks\InfinityCardDeck.cs" />
+    <Compile Include="Cards\BarracksCard.cs" />
+    <Compile Include="Cards\ShiftCard.cs" />
+    <Compile Include="Cards\BattlementsCard.cs" />
+    <Compile Include="Cards\FloodWaterCard.cs" />
+    <Compile Include="Cards\RockGardenCard.cs" />
+    <Compile Include="Cards\ForcedLaborCard.cs" />
+    <Compile Include="Cards\DragonsHeartCard.cs" />
+    <Compile Include="Cards\RockLauncherCard.cs" />
+    <Compile Include="Cards\GreatWallCard.cs" />
+    <Compile Include="Cards\FocusedDesignsCard.cs" />
+    <Compile Include="Cards\MondoWallCard.cs" />
+    <Compile Include="Cards\HarmonicOreCard.cs" />
+    <Compile Include="Cards\CrystalRocksCard.cs" />
+    <Compile Include="Cards\PorticulusCard.cs" />
     <Compile Include="Cards\BasicWallCard.cs" />
     <Compile Include="Cards\BigWallCard.cs" />
     <Compile Include="Cards\BricksCard.cs" />
@@ -77,6 +91,7 @@
     <Compile Include="GameConditions\ClassicGameCondition.cs" />
     <Compile Include="IActivable.cs" />
     <Compile Include="IIdentifiable.cs" />
+    <Compile Include="Internal\BuildingsExtensions.cs" />
     <Compile Include="Internal\GameExtensions.cs" />
     <Compile Include="Internal\PlayerModeExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
