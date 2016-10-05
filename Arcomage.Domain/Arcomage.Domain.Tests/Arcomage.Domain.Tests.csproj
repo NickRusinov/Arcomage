@@ -75,6 +75,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\DiscardCardServiceTests.cs" />
     <Compile Include="Services\PlayCardServiceTests.cs" />
+    <Compile Include="Services\ReplaceCardServiceTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
