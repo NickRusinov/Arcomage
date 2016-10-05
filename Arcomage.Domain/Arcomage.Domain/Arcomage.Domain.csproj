@@ -72,6 +72,8 @@
     <Compile Include="Entities\Resources.cs" />
     <Compile Include="Entities\GameCondition.cs" />
     <Compile Include="Entities\WinResult.cs" />
+    <Compile Include="Exceptions\ArcomageException.cs" />
+    <Compile Include="Exceptions\NotEnoughResourcesException.cs" />
     <Compile Include="GameConditions\ClassicGameCondition.cs" />
     <Compile Include="IActivable.cs" />
     <Compile Include="IIdentifiable.cs" />
@@ -79,6 +81,7 @@
     <Compile Include="Internal\PlayerModeExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GameConditions\IWinResultFactory.cs" />
+    <Compile Include="Services\ActivateCardService.cs" />
     <Compile Include="Services\DiscardCardService.cs" />
     <Compile Include="Services\IActivateCardService.cs" />
     <Compile Include="Services\IDiscardCardService.cs" />
