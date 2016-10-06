@@ -87,11 +87,12 @@
     <Compile Include="GameConditions\ClassicGameConditionTests.cs" />
     <Compile Include="Internal\FakeRandom.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\ActivateCardServiceTests.cs" />
-    <Compile Include="Services\DiscardCardServiceTests.cs" />
-    <Compile Include="Services\PlayCardServiceTests.cs" />
-    <Compile Include="Services\ReplaceCardServiceTests.cs" />
-    <Compile Include="Services\ReplacePlayerServiceTests.cs" />
+    <Compile Include="Services\ActivateCardGameActionTests.cs" />
+    <Compile Include="Services\ReplaceCardGameActionTests.cs" />
+    <Compile Include="Services\ReplacePlayerGameActionTests.cs" />
+    <Compile Include="Services\UpdateFinishedGameActionTests.cs" />
+    <Compile Include="Services\VerifyDiscardCardGameActionTests.cs" />
+    <Compile Include="Services\VerifyPlayCardGameActionTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

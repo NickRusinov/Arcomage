@@ -19,6 +19,8 @@ namespace Arcomage.Domain.Entities
 
         public CardDeck CardDeck { get; set; }
 
+        public bool IsFinished { get; set; }
+
         public int PlayAgainTurns
         {
             get { return playAgainTurns; }

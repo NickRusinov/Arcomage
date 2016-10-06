@@ -8,25 +8,22 @@ using Arcomage.Domain.Exceptions;
 
 namespace Arcomage.Domain.Services
 {
-    public class ActivateCardService : IActivateCardService
+    public class ActivateCardGameAction : IGameAction
     {
         private readonly Game game;
 
         private readonly Player player;
 
-        public ActivateCardService(Game game, Player player)
+        public ActivateCardGameAction(Game game, Player player)
         {
             this.game = game;
             this.player = player;
         }
 
-        public void ActivateCard(int cardIndex)
+        public void Execute(int cardIndex)
         {
             var card = player.CardSet.Cards[cardIndex];
-
-            if (!card.IsEnoughResources(player.Resources))
-                throw new NotEnoughResourcesException();
-
+            
             card.Activate(game);
             card.PaymentResources(player.Resources);
         }

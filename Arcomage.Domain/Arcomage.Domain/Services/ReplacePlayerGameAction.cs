@@ -8,16 +8,16 @@ using Arcomage.Domain.Internal;
 
 namespace Arcomage.Domain.Services
 {
-    public class ReplacePlayerService : IReplacePlayerService
+    public class ReplacePlayerGameAction : IGameAction
     {
         private readonly Game game;
 
-        public ReplacePlayerService(Game game)
+        public ReplacePlayerGameAction(Game game)
         {
             this.game = game;
         }
 
-        public void ReplacePlayer()
+        public void Execute(int cardIndex)
         {
             if (game.PlayAgainTurns == 0)
                 game.PlayerMode = game.PlayerMode.GetAdversary();

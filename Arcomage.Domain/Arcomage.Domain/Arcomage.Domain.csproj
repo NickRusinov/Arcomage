@@ -87,6 +87,8 @@
     <Compile Include="Entities\GameCondition.cs" />
     <Compile Include="Entities\WinResult.cs" />
     <Compile Include="Exceptions\ArcomageException.cs" />
+    <Compile Include="Exceptions\GameFinishedException.cs" />
+    <Compile Include="Exceptions\NotCurrentPlayerException.cs" />
     <Compile Include="Exceptions\NotEnoughResourcesException.cs" />
     <Compile Include="GameConditions\ClassicGameCondition.cs" />
     <Compile Include="IActivable.cs" />
@@ -96,16 +98,14 @@
     <Compile Include="Internal\PlayerModeExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GameConditions\IWinResultFactory.cs" />
-    <Compile Include="Services\ActivateCardService.cs" />
-    <Compile Include="Services\DiscardCardService.cs" />
-    <Compile Include="Services\IActivateCardService.cs" />
-    <Compile Include="Services\IDiscardCardService.cs" />
-    <Compile Include="Services\IPlayCardService.cs" />
-    <Compile Include="Services\IReplaceCardService.cs" />
-    <Compile Include="Services\IReplacePlayerService.cs" />
-    <Compile Include="Services\PlayCardService.cs" />
-    <Compile Include="Services\ReplaceCardService.cs" />
-    <Compile Include="Services\ReplacePlayerService.cs" />
+    <Compile Include="Services\ActivateCardGameAction.cs" />
+    <Compile Include="Services\CompositeGameAction.cs" />
+    <Compile Include="Services\IGameAction.cs" />
+    <Compile Include="Services\ReplaceCardGameAction.cs" />
+    <Compile Include="Services\ReplacePlayerGameAction.cs" />
+    <Compile Include="Services\UpdateFinishedGameAction.cs" />
+    <Compile Include="Services\VerifyDiscardCardGameAction.cs" />
+    <Compile Include="Services\VerifyPlayCardGameAction.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

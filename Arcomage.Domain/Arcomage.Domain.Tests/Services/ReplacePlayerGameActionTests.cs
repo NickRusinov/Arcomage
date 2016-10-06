@@ -10,16 +10,16 @@ using Xunit;
 
 namespace Arcomage.Domain.Tests.Services
 {
-    public class ReplacePlayerServiceTests
+    public class ReplacePlayerGameActionTests
     {
         [Theory, AutoFixture]
         public void ReplacePlayerTest(
             [Frozen] Game game,
-            ReplacePlayerService sut)
+            ReplacePlayerGameAction sut)
         {
             game.PlayAgainTurns = 0;
 
-            sut.ReplacePlayer();
+            sut.Execute(1);
 
             Assert.Equal(PlayerMode.SecondPlayer, game.PlayerMode);
         }
@@ -27,11 +27,11 @@ namespace Arcomage.Domain.Tests.Services
         [Theory, AutoFixture]
         public void ReplacePlayerWhenPlayAgainTest(
             [Frozen] Game game,
-            ReplacePlayerService sut)
+            ReplacePlayerGameAction sut)
         {
             game.PlayAgainTurns = 1;
 
-            sut.ReplacePlayer();
+            sut.Execute(1);
 
             Assert.Equal(PlayerMode.FirstPlayer, game.PlayerMode);
         }

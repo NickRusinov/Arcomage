@@ -12,16 +12,16 @@ using Xunit;
 
 namespace Arcomage.Domain.Tests.Services
 {
-    public class ActivateCardServiceTests
+    public class ActivateCardGameActionTests
     {
         [Theory, AutoFixture]
         public void ActivateCalledTest(
             [Frozen] Mock<Card> cardMock,
-            ActivateCardService sut)
+            ActivateCardGameAction sut)
         {
             cardMock.Setup(c => c.IsEnoughResources(It.IsAny<Resources>())).Returns(true);
 
-            sut.ActivateCard(1);
+            sut.Execute(1);
 
             cardMock.Verify(c => c.Activate(It.IsAny<Game>()), Times.Once);
         }
@@ -29,23 +29,13 @@ namespace Arcomage.Domain.Tests.Services
         [Theory, AutoFixture]
         public void PaymentResourcesCalledTest(
             [Frozen] Mock<Card> cardMock,
-            ActivateCardService sut)
+            ActivateCardGameAction sut)
         {
             cardMock.Setup(c => c.IsEnoughResources(It.IsAny<Resources>())).Returns(true);
 
-            sut.ActivateCard(1);
+            sut.Execute(1);
 
             cardMock.Verify(c => c.PaymentResources(It.IsAny<Resources>()), Times.Once);
-        }
-
-        [Theory, AutoFixture]
-        public void ThrowsNotEnoughResourcesExceptionTest(
-            [Frozen] Mock<Card> cardMock,
-            ActivateCardService sut)
-        {
-            cardMock.Setup(c => c.IsEnoughResources(It.IsAny<Resources>())).Returns(false);
-
-            Assert.Throws<NotEnoughResourcesException>(() => sut.ActivateCard(1));
         }
     }
 }

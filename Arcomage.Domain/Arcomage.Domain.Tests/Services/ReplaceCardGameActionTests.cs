@@ -11,19 +11,19 @@ using Xunit;
 
 namespace Arcomage.Domain.Tests.Services
 {
-    public class ReplaceCardServiceTests
+    public class ReplaceCardGameActionTests
     {
         [Theory, AutoFixture]
         public void ReplaceCardTest(Mock<Card> cardMock,
             [Frozen] Player player,
             [Frozen] Mock<CardDeck> cardDeckMock,
-            ReplaceCardService sut)
+            ReplaceCardGameAction sut)
         {
             var oldCard = player.CardSet.Cards[1];
             var newCard = cardMock.Object;
             cardDeckMock.Setup(cd => cd.PopCard(It.IsAny<Game>())).Returns(newCard);
 
-            sut.ReplaceCard(1);
+            sut.Execute(1);
 
             cardDeckMock.Verify(cd => cd.PopCard(It.IsAny<Game>()), Times.Once);
             cardDeckMock.Verify(cd => cd.PushCard(It.IsAny<Game>(), oldCard), Times.Once);

@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Arcomage.Domain.Services
 {
-    public interface IActivateCardService
+    public interface IGameAction
     {
-        void ActivateCard(int cardIndex);
+        void Execute(int cardIndex);
     }
 }
