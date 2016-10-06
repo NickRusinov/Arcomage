@@ -91,6 +91,7 @@
     <Compile Include="Services\DiscardCardServiceTests.cs" />
     <Compile Include="Services\PlayCardServiceTests.cs" />
     <Compile Include="Services\ReplaceCardServiceTests.cs" />
+    <Compile Include="Services\ReplacePlayerServiceTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
