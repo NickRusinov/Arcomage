@@ -7,10 +7,16 @@ namespace Arcomage.MonoGame.Droid.ViewModels
 {
     public class ResourcesViewModel : ViewModel
     {
-        public ResourceViewModel Bricks { get; set; }
+        public int Quarry { get; set; }
 
-        public ResourceViewModel Gems { get; set; }
+        public int Bricks { get; set; }
 
-        public ResourceViewModel Recruits { get; set; }
+        public int Magic { get; set; }
+
+        public int Gems { get; set; }
+
+        public int Dungeons { get; set; }
+
+        public int Recruits { get; set; }
     }
 }

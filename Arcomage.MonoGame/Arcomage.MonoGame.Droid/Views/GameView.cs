@@ -24,11 +24,20 @@ namespace Arcomage.MonoGame.Droid.Views
                 Texture = contentManager.Load<Texture2D>("GameBackgroundImage")
             };
 
-            var panelView = new PanelView();
-            panelView.Items.Add(gameBackgroundImageView);
-            panelView.Items.Add(gameBorderImageView);
+            var resourcesLeftView = new ResourcesLeftView(contentManager)
+            {
+                PositionX = 2, PositionY = 9, SizeX = 170, SizeY = 377
+            };
 
-            Content = panelView;
+            var resourcesRightView = new ResourcesRightView(contentManager)
+            {
+                PositionX = 1109, PositionY = 9, SizeX = 170, SizeY = 377
+            };
+            
+            Items.Add(gameBackgroundImageView);
+            Items.Add(resourcesLeftView);
+            Items.Add(resourcesRightView);
+            Items.Add(gameBorderImageView);
         }
     }
 }

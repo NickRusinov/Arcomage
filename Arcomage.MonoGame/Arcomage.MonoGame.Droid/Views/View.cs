@@ -40,7 +40,7 @@ namespace Arcomage.MonoGame.Droid.Views
         public abstract void Draw(Canvas canvas);
     }
 
-    public abstract class View<TViewModel> : View
+    public abstract class View<TViewModel> : PanelView
     {
         private TViewModel viewModel;
 
@@ -57,13 +57,6 @@ namespace Arcomage.MonoGame.Droid.Views
 
                 viewModel = value;
             }
-        }
-
-        public View Content { get; set; }
-
-        public override void Draw(Canvas canvas)
-        {
-            Content.Draw(canvas);
         }
 
         protected virtual void UnbindViewModel(TViewModel viewModel) { }

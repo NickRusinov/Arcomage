@@ -66,10 +66,11 @@
     <Compile Include="ViewModels\CardViewModel.cs" />
     <Compile Include="ViewModels\GameViewModel.cs" />
     <Compile Include="ViewModels\ResourcesViewModel.cs" />
-    <Compile Include="ViewModels\ResourceViewModel.cs" />
     <Compile Include="ViewModels\ViewModel.cs" />
     <Compile Include="Views\GameView.cs" />
+    <Compile Include="Views\ResourcesLeftView.cs" />
     <Compile Include="Views\PanelView.cs" />
+    <Compile Include="Views\ResourcesRightView.cs" />
     <Compile Include="Views\SpriteView.cs" />
     <Compile Include="Views\View.cs" />
   </ItemGroup>
@@ -103,7 +104,9 @@
     <None Include="Content\GameBorderImage.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\GameBackgroundImage.png" />
+    <None Include="Content\GameBackgroundImage.png" />
+    <None Include="Content\ResourcesLeftImage.png" />
+    <None Include="Content\ResourcesRightImage.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
