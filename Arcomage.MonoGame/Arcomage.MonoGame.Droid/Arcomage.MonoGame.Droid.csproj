@@ -59,23 +59,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Activity1.cs" />
-    <Compile Include="Elements\CardElement.cs" />
-    <Compile Include="Elements\Element.cs" />
-    <Compile Include="Elements\GameElement.cs" />
-    <Compile Include="Elements\PanelElement.cs" />
-    <Compile Include="Elements\ResourceElement.cs" />
-    <Compile Include="Elements\ResourcesElement.cs" />
-    <Compile Include="Elements\SpriteElement.cs" />
-    <Compile Include="Elements\TextElement.cs" />
+    <Compile Include="Canvas.cs" />
     <Compile Include="FontStorage.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SpriteBatchCanvas.cs" />
     <Compile Include="TextureStorage.cs" />
     <Compile Include="ViewModels\CardViewModel.cs" />
     <Compile Include="ViewModels\ResourcesViewModel.cs" />
     <Compile Include="ViewModels\ResourceViewModel.cs" />
     <Compile Include="ViewModels\ViewModel.cs" />
+    <Compile Include="Views\PanelView.cs" />
+    <Compile Include="Views\SpriteView.cs" />
+    <Compile Include="Views\View.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Content\CardPriceFont.spritefont" />

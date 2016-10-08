@@ -1,6 +1,5 @@
 using System.Collections.Generic;
-using Arcomage.MonoGame.Droid.Elements;
-using Arcomage.MonoGame.Droid.ViewModels;
+using Arcomage.MonoGame.Droid.Views;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -12,16 +11,17 @@ namespace Arcomage.MonoGame.Droid
     /// </summary>
     public class Game1 : Game
     {
-        GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
+        private GraphicsDeviceManager graphics;
 
-        private readonly List<Element> elementCollection = new List<Element>();
+        private SpriteBatch spriteBatch;
 
+        private Canvas canvas;
+
+        private View view;
+        
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
-            Content.RootDirectory = "Content";
-
             graphics.IsFullScreen = true;
             graphics.PreferredBackBufferWidth = 800;
             graphics.PreferredBackBufferHeight = 480;
@@ -47,28 +47,14 @@ namespace Arcomage.MonoGame.Droid
         /// </summary>
         protected override void LoadContent()
         {
-            // Create a new SpriteBatch, which can be used to draw textures.
-            spriteBatch = new SpriteBatch(GraphicsDevice);
-
+            Content.RootDirectory = "Content";
             TextureStorage.Instance.LoadTextures(Content);
             FontStorage.Instance.LoadFonts(Content);
 
-            var cardViewModel = new CardViewModel { Identifier = "Undefined", ResourceMode = "Gems", ResourcePrice = 5 };
-            var bricksViewModel = new ResourceViewModel { Identifier = "Bricks", Delta = 2, Value = 5 };
-            var gemsViewModel = new ResourceViewModel { Identifier = "Gems", Delta = 2, Value = 5 };
-            var recruitsViewModel = new ResourceViewModel { Identifier = "Recruits", Delta = 2, Value = 5 };
-            var resourcesViewModel = new ResourcesViewModel { Bricks = bricksViewModel, Gems = gemsViewModel, Recruits = recruitsViewModel };
-
-            var ge = new GameElement { PositionX = 0.0f, PositionY = 0.0f, SizeX = 1.0f, SizeY = 1.0f };
-            var re1 = new ResourcesElement(resourcesViewModel, false) { PositionX = 0.005f, PositionY = 0.005f, SizeX = 0.16f, SizeY = 0.6f };
-            var re2 = new ResourcesElement(resourcesViewModel, true) { PositionX = 0.835f, PositionY = 0.005f, SizeX = 0.16f, SizeY = 0.6f };
-            var ce1 = new CardElement(cardViewModel) { PositionX = 0.2f, PositionY = 0.7f, SizeX = 0.1f, SizeY = 0.3f };
-            var ce2 = new CardElement(cardViewModel) { PositionX = 0.3f, PositionY = 0.7f, SizeX = 0.1f, SizeY = 0.3f };
-            var ce3 = new CardElement(cardViewModel) { PositionX = 0.4f, PositionY = 0.7f, SizeX = 0.1f, SizeY = 0.3f };
-            var ce4 = new CardElement(cardViewModel) { PositionX = 0.5f, PositionY = 0.7f, SizeX = 0.1f, SizeY = 0.3f };
-            var ce5 = new CardElement(cardViewModel) { PositionX = 0.6f, PositionY = 0.7f, SizeX = 0.1f, SizeY = 0.3f };
-            var ce6 = new CardElement(cardViewModel) { PositionX = 0.7f, PositionY = 0.7f, SizeX = 0.1f, SizeY = 0.3f };
-            elementCollection.AddRange(new Element[] { ge, re1, re2, ce1, ce2, ce3, ce4, ce5, ce6 });
+            // Create a new SpriteBatch, which can be used to draw textures.
+            spriteBatch = new SpriteBatch(GraphicsDevice);
+            canvas = new SpriteBatchCanvas(spriteBatch, Vector2.Zero, Vector2.One);
+            view = new PanelView();
 
             // TODO: use this.Content to load your game content here
         }
@@ -105,9 +91,8 @@ namespace Arcomage.MonoGame.Droid
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
          
-            var drawRectangle = new Rectangle(0, 0, spriteBatch.GraphicsDevice.DisplayMode.Width, spriteBatch.GraphicsDevice.DisplayMode.Height);   
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied);
-            elementCollection.ForEach(e => e.Draw(spriteBatch, drawRectangle, gameTime));
+            view.Draw(canvas);
             spriteBatch.End();
 
             // TODO: Add your drawing code here
