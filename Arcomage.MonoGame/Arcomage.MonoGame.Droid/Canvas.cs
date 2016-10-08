@@ -7,10 +7,29 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Arcomage.MonoGame.Droid
 {
-    public abstract class Canvas
+    public class Canvas
     {
-        public abstract void Draw(Texture2D texture, Vector2 position, Rectangle? sourceRectangle, Color color, float rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, float layerDepth);
+        private readonly SpriteBatch spriteBatch;
 
-        public abstract Canvas CreateNestedCanvas(Rectangle nestedRectangle);
+        private readonly Vector2 spritePosition;
+
+        private readonly Vector2 spriteScale;
+
+        public Canvas(SpriteBatch spriteBatch, Vector2 spritePosition, Vector2 spriteScale)
+        {
+            this.spriteBatch = spriteBatch;
+            this.spritePosition = spritePosition;
+            this.spriteScale = spriteScale;
+        }
+
+        public void Draw(Texture2D texture, Vector2 position, Rectangle? sourceRectangle, Color color, float rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, float layerDepth)
+        {
+            spriteBatch.Draw(texture, position + spritePosition, sourceRectangle, color, rotation, origin, scale * spriteScale, effects, layerDepth);
+        }
+
+        public Canvas CreateNestedCanvas(Rectangle nestedRectangle)
+        {
+            return new Canvas(spriteBatch, spritePosition + nestedRectangle.Location.ToVector2(), spriteScale);
+        }
     }
 }

@@ -48,13 +48,11 @@ namespace Arcomage.MonoGame.Droid
         protected override void LoadContent()
         {
             Content.RootDirectory = "Content";
-            TextureStorage.Instance.LoadTextures(Content);
-            FontStorage.Instance.LoadFonts(Content);
 
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            canvas = new SpriteBatchCanvas(spriteBatch, Vector2.Zero, Vector2.One);
-            view = new PanelView();
+            canvas = new Canvas(spriteBatch, Vector2.Zero, Vector2.One);
+            view = new GameView(Content);
 
             // TODO: use this.Content to load your game content here
         }

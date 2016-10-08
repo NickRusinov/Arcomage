@@ -60,24 +60,20 @@
   <ItemGroup>
     <Compile Include="Activity1.cs" />
     <Compile Include="Canvas.cs" />
-    <Compile Include="FontStorage.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SpriteBatchCanvas.cs" />
-    <Compile Include="TextureStorage.cs" />
     <Compile Include="ViewModels\CardViewModel.cs" />
+    <Compile Include="ViewModels\GameViewModel.cs" />
     <Compile Include="ViewModels\ResourcesViewModel.cs" />
     <Compile Include="ViewModels\ResourceViewModel.cs" />
     <Compile Include="ViewModels\ViewModel.cs" />
+    <Compile Include="Views\GameView.cs" />
     <Compile Include="Views\PanelView.cs" />
     <Compile Include="Views\SpriteView.cs" />
     <Compile Include="Views\View.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Content\CardPriceFont.spritefont" />
-    <None Include="Content\ResourceDeltaFont.spritefont" />
-    <None Include="Content\ResourceValueFont.spritefont" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
   </ItemGroup>
@@ -104,23 +100,10 @@
     <None Include="Properties\AndroidManifest.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\BricksCardBackground.png" />
-    <Content Include="Content\BricksResourceBackground.png" />
-    <Content Include="Content\BricksResourceBorderImage.png" />
-    <Content Include="Content\BricksResourceImage.png" />
-    <Content Include="Content\GameBackground.png" />
-    <Content Include="Content\GameBorderImage.png" />
-    <Content Include="Content\GameCardsBackground.png" />
-    <Content Include="Content\GemsCardBackground.png" />
-    <Content Include="Content\GemsResourceBackground.png" />
-    <Content Include="Content\GemsResourceBorderImage.png" />
-    <Content Include="Content\GemsResourceImage.png" />
-    <Content Include="Content\RecruitsCardBackground.png" />
-    <Content Include="Content\RecruitsResourceBackground.png" />
-    <Content Include="Content\RecruitsResourceBorderImage.png" />
-    <Content Include="Content\RecruitsResourceImage.png" />
-    <Content Include="Content\UndefinedCardImage.jpg" />
-    <Content Include="Content\UndefinedTexture.gif" />
+    <None Include="Content\GameBorderImage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\GameBackgroundImage.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
