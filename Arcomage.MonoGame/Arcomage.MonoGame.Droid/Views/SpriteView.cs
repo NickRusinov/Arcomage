@@ -15,7 +15,7 @@ namespace Arcomage.MonoGame.Droid.Views
         {
             canvas.Draw(Texture,
                 position: Position,
-                sourceRectangle: new Rectangle(0, 0, Texture.Width, Texture.Height),
+                sourceRectangle: new Rectangle(0, 0, (int)(Texture.Width * SourceX / SizeX), (int)(Texture.Height * SourceY / SizeY)),
                 color: Color.White,
                 rotation: 0,
                 origin: Vector2.Zero,

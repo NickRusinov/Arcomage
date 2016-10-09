@@ -14,7 +14,7 @@ namespace Arcomage.MonoGame.Droid.Views
         {
             var resourcesLeftImageView = new SpriteView
             {
-                PositionX = 0, PositionY = 0, SizeX = 170, SizeY = 377,
+                PositionX = 0, PositionY = 0, SizeX = 170, SizeY = 377, SourceX = 170, SourceY = 377,
                 Texture = contentManager.Load<Texture2D>("ResourcesLeftImage")
             };
             

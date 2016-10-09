@@ -17,6 +17,10 @@ namespace Arcomage.MonoGame.Droid.Views
 
         public float SizeY { get; set; }
 
+        public float SourceX { get; set; }
+
+        public float SourceY { get; set; }
+
         public bool IsVisible { get; set; }
         
         public Vector2 Position
@@ -29,6 +33,12 @@ namespace Arcomage.MonoGame.Droid.Views
         {
             get { return new Vector2(SizeX, SizeY); }
             set { SizeX = value.X; SizeY = value.Y; }
+        }
+
+        public Vector2 Source
+        {
+            get { return new Vector2(SourceX, SourceY); }
+            set { SourceX = value.X; SourceY = value.Y; }
         }
 
         public Rectangle Rectangle
