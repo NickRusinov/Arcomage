@@ -11,6 +11,16 @@ namespace Arcomage.MonoGame.Droid.Views
     {
         public Texture2D Texture { get; set; }
 
+        public float SourceX { get; set; }
+
+        public float SourceY { get; set; }
+        
+        public Vector2 Source
+        {
+            get { return new Vector2(SourceX, SourceY); }
+            set { SourceX = value.X; SourceY = value.Y; }
+        }
+
         public override void Draw(Canvas canvas)
         {
             canvas.Draw(Texture,

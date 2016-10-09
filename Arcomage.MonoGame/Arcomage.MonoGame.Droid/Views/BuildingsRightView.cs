@@ -10,7 +10,8 @@ namespace Arcomage.MonoGame.Droid.Views
 {
     public class BuildingsRightView : View<BuildingsViewModel>
     {
-        public BuildingsRightView(ContentManager contentManager)
+        public BuildingsRightView(ContentManager contentManager, BuildingsViewModel buildingsViewModel)
+            : base(buildingsViewModel, 300, 488)
         {
             var towerRightImageView = new SpriteView
             {

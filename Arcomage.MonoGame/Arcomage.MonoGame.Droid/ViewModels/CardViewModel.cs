@@ -9,8 +9,8 @@ namespace Arcomage.MonoGame.Droid.ViewModels
     {
         public string Identifier { get; set; }
 
-        public int ResourcePrice { get; set; }
+        public string Resource { get; set; }
 
-        public string ResourceMode { get; set; }
+        public int Price { get; set; }
     }
 }

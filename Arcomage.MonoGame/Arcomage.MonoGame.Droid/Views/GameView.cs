@@ -10,7 +10,8 @@ namespace Arcomage.MonoGame.Droid.Views
 {
     public class GameView : View<GameViewModel>
     {
-        public GameView(ContentManager contentManager)
+        public GameView(ContentManager contentManager, GameViewModel gameViewModel)
+            : base(gameViewModel, 1280, 720)
         {
             var gameBorderImageView = new SpriteView
             {
@@ -24,24 +25,29 @@ namespace Arcomage.MonoGame.Droid.Views
                 Texture = contentManager.Load<Texture2D>("GameBackgroundImage")
             };
 
-            var resourcesLeftView = new ResourcesLeftView(contentManager)
+            var resourcesLeftView = new ResourcesLeftView(contentManager, gameViewModel.ResourcesLeft)
             {
-                PositionX = 2, PositionY = 9
+                PositionX = 2, PositionY = 9, SizeX = 170, SizeY = 377
             };
 
-            var resourcesRightView = new ResourcesRightView(contentManager)
+            var resourcesRightView = new ResourcesRightView(contentManager, gameViewModel.ResourcesRight)
             {
-                PositionX = 1109, PositionY = 9
+                PositionX = 1109, PositionY = 9, SizeX = 170, SizeY = 377
             };
 
-            var buildingsLeftView = new BuildingsLeftView(contentManager)
+            var buildingsLeftView = new BuildingsLeftView(contentManager, gameViewModel.BuildingsLeft)
             {
-                PositionX = 121, PositionY = 42
+                PositionX = 121, PositionY = 42, SizeX = 300, SizeY = 488
             };
 
-            var buildingsRightView = new BuildingsRightView(contentManager)
+            var buildingsRightView = new BuildingsRightView(contentManager, gameViewModel.BuildingsRight)
             {
-                PositionX = 871, PositionY = 42
+                PositionX = 871, PositionY = 42, SizeX = 300, SizeY = 488
+            };
+
+            var cardSetView = new CardSetView(contentManager, gameViewModel.CardSet)
+            {
+                PositionX = 5, PositionY = 384, SizeX = 1270, SizeY = 315
             };
             
             Items.Add(gameBackgroundImageView);
@@ -49,6 +55,7 @@ namespace Arcomage.MonoGame.Droid.Views
             Items.Add(resourcesRightView);
             Items.Add(buildingsLeftView);
             Items.Add(buildingsRightView);
+            Items.Add(cardSetView);
             Items.Add(gameBorderImageView);
         }
     }

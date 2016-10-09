@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using Arcomage.MonoGame.Droid.ViewModels;
 using Arcomage.MonoGame.Droid.Views;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -49,10 +51,25 @@ namespace Arcomage.MonoGame.Droid
         {
             Content.RootDirectory = "Content";
 
+            var gameViewModel = new GameViewModel
+            {
+                ResourcesLeft = new ResourcesViewModel(),
+                ResourcesRight = new ResourcesViewModel(),
+                BuildingsLeft = new BuildingsViewModel(),
+                BuildingsRight = new BuildingsViewModel(),
+                CardSet = new CardSetViewModel
+                {
+                    CardCollection = new ObservableCollection<CardViewModel>()
+                }
+            };
+
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             canvas = new Canvas(spriteBatch, Vector2.Zero, Vector2.One);
-            view = new GameView(Content);
+            view = new GameView(Content, gameViewModel)
+            {
+                PositionX = 0, PositionY = 0, SizeX = 1280, SizeY = 720
+            };
 
             // TODO: use this.Content to load your game content here
         }

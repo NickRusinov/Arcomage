@@ -10,7 +10,8 @@ namespace Arcomage.MonoGame.Droid.Views
 {
     public class ResourcesLeftView : View<ResourcesViewModel>
     {
-        public ResourcesLeftView(ContentManager contentManager)
+        public ResourcesLeftView(ContentManager contentManager, ResourcesViewModel resourcesViewModel)
+            : base(resourcesViewModel, 170, 377)
         {
             var resourcesLeftImageView = new SpriteView
             {

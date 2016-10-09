@@ -24,12 +24,12 @@ namespace Arcomage.MonoGame.Droid
 
         public void Draw(Texture2D texture, Vector2 position, Rectangle? sourceRectangle, Color color, float rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, float layerDepth)
         {
-            spriteBatch.Draw(texture, position + spritePosition, sourceRectangle, color, rotation, origin, scale * spriteScale, effects, layerDepth);
+            spriteBatch.Draw(texture, spritePosition + position * spriteScale, sourceRectangle, color, rotation, origin, scale * spriteScale, effects, layerDepth);
         }
 
-        public Canvas CreateNestedCanvas(Rectangle nestedRectangle)
+        public Canvas CreateNestedCanvas(Vector2 position, Vector2 scale)
         {
-            return new Canvas(spriteBatch, spritePosition + nestedRectangle.Location.ToVector2(), spriteScale);
+            return new Canvas(spriteBatch, spritePosition + position * spriteScale, scale * spriteScale);
         }
     }
 }

@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Arcomage.MonoGame.Droid.ViewModels;
 using Microsoft.Xna.Framework;
 
 namespace Arcomage.MonoGame.Droid.Views
@@ -16,10 +18,6 @@ namespace Arcomage.MonoGame.Droid.Views
         public float SizeX { get; set; }
 
         public float SizeY { get; set; }
-
-        public float SourceX { get; set; }
-
-        public float SourceY { get; set; }
 
         public bool IsVisible { get; set; }
         
@@ -35,12 +33,6 @@ namespace Arcomage.MonoGame.Droid.Views
             set { SizeX = value.X; SizeY = value.Y; }
         }
 
-        public Vector2 Source
-        {
-            get { return new Vector2(SourceX, SourceY); }
-            set { SourceX = value.X; SourceY = value.Y; }
-        }
-
         public Rectangle Rectangle
         {
             get { return new Rectangle((int)PositionX, (int)PositionY, (int)SizeX, (int)SizeY); }
@@ -51,26 +43,17 @@ namespace Arcomage.MonoGame.Droid.Views
     }
 
     public abstract class View<TViewModel> : PanelView
+        where TViewModel : ViewModel
     {
-        private TViewModel viewModel;
-
-        public TViewModel ViewModel
+        protected View(TViewModel viewModel, float originalSizeX, float originalSizeY)
+            : base(originalSizeX, originalSizeY)
         {
-            get { return viewModel; }
-            set
-            {
-                if (viewModel != null)
-                    UnbindViewModel(viewModel);
-
-                if (value != null)
-                    BindViewModel(value);
-
-                viewModel = value;
-            }
+            ViewModel = viewModel;
+            ViewModel.PropertyChanged += ViewModelOnPropertyChanged;
         }
 
-        protected virtual void UnbindViewModel(TViewModel viewModel) { }
+        public TViewModel ViewModel { get; }
 
-        protected virtual void BindViewModel(TViewModel viewModel) { }
+        protected virtual void ViewModelOnPropertyChanged(object sender, PropertyChangedEventArgs propertyChangedEventArgs) { }
     }
 }

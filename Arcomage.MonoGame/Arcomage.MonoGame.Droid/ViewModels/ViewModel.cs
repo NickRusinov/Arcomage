@@ -1,25 +1,18 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
-
 namespace Arcomage.MonoGame.Droid.ViewModels
 {
-    public abstract class ViewModel
+    public abstract class ViewModel : INotifyPropertyChanged
     {
-        protected T Set<T>(T oldValue, T newValue, Action<T, T> changeAction = null)
+        protected virtual void OnPropertyChanged(string propertyName)
         {
-            if (!EqualityComparer<T>.Default.Equals(oldValue, newValue))
-                changeAction?.Invoke(oldValue, newValue);
-
-            return newValue;
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }
