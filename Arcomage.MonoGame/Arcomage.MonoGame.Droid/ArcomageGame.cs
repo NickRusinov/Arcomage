@@ -17,7 +17,7 @@ namespace Arcomage.MonoGame.Droid
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
-    public class Game1 : Game
+    public class ArcomageGame : Game
     {
         private GraphicsDeviceManager graphics;
 
@@ -31,7 +31,7 @@ namespace Arcomage.MonoGame.Droid
 
         private Vector2? dragPosition;
         
-        public Game1()
+        public ArcomageGame()
         {
             graphics = new GraphicsDeviceManager(this);
             graphics.IsFullScreen = true;

@@ -58,9 +58,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Activity1.cs" />
+    <Compile Include="ArcomageActivity.cs" />
     <Compile Include="Canvas.cs" />
-    <Compile Include="Game1.cs" />
+    <Compile Include="ArcomageGame.cs" />
     <Compile Include="Handler.cs" />
     <Compile Include="Handlers\DragHandlerVisitor.cs" />
     <Compile Include="Handlers\HandlerData.cs" />
