@@ -2,32 +2,37 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Arcomage.MonoGame.Droid.Handlers;
 using Microsoft.Xna.Framework;
 
 namespace Arcomage.MonoGame.Droid.Views
 {
-    public class PanelView : View
+    public abstract class PanelView : View
     {
-        public PanelView(float originalSizeX, float originalSizeY)
+        protected PanelView(float originalSizeX, float originalSizeY)
         {
-            OriginalSizeY = originalSizeY;
-            OriginalSizeX = originalSizeX;
+            OriginalSize = new Vector2(originalSizeX, originalSizeY);
         }
 
-        public IList<View> Items { get; } = new List<View>();
+        protected List<View> Items { get; } = new List<View>();
 
-        public float OriginalSizeX { get; }
+        protected List<HandlerVisitor> HandlerVisitors { get; } = new List<HandlerVisitor>();
 
-        public float OriginalSizeY { get; }
+        protected Vector2 OriginalSize { get; }
 
-        public Vector2 OriginalSize => new Vector2(OriginalSizeX, OriginalSizeY);
+        public override bool Handle(Handler handler, HandlerData handlerData)
+        {
+            var nestedHandler = handler.CreateNestedHandler(Position, Size / OriginalSize);
+            
+            return HandlerVisitors.Exists(hv => handler.Handle(hv, handlerData)) ||
+                   Items.Exists(v => v.Handle(nestedHandler, handlerData));
+        }
 
         public override void Draw(Canvas canvas)
         {
             var nestedCanvas = canvas.CreateNestedCanvas(Position, Size / OriginalSize);
 
-            foreach (var item in Items)
-                item.Draw(nestedCanvas);
+            Items.ForEach(v => v.Draw(nestedCanvas));
         }
     }
 }

@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Arcomage.MonoGame.Droid.Handlers;
 using Arcomage.MonoGame.Droid.ViewModels;
 using Microsoft.Xna.Framework;
 
@@ -38,6 +39,8 @@ namespace Arcomage.MonoGame.Droid.Views
             get { return new Rectangle((int)PositionX, (int)PositionY, (int)SizeX, (int)SizeY); }
             set { PositionX = value.X; PositionY = value.Y; SizeX = value.Width; SizeY = value.Height; }
         }
+
+        public virtual bool Handle(Handler handler, HandlerData handlerData) => false;
 
         public abstract void Draw(Canvas canvas);
     }

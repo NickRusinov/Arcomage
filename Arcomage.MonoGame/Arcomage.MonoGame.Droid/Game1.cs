@@ -1,10 +1,16 @@
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.Threading.Tasks;
+using Arcomage.MonoGame.Droid.Handlers;
 using Arcomage.MonoGame.Droid.ViewModels;
 using Arcomage.MonoGame.Droid.Views;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Input.Touch;
+using static Microsoft.Xna.Framework.DisplayOrientation;
+using static Microsoft.Xna.Framework.Input.Touch.GestureType;
 
 namespace Arcomage.MonoGame.Droid
 {
@@ -19,7 +25,11 @@ namespace Arcomage.MonoGame.Droid
 
         private Canvas canvas;
 
+        private Handler handler;
+
         private View view;
+
+        private Vector2? dragPosition;
         
         public Game1()
         {
@@ -27,7 +37,7 @@ namespace Arcomage.MonoGame.Droid
             graphics.IsFullScreen = true;
             graphics.PreferredBackBufferWidth = 800;
             graphics.PreferredBackBufferHeight = 480;
-            graphics.SupportedOrientations = DisplayOrientation.LandscapeLeft | DisplayOrientation.LandscapeRight;
+            graphics.SupportedOrientations = LandscapeLeft | LandscapeRight;
         }
 
         /// <summary>
@@ -38,6 +48,8 @@ namespace Arcomage.MonoGame.Droid
         /// </summary>
         protected override void Initialize()
         {
+            TouchPanel.EnabledGestures = Tap | DoubleTap | FreeDrag | HorizontalDrag | VerticalDrag | DragComplete;
+
             // TODO: Add your initialization logic here
 
             base.Initialize();
@@ -66,6 +78,7 @@ namespace Arcomage.MonoGame.Droid
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             canvas = new Canvas(spriteBatch, Vector2.Zero, Vector2.One);
+            handler = new Handler(Vector2.Zero, Vector2.One);
             view = new GameView(Content, gameViewModel)
             {
                 PositionX = 0, PositionY = 0, SizeX = 1280, SizeY = 720
@@ -90,8 +103,35 @@ namespace Arcomage.MonoGame.Droid
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
-                Exit();
+            while (TouchPanel.IsGestureAvailable)
+            {
+                var gesture = TouchPanel.ReadGesture();
+
+                if (dragPosition == null &&
+                    (gesture.GestureType == HorizontalDrag ||
+                     gesture.GestureType == VerticalDrag ||
+                     gesture.GestureType == FreeDrag))
+                {
+                    view.Handle(handler, new DragBeginHandlerData { GameTime = gameTime, Position = gesture.Position });
+                    dragPosition = gesture.Position;
+                }
+
+                if (dragPosition != null &&
+                    (gesture.GestureType == HorizontalDrag ||
+                     gesture.GestureType == VerticalDrag ||
+                     gesture.GestureType == FreeDrag))
+                {
+                    view.Handle(handler, new DragMoveHandlerData { GameTime = gameTime, Position = gesture.Position });
+                    dragPosition = gesture.Position;
+                }
+
+                if (dragPosition != null &&
+                    gesture.GestureType == DragComplete)
+                {
+                    view.Handle(handler, new DragEndHandlerData { GameTime = gameTime, Position = dragPosition.Value });
+                    dragPosition = null;
+                }
+            }
 
             // TODO: Add your update logic here
 

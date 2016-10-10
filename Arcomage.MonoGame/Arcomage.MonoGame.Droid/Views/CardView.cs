@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using Arcomage.MonoGame.Droid.Handlers;
 using Arcomage.MonoGame.Droid.ViewModels;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -33,9 +34,13 @@ namespace Arcomage.MonoGame.Droid.Views
                 PositionX = 20, PositionY = 56, SizeX = 160, SizeY = 108, SourceX = 160, SourceY = 108,
                 Texture = contentManager.Load<Texture2D>($"Card{ ViewModel.Identifier }Image")
             };
-            
+
             Items.Add(cardBackgroundImageView);
             Items.Add(cardImageView);
+
+            var dragHandlerVisitor = new DragHandlerVisitor(this);
+
+            HandlerVisitors.Add(dragHandlerVisitor);
         }
 
         protected override void ViewModelOnPropertyChanged(object sender, PropertyChangedEventArgs propertyChangedEventArgs)
