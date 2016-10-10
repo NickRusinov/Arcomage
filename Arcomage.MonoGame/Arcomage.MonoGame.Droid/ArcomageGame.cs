@@ -145,7 +145,9 @@ namespace Arcomage.MonoGame.Droid
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-         
+            
+            view.Animate(gameTime);
+
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied);
             view.Draw(canvas);
             spriteBatch.End();

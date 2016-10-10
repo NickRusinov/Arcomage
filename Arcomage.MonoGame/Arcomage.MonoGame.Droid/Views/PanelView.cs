@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Arcomage.MonoGame.Droid.Animations;
 using Arcomage.MonoGame.Droid.Handlers;
 using Microsoft.Xna.Framework;
 
@@ -16,9 +17,18 @@ namespace Arcomage.MonoGame.Droid.Views
 
         protected List<View> Items { get; } = new List<View>();
 
+        protected List<Animation> Animations { get; } = new List<Animation>();
+
         protected List<HandlerVisitor> HandlerVisitors { get; } = new List<HandlerVisitor>();
 
         protected Vector2 OriginalSize { get; }
+
+        public override void Animate(GameTime gameTime)
+        {
+            Animations.ForEach(a => a.Animate(gameTime));
+
+            Items.ForEach(v => v.Animate(gameTime));
+        }
 
         public override bool Handle(Handler handler, HandlerData handlerData)
         {

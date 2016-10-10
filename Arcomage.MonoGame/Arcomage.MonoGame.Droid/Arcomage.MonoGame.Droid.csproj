@@ -58,10 +58,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Animations\Animation.cs" />
+    <Compile Include="Animations\IntervalAnimation.cs" />
+    <Compile Include="Animations\MoveAnimation.cs" />
     <Compile Include="ArcomageActivity.cs" />
     <Compile Include="Canvas.cs" />
     <Compile Include="ArcomageGame.cs" />
     <Compile Include="Handler.cs" />
+    <Compile Include="Handlers\DragAnimationHandlerVisitor.cs" />
     <Compile Include="Handlers\DragHandlerVisitor.cs" />
     <Compile Include="Handlers\HandlerData.cs" />
     <Compile Include="Handlers\HandlerVisitor.cs" />
@@ -98,7 +102,6 @@
     <AndroidResource Include="Resources\Drawable\Icon.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Animations\" />
     <Folder Include="Resources\Layout\" />
   </ItemGroup>
   <ItemGroup>

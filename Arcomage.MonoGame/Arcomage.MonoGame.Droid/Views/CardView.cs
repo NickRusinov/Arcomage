@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using Arcomage.MonoGame.Droid.Animations;
 using Arcomage.MonoGame.Droid.Handlers;
 using Arcomage.MonoGame.Droid.ViewModels;
 using Microsoft.Xna.Framework.Content;
@@ -38,7 +39,11 @@ namespace Arcomage.MonoGame.Droid.Views
             Items.Add(cardBackgroundImageView);
             Items.Add(cardImageView);
 
-            var dragHandlerVisitor = new DragHandlerVisitor(this);
+            var moveAnimation = new MoveAnimation(this);
+
+            Animations.Add(moveAnimation);
+
+            var dragHandlerVisitor = new DragAnimationHandlerVisitor(this, moveAnimation);
 
             HandlerVisitors.Add(dragHandlerVisitor);
         }

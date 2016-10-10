@@ -42,6 +42,8 @@ namespace Arcomage.MonoGame.Droid.Views
 
         public virtual bool Handle(Handler handler, HandlerData handlerData) => false;
 
+        public virtual void Animate(GameTime gameTime) { }
+
         public abstract void Draw(Canvas canvas);
     }
 
