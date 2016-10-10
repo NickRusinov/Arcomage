@@ -89,9 +89,13 @@
     <Compile Include="Views\PanelView.cs" />
     <Compile Include="Views\ResourcesRightView.cs" />
     <Compile Include="Views\SpriteView.cs" />
+    <Compile Include="Views\StrokeTextView.cs" />
+    <Compile Include="Views\TextView.cs" />
     <Compile Include="Views\View.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Content\BuildingsFont.spritefont" />
+    <None Include="Content\ResourcesFont.spritefont" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
   </ItemGroup>

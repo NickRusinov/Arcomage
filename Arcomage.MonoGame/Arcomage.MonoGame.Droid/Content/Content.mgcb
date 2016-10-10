@@ -145,3 +145,15 @@
 /processorParam:TextureFormat=Color
 /build:CardRecruitsBackgroundImage.png
 
+#begin ResourcesFont.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:TextureFormat=Compressed
+/build:ResourcesFont.spritefont
+
+#begin BuildingsFont.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:TextureFormat=Compressed
+/build:BuildingsFont.spritefont
+

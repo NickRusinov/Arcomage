@@ -27,6 +27,11 @@ namespace Arcomage.MonoGame.Droid
             spriteBatch.Draw(texture, spritePosition + position * spriteScale, sourceRectangle, color, rotation, origin, scale * spriteScale, effects, layerDepth);
         }
 
+        public void DrawString(SpriteFont spriteFont, string text, Vector2 position, Color color, float rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, float layerDepth)
+        {
+            spriteBatch.DrawString(spriteFont, text, spritePosition + position * spriteScale, color, rotation, origin, scale * spriteScale, effects, layerDepth);
+        }
+
         public Canvas CreateNestedCanvas(Vector2 position, Vector2 scale)
         {
             return new Canvas(spriteBatch, spritePosition + position * spriteScale, scale * spriteScale);
