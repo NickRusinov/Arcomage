@@ -12,5 +12,13 @@ namespace Arcomage.MonoGame.Droid.Handlers
         public virtual bool Visit(DragEndHandlerData handlerData) => false;
 
         public virtual bool Visit(DragMoveHandlerData handlerData) => false;
+
+        public virtual bool Visit(ClickHandlerData handlerData) => false;
+
+        public virtual bool Visit(DoubleClickHandlerData handlerData) => false;
+
+        public virtual bool Visit(PressDownHandlerData handlerData) => false;
+
+        public virtual bool Visit(PressUpHandlerData handlerData) => false;
     }
 }

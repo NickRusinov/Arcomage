@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using Arcomage.MonoGame.Droid.Commands;
 using Arcomage.MonoGame.Droid.Handlers;
 using Arcomage.MonoGame.Droid.ViewModels;
 using Arcomage.MonoGame.Droid.Views;
@@ -11,6 +11,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input.Touch;
 using static Microsoft.Xna.Framework.DisplayOrientation;
 using static Microsoft.Xna.Framework.Input.Touch.GestureType;
+using static Microsoft.Xna.Framework.Input.Touch.TouchLocationState;
 
 namespace Arcomage.MonoGame.Droid
 {
@@ -20,15 +21,15 @@ namespace Arcomage.MonoGame.Droid
     public class ArcomageGame : Game
     {
         private GraphicsDeviceManager graphics;
-
+        
         private SpriteBatch spriteBatch;
 
         private Canvas canvas;
 
         private Handler handler;
 
-        private View view;
-
+        private PageView view;
+        
         private Vector2? dragPosition;
         
         public ArcomageGame()
@@ -63,15 +64,24 @@ namespace Arcomage.MonoGame.Droid
         {
             Content.RootDirectory = "Content";
 
-            var gameViewModel = new GameViewModel
+            view = new PageView();
+
+            var menuViewModel = new MenuViewModel
             {
-                ResourcesLeft = new ResourcesViewModel(),
-                ResourcesRight = new ResourcesViewModel(),
-                BuildingsLeft = new BuildingsViewModel(),
-                BuildingsRight = new BuildingsViewModel(),
-                CardSet = new CardSetViewModel
+                PlayButton = new ButtonViewModel
                 {
-                    CardCollection = new ObservableCollection<CardViewModel>()
+                    Identifier = "Play",
+                    Command = new PlayCommand(Content, view)
+                },
+                SettingsButton = new ButtonViewModel
+                {
+                    Identifier = "Settings",
+                    Command = new SettingsCommand()
+                },
+                ExitButton = new ButtonViewModel
+                {
+                    Identifier = "Exit",
+                    Command = new ExitCommand(this)
                 }
             };
 
@@ -79,7 +89,7 @@ namespace Arcomage.MonoGame.Droid
             spriteBatch = new SpriteBatch(GraphicsDevice);
             canvas = new Canvas(spriteBatch, Vector2.Zero, Vector2.One);
             handler = new Handler(Vector2.Zero, Vector2.One);
-            view = new GameView(Content, gameViewModel)
+            view.View = new MenuView(Content, menuViewModel)
             {
                 PositionX = 0, PositionY = 0, SizeX = 1280, SizeY = 720
             };
@@ -107,6 +117,16 @@ namespace Arcomage.MonoGame.Droid
             {
                 var gesture = TouchPanel.ReadGesture();
 
+                if (gesture.GestureType == Tap)
+                {
+                    view.Handle(handler, new ClickHandlerData { GameTime = gameTime, Position = gesture.Position });
+                }
+
+                if (gesture.GestureType == DoubleTap)
+                {
+                    view.Handle(handler, new DoubleClickHandlerData { GameTime = gameTime, Position = gesture.Position });
+                }
+
                 if (dragPosition == null &&
                     (gesture.GestureType == HorizontalDrag ||
                      gesture.GestureType == VerticalDrag ||
@@ -130,6 +150,19 @@ namespace Arcomage.MonoGame.Droid
                 {
                     view.Handle(handler, new DragEndHandlerData { GameTime = gameTime, Position = dragPosition.Value });
                     dragPosition = null;
+                }
+            }
+
+            foreach (var touch in TouchPanel.GetState())
+            {
+                if (touch.State == Pressed)
+                {
+                    view.Handle(handler, new PressDownHandlerData { GameTime = gameTime, Position = touch.Position });
+                }
+
+                if (touch.State == Released)
+                {
+                    view.Handle(handler, new PressUpHandlerData { GameTime = gameTime, Position = touch.Position });
                 }
             }
 

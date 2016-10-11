@@ -64,27 +64,42 @@
     <Compile Include="ArcomageActivity.cs" />
     <Compile Include="Canvas.cs" />
     <Compile Include="ArcomageGame.cs" />
+    <Compile Include="Commands\Command.cs" />
+    <Compile Include="Commands\ExitCommand.cs" />
+    <Compile Include="Commands\PlayCommand.cs" />
+    <Compile Include="Commands\SettingsCommand.cs" />
     <Compile Include="Handler.cs" />
+    <Compile Include="Handlers\ClickHandlerData.cs" />
+    <Compile Include="Handlers\ButtonClickHandlerVisitor.cs" />
+    <Compile Include="Handlers\DoubleClickHandlerData.cs" />
     <Compile Include="Handlers\DragAnimationHandlerVisitor.cs" />
     <Compile Include="Handlers\DragHandlerVisitor.cs" />
     <Compile Include="Handlers\HandlerData.cs" />
     <Compile Include="Handlers\HandlerVisitor.cs" />
+    <Compile Include="Handlers\PressDownHandlerData.cs" />
+    <Compile Include="Handlers\PressScaleHandlerVisitor.cs" />
+    <Compile Include="Handlers\PressUpHandlerData.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Handlers\DragBeginHandlerData.cs" />
     <Compile Include="Handlers\DragMoveHandlerData.cs" />
     <Compile Include="Handlers\DragEndHandlerData.cs" />
     <Compile Include="ViewModels\BuildingsViewModel.cs" />
+    <Compile Include="ViewModels\ButtonViewModel.cs" />
     <Compile Include="ViewModels\CardSetViewModel.cs" />
     <Compile Include="ViewModels\CardViewModel.cs" />
     <Compile Include="ViewModels\GameViewModel.cs" />
+    <Compile Include="ViewModels\MenuViewModel.cs" />
     <Compile Include="ViewModels\ResourcesViewModel.cs" />
     <Compile Include="ViewModels\ViewModel.cs" />
     <Compile Include="Views\BuildingsLeftView.cs" />
     <Compile Include="Views\BuildingsRightView.cs" />
+    <Compile Include="Views\MenuButtonView.cs" />
     <Compile Include="Views\CardSetView.cs" />
     <Compile Include="Views\CardView.cs" />
     <Compile Include="Views\GameView.cs" />
+    <Compile Include="Views\MenuView.cs" />
+    <Compile Include="Views\PageView.cs" />
     <Compile Include="Views\ResourcesLeftView.cs" />
     <Compile Include="Views\PanelView.cs" />
     <Compile Include="Views\ResourcesRightView.cs" />
@@ -95,6 +110,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Content\BuildingsFont.spritefont" />
+    <None Include="Content\MenuButtonFont.spritefont" />
     <None Include="Content\ResourcesFont.spritefont" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
@@ -138,6 +154,12 @@
     <None Include="Content\CardBricksBackgroundImage.png" />
     <None Include="Content\CardGemsBackgroundImage.png" />
     <None Include="Content\CardRecruitsBackgroundImage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Content\MenuButtonBackgroundImage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Content\MenuBackgroundImage.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
