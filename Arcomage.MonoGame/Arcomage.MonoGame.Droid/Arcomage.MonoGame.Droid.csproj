@@ -62,6 +62,20 @@
     <Compile Include="Animations\IntervalAnimation.cs" />
     <Compile Include="Animations\MoveAnimation.cs" />
     <Compile Include="ArcomageActivity.cs" />
+    <Compile Include="Autofac\GameViewModelModule.cs" />
+    <Compile Include="Autofac\MenuViewModelModule.cs" />
+    <Compile Include="Autofac\SettingsViewModelModule.cs" />
+    <Compile Include="Autofac\CardDecksModule.cs" />
+    <Compile Include="Autofac\CardSetsModule.cs" />
+    <Compile Include="Autofac\CardsModule.cs" />
+    <Compile Include="Autofac\GameConditionsModule.cs" />
+    <Compile Include="Autofac\GamesModule.cs" />
+    <Compile Include="Autofac\PlayersModule.cs" />
+    <Compile Include="AutoMapper\BuildingsProfile.cs" />
+    <Compile Include="AutoMapper\CardProfile.cs" />
+    <Compile Include="AutoMapper\CardSetProfile.cs" />
+    <Compile Include="AutoMapper\GameProfile.cs" />
+    <Compile Include="AutoMapper\ResourcesProfile.cs" />
     <Compile Include="Canvas.cs" />
     <Compile Include="ArcomageGame.cs" />
     <Compile Include="Commands\Command.cs" />
@@ -84,6 +98,8 @@
     <Compile Include="Handlers\DragBeginHandlerData.cs" />
     <Compile Include="Handlers\DragMoveHandlerData.cs" />
     <Compile Include="Handlers\DragEndHandlerData.cs" />
+    <Compile Include="Settings.cs" />
+    <Compile Include="ViewModelFactory.cs" />
     <Compile Include="ViewModels\BuildingsViewModel.cs" />
     <Compile Include="ViewModels\ButtonViewModel.cs" />
     <Compile Include="ViewModels\CardSetViewModel.cs" />
@@ -112,6 +128,7 @@
     <None Include="Content\BuildingsFont.spritefont" />
     <None Include="Content\MenuButtonFont.spritefont" />
     <None Include="Content\ResourcesFont.spritefont" />
+    <None Include="project.json" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
   </ItemGroup>
@@ -160,6 +177,48 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Content\MenuBackgroundImage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Arcomage.Domain\Arcomage.Domain\Arcomage.Domain.csproj">
+      <Project>{61c19e09-c14b-49ea-a2a6-0d70c348f4ef}</Project>
+      <Name>Arcomage.Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Content\CardBarracksImage.jpg" />
+    <None Include="Content\CardBasicWallImage.jpg" />
+    <None Include="Content\CardBattlementsImage.jpg" />
+    <None Include="Content\CardBigWallImage.jpg" />
+    <None Include="Content\CardBrickShortageImage.jpg" />
+    <None Include="Content\CardCollapseImage.jpg" />
+    <None Include="Content\CardCoppingTheTechImage.jpg" />
+    <None Include="Content\CardCrystalRocksImage.jpg" />
+    <None Include="Content\CardDragonsHeartImage.jpg" />
+    <None Include="Content\CardDwarvenMinersImage.jpg" />
+    <None Include="Content\CardEarthquakeImage.jpg" />
+    <None Include="Content\CardFloodWaterImage.jpg" />
+    <None Include="Content\CardFocusedDesignsImage.jpg" />
+    <None Include="Content\CardForcedLaborImage.jpg" />
+    <None Include="Content\CardFoundationsImage.jpg" />
+    <None Include="Content\CardFriendlyTerrainImage.jpg" />
+    <None Include="Content\CardGreatWallImage.jpg" />
+    <None Include="Content\CardHarmonicOreImage.jpg" />
+    <None Include="Content\CardInnovationsImage.jpg" />
+    <None Include="Content\CardLuckyCacheImage.jpg" />
+    <None Include="Content\CardMinersImage.jpg" />
+    <None Include="Content\CardMondoWallImage.jpg" />
+    <None Include="Content\CardMotherLodeImage.jpg" />
+    <None Include="Content\CardNewEquipmentImage.jpg" />
+    <None Include="Content\CardPorticulusImage.jpg" />
+    <None Include="Content\CardReinforcedWallImage.jpg" />
+    <None Include="Content\CardRockGardenImage.jpg" />
+    <None Include="Content\CardRockLauncherImage.jpg" />
+    <None Include="Content\CardSecretRoomImage.jpg" />
+    <None Include="Content\CardShiftImage.jpg" />
+    <None Include="Content\CardStripMineImage.jpg" />
+    <None Include="Content\CardSturdyWallImage.jpg" />
+    <None Include="Content\CardTremorsImage.jpg" />
+    <None Include="Content\CardWorkOvertimeImage.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />

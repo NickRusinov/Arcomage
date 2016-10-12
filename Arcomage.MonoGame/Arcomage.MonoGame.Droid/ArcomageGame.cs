@@ -2,11 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Arcomage.MonoGame.Droid.Commands;
 using Arcomage.MonoGame.Droid.Handlers;
-using Arcomage.MonoGame.Droid.ViewModels;
 using Arcomage.MonoGame.Droid.Views;
+using Autofac;
+using Autofac.Features.ResolveAnything;
+using AutoMapper;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input.Touch;
 using static Microsoft.Xna.Framework.DisplayOrientation;
@@ -20,21 +22,19 @@ namespace Arcomage.MonoGame.Droid
     /// </summary>
     public class ArcomageGame : Game
     {
-        private GraphicsDeviceManager graphics;
-        
+        private readonly PageView view = new PageView();
+
         private SpriteBatch spriteBatch;
 
         private Canvas canvas;
 
         private Handler handler;
-
-        private PageView view;
         
         private Vector2? dragPosition;
         
         public ArcomageGame()
         {
-            graphics = new GraphicsDeviceManager(this);
+            var graphics = new GraphicsDeviceManager(this);
             graphics.IsFullScreen = true;
             graphics.PreferredBackBufferWidth = 800;
             graphics.PreferredBackBufferHeight = 480;
@@ -51,6 +51,17 @@ namespace Arcomage.MonoGame.Droid
         {
             TouchPanel.EnabledGestures = Tap | DoubleTap | FreeDrag | HorizontalDrag | VerticalDrag | DragComplete;
 
+            Mapper.Initialize(mce => mce.AddProfiles(GetType()));
+
+            var builder = new ContainerBuilder();
+            builder.RegisterSource(new AnyConcreteTypeNotAlreadyRegisteredSource());
+            builder.RegisterAssemblyModules(GetType().Assembly);
+            builder.RegisterInstance(this).As<Game>();
+            builder.RegisterInstance(view).As<PageView>();
+            builder.RegisterInstance(Content).As<ContentManager>();
+            var container = builder.Build();
+            ViewModelFactory.Instance = new ViewModelFactory(container);
+            
             // TODO: Add your initialization logic here
 
             base.Initialize();
@@ -63,33 +74,12 @@ namespace Arcomage.MonoGame.Droid
         protected override void LoadContent()
         {
             Content.RootDirectory = "Content";
-
-            view = new PageView();
-
-            var menuViewModel = new MenuViewModel
-            {
-                PlayButton = new ButtonViewModel
-                {
-                    Identifier = "Play",
-                    Command = new PlayCommand(Content, view)
-                },
-                SettingsButton = new ButtonViewModel
-                {
-                    Identifier = "Settings",
-                    Command = new SettingsCommand()
-                },
-                ExitButton = new ButtonViewModel
-                {
-                    Identifier = "Exit",
-                    Command = new ExitCommand(this)
-                }
-            };
-
-            // Create a new SpriteBatch, which can be used to draw textures.
+            
             spriteBatch = new SpriteBatch(GraphicsDevice);
             canvas = new Canvas(spriteBatch, Vector2.Zero, Vector2.One);
             handler = new Handler(Vector2.Zero, Vector2.One);
-            view.View = new MenuView(Content, menuViewModel)
+
+            view.View = new MenuView(Content, ViewModelFactory.Instance.CreateMenuViewModel())
             {
                 PositionX = 0, PositionY = 0, SizeX = 1280, SizeY = 720
             };
