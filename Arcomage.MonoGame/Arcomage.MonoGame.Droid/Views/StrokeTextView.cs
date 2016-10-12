@@ -9,12 +9,12 @@ namespace Arcomage.MonoGame.Droid.Views
 {
     public class StrokeTextView : TextView
     {
-        public Color StrokeColor { get; set; }
+        public Color StrokeColor { get; set; } = Color.Black;
 
         public override void Draw(Canvas canvas)
         {
             var measuredSize = Font.MeasureString(Text);
-            var scale = new Vector2(Math.Min(SizeX / measuredSize.X, SizeY / measuredSize.Y));
+            var scale = new Vector2(Math.Min(MaxScale, Math.Min(SizeX / measuredSize.X, SizeY / measuredSize.Y)));
             var offset = (Size - measuredSize * scale) / 2;
 
             canvas.DrawString(Font, Text, 

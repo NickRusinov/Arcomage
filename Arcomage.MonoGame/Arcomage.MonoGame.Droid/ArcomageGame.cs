@@ -50,8 +50,10 @@ namespace Arcomage.MonoGame.Droid
         protected override void Initialize()
         {
             TouchPanel.EnabledGestures = Tap | DoubleTap | FreeDrag | HorizontalDrag | VerticalDrag | DragComplete;
-
+            
             Mapper.Initialize(mce => mce.AddProfiles(GetType()));
+
+            Content = new ArcomageContentManager(Content.ServiceProvider, "Content");
 
             var builder = new ContainerBuilder();
             builder.RegisterSource(new AnyConcreteTypeNotAlreadyRegisteredSource());
@@ -73,8 +75,6 @@ namespace Arcomage.MonoGame.Droid
         /// </summary>
         protected override void LoadContent()
         {
-            Content.RootDirectory = "Content";
-            
             spriteBatch = new SpriteBatch(GraphicsDevice);
             canvas = new Canvas(spriteBatch, Vector2.Zero, Vector2.One);
             handler = new Handler(Vector2.Zero, Vector2.One);

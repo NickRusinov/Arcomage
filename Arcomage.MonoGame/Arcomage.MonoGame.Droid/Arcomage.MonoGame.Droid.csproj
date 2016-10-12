@@ -62,6 +62,7 @@
     <Compile Include="Animations\IntervalAnimation.cs" />
     <Compile Include="Animations\MoveAnimation.cs" />
     <Compile Include="ArcomageActivity.cs" />
+    <Compile Include="ArcomageContentManager.cs" />
     <Compile Include="Autofac\GameViewModelModule.cs" />
     <Compile Include="Autofac\MenuViewModelModule.cs" />
     <Compile Include="Autofac\SettingsViewModelModule.cs" />
@@ -108,6 +109,7 @@
     <Compile Include="ViewModels\MenuViewModel.cs" />
     <Compile Include="ViewModels\ResourcesViewModel.cs" />
     <Compile Include="ViewModels\ViewModel.cs" />
+    <Compile Include="Views\Align.cs" />
     <Compile Include="Views\BuildingsLeftView.cs" />
     <Compile Include="Views\BuildingsRightView.cs" />
     <Compile Include="Views\MenuButtonView.cs" />
@@ -126,6 +128,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Content\BuildingsFont.spritefont" />
+    <None Include="Content\CardFont.spritefont" />
     <None Include="Content\MenuButtonFont.spritefont" />
     <None Include="Content\ResourcesFont.spritefont" />
     <None Include="project.json" />
@@ -219,6 +222,9 @@
     <None Include="Content\CardSturdyWallImage.jpg" />
     <None Include="Content\CardTremorsImage.jpg" />
     <None Include="Content\CardWorkOvertimeImage.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Content\Localization.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />

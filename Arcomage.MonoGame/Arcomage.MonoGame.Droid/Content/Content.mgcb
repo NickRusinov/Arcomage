@@ -595,3 +595,14 @@
 /processorParam:TextureFormat=Color
 /build:CardWorkOvertimeImage.jpg
 
+#begin Localization.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:Localization.xml
+
+#begin CardFont.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:TextureFormat=Compressed
+/build:CardFont.spritefont
+

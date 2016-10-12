@@ -6,6 +6,7 @@ using System.Text;
 using Arcomage.MonoGame.Droid.Animations;
 using Arcomage.MonoGame.Droid.Handlers;
 using Arcomage.MonoGame.Droid.ViewModels;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -18,6 +19,12 @@ namespace Arcomage.MonoGame.Droid.Views
         private readonly SpriteView cardBackgroundImageView;
 
         private readonly SpriteView cardImageView;
+
+        private readonly TextView cardNameTextView;
+
+        private readonly TextView cardDescriptionTextView;
+
+        private readonly TextView cardPriceTextView;
 
         public CardView(ContentManager contentManager, CardViewModel cardViewModel)
             : base(cardViewModel, 200, 279)
@@ -36,8 +43,33 @@ namespace Arcomage.MonoGame.Droid.Views
                 Texture = contentManager.Load<Texture2D>($"Card{ ViewModel.Identifier }Image")
             };
 
+            cardNameTextView = new TextView
+            {
+                PositionX = 20, PositionY = 16, SizeX = 160, SizeY = 24, 
+                Color = Color.Black, Text = contentManager.Load<string>($"Card{ ViewModel.Identifier }Name"),
+                Font = contentManager.Load<SpriteFont>("CardFont")
+            };
+
+            cardDescriptionTextView = new TextView
+            {
+                PositionX = 20, PositionY = 174, SizeX = 160, SizeY = 75,
+                VerticalAlign = VerticalAlign.Top, HorizontalAlign = HorizontalAlign.Center,
+                Color = Color.Black, Text = contentManager.Load<string>($"Card{ ViewModel.Identifier }Description"),
+                Font = contentManager.Load<SpriteFont>("CardFont")
+            };
+
+            cardPriceTextView = new TextView
+            {
+                PositionX = 162, PositionY = 240, SizeX = 20, SizeY = 20,
+                Color = Color.Black, Text = $"{ ViewModel.Price }",
+                Font = contentManager.Load<SpriteFont>("CardFont")
+            };
+
             Items.Add(cardBackgroundImageView);
             Items.Add(cardImageView);
+            Items.Add(cardNameTextView);
+            Items.Add(cardDescriptionTextView);
+            Items.Add(cardPriceTextView);
 
             var moveAnimation = new MoveAnimation(this);
 
@@ -51,8 +83,12 @@ namespace Arcomage.MonoGame.Droid.Views
         protected override void ViewModelOnPropertyChanged(object sender, PropertyChangedEventArgs propertyChangedEventArgs)
         {
             cardBackgroundImageView.Texture = contentManager.Load<Texture2D>($"Card{ ViewModel.Resource }BackgroundImage");
-
+            
             cardImageView.Texture = contentManager.Load<Texture2D>($"Card{ ViewModel.Identifier }Image");
+            cardNameTextView.Text = contentManager.Load<string>($"Card{ ViewModel.Identifier }Name");
+            cardDescriptionTextView.Text = contentManager.Load<string>($"Card{ ViewModel.Identifier }Description");
+
+            cardPriceTextView.Text = $"{ ViewModel.Price }";
         }
     }
 }
