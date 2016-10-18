@@ -226,6 +226,42 @@
   <ItemGroup>
     <None Include="Content\Localization.xml" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Content\CardAmethystImage.jpg" />
+    <None Include="Content\CardApprenticeImage.jpg" />
+    <None Include="Content\CardBagOfBaublesImage.jpg" />
+    <None Include="Content\CardCrumblestoneImage.jpg" />
+    <None Include="Content\CardCrystallizeImage.jpg" />
+    <None Include="Content\CardCrystalMatrixImage.jpg" />
+    <None Include="Content\CardCrystalShieldImage.jpg" />
+    <None Include="Content\CardDiamondImage.jpg" />
+    <None Include="Content\CardDiscordImage.jpg" />
+    <None Include="Content\CardDragonsEyeImage.jpg" />
+    <None Include="Content\CardEmeraldImage.jpg" />
+    <None Include="Content\CardEmpathyGemImage.jpg" />
+    <None Include="Content\CardFireRubyImage.jpg" />
+    <None Include="Content\CardGemSpearImage.jpg" />
+    <None Include="Content\CardGemstoneFlawImage.jpg" />
+    <None Include="Content\CardHarmonicVibeImage.jpg" />
+    <None Include="Content\CardLavaJewelImage.jpg" />
+    <None Include="Content\CardLightningShardImage.jpg" />
+    <None Include="Content\CardLodestoneImage.jpg" />
+    <None Include="Content\CardParityImage.jpg" />
+    <None Include="Content\CardPearlOfWisdomImage.jpg" />
+    <None Include="Content\CardPhaseJewelImage.jpg" />
+    <None Include="Content\CardPowerBurnImage.jpg" />
+    <None Include="Content\CardPrismImage.jpg" />
+    <None Include="Content\CardQuarrysHelpImage.jpg" />
+    <None Include="Content\CardQuartzImage.jpg" />
+    <None Include="Content\CardRainbowImage.jpg" />
+    <None Include="Content\CardRubyImage.jpg" />
+    <None Include="Content\CardSanctuaryImage.jpg" />
+    <None Include="Content\CardSapphireImage.jpg" />
+    <None Include="Content\CardShattererImage.jpg" />
+    <None Include="Content\CardSmokyQuartzImage.jpg" />
+    <None Include="Content\CardSolarFlareImage.jpg" />
+    <None Include="Content\CardSpellWeaversImage.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

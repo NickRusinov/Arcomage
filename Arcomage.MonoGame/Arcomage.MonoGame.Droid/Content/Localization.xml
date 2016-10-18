@@ -273,5 +273,277 @@
       <Key>CardWorkOvertimeDescription</Key>
       <Value>+5 к стене,&#13;&#10;вы теряте 6 маны</Value>
     </Item>
+    <Item>
+      <Key>CardAmethystName</Key>
+      <Value>Аметист</Value>
+    </Item>
+    <Item>
+      <Key>CardAmethystDescription</Key>
+      <Value>+3 к башне</Value>
+    </Item>
+    <Item>
+      <Key>CardApprenticeName</Key>
+      <Value>Вступление</Value>
+    </Item>
+    <Item>
+      <Key>CardApprenticeDescription</Key>
+      <Value>+4 к башне, вы&#13;&#10;теряете 3 отряда.&#13;&#10;2 урона башне врага</Value>
+    </Item>
+    <Item>
+      <Key>CardBagOfBaublesName</Key>
+      <Value>Бижутерия</Value>
+    </Item>
+    <Item>
+      <Key>CardBagOfBaublesDescription</Key>
+      <Value>Если башня &lt;&#13;&#10;вражеской,&#13;&#10;то +2 к башне,&#13;&#10;иначе +1</Value>
+    </Item>
+    <Item>
+      <Key>CardCrumblestoneName</Key>
+      <Value>Мягкий камень</Value>
+    </Item>
+    <Item>
+      <Key>CardCrumblestoneDescription</Key>
+      <Value>+5 к башне,&#13;&#10;враг теряет 6 руды</Value>
+    </Item>
+    <Item>
+      <Key>CardCrystallizeName</Key>
+      <Value>Отвердение</Value>
+    </Item>
+    <Item>
+      <Key>CardCrystallizeDescription</Key>
+      <Value>+11 к башне,&#13;&#10;-6 к стене</Value>
+    </Item>
+    <Item>
+      <Key>CardCrystalMatrixName</Key>
+      <Value>Матрица</Value>
+    </Item>
+    <Item>
+      <Key>CardCrystalMatrixDescription</Key>
+      <Value>+1 монастырь,&#13;&#10;+3 к башне,&#13;&#10;+1 к башне врага</Value>
+    </Item>
+    <Item>
+      <Key>CardCrystalShieldName</Key>
+      <Value>Кристальный щит</Value>
+    </Item>
+    <Item>
+      <Key>CardCrystalShieldDescription</Key>
+      <Value>+8 к башне,&#13;&#10;+3 к стене</Value>
+    </Item>
+    <Item>
+      <Key>CardDiamondName</Key>
+      <Value>Алмаз</Value>
+    </Item>
+    <Item>
+      <Key>CardDiamondDescription</Key>
+      <Value>+15 к башне</Value>
+    </Item>
+    <Item>
+      <Key>CardDiscordName</Key>
+      <Value>Раздоры</Value>
+    </Item>
+    <Item>
+      <Key>CardDiscordDescription</Key>
+      <Value>7 урона всем&#13;&#10;башням,&#13;&#10;-1 монастырь&#13;&#10;всех игроков</Value>
+    </Item>
+    <Item>
+      <Key>CardDragonsEyeName</Key>
+      <Value>Глаз дракона</Value>
+    </Item>
+    <Item>
+      <Key>CardDragonsEyeDescription</Key>
+      <Value>+20 к башне</Value>
+    </Item>
+    <Item>
+      <Key>CardEmeraldName</Key>
+      <Value>Эмельральд</Value>
+    </Item>
+    <Item>
+      <Key>CardEmeraldDescription</Key>
+      <Value>+8 к башне</Value>
+    </Item>
+    <Item>
+      <Key>CardEmpathyGemName</Key>
+      <Value>Эмпатия</Value>
+    </Item>
+    <Item>
+      <Key>CardEmpathyGemDescription</Key>
+      <Value>+8 к башне,&#13;&#10;+1 казарма</Value>
+    </Item>
+    <Item>
+      <Key>CardFireRubyName</Key>
+      <Value>Огненный рубин</Value>
+    </Item>
+    <Item>
+      <Key>CardFireRubyDescription</Key>
+      <Value>+6 к башне,&#13;&#10;4 урона&#13;&#10;башне врага</Value>
+    </Item>
+    <Item>
+      <Key>CardGemSpearName</Key>
+      <Value>Копье</Value>
+    </Item>
+    <Item>
+      <Key>CardGemSpearDescription</Key>
+      <Value>5 урона&#13;&#10;башне врага</Value>
+    </Item>
+    <Item>
+      <Key>CardGemstoneFlawName</Key>
+      <Value>Трещина</Value>
+    </Item>
+    <Item>
+      <Key>CardGemstoneFlawDescription</Key>
+      <Value>3 урона&#13;&#10;башне врага</Value>
+    </Item>
+    <Item>
+      <Key>CardHarmonicVibeName</Key>
+      <Value>Гармония</Value>
+    </Item>
+    <Item>
+      <Key>CardHarmonicVibeDescription</Key>
+      <Value>+1 монастырь,&#13;&#10;+3 к башне,&#13;&#10;+3 к стене</Value>
+    </Item>
+    <Item>
+      <Key>CardLavaJewelName</Key>
+      <Value>Сияющий камень</Value>
+    </Item>
+    <Item>
+      <Key>CardLavaJewelDescription</Key>
+      <Value>+12 к башне,&#13;&#10;6 урона врагу</Value>
+    </Item>
+    <Item>
+      <Key>CardLightningShardName</Key>
+      <Value>Молния</Value>
+    </Item>
+    <Item>
+      <Key>CardLightningShardDescription</Key>
+      <Value>Если башня &gt; стены&#13;&#10;врага, то 8 урона&#13;&#10;башне врага, иначе&#13;&#10;8 урона всем</Value>
+    </Item>
+    <Item>
+      <Key>CardLodestoneName</Key>
+      <Value>Рудная жила</Value>
+    </Item>
+    <Item>
+      <Key>CardLodestoneDescription</Key>
+      <Value>+8 к башне</Value>
+    </Item>
+    <Item>
+      <Key>CardParityName</Key>
+      <Value>Паритет</Value>
+    </Item>
+    <Item>
+      <Key>CardParityDescription</Key>
+      <Value>Монастырь всех&#13;&#10;становится равным&#13;&#10;монастырю сильнейшего</Value>
+    </Item>
+    <Item>
+      <Key>CardPearlOfWisdomName</Key>
+      <Value>Жемчуг мудрости</Value>
+    </Item>
+    <Item>
+      <Key>CardPearlOfWisdomDescription</Key>
+      <Value>+5 к башне,&#13;&#10;+1 монастырь</Value>
+    </Item>
+    <Item>
+      <Key>CardPhaseJewelName</Key>
+      <Value>Медитизм</Value>
+    </Item>
+    <Item>
+      <Key>CardPhaseJewelDescription</Key>
+      <Value>+13 к башне,&#13;&#10;+6 отрядов,&#13;&#10;+6 руды</Value>
+    </Item>
+    <Item>
+      <Key>CardPowerBurnName</Key>
+      <Value>Взрыв силы</Value>
+    </Item>
+    <Item>
+      <Key>CardPowerBurnDescription</Key>
+      <Value>5 урона&#13;&#10;собственной башне,&#13;&#10;+2 монастырь</Value>
+    </Item>
+    <Item>
+      <Key>CardPrismName</Key>
+      <Value>Призма</Value>
+    </Item>
+    <Item>
+      <Key>CardPrismDescription</Key>
+      <Value>Сдать 1 карту,&#13;&#10;сбросить карту,&#13;&#10;играем снова</Value>
+    </Item>
+    <Item>
+      <Key>CardQuarrysHelpName</Key>
+      <Value>Помощь в работе</Value>
+    </Item>
+    <Item>
+      <Key>CardQuarrysHelpDescription</Key>
+      <Value>+7 к башне,&#13;&#10;вы теряете 10 руды</Value>
+    </Item>
+    <Item>
+      <Key>CardQuartzName</Key>
+      <Value>Кварц</Value>
+    </Item>
+    <Item>
+      <Key>CardQuartzDescription</Key>
+      <Value>+1 к башне,&#13;&#10;играем снова</Value>
+    </Item>
+    <Item>
+      <Key>CardRainbowName</Key>
+      <Value>Радуга</Value>
+    </Item>
+    <Item>
+      <Key>CardRainbowDescription</Key>
+      <Value>+1 к башням&#13;&#10;всех, вы&#13;&#10;получаете 3 маны</Value>
+    </Item>
+    <Item>
+      <Key>CardRubyName</Key>
+      <Value>Рубин</Value>
+    </Item>
+    <Item>
+      <Key>CardRubyDescription</Key>
+      <Value>+5 к башне</Value>
+    </Item>
+    <Item>
+      <Key>CardSanctuaryName</Key>
+      <Value>Монастырь</Value>
+    </Item>
+    <Item>
+      <Key>CardSanctuaryDescription</Key>
+      <Value>+10 к башне,&#13;&#10;+5 к стене,&#13;&#10;вы получаете&#13;&#10;5 отрядов</Value>
+    </Item>
+    <Item>
+      <Key>CardSapphireName</Key>
+      <Value>Сапфир</Value>
+    </Item>
+    <Item>
+      <Key>CardSapphireDescription</Key>
+      <Value>+11 к башне</Value>
+    </Item>
+    <Item>
+      <Key>CardShattererName</Key>
+      <Value>Дробление</Value>
+    </Item>
+    <Item>
+      <Key>CardShattererDescription</Key>
+      <Value>-1 монастырь,&#13;&#10;9 урона&#13;&#10;башне врага</Value>
+    </Item>
+    <Item>
+      <Key>CardSmokyQuartzName</Key>
+      <Value>Дымчатый кварц</Value>
+    </Item>
+    <Item>
+      <Key>CardSmokyQuartzDescription</Key>
+      <Value>1 урона&#13;&#10;башне врага,&#13;&#10;играем снова</Value>
+    </Item>
+    <Item>
+      <Key>CardSolarFlareName</Key>
+      <Value>Затмение</Value>
+    </Item>
+    <Item>
+      <Key>CardSolarFlareDescription</Key>
+      <Value>+2 к башне,&#13;&#10;2 ед. урона&#13;&#10;башне врага</Value>
+    </Item>
+    <Item>
+      <Key>CardSpellWeaversName</Key>
+      <Value>Ткачи заклинаний</Value>
+    </Item>
+    <Item>
+      <Key>CardSpellWeaversDescription</Key>
+      <Value>+1 монастырь</Value>
+    </Item>
   </Asset>
 </XnaContent>

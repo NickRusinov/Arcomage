@@ -1,0 +1,21 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Arcomage.Domain.Cards;
+using Arcomage.Domain.Entities;
+using Xunit;
+
+namespace Arcomage.Domain.Tests.Cards
+{
+    public class PrismCardTests
+    {
+        [Theory, AutoFixture]
+        public void ActivateTest(Game game,
+            PrismCard sut)
+        {
+            sut.Activate(game);
+        }
+    }
+}
