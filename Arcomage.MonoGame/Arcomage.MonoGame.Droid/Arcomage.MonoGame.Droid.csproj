@@ -82,10 +82,13 @@
     <Compile Include="Commands\Command.cs" />
     <Compile Include="Commands\DiscardCardCommand.cs" />
     <Compile Include="Commands\ExitCommand.cs" />
+    <Compile Include="Commands\MenuCommand.cs" />
     <Compile Include="Commands\PlayCardCommand.cs" />
     <Compile Include="Commands\PlayCommand.cs" />
     <Compile Include="Commands\SettingsCommand.cs" />
     <Compile Include="Handler.cs" />
+    <Compile Include="Handlers\BackHandlerData.cs" />
+    <Compile Include="Handlers\BackHandlerVisitor.cs" />
     <Compile Include="Handlers\ClickHandlerData.cs" />
     <Compile Include="Handlers\ButtonClickHandlerVisitor.cs" />
     <Compile Include="Handlers\DiscardCardHandlerVisitor.cs" />
@@ -112,6 +115,7 @@
     <Compile Include="ViewModels\CardViewModel.cs" />
     <Compile Include="ViewModels\GameViewModel.cs" />
     <Compile Include="ViewModels\MenuViewModel.cs" />
+    <Compile Include="ViewModels\PageViewModel.cs" />
     <Compile Include="ViewModels\ResourcesViewModel.cs" />
     <Compile Include="ViewModels\ViewModel.cs" />
     <Compile Include="Views\Align.cs" />

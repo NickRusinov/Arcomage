@@ -14,6 +14,7 @@ namespace Arcomage.MonoGame.Droid.Autofac
         {
             builder.RegisterType<GameViewModel>()
                 .AsSelf()
+                .OnActivating(aea => aea.Instance.BackCommand = aea.Context.Resolve<MenuCommand>())
                 .InstancePerLifetimeScope();
 
             builder.RegisterType<CardViewModel>()

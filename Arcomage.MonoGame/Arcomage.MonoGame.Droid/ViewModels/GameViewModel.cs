@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Arcomage.MonoGame.Droid.ViewModels
 {
-    public class GameViewModel : ViewModel
+    public class GameViewModel : PageViewModel
     {
         public ResourcesViewModel ResourcesLeft { get; set; }
 

@@ -14,6 +14,7 @@ namespace Arcomage.MonoGame.Droid.Autofac
         {
             builder.RegisterType<MenuViewModel>()
                 .AsSelf()
+                .OnActivating(aea => aea.Instance.BackCommand = aea.Context.Resolve<ExitCommand>())
                 .OnActivating(aea => aea.Instance.PlayButton = aea.Context.ResolveNamed<ButtonViewModel>("MenuPlayButton"))
                 .OnActivating(aea => aea.Instance.SettingsButton = aea.Context.ResolveNamed<ButtonViewModel>("MenuSettingsButton"))
                 .OnActivating(aea => aea.Instance.ExitButton = aea.Context.ResolveNamed<ButtonViewModel>("MenuExitButton"))

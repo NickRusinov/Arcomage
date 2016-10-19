@@ -11,10 +11,12 @@ using AutoMapper.Configuration;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Input.Touch;
 using static Microsoft.Xna.Framework.DisplayOrientation;
 using static Microsoft.Xna.Framework.Input.Touch.GestureType;
 using static Microsoft.Xna.Framework.Input.Touch.TouchLocationState;
+using static Microsoft.Xna.Framework.PlayerIndex;
 
 namespace Arcomage.MonoGame.Droid
 {
@@ -107,6 +109,11 @@ namespace Arcomage.MonoGame.Droid
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+            if (GamePad.GetState(One).Buttons.Back == ButtonState.Pressed)
+            {
+                view.Handle(handler, new BackHandlerData { GameTime = gameTime });
+            }
+
             while (TouchPanel.IsGestureAvailable)
             {
                 var gesture = TouchPanel.ReadGesture();

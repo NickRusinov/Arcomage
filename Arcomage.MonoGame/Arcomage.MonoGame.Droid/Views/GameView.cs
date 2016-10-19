@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Arcomage.MonoGame.Droid.Handlers;
 using Arcomage.MonoGame.Droid.ViewModels;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -50,6 +51,8 @@ namespace Arcomage.MonoGame.Droid.Views
                 PositionX = 5, PositionY = 384, SizeX = 1270, SizeY = 315
             };
             
+            var backHandlerVisitor = new BackHandlerVisitor(gameViewModel, gameViewModel.BackCommand);
+
             Items.Add(gameBackgroundImageView);
             Items.Add(resourcesLeftView);
             Items.Add(resourcesRightView);
@@ -57,6 +60,8 @@ namespace Arcomage.MonoGame.Droid.Views
             Items.Add(buildingsRightView);
             Items.Add(cardSetView);
             Items.Add(gameBorderImageView);
+
+            HandlerVisitors.Add(backHandlerVisitor);
         }
     }
 }

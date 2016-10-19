@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Arcomage.MonoGame.Droid.Handlers;
 using Arcomage.MonoGame.Droid.ViewModels;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -10,8 +11,8 @@ namespace Arcomage.MonoGame.Droid.Views
 {
     public class MenuView : View<MenuViewModel>
     {
-        public MenuView(ContentManager contentManager, MenuViewModel viewModel)
-            : base(viewModel, 1280, 720)
+        public MenuView(ContentManager contentManager, MenuViewModel menuViewModel)
+            : base(menuViewModel, 1280, 720)
         {
             var menuBackgroundImageView = new SpriteView
             {
@@ -19,25 +20,29 @@ namespace Arcomage.MonoGame.Droid.Views
                 Texture = contentManager.Load<Texture2D>("MenuBackgroundImage")
             };
 
-            var menuPlayButtonView = new MenuButtonView(contentManager, viewModel.PlayButton)
+            var menuPlayButtonView = new MenuButtonView(contentManager, menuViewModel.PlayButton)
             {
                 PositionX = 440, PositionY = 30, SizeX = 400, SizeY = 200
             };
 
-            var menuSettingsButtonView = new MenuButtonView(contentManager, viewModel.SettingsButton)
+            var menuSettingsButtonView = new MenuButtonView(contentManager, menuViewModel.SettingsButton)
             {
                 PositionX = 440, PositionY = 260, SizeX = 400, SizeY = 200
             };
 
-            var menuExitButtonView = new MenuButtonView(contentManager, viewModel.ExitButton)
+            var menuExitButtonView = new MenuButtonView(contentManager, menuViewModel.ExitButton)
             {
                 PositionX = 440, PositionY = 490, SizeX = 400, SizeY = 200
             };
+
+            var backHandlerVisitor = new BackHandlerVisitor(menuViewModel, menuViewModel.BackCommand);
 
             Items.Add(menuBackgroundImageView);
             Items.Add(menuPlayButtonView);
             Items.Add(menuSettingsButtonView);
             Items.Add(menuExitButtonView);
+
+            HandlerVisitors.Add(backHandlerVisitor);
         }
     }
 }
