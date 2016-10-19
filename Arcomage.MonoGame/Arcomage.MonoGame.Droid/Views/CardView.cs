@@ -75,9 +75,15 @@ namespace Arcomage.MonoGame.Droid.Views
 
             Animations.Add(moveAnimation);
 
-            var dragHandlerVisitor = new DragAnimationHandlerVisitor(this, moveAnimation);
+            var dragHandlerVisitor = new DragHandlerVisitor(this);
+            var dragAnimationHandlerVisitor = new DragAnimationHandlerVisitor(this, moveAnimation);
+            var playCardHandlerVisitor = new PlayCardHandlerVisitor(this, - 30);
+            var discardCardHandlerVisitor = new DiscardCardHandlerVisitor(this, + 30);
 
             HandlerVisitors.Add(dragHandlerVisitor);
+            HandlerVisitors.Add(dragAnimationHandlerVisitor);
+            HandlerVisitors.Add(playCardHandlerVisitor);
+            HandlerVisitors.Add(discardCardHandlerVisitor);
         }
 
         protected override void ViewModelOnPropertyChanged(object sender, PropertyChangedEventArgs propertyChangedEventArgs)

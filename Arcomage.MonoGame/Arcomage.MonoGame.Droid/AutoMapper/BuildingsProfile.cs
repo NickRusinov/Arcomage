@@ -13,10 +13,12 @@ namespace Arcomage.MonoGame.Droid.AutoMapper
     {
         public BuildingsProfile()
         {
-            CreateMap<Buildings, BuildingsViewModel>();
+            CreateMap<Buildings, BuildingsViewModel>()
+                .ConstructUsingServiceLocator();
 
             CreateMap<ClassicGameCondition, BuildingsViewModel>()
-                .ForMember(bvm => bvm.MaxWall, mce => mce.MapFrom(gc => gc.MaxTower));
+                .ForMember(bvm => bvm.MaxWall, mce => mce.MapFrom(gc => gc.MaxTower))
+                .ConstructUsingServiceLocator();
         }
     }
 }

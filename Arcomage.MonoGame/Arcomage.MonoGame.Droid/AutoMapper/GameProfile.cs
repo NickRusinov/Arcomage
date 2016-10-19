@@ -17,11 +17,13 @@ namespace Arcomage.MonoGame.Droid.AutoMapper
                 .ForMember(gvm => gvm.BuildingsRight, mce => mce.MapFrom(g => g.SecondPlayer.Buildings))
                 .ForMember(gvm => gvm.ResourcesLeft, mce => mce.MapFrom(g => g.FirstPlayer.Resources))
                 .ForMember(gvm => gvm.ResourcesRight, mce => mce.MapFrom(g => g.SecondPlayer.Resources))
-                .ForMember(gvm => gvm.CardSet, mce => mce.MapFrom(g => g.FirstPlayer.CardSet));
+                .ForMember(gvm => gvm.CardSet, mce => mce.MapFrom(g => g.FirstPlayer.CardSet))
+                .ConstructUsingServiceLocator();
 
             CreateMap<GameCondition, GameViewModel>()
                 .ForMember(gvm => gvm.BuildingsLeft, mce => mce.ResolveUsing(gc => gc))
-                .ForMember(gvm => gvm.BuildingsRight, mce => mce.ResolveUsing(gc => gc));
+                .ForMember(gvm => gvm.BuildingsRight, mce => mce.ResolveUsing(gc => gc))
+                .ConstructUsingServiceLocator();
         }
     }
 }

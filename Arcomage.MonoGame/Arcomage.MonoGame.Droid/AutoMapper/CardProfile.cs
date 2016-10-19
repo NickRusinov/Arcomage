@@ -14,7 +14,8 @@ namespace Arcomage.MonoGame.Droid.AutoMapper
         {
             CreateMap<Card, CardViewModel>()
                 .ForMember(cvm => cvm.Price, mce => mce.MapFrom(c => c.ResourcePrice))
-                .ForMember(cvm => cvm.Resource, mce => mce.ResolveUsing(c => GetCardResource(c.GetType().BaseType.Name)));
+                .ForMember(cvm => cvm.Resource, mce => mce.ResolveUsing(c => GetCardResource(c.GetType().BaseType.Name)))
+                .ConstructUsingServiceLocator();
         }
 
         private static string GetCardResource(string cardTypeName)

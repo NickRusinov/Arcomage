@@ -22,20 +22,17 @@ namespace Arcomage.MonoGame.Droid.Autofac
             builder.RegisterType<ButtonViewModel>()
                 .Named<ButtonViewModel>("MenuPlayButton")
                 .OnActivating(aea => aea.Instance.Identifier = "Play")
-                .OnActivating(aea => aea.Instance.Command = aea.Context.Resolve<PlayCommand>())
-                .InstancePerLifetimeScope();
+                .OnActivating(aea => aea.Instance.Command = aea.Context.Resolve<PlayCommand>());
 
             builder.RegisterType<ButtonViewModel>()
                 .Named<ButtonViewModel>("MenuSettingsButton")
                 .OnActivating(aea => aea.Instance.Identifier = "Settings")
-                .OnActivating(aea => aea.Instance.Command = aea.Context.Resolve<SettingsCommand>())
-                .InstancePerLifetimeScope();
+                .OnActivating(aea => aea.Instance.Command = aea.Context.Resolve<SettingsCommand>());
 
             builder.RegisterType<ButtonViewModel>()
                 .Named<ButtonViewModel>("MenuExitButton")
                 .OnActivating(aea => aea.Instance.Identifier = "Exit")
-                .OnActivating(aea => aea.Instance.Command = aea.Context.Resolve<ExitCommand>())
-                .InstancePerLifetimeScope();
+                .OnActivating(aea => aea.Instance.Command = aea.Context.Resolve<ExitCommand>());
         }
     }
 }

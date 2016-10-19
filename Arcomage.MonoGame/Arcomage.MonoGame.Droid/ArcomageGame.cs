@@ -7,6 +7,7 @@ using Arcomage.MonoGame.Droid.Views;
 using Autofac;
 using Autofac.Features.ResolveAnything;
 using AutoMapper;
+using AutoMapper.Configuration;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -50,11 +51,8 @@ namespace Arcomage.MonoGame.Droid
         protected override void Initialize()
         {
             TouchPanel.EnabledGestures = Tap | DoubleTap | FreeDrag | HorizontalDrag | VerticalDrag | DragComplete;
-            
-            Mapper.Initialize(mce => mce.AddProfiles(GetType()));
-
             Content = new ArcomageContentManager(Content.ServiceProvider, "Content");
-
+            
             var builder = new ContainerBuilder();
             builder.RegisterSource(new AnyConcreteTypeNotAlreadyRegisteredSource());
             builder.RegisterAssemblyModules(GetType().Assembly);
@@ -62,7 +60,13 @@ namespace Arcomage.MonoGame.Droid
             builder.RegisterInstance(view).As<PageView>();
             builder.RegisterInstance(Content).As<ContentManager>();
             var container = builder.Build();
-            ViewModelFactory.Instance = new ViewModelFactory(container);
+            
+            var config = new MapperConfigurationExpression();
+            config.AddProfiles(GetType());
+            config.ConstructServicesUsing(container.Resolve);
+            var mapper = new Mapper(new MapperConfiguration(config));
+
+            ViewModelFactory.Instance = new ViewModelFactory(container, mapper);
             
             // TODO: Add your initialization logic here
 

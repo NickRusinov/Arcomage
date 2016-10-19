@@ -12,7 +12,8 @@ namespace Arcomage.MonoGame.Droid.AutoMapper
     {
         public ResourcesProfile()
         {
-            CreateMap<Resources, ResourcesViewModel>();
+            CreateMap<Resources, ResourcesViewModel>()
+                .ConstructUsingServiceLocator();
         }
     }
 }

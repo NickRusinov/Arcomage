@@ -4,22 +4,16 @@ using System.Linq;
 using System.Text;
 using Arcomage.MonoGame.Droid.Animations;
 using Arcomage.MonoGame.Droid.Views;
-using Microsoft.Xna.Framework;
 
 namespace Arcomage.MonoGame.Droid.Handlers
 {
-    public class DragAnimationHandlerVisitor : DragHandlerVisitor
+    public class DragAnimationHandlerVisitor : DragBaseHandlerVisitor
     {
-        private readonly View view;
-
         private readonly MoveAnimation moveAnimation;
-
-        private Vector2? initialPosition;
 
         public DragAnimationHandlerVisitor(View view, MoveAnimation moveAnimation)
             : base(view)
         {
-            this.view = view;
             this.moveAnimation = moveAnimation;
         }
 
@@ -27,10 +21,7 @@ namespace Arcomage.MonoGame.Droid.Handlers
         {
             var handled = base.Visit(handlerData);
             if (handled)
-            {
                 moveAnimation.IsEnabled = false;
-                initialPosition = initialPosition ?? view.Position;
-            }
 
             return handled;
         }
@@ -38,9 +29,9 @@ namespace Arcomage.MonoGame.Droid.Handlers
         public override bool Visit(DragEndHandlerData handlerData)
         {
             var handled = base.Visit(handlerData);
-            if (handled && initialPosition != null)
+            if (handled)
             {
-                moveAnimation.Position = initialPosition.Value;
+                moveAnimation.Position = InitPosition;
                 moveAnimation.Interval = TimeSpan.FromSeconds(1);
                 moveAnimation.Reset();
             }

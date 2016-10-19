@@ -32,10 +32,11 @@ namespace Arcomage.MonoGame.Droid.Views
 
         public override bool Handle(Handler handler, HandlerData handlerData)
         {
+            HandlerVisitors.ForEach(hv => handler.Handle(hv, handlerData));
+
             var nestedHandler = handler.CreateNestedHandler(Position, Size / OriginalSize);
-            
-            return HandlerVisitors.Exists(hv => handler.Handle(hv, handlerData)) ||
-                   Items.Exists(v => v.Handle(nestedHandler, handlerData));
+
+            return Items.Exists(v => v.Handle(nestedHandler, handlerData));
         }
 
         public override void Draw(Canvas canvas)

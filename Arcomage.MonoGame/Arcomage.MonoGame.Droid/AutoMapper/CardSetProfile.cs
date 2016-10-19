@@ -13,7 +13,8 @@ namespace Arcomage.MonoGame.Droid.AutoMapper
         public CardSetProfile()
         {
             CreateMap<CardSet, CardSetViewModel>()
-                .ForMember(csvm => csvm.CardCollection, mce => mce.MapFrom(cs => cs.Cards));
+                .ForMember(csvm => csvm.CardCollection, mce => mce.MapFrom(cs => cs.Cards))
+                .ConstructUsingServiceLocator();
         }
     }
 }
