@@ -58,6 +58,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Arcomage.Domain\Arcomage.Domain\Arcomage.Domain.csproj">
+      <Project>{61c19e09-c14b-49ea-a2a6-0d70c348f4ef}</Project>
+      <Name>Arcomage.Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="Animations\Animation.cs" />
     <Compile Include="Animations\IntervalAnimation.cs" />
     <Compile Include="Animations\MoveAnimation.cs" />
@@ -78,6 +84,7 @@
     <Compile Include="AutoMapper\CardSetProfile.cs" />
     <Compile Include="AutoMapper\GameProfile.cs" />
     <Compile Include="AutoMapper\ResourcesProfile.cs" />
+    <Compile Include="Properties\PropertyChanged.Fody.cs" />
     <Compile Include="UpdateViewGameAction.cs" />
     <Compile Include="Canvas.cs" />
     <Compile Include="ArcomageGame.cs" />
@@ -169,36 +176,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Content\GameBorderImage.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Content\GameBackgroundImage.png" />
     <None Include="Content\ResourcesLeftImage.png" />
     <None Include="Content\ResourcesRightImage.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Content\TowerLeftImage.png" />
     <None Include="Content\TowerRightImage.png" />
     <None Include="Content\WallLeftImage.png" />
     <None Include="Content\WallRightImage.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Content\CardBricksBackgroundImage.png" />
     <None Include="Content\CardGemsBackgroundImage.png" />
     <None Include="Content\CardRecruitsBackgroundImage.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Content\MenuButtonBackgroundImage.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Content\MenuBackgroundImage.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\Arcomage.Domain\Arcomage.Domain\Arcomage.Domain.csproj">
-      <Project>{61c19e09-c14b-49ea-a2a6-0d70c348f4ef}</Project>
-      <Name>Arcomage.Domain</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Content\CardBarracksImage.jpg" />
     <None Include="Content\CardBasicWallImage.jpg" />
     <None Include="Content\CardBattlementsImage.jpg" />
@@ -233,11 +222,6 @@
     <None Include="Content\CardSturdyWallImage.jpg" />
     <None Include="Content\CardTremorsImage.jpg" />
     <None Include="Content\CardWorkOvertimeImage.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Content\Localization.xml" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Content\CardAmethystImage.jpg" />
     <None Include="Content\CardApprenticeImage.jpg" />
     <None Include="Content\CardBagOfBaublesImage.jpg" />
@@ -273,8 +257,15 @@
     <None Include="Content\CardSolarFlareImage.jpg" />
     <None Include="Content\CardSpellWeaversImage.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Content\Localization.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="FodyWeavers.xml" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
+  <Import Project="..\..\Tools\Fody\build\portable-net+sl+win+wpa+wp\Fody.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
