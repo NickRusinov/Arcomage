@@ -63,6 +63,7 @@
     <Compile Include="Animations\MoveAnimation.cs" />
     <Compile Include="ArcomageActivity.cs" />
     <Compile Include="ArcomageContentManager.cs" />
+    <Compile Include="Autofac\GameActionModule.cs" />
     <Compile Include="Autofac\GameViewModelModule.cs" />
     <Compile Include="Autofac\MenuViewModelModule.cs" />
     <Compile Include="Autofac\SettingsViewModelModule.cs" />
@@ -77,6 +78,7 @@
     <Compile Include="AutoMapper\CardSetProfile.cs" />
     <Compile Include="AutoMapper\GameProfile.cs" />
     <Compile Include="AutoMapper\ResourcesProfile.cs" />
+    <Compile Include="UpdateViewGameAction.cs" />
     <Compile Include="Canvas.cs" />
     <Compile Include="ArcomageGame.cs" />
     <Compile Include="Commands\Command.cs" />

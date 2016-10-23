@@ -25,24 +25,22 @@ namespace Arcomage.MonoGame.Droid
 
         public MenuViewModel CreateMenuViewModel()
         {
-            using (var scope = container.BeginLifetimeScope())
-            {
-                var menuViewModel = scope.Resolve<MenuViewModel>();
+            var scope = container.BeginLifetimeScope();
 
-                return menuViewModel;
-            }
+            var menuViewModel = scope.Resolve<MenuViewModel>();
+
+            return menuViewModel;
         }
 
         public GameViewModel CreateGameViewModel()
         {
-            using (var scope = container.BeginLifetimeScope())
-            {
-                var gameViewModel = scope.Resolve<GameViewModel>();
-                gameViewModel = mapper.Map(scope.Resolve<Game>(), gameViewModel);
-                gameViewModel = mapper.Map(scope.Resolve<GameCondition>(), gameViewModel);
+            var scope = container.BeginLifetimeScope(b => b.RegisterInstance(mapper));
 
-                return gameViewModel;
-            }
+            var gameViewModel = scope.Resolve<GameViewModel>();
+            gameViewModel = mapper.Map(scope.Resolve<Game>(), gameViewModel, moo => moo.ConstructServicesUsing(scope.Resolve));
+            gameViewModel = mapper.Map(scope.Resolve<GameCondition>(), gameViewModel, moo => moo.ConstructServicesUsing(scope.Resolve));
+
+            return gameViewModel;
         }
     }
 }
