@@ -21,7 +21,7 @@ namespace Arcomage.Domain.Tests.Services
         {
             game.IsFinished = true;
 
-            Assert.Throws<GameFinishedException>(() => sut.Execute(1));
+            Assert.Throws<GameFinishedException>(() => sut.Execute(game, 1));
         }
 
         [Theory, AutoFixture]
@@ -30,37 +30,36 @@ namespace Arcomage.Domain.Tests.Services
             VerifyPlayCardGameAction sut)
         {
             game.IsFinished = false;
+            game.PlayerMode = PlayerMode.SecondPlayer;
 
-            Assert.Throws<NotCurrentPlayerException>(() => sut.Execute(1));
+            Assert.Throws<NotCurrentPlayerException>(() => sut.Execute(game, 1));
         }
 
         [Theory, AutoFixture]
         public void NotEnoughResourcesExceptionThrowsTest(
-            [Frozen] Game game,
-            [Frozen] Player player,
             [Frozen] Mock<Card> cardMock,
+            [Frozen] Game game,
             VerifyPlayCardGameAction sut)
         {
             game.IsFinished = false;
-            game.FirstPlayer = player;
+            game.PlayerMode = PlayerMode.FirstPlayer;
             cardMock.Setup(c => c.IsEnoughResources(It.IsAny<Resources>())).Returns(false);
 
-            Assert.Throws<NotEnoughResourcesException>(() => sut.Execute(1));
+            Assert.Throws<NotEnoughResourcesException>(() => sut.Execute(game, 1));
         }
 
         [Theory, AutoFixture]
         public void NoExceptionThrowsTest(
-            [Frozen] Game game,
-            [Frozen] Player player,
             [Frozen] Mock<Card> cardMock,
+            [Frozen] Game game,
             VerifyPlayCardGameAction sut)
         {
             game.IsFinished = false;
-            game.FirstPlayer = player;
+            game.PlayerMode = PlayerMode.FirstPlayer;
             game.FirstPlayer.CardSet.Cards[1] = cardMock.Object;
             cardMock.Setup(c => c.IsEnoughResources(It.IsAny<Resources>())).Returns(true);
 
-            sut.Execute(1);
+            sut.Execute(game, 1);
         }
     }
 }

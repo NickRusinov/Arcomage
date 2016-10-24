@@ -8,17 +8,13 @@ using Arcomage.Domain.Internal;
 
 namespace Arcomage.Domain.Services
 {
-    public class ReplaceCardGameAction : IGameAction
+    public class PlayGameAction : IGameAction
     {
         public void Execute(Game game, int cardIndex)
         {
             var player = game.GetCurrentPlayer();
-            var oldCard = player.CardSet.Cards[cardIndex];
 
-            game.CardDeck.PushCard(game, oldCard);
-            var newCard = game.CardDeck.PopCard(game);
-
-            player.CardSet.Cards[cardIndex] = newCard;
+            Task.Run(() => player.Play(game));
         }
     }
 }

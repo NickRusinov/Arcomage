@@ -4,24 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Arcomage.Domain.Entities;
-using Arcomage.Domain.Exceptions;
+using Arcomage.Domain.Internal;
 
 namespace Arcomage.Domain.Services
 {
     public class ActivateCardGameAction : IGameAction
     {
-        private readonly Game game;
-
-        private readonly Player player;
-
-        public ActivateCardGameAction(Game game, Player player)
+        public void Execute(Game game, int cardIndex)
         {
-            this.game = game;
-            this.player = player;
-        }
-
-        public void Execute(int cardIndex)
-        {
+            var player = game.GetCurrentPlayer();
             var card = player.CardSet.Cards[cardIndex];
             
             card.Activate(game);

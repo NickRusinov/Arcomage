@@ -11,22 +11,21 @@ namespace Arcomage.Domain.Services
 {
     public class VerifyPlayCardGameAction : IGameAction
     {
-        private readonly Game game;
+        private readonly PlayerMode playerMode;
 
-        private readonly Player player;
-
-        public VerifyPlayCardGameAction(Game game, Player player)
+        public VerifyPlayCardGameAction(PlayerMode playerMode)
         {
-            this.game = game;
-            this.player = player;
+            this.playerMode = playerMode;
         }
 
-        public void Execute(int cardIndex)
+        public void Execute(Game game, int cardIndex)
         {
+            var player = game.GetCurrentPlayer();
+
             if (game.IsFinished)
                 throw new GameFinishedException();
 
-            if (game.GetCurrentPlayer() != player)
+            if (game.PlayerMode != playerMode)
                 throw new NotCurrentPlayerException();
 
             if (!player.CardSet.Cards[cardIndex].IsEnoughResources(player.Resources))

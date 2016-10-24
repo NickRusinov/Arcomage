@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Arcomage.Domain.Entities
 {
-    public class Player : IIdentifiable
+    public abstract class Player : IIdentifiable
     {
         public string Identifier { get; set; }
 
@@ -15,5 +15,7 @@ namespace Arcomage.Domain.Entities
         public Resources Resources { get; set; }
 
         public CardSet CardSet { get; set; }
+
+        public abstract void Play(Game game);
     }
 }

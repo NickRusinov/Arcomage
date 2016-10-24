@@ -120,6 +120,8 @@
     <Compile Include="Cards\WorkOvertimeCardTests.cs" />
     <Compile Include="GameConditions\ClassicGameConditionTests.cs" />
     <Compile Include="Internal\FakeRandom.cs" />
+    <Compile Include="Players\ComputerPlayerTests.cs" />
+    <Compile Include="Players\HumanPlayerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ActivateCardGameActionTests.cs" />
     <Compile Include="Services\ReplaceCardGameActionTests.cs" />

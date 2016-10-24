@@ -16,19 +16,16 @@ namespace Arcomage.MonoGame.Droid
 
         private readonly IMapper mapper;
 
-        private readonly Game game;
-
         private readonly GameViewModel gameViewModel;
 
-        public UpdateViewGameAction(ILifetimeScope lifetimeScope, IMapper mapper, Game game, GameViewModel gameViewModel)
+        public UpdateViewGameAction(ILifetimeScope lifetimeScope, IMapper mapper, GameViewModel gameViewModel)
         {
             this.lifetimeScope = lifetimeScope;
             this.mapper = mapper;
-            this.game = game;
             this.gameViewModel = gameViewModel;
         }
 
-        public void Execute(int cardIndex)
+        public void Execute(Game game, int cardIndex)
         {
             mapper.Map(game, gameViewModel, moo => moo.ConstructServicesUsing(lifetimeScope.Resolve));
         }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Arcomage.Domain.Entities;
 
 namespace Arcomage.Domain.Services
 {
@@ -21,10 +22,10 @@ namespace Arcomage.Domain.Services
             
         }
 
-        public void Execute(int cardIndex)
+        public void Execute(Game game, int cardIndex)
         {
             foreach (var gameAction in gameActionCollection)
-                gameAction.Execute(cardIndex);
+                gameAction.Execute(game, cardIndex);
         }
     }
 }

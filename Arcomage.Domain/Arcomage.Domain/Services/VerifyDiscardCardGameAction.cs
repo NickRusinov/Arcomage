@@ -5,28 +5,24 @@ using System.Text;
 using System.Threading.Tasks;
 using Arcomage.Domain.Entities;
 using Arcomage.Domain.Exceptions;
-using Arcomage.Domain.Internal;
 
 namespace Arcomage.Domain.Services
 {
     public class VerifyDiscardCardGameAction : IGameAction
     {
-        private readonly Game game;
+        private readonly PlayerMode playerMode;
 
-        private readonly Player player;
-
-        public VerifyDiscardCardGameAction(Game game, Player player)
+        public VerifyDiscardCardGameAction(PlayerMode playerMode)
         {
-            this.game = game;
-            this.player = player;
+            this.playerMode = playerMode;
         }
 
-        public void Execute(int cardIndex)
+        public void Execute(Game game, int cardIndex)
         {
             if (game.IsFinished)
                 throw new GameFinishedException();
 
-            if (game.GetCurrentPlayer() != player)
+            if (game.PlayerMode != playerMode)
                 throw new NotCurrentPlayerException();
         }
     }

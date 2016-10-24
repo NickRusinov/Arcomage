@@ -4,12 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Arcomage.Domain.Entities;
-using Arcomage.Domain.Internal;
 
-namespace Arcomage.Domain.Services
+namespace Arcomage.Domain.Players
 {
-    public interface IGameAction
+    public class HumanPlayer : Player
     {
-        void Execute(Game game, int cardIndex);
+        public override void Play(Game game)
+        {
+
+        }
     }
 }

@@ -39,6 +39,8 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ArtificialIntelligence\FakeArtificialIntelligence.cs" />
+    <Compile Include="ArtificialIntelligence\IArtificialIntelligence.cs" />
     <Compile Include="CardDecks\ClassicCardDeck.cs" />
     <Compile Include="CardDecks\InfinityCardDeck.cs" />
     <Compile Include="Cards\PhaseJewelCard.cs" />
@@ -131,11 +133,14 @@
     <Compile Include="Internal\BuildingsExtensions.cs" />
     <Compile Include="Internal\GameExtensions.cs" />
     <Compile Include="Internal\PlayerModeExtensions.cs" />
+    <Compile Include="Players\ComputerPlayer.cs" />
+    <Compile Include="Players\HumanPlayer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GameConditions\IWinResultFactory.cs" />
     <Compile Include="Services\ActivateCardGameAction.cs" />
     <Compile Include="Services\CompositeGameAction.cs" />
     <Compile Include="Services\IGameAction.cs" />
+    <Compile Include="Services\PlayGameAction.cs" />
     <Compile Include="Services\ReplaceCardGameAction.cs" />
     <Compile Include="Services\ReplacePlayerGameAction.cs" />
     <Compile Include="Services\UpdateFinishedGameAction.cs" />

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Arcomage.Domain.Entities;
+using Arcomage.Domain.Players;
 using Arcomage.Domain.Tests.Internal;
 using Ploeh.AutoFixture;
 using Ploeh.AutoFixture.AutoMoq;
@@ -21,8 +22,15 @@ namespace Arcomage.Domain.Tests
 
             Fixture.Register((IFixture f) => f.CreateMany<Card>().ToList() as IReadOnlyCollection<Card>);
 
+            Fixture.Register((IFixture f) => PlayerMode.FirstPlayer);
+            Fixture.Register((IFixture f) => CreatePlayer(f));
             Fixture.Register((IFixture f) => CreateBuildings(f));
             Fixture.Register((IFixture f) => CreateResources(f));
+        }
+
+        private static Player CreatePlayer(IFixture fixture)
+        {
+            return fixture.Create<HumanPlayer>();
         }
 
         private static Buildings CreateBuildings(IFixture fixture)

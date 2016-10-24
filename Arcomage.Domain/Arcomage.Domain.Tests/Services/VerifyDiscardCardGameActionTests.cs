@@ -20,7 +20,7 @@ namespace Arcomage.Domain.Tests.Services
         {
             game.IsFinished = true;
 
-            Assert.Throws<GameFinishedException>(() => sut.Execute(1));
+            Assert.Throws<GameFinishedException>(() => sut.Execute(game, 1));
         }
 
         [Theory, AutoFixture]
@@ -29,20 +29,20 @@ namespace Arcomage.Domain.Tests.Services
             VerifyDiscardCardGameAction sut)
         {
             game.IsFinished = false;
+            game.PlayerMode = PlayerMode.SecondPlayer;
 
-            Assert.Throws<NotCurrentPlayerException>(() => sut.Execute(1));
+            Assert.Throws<NotCurrentPlayerException>(() => sut.Execute(game, 1));
         }
 
         [Theory, AutoFixture]
         public void NoExceptionThrowsTest(
             [Frozen] Game game,
-            [Frozen] Player player,
             VerifyDiscardCardGameAction sut)
         {
             game.IsFinished = false;
-            game.FirstPlayer = player;
+            game.PlayerMode = PlayerMode.FirstPlayer;
 
-            sut.Execute(1);
+            sut.Execute(game, 1);
         }
     }
 }

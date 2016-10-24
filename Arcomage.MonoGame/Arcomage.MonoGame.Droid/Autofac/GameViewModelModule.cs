@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Arcomage.Domain.Entities;
 using Arcomage.Domain.Services;
 using Arcomage.MonoGame.Droid.Commands;
 using Arcomage.MonoGame.Droid.ViewModels;
@@ -13,10 +14,16 @@ namespace Arcomage.MonoGame.Droid.Autofac
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.Register(cc => new PlayCardCommand(cc.ResolveNamed<IGameAction>("PlayCardGameAction")))
+            builder.Register(cc => 
+                new PlayCardCommand(
+                    cc.Resolve<Game>(), 
+                    cc.ResolveNamed<IGameAction>("FirstPlayCardGameAction")))
                 .AsSelf();
 
-            builder.Register(cc => new DiscardCardCommand(cc.ResolveNamed<IGameAction>("DiscardCardGameAction")))
+            builder.Register(cc => 
+                new DiscardCardCommand(
+                    cc.Resolve<Game>(), 
+                    cc.ResolveNamed<IGameAction>("FirstDiscardCardGameAction")))
                 .AsSelf();
 
             builder.RegisterType<GameViewModel>()

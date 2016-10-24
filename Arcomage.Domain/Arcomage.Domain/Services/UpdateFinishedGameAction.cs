@@ -9,17 +9,14 @@ namespace Arcomage.Domain.Services
 {
     public class UpdateFinishedGameAction : IGameAction
     {
-        private readonly Game game;
-
         private readonly GameCondition gameCondition;
 
-        public UpdateFinishedGameAction(Game game, GameCondition gameCondition)
+        public UpdateFinishedGameAction(GameCondition gameCondition)
         {
-            this.game = game;
             this.gameCondition = gameCondition;
         }
 
-        public void Execute(int cardIndex)
+        public void Execute(Game game, int cardIndex)
         {
             game.IsFinished = gameCondition.IsWin(game) != null;
         }

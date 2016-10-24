@@ -14,20 +14,20 @@ namespace Arcomage.Domain.Tests.Services
     public class ReplaceCardGameActionTests
     {
         [Theory, AutoFixture]
-        public void ReplaceCardTest(Mock<Card> cardMock,
-            [Frozen] Player player,
+        public void ReplaceCardTest(
             [Frozen] Mock<CardDeck> cardDeckMock,
+            [Frozen] Game game,
             ReplaceCardGameAction sut)
         {
-            var oldCard = player.CardSet.Cards[1];
-            var newCard = cardMock.Object;
+            var oldCard = game.FirstPlayer.CardSet.Cards[1];
+            var newCard = Mock.Of<Card>();
             cardDeckMock.Setup(cd => cd.PopCard(It.IsAny<Game>())).Returns(newCard);
 
-            sut.Execute(1);
+            sut.Execute(game, 1);
 
             cardDeckMock.Verify(cd => cd.PopCard(It.IsAny<Game>()), Times.Once);
             cardDeckMock.Verify(cd => cd.PushCard(It.IsAny<Game>(), oldCard), Times.Once);
-            Assert.Equal(newCard, player.CardSet.Cards[1]);
+            Assert.Equal(newCard, game.FirstPlayer.CardSet.Cards[1]);
         }
     }
 }

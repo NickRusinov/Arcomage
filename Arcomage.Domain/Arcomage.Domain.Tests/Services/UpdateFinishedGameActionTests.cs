@@ -15,26 +15,26 @@ namespace Arcomage.Domain.Tests.Services
     {
         [Theory, AutoFixture]
         public void SetFinishedToFalseTest(
-            [Frozen] Game game,
             [Frozen] Mock<GameCondition> gameConditionMock,
+            [Frozen] Game game,
             UpdateFinishedGameAction sut)
         {
-            gameConditionMock.Setup(gc => gc.IsWin(It.IsAny<Game>())).Returns<WinResult>(null);
+            gameConditionMock.Setup(gc => gc.IsWin(game)).Returns<WinResult>(null);
 
-            sut.Execute(1);
+            sut.Execute(game, 1);
 
             Assert.False(game.IsFinished);
         }
 
         [Theory, AutoFixture]
         public void SetFinishedToTrueTest(
-            [Frozen] Game game,
             [Frozen] Mock<GameCondition> gameConditionMock,
+            [Frozen] Game game,
             UpdateFinishedGameAction sut)
         {
-            gameConditionMock.Setup(gc => gc.IsWin(It.IsAny<Game>())).Returns(new WinResult());
+            gameConditionMock.Setup(gc => gc.IsWin(game)).Returns(new WinResult());
 
-            sut.Execute(1);
+            sut.Execute(game, 1);
 
             Assert.True(game.IsFinished);
         }

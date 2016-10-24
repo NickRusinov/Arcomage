@@ -19,7 +19,7 @@ namespace Arcomage.Domain.Tests.Services
         {
             game.PlayAgainTurns = 0;
 
-            sut.Execute(1);
+            sut.Execute(game, 1);
 
             Assert.Equal(PlayerMode.SecondPlayer, game.PlayerMode);
         }
@@ -31,7 +31,7 @@ namespace Arcomage.Domain.Tests.Services
         {
             game.PlayAgainTurns = 1;
 
-            sut.Execute(1);
+            sut.Execute(game, 1);
 
             Assert.Equal(PlayerMode.FirstPlayer, game.PlayerMode);
         }

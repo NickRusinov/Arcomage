@@ -10,14 +10,7 @@ namespace Arcomage.Domain.Services
 {
     public class ReplacePlayerGameAction : IGameAction
     {
-        private readonly Game game;
-
-        public ReplacePlayerGameAction(Game game)
-        {
-            this.game = game;
-        }
-
-        public void Execute(int cardIndex)
+        public void Execute(Game game, int cardIndex)
         {
             if (game.PlayAgainTurns == 0)
                 game.PlayerMode = game.PlayerMode.GetAdversary();
