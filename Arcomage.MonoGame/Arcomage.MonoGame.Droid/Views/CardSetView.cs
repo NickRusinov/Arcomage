@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using Arcomage.MonoGame.Droid.ViewModels;
@@ -10,30 +11,43 @@ namespace Arcomage.MonoGame.Droid.Views
 {
     public class CardSetView : View<CardSetViewModel>
     {
+        private readonly ContentManager contentManager;
+
         public CardSetView(ContentManager contentManager, CardSetViewModel cardSetViewModel)
             : base(cardSetViewModel, 1270, 315)
         {
+            this.contentManager = contentManager;
+            cardSetViewModel.CardCollection.CollectionChanged += CardCollectionOnCollectionChanged;
+
             if (cardSetViewModel.CardCollection.Count != 0)
             {
-                var index = 0;
                 var cardOffset = CalculateCardOffset(cardSetViewModel.CardCollection.Count);
                 var cardPlace = CalculateCardPlace(cardSetViewModel.CardCollection.Count);
                 var cardSize = CalculateCardSize(cardSetViewModel.CardCollection.Count);
 
-                foreach (var cardViewModel in cardSetViewModel.CardCollection)
-                {
-                    var cardView = new CardView(contentManager, cardViewModel);
-                    InitializeCard(cardView, cardOffset, cardPlace, cardSize, index++);
-                }
+                Items.AddRange(cardSetViewModel.CardCollection.Select((vm, i) => InitializeCard(vm, cardOffset, cardPlace, cardSize, i)));
             }
         }
 
-        private void InitializeCard(CardView cardView, Vector2 cardOffset, Vector2 cardDelta, Vector2 cardSize, int index)
+        private void CardCollectionOnCollectionChanged(object sender, NotifyCollectionChangedEventArgs args)
         {
-            cardView.Position = cardOffset + new Vector2(cardDelta.X, 0) * index;
-            cardView.Size = cardSize;
+            if (args.Action == NotifyCollectionChangedAction.Replace)
+            {
+                var cardOffset = CalculateCardOffset(ViewModel.CardCollection.Count);
+                var cardPlace = CalculateCardPlace(ViewModel.CardCollection.Count);
+                var cardSize = CalculateCardSize(ViewModel.CardCollection.Count);
 
-            Items.Add(cardView);
+                Items[args.OldStartingIndex] = InitializeCard(ViewModel.CardCollection[args.OldStartingIndex], cardOffset, cardPlace, cardSize, args.OldStartingIndex);
+            }
+        }
+
+        private CardView InitializeCard(CardViewModel cardViewModel, Vector2 cardOffset, Vector2 cardDelta, Vector2 cardSize, int index)
+        {
+            return new CardView(contentManager, cardViewModel)
+            {
+                Position = cardOffset + new Vector2(cardDelta.X, 0) * index,
+                Size = cardSize
+            };
         }
 
         private Vector2 CalculateCardPlace(int cardCount)
