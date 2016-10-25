@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using Arcomage.Domain.Entities;
@@ -15,6 +16,9 @@ namespace Arcomage.MonoGame.Droid.AutoMapper
             CreateMap<CardSet, CardSetViewModel>()
                 .ForMember(csvm => csvm.CardCollection, mce => mce.MapFrom(cs => cs.Cards))
                 .ConstructUsingServiceLocator();
+
+            CreateMap<IList<Card>, ObservableCollection<CardViewModel>>()
+                .ConvertUsing<ObservableCollectionTypeConverter>();
         }
     }
 }

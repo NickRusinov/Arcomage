@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 
 namespace Arcomage.Domain.Entities
 {
-    public class WinResult
+    public enum WinMode
     {
-        public WinMode WinMode { get; set; }
+        BuildTower,
 
-        public PlayerMode WinPlayerMode { get; set; }
+        DestroyTower,
+
+        AccumulateResources,
     }
 }

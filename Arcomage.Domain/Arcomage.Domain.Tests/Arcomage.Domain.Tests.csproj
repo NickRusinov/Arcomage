@@ -127,6 +127,7 @@
     <Compile Include="Services\ReplaceCardGameActionTests.cs" />
     <Compile Include="Services\ReplacePlayerGameActionTests.cs" />
     <Compile Include="Services\UpdateFinishedGameActionTests.cs" />
+    <Compile Include="Services\UpdateResourcesGameActionTests.cs" />
     <Compile Include="Services\VerifyDiscardCardGameActionTests.cs" />
     <Compile Include="Services\VerifyPlayCardGameActionTests.cs" />
   </ItemGroup>

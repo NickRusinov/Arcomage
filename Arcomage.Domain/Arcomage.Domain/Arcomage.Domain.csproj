@@ -122,6 +122,7 @@
     <Compile Include="Entities\PlayerMode.cs" />
     <Compile Include="Entities\Resources.cs" />
     <Compile Include="Entities\GameCondition.cs" />
+    <Compile Include="Entities\WinMode.cs" />
     <Compile Include="Entities\WinResult.cs" />
     <Compile Include="Exceptions\ArcomageException.cs" />
     <Compile Include="Exceptions\GameFinishedException.cs" />
@@ -136,7 +137,6 @@
     <Compile Include="Players\ComputerPlayer.cs" />
     <Compile Include="Players\HumanPlayer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="GameConditions\IWinResultFactory.cs" />
     <Compile Include="Services\ActivateCardGameAction.cs" />
     <Compile Include="Services\CompositeGameAction.cs" />
     <Compile Include="Services\IGameAction.cs" />
@@ -144,6 +144,7 @@
     <Compile Include="Services\ReplaceCardGameAction.cs" />
     <Compile Include="Services\ReplacePlayerGameAction.cs" />
     <Compile Include="Services\UpdateFinishedGameAction.cs" />
+    <Compile Include="Services\UpdateResourcesGameAction.cs" />
     <Compile Include="Services\VerifyDiscardCardGameAction.cs" />
     <Compile Include="Services\VerifyPlayCardGameAction.cs" />
   </ItemGroup>

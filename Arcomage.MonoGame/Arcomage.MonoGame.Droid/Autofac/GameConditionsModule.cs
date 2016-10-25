@@ -14,10 +14,6 @@ namespace Arcomage.MonoGame.Droid.Autofac
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<WinResultFactory>()
-                .As<IWinResultFactory>()
-                .SingleInstance();
-
             builder.Register(cc => cc.ResolveKeyed<GameCondition>(cc.Resolve<Settings>().CardRules))
                 .As<GameCondition>();
 
@@ -172,25 +168,6 @@ namespace Arcomage.MonoGame.Droid.Autofac
             activated.Instance.Resources = new Resources { Quarry = quarry, Bricks = bricks, Magic = magic, Gems = gems, Dungeons = dungeons, Recruits = recruits };
             activated.Instance.MaxTower = maxTower;
             activated.Instance.MaxResources = maxResources;
-        }
-
-        // TODO Refactor to remove IWinResultFactory
-        private class WinResultFactory : IWinResultFactory
-        {
-            public WinResult CreateBuildTowerWinResult(PlayerMode winPlayerMode)
-            {
-                throw new NotImplementedException();
-            }
-
-            public WinResult CreateDestroyTowerWinResult(PlayerMode winPlayerMode)
-            {
-                throw new NotImplementedException();
-            }
-
-            public WinResult CreateAccumulateResourcesWinResult(PlayerMode winPlayerMode)
-            {
-                throw new NotImplementedException();
-            }
         }
     }
 }

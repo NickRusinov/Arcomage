@@ -39,20 +39,18 @@ namespace Arcomage.Domain.Tests.GameConditions
 
         [Theory, AutoFixture]
         public void IsWinWhenBuildTowerTest(Game game,
-            [Frozen] Mock<IWinResultFactory> winResultFactoryMock,
             ClassicGameCondition sut)
         {
             sut.MaxTower = 15;
 
             var winResult = sut.IsWin(game);
 
-            Assert.NotNull(winResult);
-            winResultFactoryMock.Verify(wrf => wrf.CreateBuildTowerWinResult(PlayerMode.FirstPlayer), Times.Once);
+            Assert.Equal(WinMode.BuildTower, winResult.WinMode);
+            Assert.Equal(PlayerMode.FirstPlayer, winResult.WinPlayerMode);
         }
 
         [Theory, AutoFixture]
         public void IsWinWhenDestroyTowerTest(Game game,
-            [Frozen] Mock<IWinResultFactory> winResultFactoryMock,
             ClassicGameCondition sut)
         {
             sut.MaxTower = 25;
@@ -60,13 +58,12 @@ namespace Arcomage.Domain.Tests.GameConditions
 
             var winResult = sut.IsWin(game);
 
-            Assert.NotNull(winResult);
-            winResultFactoryMock.Verify(wrf => wrf.CreateDestroyTowerWinResult(PlayerMode.FirstPlayer), Times.Once);
+            Assert.Equal(WinMode.DestroyTower, winResult.WinMode);
+            Assert.Equal(PlayerMode.FirstPlayer, winResult.WinPlayerMode);
         }
 
         [Theory, AutoFixture]
         public void IsWinWhenAccumulateResourcesTest(Game game,
-            [Frozen] Mock<IWinResultFactory> winResultFactoryMock,
             ClassicGameCondition sut)
         {
             sut.MaxResources = 3;
@@ -74,13 +71,12 @@ namespace Arcomage.Domain.Tests.GameConditions
 
             var winResult = sut.IsWin(game);
 
-            Assert.NotNull(winResult);
-            winResultFactoryMock.Verify(wrf => wrf.CreateAccumulateResourcesWinResult(PlayerMode.FirstPlayer), Times.Once);
+            Assert.Equal(WinMode.AccumulateResources, winResult.WinMode);
+            Assert.Equal(PlayerMode.FirstPlayer, winResult.WinPlayerMode);
         }
 
         [Theory, AutoFixture]
         public void IsWinWhenBuildTowerAdversaryTest(Game game,
-            [Frozen] Mock<IWinResultFactory> winResultFactoryMock,
             ClassicGameCondition sut)
         {
             sut.MaxResources = 20;
@@ -89,13 +85,12 @@ namespace Arcomage.Domain.Tests.GameConditions
 
             var winResult = sut.IsWin(game);
 
-            Assert.NotNull(winResult);
-            winResultFactoryMock.Verify(wrf => wrf.CreateBuildTowerWinResult(PlayerMode.SecondPlayer), Times.Once);
+            Assert.Equal(WinMode.BuildTower, winResult.WinMode);
+            Assert.Equal(PlayerMode.SecondPlayer, winResult.WinPlayerMode);
         }
 
         [Theory, AutoFixture]
         public void IsWinWhenDestroyTowerAdversaryTest(Game game,
-            [Frozen] Mock<IWinResultFactory> winResultFactoryMock,
             ClassicGameCondition sut)
         {
             sut.MaxResources = 20;
@@ -104,13 +99,12 @@ namespace Arcomage.Domain.Tests.GameConditions
 
             var winResult = sut.IsWin(game);
 
-            Assert.NotNull(winResult);
-            winResultFactoryMock.Verify(wrf => wrf.CreateDestroyTowerWinResult(PlayerMode.SecondPlayer), Times.Once);
+            Assert.Equal(WinMode.DestroyTower, winResult.WinMode);
+            Assert.Equal(PlayerMode.SecondPlayer, winResult.WinPlayerMode);
         }
 
         [Theory, AutoFixture]
         public void IsWinWhenAccumulateResourcesAdversaryTest(Game game,
-            [Frozen] Mock<IWinResultFactory> winResultFactoryMock,
             ClassicGameCondition sut)
         {
             sut.MaxResources = 3;
@@ -119,8 +113,8 @@ namespace Arcomage.Domain.Tests.GameConditions
 
             var winResult = sut.IsWin(game);
 
-            Assert.NotNull(winResult);
-            winResultFactoryMock.Verify(wrf => wrf.CreateAccumulateResourcesWinResult(PlayerMode.SecondPlayer), Times.Once);
+            Assert.Equal(WinMode.AccumulateResources, winResult.WinMode);
+            Assert.Equal(PlayerMode.SecondPlayer, winResult.WinPlayerMode);
         }
 
         [Theory, AutoFixture]

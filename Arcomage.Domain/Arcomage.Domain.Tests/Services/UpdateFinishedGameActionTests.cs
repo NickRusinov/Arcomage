@@ -15,8 +15,8 @@ namespace Arcomage.Domain.Tests.Services
     {
         [Theory, AutoFixture]
         public void SetFinishedToFalseTest(
-            [Frozen] Mock<GameCondition> gameConditionMock,
             [Frozen] Game game,
+            [Frozen] Mock<GameCondition> gameConditionMock,
             UpdateFinishedGameAction sut)
         {
             gameConditionMock.Setup(gc => gc.IsWin(game)).Returns<WinResult>(null);
@@ -28,8 +28,8 @@ namespace Arcomage.Domain.Tests.Services
 
         [Theory, AutoFixture]
         public void SetFinishedToTrueTest(
-            [Frozen] Mock<GameCondition> gameConditionMock,
             [Frozen] Game game,
+            [Frozen] Mock<GameCondition> gameConditionMock,
             UpdateFinishedGameAction sut)
         {
             gameConditionMock.Setup(gc => gc.IsWin(game)).Returns(new WinResult());
@@ -37,6 +37,38 @@ namespace Arcomage.Domain.Tests.Services
             sut.Execute(game, 1);
 
             Assert.True(game.IsFinished);
+        }
+
+        [Theory, AutoFixture]
+        public void OnNotFinishedGameActionCalledTest(
+            [Frozen] Game game,
+            [Frozen] Mock<GameCondition> gameConditionMock,
+            Mock<IGameAction> onFinishedGameActionMock,
+            Mock<IGameAction> onNotFinishedGameActionMock)
+        {
+            gameConditionMock.Setup(gc => gc.IsWin(game)).Returns<WinResult>(null);
+            var sut = new UpdateFinishedGameAction(gameConditionMock.Object, onFinishedGameActionMock.Object, onNotFinishedGameActionMock.Object);
+
+            sut.Execute(game, 1);
+
+            onNotFinishedGameActionMock.Verify(ga => ga.Execute(game, 1), Times.Once);
+            onFinishedGameActionMock.Verify(ga => ga.Execute(game, 1), Times.Never);
+        }
+
+        [Theory, AutoFixture]
+        public void OnFinishedGameActionCalledTest(
+            [Frozen] Game game,
+            [Frozen] Mock<GameCondition> gameConditionMock,
+            Mock<IGameAction> onFinishedGameActionMock,
+            Mock<IGameAction> onNotFinishedGameActionMock)
+        {
+            gameConditionMock.Setup(gc => gc.IsWin(game)).Returns(new WinResult());
+            var sut = new UpdateFinishedGameAction(gameConditionMock.Object, onFinishedGameActionMock.Object, onNotFinishedGameActionMock.Object);
+
+            sut.Execute(game, 1);
+
+            onNotFinishedGameActionMock.Verify(ga => ga.Execute(game, 1), Times.Never);
+            onFinishedGameActionMock.Verify(ga => ga.Execute(game, 1), Times.Once);
         }
     }
 }

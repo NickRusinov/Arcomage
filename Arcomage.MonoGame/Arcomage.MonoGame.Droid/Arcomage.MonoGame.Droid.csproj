@@ -84,8 +84,10 @@
     <Compile Include="AutoMapper\CardProfile.cs" />
     <Compile Include="AutoMapper\CardSetProfile.cs" />
     <Compile Include="AutoMapper\GameProfile.cs" />
+    <Compile Include="AutoMapper\ObservableCollectionTypeConverter.cs" />
     <Compile Include="AutoMapper\ResourcesProfile.cs" />
     <Compile Include="Properties\PropertyChanged.Fody.cs" />
+    <Compile Include="ShowFinishedGameAction.cs" />
     <Compile Include="UpdateViewGameAction.cs" />
     <Compile Include="Canvas.cs" />
     <Compile Include="ArcomageGame.cs" />
