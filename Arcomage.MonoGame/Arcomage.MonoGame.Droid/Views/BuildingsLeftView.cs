@@ -12,6 +12,10 @@ namespace Arcomage.MonoGame.Droid.Views
 {
     public class BuildingsLeftView : View<BuildingsViewModel>
     {
+        private readonly SpriteView towerImageView;
+
+        private readonly SpriteView wallImageView;
+
         private readonly TextView towerTextView;
 
         private readonly TextView wallTextView;
@@ -19,15 +23,19 @@ namespace Arcomage.MonoGame.Droid.Views
         public BuildingsLeftView(ContentManager contentManager, BuildingsViewModel buildingsViewModel)
             : base(buildingsViewModel, 300, 488)
         {
-            var towerLeftImageView = new SpriteView
+            towerImageView = new SpriteView
             {
-                PositionX = 0, PositionY = 224, SizeX = 300, SizeY = 488, SourceX = 300, SourceY = 114,
+                PositionX = 0, PositionY = 224 - CalculateTowerHeight(buildingsViewModel),
+                SourceX = 300, SourceY = 114 + CalculateTowerHeight(buildingsViewModel),
+                SizeX = 300, SizeY = 488,
                 Texture = contentManager.Load<Texture2D>("TowerLeftImage")
             };
 
-            var wallLeftImageView = new SpriteView
+            wallImageView = new SpriteView
             {
-                PositionX = 0, PositionY = 321, SizeX = 300, SizeY = 488, SourceX = 300, SourceY = 17,
+                PositionX = 0, PositionY = 321 - CalculateWallHeight(buildingsViewModel),
+                SourceX = 300, SourceY = 17 + CalculateWallHeight(buildingsViewModel),
+                SizeX = 300, SizeY = 488,
                 Texture = contentManager.Load<Texture2D>("WallLeftImage")
             };
             
@@ -45,8 +53,8 @@ namespace Arcomage.MonoGame.Droid.Views
                 Font = contentManager.Load<SpriteFont>("BuildingsFont")
             };
 
-            Items.Add(towerLeftImageView);
-            Items.Add(wallLeftImageView);
+            Items.Add(towerImageView);
+            Items.Add(wallImageView);
             Items.Add(towerTextView);
             Items.Add(wallTextView);
         }
@@ -54,7 +62,22 @@ namespace Arcomage.MonoGame.Droid.Views
         protected override void ViewModelOnPropertyChanged(object sender, PropertyChangedEventArgs propertyChangedEventArgs)
         {
             towerTextView.Text = $"{ ViewModel.Tower }";
+            towerImageView.PositionY = 224 - CalculateTowerHeight(ViewModel);
+            towerImageView.SourceY = 114f + CalculateTowerHeight(ViewModel);
+
             wallTextView.Text = $"{ ViewModel.Wall }";
+            wallImageView.PositionY = 321f - CalculateWallHeight(ViewModel);
+            wallImageView.SourceY = 17f + CalculateWallHeight(ViewModel);
+        }
+
+        private static float CalculateTowerHeight(BuildingsViewModel buildingsViewModel)
+        {
+            return 224f * buildingsViewModel.Tower / buildingsViewModel.MaxTower;
+        }
+
+        private static float CalculateWallHeight(BuildingsViewModel buildingsViewModel)
+        {
+            return 224f * buildingsViewModel.Wall / buildingsViewModel.MaxWall;
         }
     }
 }
