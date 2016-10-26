@@ -26,7 +26,7 @@ namespace Arcomage.MonoGame.Droid.Autofac
 
         private static void Activate(IActivatingEventArgs<CardSet> activated, int cardCount)
         {
-            activated.Instance.Cards = Enumerable.Repeat(activated.Context.Resolve<CardDeck>(), cardCount)
+            activated.Instance.Cards = Enumerable.Repeat(activated.Context.Resolve<Deck>(), cardCount)
                 .Select(cd => cd.PopCard(null))
                 .ToList();
         }

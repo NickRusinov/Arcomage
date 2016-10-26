@@ -17,7 +17,7 @@ namespace Arcomage.Domain.Entities
 
         public PlayerMode PlayerMode { get; set; }
 
-        public CardDeck CardDeck { get; set; }
+        public Deck Deck { get; set; }
 
         public History History { get; set; }
 

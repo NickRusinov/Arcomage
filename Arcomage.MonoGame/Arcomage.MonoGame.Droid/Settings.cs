@@ -11,12 +11,12 @@ namespace Arcomage.MonoGame.Droid
 
         public string SecondPlayer { get; set; } = "PlayerB";
 
-        public CardDeckMode CardDeck { get; set; } = CardDeckMode.Classic;
+        public DeckMode DeckMode { get; set; } = DeckMode.Classic;
 
         public CardRulesMode CardRules { get; set; } = CardRulesMode.EmpireCaptital;
     }
 
-    public enum CardDeckMode
+    public enum DeckMode
     {
         Classic,
 

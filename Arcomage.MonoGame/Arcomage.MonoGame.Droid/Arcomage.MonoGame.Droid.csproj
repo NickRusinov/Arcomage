@@ -75,7 +75,7 @@
     <Compile Include="Autofac\HistoryModule.cs" />
     <Compile Include="Autofac\MenuViewModelModule.cs" />
     <Compile Include="Autofac\SettingsViewModelModule.cs" />
-    <Compile Include="Autofac\CardDecksModule.cs" />
+    <Compile Include="Autofac\DeckModule.cs" />
     <Compile Include="Autofac\CardSetsModule.cs" />
     <Compile Include="Autofac\CardsModule.cs" />
     <Compile Include="Autofac\GameConditionsModule.cs" />

@@ -15,8 +15,8 @@ namespace Arcomage.Domain.Services
             var player = game.GetCurrentPlayer();
             var oldCard = player.CardSet.Cards[cardIndex];
 
-            game.CardDeck.PushCard(game, oldCard);
-            var newCard = game.CardDeck.PopCard(game);
+            game.Deck.PushCard(game, oldCard);
+            var newCard = game.Deck.PopCard(game);
 
             player.CardSet.Cards[cardIndex] = newCard;
         }

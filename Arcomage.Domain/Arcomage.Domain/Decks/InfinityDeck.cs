@@ -5,15 +5,15 @@ using System.Text;
 using System.Threading.Tasks;
 using Arcomage.Domain.Entities;
 
-namespace Arcomage.Domain.CardDecks
+namespace Arcomage.Domain.Decks
 {
-    public class ClassicCardDeck : CardDeck
+    public class InfinityDeck : Deck
     {
         private readonly Random random;
 
         private readonly List<Card> cardCollection;
 
-        public ClassicCardDeck(Random random, IReadOnlyCollection<Card> cardCollection)
+        public InfinityDeck(Random random, IReadOnlyCollection<Card> cardCollection)
         {
             this.random = random;
             this.cardCollection = new List<Card>(cardCollection);
@@ -21,17 +21,14 @@ namespace Arcomage.Domain.CardDecks
 
         public override Card PopCard(Game game)
         {
-            var randomCardIndex = random.Next(cardCollection.Count / 2);
+            var randomCardIndex = random.Next(cardCollection.Count);
 
-            var card = cardCollection[randomCardIndex];
-            cardCollection.RemoveAt(randomCardIndex);
-
-            return card;
+            return cardCollection[randomCardIndex];
         }
 
         public override void PushCard(Game game, Card card)
         {
-            cardCollection.Add(card);
+
         }
     }
 }

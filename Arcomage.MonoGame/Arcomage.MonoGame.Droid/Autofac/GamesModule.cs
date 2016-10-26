@@ -23,7 +23,7 @@ namespace Arcomage.MonoGame.Droid.Autofac
         {
             activated.Instance.FirstPlayer = activated.Context.ResolveKeyed<Player>(FirstPlayer);
             activated.Instance.SecondPlayer = activated.Context.ResolveKeyed<Player>(SecondPlayer);
-            activated.Instance.CardDeck = activated.Context.Resolve<CardDeck>();
+            activated.Instance.Deck = activated.Context.Resolve<Deck>();
             activated.Instance.History = activated.Context.Resolve<History>();
         }
     }

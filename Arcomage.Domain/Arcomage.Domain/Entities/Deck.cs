@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Arcomage.Domain.Entities
 {
-    public abstract class CardDeck : IIdentifiable
+    public abstract class Deck : IIdentifiable
     {
         public string Identifier { get; set; }
 

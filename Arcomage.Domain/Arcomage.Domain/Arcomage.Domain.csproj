@@ -41,8 +41,8 @@
   <ItemGroup>
     <Compile Include="ArtificialIntelligence\FakeArtificialIntelligence.cs" />
     <Compile Include="ArtificialIntelligence\IArtificialIntelligence.cs" />
-    <Compile Include="CardDecks\ClassicCardDeck.cs" />
-    <Compile Include="CardDecks\InfinityCardDeck.cs" />
+    <Compile Include="Decks\ClassicDeck.cs" />
+    <Compile Include="Decks\InfinityDeck.cs" />
     <Compile Include="Cards\PhaseJewelCard.cs" />
     <Compile Include="Cards\LightningShardCard.cs" />
     <Compile Include="Cards\ApprenticeCard.cs" />
@@ -115,7 +115,7 @@
     <Compile Include="Cards\BrickShortageCard.cs" />
     <Compile Include="Entities\Buildings.cs" />
     <Compile Include="Entities\Card.cs" />
-    <Compile Include="Entities\CardDeck.cs" />
+    <Compile Include="Entities\Deck.cs" />
     <Compile Include="Entities\CardSet.cs" />
     <Compile Include="Entities\Game.cs" />
     <Compile Include="Entities\History.cs" />

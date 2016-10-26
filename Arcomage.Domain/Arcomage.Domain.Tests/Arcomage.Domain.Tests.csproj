@@ -48,8 +48,8 @@
   </Choose>
   <ItemGroup>
     <Compile Include="AutoFixtureAttribute.cs" />
-    <Compile Include="CardDecks\ClassicCardDeckTests.cs" />
-    <Compile Include="CardDecks\InfinityCardDeckTests.cs" />
+    <Compile Include="Decks\ClassicDeckTests.cs" />
+    <Compile Include="Decks\InfinityDeckTests.cs" />
     <Compile Include="Cards\SpellWeaversCardTests.cs" />
     <Compile Include="Cards\SolarFlareCardTests.cs" />
     <Compile Include="Cards\SmokyQuartzCardTests.cs" />
