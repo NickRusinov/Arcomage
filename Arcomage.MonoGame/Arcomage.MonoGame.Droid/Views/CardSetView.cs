@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
+using Arcomage.MonoGame.Droid.Animations;
 using Arcomage.MonoGame.Droid.ViewModels;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
@@ -37,7 +38,18 @@ namespace Arcomage.MonoGame.Droid.Views
                 var cardPlace = CalculateCardPlace(ViewModel.CardCollection.Count);
                 var cardSize = CalculateCardSize(ViewModel.CardCollection.Count);
 
-                Items[args.OldStartingIndex] = InitializeCard(ViewModel.CardCollection[args.OldStartingIndex], cardOffset, cardPlace, cardSize, args.OldStartingIndex);
+                var cardViewModel = ViewModel.CardCollection[args.OldStartingIndex];
+                var cardView = InitializeCard(cardViewModel, cardOffset, cardPlace, cardSize, args.OldStartingIndex);
+
+                var initialMoveAnimation = new MoveAnimation(cardView);
+                initialMoveAnimation.Position = cardView.Position;
+                initialMoveAnimation.Interval = TimeSpan.FromMilliseconds(500);
+
+                cardView.Position = new Vector2(385, - 364);
+                cardView.Animations.Add(initialMoveAnimation);
+                initialMoveAnimation.Reset();
+
+                Items[args.OldStartingIndex] = cardView;
             }
         }
 
