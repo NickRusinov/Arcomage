@@ -21,12 +21,18 @@ namespace Arcomage.MonoGame.Droid.AutoMapper
 
         public ObservableCollection<CardViewModel> Convert(IList<Card> source, ObservableCollection<CardViewModel> destination, ResolutionContext context)
         {
-            destination = destination ?? new ObservableCollection<CardViewModel>(new CardViewModel[source.Count]);
+            destination = destination ?? new ObservableCollection<CardViewModel>();
+
+            if (source.Count == 0)
+                destination.Clear();
 
             for (var i = 0; i < source.Count; ++i)
             {
-                if (source[i].Identifier != destination[i]?.Identifier)
+                if (i < destination.Count && source[i].Identifier != destination[i].Identifier)
                     destination[i] = context.Mapper.Map<Card, CardViewModel>(source[i], moo => moo.ConstructServicesUsing(lifetimeScope.Resolve));
+
+                if (i >= destination.Count)
+                    destination.Add(context.Mapper.Map<Card, CardViewModel>(source[i], moo => moo.ConstructServicesUsing(lifetimeScope.Resolve)));
             }
 
             return destination;

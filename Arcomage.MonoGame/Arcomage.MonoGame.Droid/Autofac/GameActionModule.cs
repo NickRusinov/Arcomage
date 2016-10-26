@@ -17,12 +17,16 @@ namespace Arcomage.MonoGame.Droid.Autofac
                 new CompositeGameAction(
                     new VerifyPlayCardGameAction(FirstPlayer),
                     new ActivateCardGameAction(),
+                    new UpdateHistoryGameAction(),
+                    cc.Resolve<UpdateHistoryViewGameAction>(),
                     new ReplaceCardGameAction(),
                     new UpdateFinishedGameAction(cc.Resolve<GameCondition>(), 
                         new ShowFinishedGameAction(), 
                         new CompositeGameAction(
                             new ReplacePlayerGameAction(
-                                new UpdateResourcesGameAction()),
+                                new CompositeGameAction(
+                                    new UpdateResourcesGameAction(),
+                                    new ClearHistoryGameAction())),
                             new PlayGameAction())),
                     cc.Resolve<UpdateViewGameAction>()))
                 .Named<IGameAction>("FirstPlayCardGameAction");
@@ -30,12 +34,16 @@ namespace Arcomage.MonoGame.Droid.Autofac
             builder.Register(cc =>
                 new CompositeGameAction(
                     new VerifyDiscardCardGameAction(FirstPlayer),
+                    new UpdateHistoryGameAction(),
+                    cc.Resolve<UpdateHistoryViewGameAction>(),
                     new ReplaceCardGameAction(),
                     new UpdateFinishedGameAction(cc.Resolve<GameCondition>(),
                         new ShowFinishedGameAction(),
                         new CompositeGameAction(
                             new ReplacePlayerGameAction(
-                                new UpdateResourcesGameAction()),
+                                new CompositeGameAction(
+                                    new UpdateResourcesGameAction(),
+                                    new ClearHistoryGameAction())),
                             new PlayGameAction())),
                     cc.Resolve<UpdateViewGameAction>()))
                 .Named<IGameAction>("FirstDiscardCardGameAction");
@@ -44,12 +52,16 @@ namespace Arcomage.MonoGame.Droid.Autofac
                 new CompositeGameAction(
                     new VerifyPlayCardGameAction(SecondPlayer),
                     new ActivateCardGameAction(),
+                    new UpdateHistoryGameAction(),
+                    cc.Resolve<UpdateHistoryViewGameAction>(),
                     new ReplaceCardGameAction(),
                     new UpdateFinishedGameAction(cc.Resolve<GameCondition>(),
                         new ShowFinishedGameAction(),
                         new CompositeGameAction(
                             new ReplacePlayerGameAction(
-                                new UpdateResourcesGameAction()),
+                                new CompositeGameAction(
+                                    new UpdateResourcesGameAction(),
+                                    new ClearHistoryGameAction())),
                             new PlayGameAction())),
                     cc.Resolve<UpdateViewGameAction>()))
                 .Named<IGameAction>("SecondPlayCardGameAction");
@@ -57,12 +69,16 @@ namespace Arcomage.MonoGame.Droid.Autofac
             builder.Register(cc =>
                 new CompositeGameAction(
                     new VerifyDiscardCardGameAction(SecondPlayer),
+                    new UpdateHistoryGameAction(),
+                    cc.Resolve<UpdateHistoryViewGameAction>(),
                     new ReplaceCardGameAction(),
                     new UpdateFinishedGameAction(cc.Resolve<GameCondition>(),
                         new ShowFinishedGameAction(),
                         new CompositeGameAction(
                             new ReplacePlayerGameAction(
-                                new UpdateResourcesGameAction()),
+                                new CompositeGameAction(
+                                    new UpdateResourcesGameAction(),
+                                    new ClearHistoryGameAction())),
                             new PlayGameAction())),
                     cc.Resolve<UpdateViewGameAction>()))
                 .Named<IGameAction>("SecondDiscardCardGameAction");

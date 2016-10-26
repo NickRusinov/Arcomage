@@ -50,6 +50,11 @@ namespace Arcomage.MonoGame.Droid.Views
             {
                 PositionX = 5, PositionY = 384, SizeX = 1270, SizeY = 315
             };
+
+            var historyView = new HistoryView(contentManager, gameViewModel.History)
+            {
+                PositionX = 550, PositionY = 30, SizeX = 300, SizeY = 300
+            };
             
             var backHandlerVisitor = new BackHandlerVisitor(gameViewModel, gameViewModel.BackCommand);
 
@@ -59,6 +64,7 @@ namespace Arcomage.MonoGame.Droid.Views
             Items.Add(buildingsLeftView);
             Items.Add(buildingsRightView);
             Items.Add(cardSetView);
+            Items.Add(historyView);
             Items.Add(gameBorderImageView);
 
             HandlerVisitors.Add(backHandlerVisitor);

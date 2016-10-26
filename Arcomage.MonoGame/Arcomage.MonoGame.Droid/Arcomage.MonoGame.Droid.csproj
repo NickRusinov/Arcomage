@@ -72,6 +72,7 @@
     <Compile Include="Autofac\ArtificialIntelligenceModule.cs" />
     <Compile Include="Autofac\GameActionModule.cs" />
     <Compile Include="Autofac\GameViewModelModule.cs" />
+    <Compile Include="Autofac\HistoryModule.cs" />
     <Compile Include="Autofac\MenuViewModelModule.cs" />
     <Compile Include="Autofac\SettingsViewModelModule.cs" />
     <Compile Include="Autofac\CardDecksModule.cs" />
@@ -84,10 +85,12 @@
     <Compile Include="AutoMapper\CardProfile.cs" />
     <Compile Include="AutoMapper\CardSetProfile.cs" />
     <Compile Include="AutoMapper\GameProfile.cs" />
+    <Compile Include="AutoMapper\HistoryProfile.cs" />
     <Compile Include="AutoMapper\ObservableCollectionTypeConverter.cs" />
     <Compile Include="AutoMapper\ResourcesProfile.cs" />
     <Compile Include="Properties\PropertyChanged.Fody.cs" />
     <Compile Include="ShowFinishedGameAction.cs" />
+    <Compile Include="UpdateHistoryViewGameAction.cs" />
     <Compile Include="UpdateViewGameAction.cs" />
     <Compile Include="Canvas.cs" />
     <Compile Include="ArcomageGame.cs" />
@@ -126,6 +129,7 @@
     <Compile Include="ViewModels\CardSetViewModel.cs" />
     <Compile Include="ViewModels\CardViewModel.cs" />
     <Compile Include="ViewModels\GameViewModel.cs" />
+    <Compile Include="ViewModels\HistoryViewModel.cs" />
     <Compile Include="ViewModels\MenuViewModel.cs" />
     <Compile Include="ViewModels\PageViewModel.cs" />
     <Compile Include="ViewModels\ResourcesViewModel.cs" />
@@ -133,6 +137,7 @@
     <Compile Include="Views\Align.cs" />
     <Compile Include="Views\BuildingsLeftView.cs" />
     <Compile Include="Views\BuildingsRightView.cs" />
+    <Compile Include="Views\HistoryView.cs" />
     <Compile Include="Views\MenuButtonView.cs" />
     <Compile Include="Views\CardSetView.cs" />
     <Compile Include="Views\CardView.cs" />

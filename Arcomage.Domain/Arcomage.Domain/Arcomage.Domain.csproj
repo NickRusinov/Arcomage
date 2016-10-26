@@ -118,6 +118,7 @@
     <Compile Include="Entities\CardDeck.cs" />
     <Compile Include="Entities\CardSet.cs" />
     <Compile Include="Entities\Game.cs" />
+    <Compile Include="Entities\History.cs" />
     <Compile Include="Entities\Player.cs" />
     <Compile Include="Entities\PlayerMode.cs" />
     <Compile Include="Entities\Resources.cs" />
@@ -138,12 +139,14 @@
     <Compile Include="Players\HumanPlayer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ActivateCardGameAction.cs" />
+    <Compile Include="Services\ClearHistoryGameAction.cs" />
     <Compile Include="Services\CompositeGameAction.cs" />
     <Compile Include="Services\IGameAction.cs" />
     <Compile Include="Services\PlayGameAction.cs" />
     <Compile Include="Services\ReplaceCardGameAction.cs" />
     <Compile Include="Services\ReplacePlayerGameAction.cs" />
     <Compile Include="Services\UpdateFinishedGameAction.cs" />
+    <Compile Include="Services\UpdateHistoryGameAction.cs" />
     <Compile Include="Services\UpdateResourcesGameAction.cs" />
     <Compile Include="Services\VerifyDiscardCardGameAction.cs" />
     <Compile Include="Services\VerifyPlayCardGameAction.cs" />
