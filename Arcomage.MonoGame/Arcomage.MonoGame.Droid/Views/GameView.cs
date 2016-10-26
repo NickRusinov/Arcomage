@@ -26,6 +26,12 @@ namespace Arcomage.MonoGame.Droid.Views
                 Texture = contentManager.Load<Texture2D>("GameBackgroundImage")
             };
 
+            var deckBackgroundImageView = new SpriteView
+            {
+                PositionX = 390, PositionY = 20, SizeX = 188, SizeY = 258, SourceX = 188, SourceY = 258,
+                Texture = contentManager.Load<Texture2D>("DeckBackgroundImage")
+            };
+
             var resourcesLeftView = new ResourcesLeftView(contentManager, gameViewModel.ResourcesLeft)
             {
                 PositionX = 2, PositionY = 9, SizeX = 170, SizeY = 377
@@ -59,6 +65,7 @@ namespace Arcomage.MonoGame.Droid.Views
             var backHandlerVisitor = new BackHandlerVisitor(gameViewModel, gameViewModel.BackCommand);
 
             Items.Add(gameBackgroundImageView);
+            Items.Add(deckBackgroundImageView);
             Items.Add(resourcesLeftView);
             Items.Add(resourcesRightView);
             Items.Add(buildingsLeftView);
