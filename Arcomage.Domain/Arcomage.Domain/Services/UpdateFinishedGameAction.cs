@@ -9,22 +9,22 @@ namespace Arcomage.Domain.Services
 {
     public class UpdateFinishedGameAction : IGameAction
     {
-        private readonly GameCondition gameCondition;
+        private readonly Rule rule;
 
         private readonly IGameAction onFinishedGameAction;
 
         private readonly IGameAction onNotFinishedGameAction;
 
-        public UpdateFinishedGameAction(GameCondition gameCondition, IGameAction onFinishedGameAction, IGameAction onNotFinishedGameAction)
+        public UpdateFinishedGameAction(Rule rule, IGameAction onFinishedGameAction, IGameAction onNotFinishedGameAction)
         {
-            this.gameCondition = gameCondition;
+            this.rule = rule;
             this.onFinishedGameAction = onFinishedGameAction;
             this.onNotFinishedGameAction = onNotFinishedGameAction;
         }
 
         public void Execute(Game game, int cardIndex)
         {
-            game.IsFinished = gameCondition.IsWin(game) != null;
+            game.IsFinished = rule.IsWin(game) != null;
 
             if (game.IsFinished)
                 onFinishedGameAction.Execute(game, cardIndex);

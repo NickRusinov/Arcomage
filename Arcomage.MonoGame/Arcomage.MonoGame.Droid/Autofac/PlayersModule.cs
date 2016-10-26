@@ -29,8 +29,8 @@ namespace Arcomage.MonoGame.Droid.Autofac
 
         private static void Activate(IActivatingEventArgs<Player> activated, PlayerMode playerMode)
         {
-            activated.Instance.Buildings = activated.Context.Resolve<GameCondition>().CreateBuildings();
-            activated.Instance.Resources = activated.Context.Resolve<GameCondition>().CreateResources();
+            activated.Instance.Buildings = activated.Context.Resolve<Rule>().CreateBuildings();
+            activated.Instance.Resources = activated.Context.Resolve<Rule>().CreateResources();
             activated.Instance.CardSet = activated.Context.ResolveKeyed<CardSet>(playerMode);
         }
     }

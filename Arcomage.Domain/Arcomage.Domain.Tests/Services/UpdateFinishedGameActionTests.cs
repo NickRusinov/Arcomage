@@ -16,7 +16,7 @@ namespace Arcomage.Domain.Tests.Services
         [Theory, AutoFixture]
         public void SetFinishedToFalseTest(
             [Frozen] Game game,
-            [Frozen] Mock<GameCondition> gameConditionMock,
+            [Frozen] Mock<Rule> gameConditionMock,
             UpdateFinishedGameAction sut)
         {
             gameConditionMock.Setup(gc => gc.IsWin(game)).Returns<WinResult>(null);
@@ -29,7 +29,7 @@ namespace Arcomage.Domain.Tests.Services
         [Theory, AutoFixture]
         public void SetFinishedToTrueTest(
             [Frozen] Game game,
-            [Frozen] Mock<GameCondition> gameConditionMock,
+            [Frozen] Mock<Rule> gameConditionMock,
             UpdateFinishedGameAction sut)
         {
             gameConditionMock.Setup(gc => gc.IsWin(game)).Returns(new WinResult());
@@ -42,7 +42,7 @@ namespace Arcomage.Domain.Tests.Services
         [Theory, AutoFixture]
         public void OnNotFinishedGameActionCalledTest(
             [Frozen] Game game,
-            [Frozen] Mock<GameCondition> gameConditionMock,
+            [Frozen] Mock<Rule> gameConditionMock,
             Mock<IGameAction> onFinishedGameActionMock,
             Mock<IGameAction> onNotFinishedGameActionMock)
         {
@@ -58,7 +58,7 @@ namespace Arcomage.Domain.Tests.Services
         [Theory, AutoFixture]
         public void OnFinishedGameActionCalledTest(
             [Frozen] Game game,
-            [Frozen] Mock<GameCondition> gameConditionMock,
+            [Frozen] Mock<Rule> gameConditionMock,
             Mock<IGameAction> onFinishedGameActionMock,
             Mock<IGameAction> onNotFinishedGameActionMock)
         {

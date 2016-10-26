@@ -38,7 +38,7 @@ namespace Arcomage.MonoGame.Droid
 
             var gameViewModel = scope.Resolve<GameViewModel>();
             gameViewModel = mapper.Map(scope.Resolve<Game>(), gameViewModel, moo => moo.ConstructServicesUsing(scope.Resolve));
-            gameViewModel = mapper.Map(scope.Resolve<GameCondition>(), gameViewModel, moo => moo.ConstructServicesUsing(scope.Resolve));
+            gameViewModel = mapper.Map(scope.Resolve<Rule>(), gameViewModel, moo => moo.ConstructServicesUsing(scope.Resolve));
 
             return gameViewModel;
         }

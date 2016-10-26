@@ -13,7 +13,7 @@ namespace Arcomage.MonoGame.Droid
 
         public DeckMode DeckMode { get; set; } = DeckMode.Classic;
 
-        public CardRulesMode CardRules { get; set; } = CardRulesMode.EmpireCaptital;
+        public RuleMode RuleMode { get; set; } = RuleMode.EmpireCaptital;
     }
 
     public enum DeckMode
@@ -23,7 +23,7 @@ namespace Arcomage.MonoGame.Droid
         Infinity,
     }
 
-    public enum CardRulesMode
+    public enum RuleMode
     {
         BearMountain,
 

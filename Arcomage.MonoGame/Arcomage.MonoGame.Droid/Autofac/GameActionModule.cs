@@ -20,7 +20,7 @@ namespace Arcomage.MonoGame.Droid.Autofac
                     new UpdateHistoryGameAction(),
                     cc.Resolve<UpdateHistoryViewGameAction>(),
                     new ReplaceCardGameAction(),
-                    new UpdateFinishedGameAction(cc.Resolve<GameCondition>(), 
+                    new UpdateFinishedGameAction(cc.Resolve<Rule>(), 
                         new ShowFinishedGameAction(), 
                         new CompositeGameAction(
                             new ReplacePlayerGameAction(
@@ -37,7 +37,7 @@ namespace Arcomage.MonoGame.Droid.Autofac
                     new UpdateHistoryGameAction(),
                     cc.Resolve<UpdateHistoryViewGameAction>(),
                     new ReplaceCardGameAction(),
-                    new UpdateFinishedGameAction(cc.Resolve<GameCondition>(),
+                    new UpdateFinishedGameAction(cc.Resolve<Rule>(),
                         new ShowFinishedGameAction(),
                         new CompositeGameAction(
                             new ReplacePlayerGameAction(
@@ -55,7 +55,7 @@ namespace Arcomage.MonoGame.Droid.Autofac
                     new UpdateHistoryGameAction(),
                     cc.Resolve<UpdateHistoryViewGameAction>(),
                     new ReplaceCardGameAction(),
-                    new UpdateFinishedGameAction(cc.Resolve<GameCondition>(),
+                    new UpdateFinishedGameAction(cc.Resolve<Rule>(),
                         new ShowFinishedGameAction(),
                         new CompositeGameAction(
                             new ReplacePlayerGameAction(
@@ -72,7 +72,7 @@ namespace Arcomage.MonoGame.Droid.Autofac
                     new UpdateHistoryGameAction(),
                     cc.Resolve<UpdateHistoryViewGameAction>(),
                     new ReplaceCardGameAction(),
-                    new UpdateFinishedGameAction(cc.Resolve<GameCondition>(),
+                    new UpdateFinishedGameAction(cc.Resolve<Rule>(),
                         new ShowFinishedGameAction(),
                         new CompositeGameAction(
                             new ReplacePlayerGameAction(

@@ -4,18 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Arcomage.Domain.Entities;
-using Arcomage.Domain.GameConditions;
-using Moq;
-using Ploeh.AutoFixture.Xunit2;
+using Arcomage.Domain.Rules;
 using Xunit;
 
-namespace Arcomage.Domain.Tests.GameConditions
+namespace Arcomage.Domain.Tests.Rules
 {
-    public class ClassicGameConditionTests
+    public class ClassicRuleTests
     {
         [Theory, AutoFixture]
         public void CreateBuildingsTest(
-            ClassicGameCondition sut)
+            ClassicRule sut)
         {
             var buildings = sut.CreateBuildings();
 
@@ -25,7 +23,7 @@ namespace Arcomage.Domain.Tests.GameConditions
 
         [Theory, AutoFixture]
         public void CreateResourcesTest(
-            ClassicGameCondition sut)
+            ClassicRule sut)
         {
             var resources = sut.CreateResources();
 
@@ -39,7 +37,7 @@ namespace Arcomage.Domain.Tests.GameConditions
 
         [Theory, AutoFixture]
         public void IsWinWhenBuildTowerTest(Game game,
-            ClassicGameCondition sut)
+            ClassicRule sut)
         {
             sut.MaxTower = 15;
 
@@ -51,7 +49,7 @@ namespace Arcomage.Domain.Tests.GameConditions
 
         [Theory, AutoFixture]
         public void IsWinWhenDestroyTowerTest(Game game,
-            ClassicGameCondition sut)
+            ClassicRule sut)
         {
             sut.MaxTower = 25;
             game.SecondPlayer.Buildings.Tower = 0;
@@ -64,7 +62,7 @@ namespace Arcomage.Domain.Tests.GameConditions
 
         [Theory, AutoFixture]
         public void IsWinWhenAccumulateResourcesTest(Game game,
-            ClassicGameCondition sut)
+            ClassicRule sut)
         {
             sut.MaxResources = 3;
             sut.MaxTower = 25;
@@ -77,7 +75,7 @@ namespace Arcomage.Domain.Tests.GameConditions
 
         [Theory, AutoFixture]
         public void IsWinWhenBuildTowerAdversaryTest(Game game,
-            ClassicGameCondition sut)
+            ClassicRule sut)
         {
             sut.MaxResources = 20;
             sut.MaxTower = 15;
@@ -91,7 +89,7 @@ namespace Arcomage.Domain.Tests.GameConditions
 
         [Theory, AutoFixture]
         public void IsWinWhenDestroyTowerAdversaryTest(Game game,
-            ClassicGameCondition sut)
+            ClassicRule sut)
         {
             sut.MaxResources = 20;
             sut.MaxTower = 25;
@@ -105,7 +103,7 @@ namespace Arcomage.Domain.Tests.GameConditions
 
         [Theory, AutoFixture]
         public void IsWinWhenAccumulateResourcesAdversaryTest(Game game,
-            ClassicGameCondition sut)
+            ClassicRule sut)
         {
             sut.MaxResources = 3;
             sut.MaxTower = 25;
@@ -119,7 +117,7 @@ namespace Arcomage.Domain.Tests.GameConditions
 
         [Theory, AutoFixture]
         public void IsWinNoWinTest(Game game,
-            ClassicGameCondition sut)
+            ClassicRule sut)
         {
             sut.MaxResources = 20;
             sut.MaxTower = 25;

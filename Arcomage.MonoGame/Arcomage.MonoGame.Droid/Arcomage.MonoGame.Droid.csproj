@@ -78,7 +78,7 @@
     <Compile Include="Autofac\DeckModule.cs" />
     <Compile Include="Autofac\CardSetsModule.cs" />
     <Compile Include="Autofac\CardsModule.cs" />
-    <Compile Include="Autofac\GameConditionsModule.cs" />
+    <Compile Include="Autofac\RuleModule.cs" />
     <Compile Include="Autofac\GamesModule.cs" />
     <Compile Include="Autofac\PlayersModule.cs" />
     <Compile Include="AutoMapper\BuildingsProfile.cs" />

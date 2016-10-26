@@ -5,12 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using Arcomage.Domain.Entities;
 using Arcomage.Domain.Internal;
-using static Arcomage.Domain.Entities.PlayerMode;
-using static Arcomage.Domain.Entities.WinMode;
 
-namespace Arcomage.Domain.GameConditions
+namespace Arcomage.Domain.Rules
 {
-    public class ClassicGameCondition : GameCondition
+    public class ClassicRule : Rule
     {
         public Buildings Buildings { get; set; }
 
@@ -45,22 +43,22 @@ namespace Arcomage.Domain.GameConditions
         public override WinResult IsWin(Game game)
         {
             return 
-                IsWinPlayer(game, FirstPlayer, game.PlayerMode) ??
-                IsWinPlayer(game, SecondPlayer, game.PlayerMode.GetAdversary());
+                IsWinPlayer(game, PlayerMode.FirstPlayer, game.PlayerMode) ??
+                IsWinPlayer(game, PlayerMode.SecondPlayer, game.PlayerMode.GetAdversary());
         }
 
         private WinResult IsWinPlayer(Game game, PlayerMode playerMode, PlayerMode winPlayerMode)
         {
             if (game.GetPlayer(playerMode).Buildings.Tower >= MaxTower)
-                return new WinResult { WinPlayerMode = winPlayerMode, WinMode = BuildTower };
+                return new WinResult { WinPlayerMode = winPlayerMode, WinMode = WinMode.BuildTower };
 
             if (game.GetPlayer(playerMode.GetAdversary()).Buildings.Tower <= 0)
-                return new WinResult { WinPlayerMode = winPlayerMode, WinMode = DestroyTower };
+                return new WinResult { WinPlayerMode = winPlayerMode, WinMode = WinMode.DestroyTower };
 
             if (game.GetPlayer(playerMode).Resources.Bricks >= MaxResources &&
                 game.GetPlayer(playerMode).Resources.Gems >= MaxResources &&
                 game.GetPlayer(playerMode).Resources.Recruits >= MaxResources)
-                return new WinResult { WinPlayerMode = winPlayerMode, WinMode = AccumulateResources };
+                return new WinResult { WinPlayerMode = winPlayerMode, WinMode = WinMode.AccumulateResources };
 
             return null;
         }

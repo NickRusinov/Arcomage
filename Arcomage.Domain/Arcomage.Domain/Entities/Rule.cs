@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Arcomage.Domain.Entities
 {
-    public abstract class GameCondition : IIdentifiable
+    public abstract class Rule : IIdentifiable
     {
         public string Identifier { get; set; }
 

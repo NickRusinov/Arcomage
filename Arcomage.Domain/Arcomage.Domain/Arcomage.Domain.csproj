@@ -122,14 +122,14 @@
     <Compile Include="Entities\Player.cs" />
     <Compile Include="Entities\PlayerMode.cs" />
     <Compile Include="Entities\Resources.cs" />
-    <Compile Include="Entities\GameCondition.cs" />
+    <Compile Include="Entities\Rule.cs" />
     <Compile Include="Entities\WinMode.cs" />
     <Compile Include="Entities\WinResult.cs" />
     <Compile Include="Exceptions\ArcomageException.cs" />
     <Compile Include="Exceptions\GameFinishedException.cs" />
     <Compile Include="Exceptions\NotCurrentPlayerException.cs" />
     <Compile Include="Exceptions\NotEnoughResourcesException.cs" />
-    <Compile Include="GameConditions\ClassicGameCondition.cs" />
+    <Compile Include="Rules\ClassicRule.cs" />
     <Compile Include="IActivable.cs" />
     <Compile Include="IIdentifiable.cs" />
     <Compile Include="Internal\BuildingsExtensions.cs" />
