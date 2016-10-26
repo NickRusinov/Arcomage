@@ -33,6 +33,8 @@ namespace Arcomage.MonoGame.Droid.AutoMapper
 
                 if (i >= destination.Count)
                     destination.Add(context.Mapper.Map<Card, CardViewModel>(source[i], moo => moo.ConstructServicesUsing(lifetimeScope.Resolve)));
+
+                destination[i].Index = i;
             }
 
             return destination;

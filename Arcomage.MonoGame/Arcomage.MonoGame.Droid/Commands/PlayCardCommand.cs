@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Arcomage.Domain.Entities;
 using Arcomage.Domain.Services;
+using Arcomage.MonoGame.Droid.ViewModels;
 
 namespace Arcomage.MonoGame.Droid.Commands
 {
@@ -21,7 +22,7 @@ namespace Arcomage.MonoGame.Droid.Commands
 
         public override void Execute(object parameter)
         {
-            playGameAction.Execute(game, 0 /* TODO Resolve Card Index */);
+            playGameAction.Execute(game, ((CardViewModel)parameter).Index);
         }
     }
 }

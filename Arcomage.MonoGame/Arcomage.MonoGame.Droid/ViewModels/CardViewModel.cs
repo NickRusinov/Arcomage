@@ -16,6 +16,8 @@ namespace Arcomage.MonoGame.Droid.ViewModels
 
         public int Price { get; set; }
 
+        public int Index { get; set; }
+
         public ICommand PlayCommand { get; set; }
 
         public ICommand DiscardCommand { get; set; }
