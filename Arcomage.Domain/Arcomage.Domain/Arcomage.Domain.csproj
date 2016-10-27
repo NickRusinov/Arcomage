@@ -141,7 +141,11 @@
     <Compile Include="Services\ActivateCardGameAction.cs" />
     <Compile Include="Services\ClearHistoryGameAction.cs" />
     <Compile Include="Services\CompositeGameAction.cs" />
+    <Compile Include="Services\DiscardCardCriteria.cs" />
+    <Compile Include="Services\IDiscardCardCriteria.cs" />
     <Compile Include="Services\IGameAction.cs" />
+    <Compile Include="Services\IPlayCardCriteria.cs" />
+    <Compile Include="Services\PlayCardCriteria.cs" />
     <Compile Include="Services\PlayGameAction.cs" />
     <Compile Include="Services\ReplaceCardGameAction.cs" />
     <Compile Include="Services\ReplacePlayerGameAction.cs" />

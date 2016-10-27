@@ -81,6 +81,7 @@
     <Compile Include="Autofac\RuleModule.cs" />
     <Compile Include="Autofac\GamesModule.cs" />
     <Compile Include="Autofac\PlayersModule.cs" />
+    <Compile Include="AutoMapper\AutoMapperExtensions.cs" />
     <Compile Include="AutoMapper\BuildingsProfile.cs" />
     <Compile Include="AutoMapper\CardProfile.cs" />
     <Compile Include="AutoMapper\HandProfile.cs" />

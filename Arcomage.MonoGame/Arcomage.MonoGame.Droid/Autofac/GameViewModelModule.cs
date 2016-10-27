@@ -17,13 +17,15 @@ namespace Arcomage.MonoGame.Droid.Autofac
             builder.Register(cc => 
                 new PlayCardCommand(
                     cc.Resolve<Game>(), 
-                    cc.ResolveNamed<IGameAction>("FirstPlayCardGameAction")))
+                    cc.ResolveNamed<IGameAction>("FirstPlayCardGameAction"),
+                    cc.Resolve<IPlayCardCriteria>()))
                 .AsSelf();
 
             builder.Register(cc => 
                 new DiscardCardCommand(
                     cc.Resolve<Game>(), 
-                    cc.ResolveNamed<IGameAction>("FirstDiscardCardGameAction")))
+                    cc.ResolveNamed<IGameAction>("FirstDiscardCardGameAction"),
+                    cc.Resolve<IDiscardCardCriteria>()))
                 .AsSelf();
 
             builder.RegisterType<GameViewModel>()

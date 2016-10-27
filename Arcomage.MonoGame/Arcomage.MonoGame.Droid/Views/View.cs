@@ -20,7 +20,9 @@ namespace Arcomage.MonoGame.Droid.Views
 
         public float SizeY { get; set; }
 
-        public bool IsVisible { get; set; }
+        public float Opacity { get; set; } = 1f;
+
+        public bool IsVisible { get; set; } = true;
         
         public Vector2 Position
         {

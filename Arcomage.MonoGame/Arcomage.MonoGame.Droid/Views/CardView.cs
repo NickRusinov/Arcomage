@@ -84,6 +84,8 @@ namespace Arcomage.MonoGame.Droid.Views
             HandlerVisitors.Add(dragAnimationHandlerVisitor);
             HandlerVisitors.Add(playCardHandlerVisitor);
             HandlerVisitors.Add(discardCardHandlerVisitor);
+
+            Opacity = ViewModel.CanPlay ? 1f : .75f;
         }
 
         protected override void ViewModelOnPropertyChanged(object sender, PropertyChangedEventArgs propertyChangedEventArgs)
@@ -95,6 +97,8 @@ namespace Arcomage.MonoGame.Droid.Views
             cardDescriptionTextView.Text = contentManager.Load<string>($"Card{ ViewModel.Identifier }Description");
 
             cardPriceTextView.Text = $"{ ViewModel.Price }";
+
+            Opacity = ViewModel.CanPlay ? 1f : .75f;
         }
     }
 }

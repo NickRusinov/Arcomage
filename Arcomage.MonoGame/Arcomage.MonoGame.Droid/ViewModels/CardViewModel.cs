@@ -18,6 +18,10 @@ namespace Arcomage.MonoGame.Droid.ViewModels
 
         public int Index { get; set; }
 
+        public bool CanPlay { get; set; }
+
+        public bool CanDiscard { get; set; }
+
         public ICommand PlayCommand { get; set; }
 
         public ICommand DiscardCommand { get; set; }

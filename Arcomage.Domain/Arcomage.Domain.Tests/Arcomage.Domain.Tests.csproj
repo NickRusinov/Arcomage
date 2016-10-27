@@ -124,6 +124,8 @@
     <Compile Include="Players\HumanPlayerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ActivateCardGameActionTests.cs" />
+    <Compile Include="Services\DiscardCardCriteriaTests.cs" />
+    <Compile Include="Services\PlayCardCriteriaTests.cs" />
     <Compile Include="Services\ReplaceCardGameActionTests.cs" />
     <Compile Include="Services\ReplacePlayerGameActionTests.cs" />
     <Compile Include="Services\UpdateFinishedGameActionTests.cs" />

@@ -14,15 +14,23 @@ namespace Arcomage.MonoGame.Droid.Commands
 
         private readonly IGameAction playGameAction;
 
-        public PlayCardCommand(Game game, IGameAction playGameAction)
+        private readonly IPlayCardCriteria playCardCriteria;
+
+        public PlayCardCommand(Game game, IGameAction playGameAction, IPlayCardCriteria playCardCriteria)
         {
             this.game = game;
             this.playGameAction = playGameAction;
+            this.playCardCriteria = playCardCriteria;
         }
 
         public override void Execute(object parameter)
         {
             playGameAction.Execute(game, ((CardViewModel)parameter).Index);
+        }
+
+        public override bool CanExecute(object parameter)
+        {
+            return playCardCriteria.CanPlayCard(game, ((CardViewModel)parameter).Index);
         }
     }
 }

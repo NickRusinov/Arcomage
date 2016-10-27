@@ -14,15 +14,23 @@ namespace Arcomage.MonoGame.Droid.Commands
 
         private readonly IGameAction discardGameAction;
 
-        public DiscardCardCommand(Game game, IGameAction discardGameAction)
+        private readonly IDiscardCardCriteria discardCardCriteria;
+
+        public DiscardCardCommand(Game game, IGameAction discardGameAction, IDiscardCardCriteria discardCardCriteria)
         {
             this.game = game;
             this.discardGameAction = discardGameAction;
+            this.discardCardCriteria = discardCardCriteria;
         }
 
         public override void Execute(object parameter)
         {
             discardGameAction.Execute(game, ((CardViewModel)parameter).Index);
+        }
+
+        public override bool CanExecute(object parameter)
+        {
+            return discardCardCriteria.CanDiscardCard(game, ((CardViewModel)parameter).Index);
         }
     }
 }

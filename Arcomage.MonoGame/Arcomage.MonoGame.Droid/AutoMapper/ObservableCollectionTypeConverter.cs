@@ -28,13 +28,15 @@ namespace Arcomage.MonoGame.Droid.AutoMapper
 
             for (var i = 0; i < source.Count; ++i)
             {
+                var index = i;
+                if (i < destination.Count && source[i].Identifier == destination[i].Identifier)
+                    context.Mapper.Map(source[i], destination[i], moo => moo.WithIndex(index).ConstructServicesUsing(lifetimeScope.Resolve));
+
                 if (i < destination.Count && source[i].Identifier != destination[i].Identifier)
-                    destination[i] = context.Mapper.Map<Card, CardViewModel>(source[i], moo => moo.ConstructServicesUsing(lifetimeScope.Resolve));
+                    destination[i] = context.Mapper.Map<Card, CardViewModel>(source[i], moo => moo.WithIndex(index).ConstructServicesUsing(lifetimeScope.Resolve));
 
                 if (i >= destination.Count)
-                    destination.Add(context.Mapper.Map<Card, CardViewModel>(source[i], moo => moo.ConstructServicesUsing(lifetimeScope.Resolve)));
-
-                destination[i].Index = i;
+                    destination.Add(context.Mapper.Map<Card, CardViewModel>(source[i], moo => moo.WithIndex(index).ConstructServicesUsing(lifetimeScope.Resolve)));
             }
 
             return destination;

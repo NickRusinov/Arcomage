@@ -82,7 +82,7 @@ namespace Arcomage.MonoGame.Droid
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            canvas = new Canvas(spriteBatch, Vector2.Zero, Vector2.One);
+            canvas = new Canvas(spriteBatch, Vector2.Zero, Vector2.One, 1f);
             handler = new Handler(Vector2.Zero, Vector2.One);
 
             view.View = new MenuView(Content, ViewModelFactory.Instance.CreateMenuViewModel())

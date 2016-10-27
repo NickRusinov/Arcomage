@@ -82,6 +82,14 @@ namespace Arcomage.MonoGame.Droid.Autofac
                             new PlayGameAction())),
                     cc.Resolve<UpdateViewGameAction>()))
                 .Named<IGameAction>("SecondDiscardCardGameAction");
+
+            builder.Register(cc => new PlayCardCriteria(FirstPlayer))
+                .As<IPlayCardCriteria>()
+                .InstancePerLifetimeScope();
+
+            builder.RegisterType<DiscardCardCriteria>()
+                .As<IDiscardCardCriteria>()
+                .InstancePerLifetimeScope();
         }
     }
 }

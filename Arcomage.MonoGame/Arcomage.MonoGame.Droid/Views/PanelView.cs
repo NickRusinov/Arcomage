@@ -41,7 +41,7 @@ namespace Arcomage.MonoGame.Droid.Views
 
         public override void Draw(Canvas canvas)
         {
-            var nestedCanvas = canvas.CreateNestedCanvas(Position, Size / OriginalSize);
+            var nestedCanvas = canvas.CreateNestedCanvas(Position, Size / OriginalSize, Opacity);
 
             Items.ForEach(v => v.Draw(nestedCanvas));
         }
