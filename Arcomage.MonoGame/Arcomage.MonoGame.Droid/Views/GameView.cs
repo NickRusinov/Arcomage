@@ -59,7 +59,7 @@ namespace Arcomage.MonoGame.Droid.Views
 
             var historyView = new HistoryView(contentManager, gameViewModel.History)
             {
-                PositionX = 550, PositionY = 30, SizeX = 300, SizeY = 300
+                PositionX = 590, PositionY = 20, SizeX = 300, SizeY = 300
             };
             
             var backHandlerVisitor = new BackHandlerVisitor(gameViewModel, gameViewModel.BackCommand);

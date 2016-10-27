@@ -23,9 +23,9 @@ namespace Arcomage.MonoGame.Droid.Views
 
             if (historyViewModel.CardCollection.Count != 0)
             {
-                var cardOffset = new Vector2(10f);
+                var cardOffset = Vector2.Zero;
                 var cardDelta = new Vector2(150f, 50f);
-                var cardSize = new Vector2(130f, 181f);
+                var cardSize = new Vector2(188f, 258f);
 
                 Items.AddRange(historyViewModel.CardCollection.Select((vm, i) => InitializeCard(vm, cardOffset, cardDelta, cardSize, i)));
             }
@@ -46,11 +46,14 @@ namespace Arcomage.MonoGame.Droid.Views
 
             if (args.Action == NotifyCollectionChangedAction.Add)
             {
-                var cardOffset = new Vector2(10f);
+                var cardOffset = Vector2.Zero;
                 var cardDelta = new Vector2(150f, 50f);
-                var cardSize = new Vector2(130f, 181f);
+                var cardSize = new Vector2(188f, 258f);
 
-                Items.Add(InitializeCard(ViewModel.CardCollection[args.NewStartingIndex], cardOffset, cardDelta, cardSize, args.NewStartingIndex));
+                var cardViewModel = ViewModel.CardCollection[args.NewStartingIndex];
+                var cardView = InitializeCard(cardViewModel, cardOffset, cardDelta, cardSize, args.NewStartingIndex);
+
+                Items.Add(cardView);
             }
         }
 
