@@ -31,7 +31,7 @@ namespace Arcomage.MonoGame.Droid.Autofac
         {
             activated.Instance.Buildings = activated.Context.Resolve<Rule>().CreateBuildings();
             activated.Instance.Resources = activated.Context.Resolve<Rule>().CreateResources();
-            activated.Instance.CardSet = activated.Context.ResolveKeyed<CardSet>(playerMode);
+            activated.Instance.Hand = activated.Context.ResolveKeyed<Hand>(playerMode);
         }
     }
 }

@@ -14,7 +14,7 @@ namespace Arcomage.Domain.Entities
 
         public Resources Resources { get; set; }
 
-        public CardSet CardSet { get; set; }
+        public Hand Hand { get; set; }
 
         public abstract void Play(Game game);
     }

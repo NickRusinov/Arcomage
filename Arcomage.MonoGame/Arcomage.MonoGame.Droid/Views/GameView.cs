@@ -52,7 +52,7 @@ namespace Arcomage.MonoGame.Droid.Views
                 PositionX = 871, PositionY = 42, SizeX = 300, SizeY = 488
             };
 
-            var cardSetView = new CardSetView(contentManager, gameViewModel.CardSet)
+            var handView = new HandView(contentManager, gameViewModel.Hand)
             {
                 PositionX = 5, PositionY = 384, SizeX = 1270, SizeY = 315
             };
@@ -70,7 +70,7 @@ namespace Arcomage.MonoGame.Droid.Views
             Items.Add(resourcesRightView);
             Items.Add(buildingsLeftView);
             Items.Add(buildingsRightView);
-            Items.Add(cardSetView);
+            Items.Add(handView);
             Items.Add(historyView);
             Items.Add(gameBorderImageView);
 

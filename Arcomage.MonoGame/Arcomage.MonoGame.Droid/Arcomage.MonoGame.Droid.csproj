@@ -76,14 +76,14 @@
     <Compile Include="Autofac\MenuViewModelModule.cs" />
     <Compile Include="Autofac\SettingsViewModelModule.cs" />
     <Compile Include="Autofac\DeckModule.cs" />
-    <Compile Include="Autofac\CardSetsModule.cs" />
+    <Compile Include="Autofac\HandModule.cs" />
     <Compile Include="Autofac\CardsModule.cs" />
     <Compile Include="Autofac\RuleModule.cs" />
     <Compile Include="Autofac\GamesModule.cs" />
     <Compile Include="Autofac\PlayersModule.cs" />
     <Compile Include="AutoMapper\BuildingsProfile.cs" />
     <Compile Include="AutoMapper\CardProfile.cs" />
-    <Compile Include="AutoMapper\CardSetProfile.cs" />
+    <Compile Include="AutoMapper\HandProfile.cs" />
     <Compile Include="AutoMapper\GameProfile.cs" />
     <Compile Include="AutoMapper\HistoryProfile.cs" />
     <Compile Include="AutoMapper\ObservableCollectionTypeConverter.cs" />
@@ -126,7 +126,7 @@
     <Compile Include="ViewModelFactory.cs" />
     <Compile Include="ViewModels\BuildingsViewModel.cs" />
     <Compile Include="ViewModels\ButtonViewModel.cs" />
-    <Compile Include="ViewModels\CardSetViewModel.cs" />
+    <Compile Include="ViewModels\HandViewModel.cs" />
     <Compile Include="ViewModels\CardViewModel.cs" />
     <Compile Include="ViewModels\GameViewModel.cs" />
     <Compile Include="ViewModels\HistoryViewModel.cs" />
@@ -139,7 +139,7 @@
     <Compile Include="Views\BuildingsRightView.cs" />
     <Compile Include="Views\HistoryView.cs" />
     <Compile Include="Views\MenuButtonView.cs" />
-    <Compile Include="Views\CardSetView.cs" />
+    <Compile Include="Views\HandView.cs" />
     <Compile Include="Views\CardView.cs" />
     <Compile Include="Views\GameView.cs" />
     <Compile Include="Views\MenuView.cs" />

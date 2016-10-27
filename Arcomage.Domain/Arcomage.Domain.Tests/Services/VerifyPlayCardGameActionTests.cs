@@ -56,7 +56,7 @@ namespace Arcomage.Domain.Tests.Services
         {
             game.IsFinished = false;
             game.PlayerMode = PlayerMode.FirstPlayer;
-            game.FirstPlayer.CardSet.Cards[1] = cardMock.Object;
+            game.FirstPlayer.Hand.Cards[1] = cardMock.Object;
             cardMock.Setup(c => c.IsEnoughResources(It.IsAny<Resources>())).Returns(true);
 
             sut.Execute(game, 1);

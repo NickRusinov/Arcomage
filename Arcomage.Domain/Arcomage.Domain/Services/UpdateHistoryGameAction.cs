@@ -14,7 +14,7 @@ namespace Arcomage.Domain.Services
         {
             var player = game.GetCurrentPlayer();
 
-            game.History.Cards.Add(player.CardSet.Cards[cardIndex]);
+            game.History.Cards.Add(player.Hand.Cards[cardIndex]);
         }
     }
 }

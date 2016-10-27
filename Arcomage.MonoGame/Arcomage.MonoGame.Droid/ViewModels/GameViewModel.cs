@@ -17,7 +17,7 @@ namespace Arcomage.MonoGame.Droid.ViewModels
 
         public BuildingsViewModel BuildingsRight { get; set; }
 
-        public CardSetViewModel CardSet { get; set; }
+        public HandViewModel Hand { get; set; }
 
         public HistoryViewModel History { get; set; }
     }

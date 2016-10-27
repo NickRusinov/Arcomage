@@ -13,12 +13,12 @@ namespace Arcomage.Domain.Services
         public void Execute(Game game, int cardIndex)
         {
             var player = game.GetCurrentPlayer();
-            var oldCard = player.CardSet.Cards[cardIndex];
+            var oldCard = player.Hand.Cards[cardIndex];
 
             game.Deck.PushCard(game, oldCard);
             var newCard = game.Deck.PopCard(game);
 
-            player.CardSet.Cards[cardIndex] = newCard;
+            player.Hand.Cards[cardIndex] = newCard;
         }
     }
 }

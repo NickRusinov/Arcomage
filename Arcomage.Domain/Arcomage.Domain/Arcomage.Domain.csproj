@@ -116,7 +116,7 @@
     <Compile Include="Entities\Buildings.cs" />
     <Compile Include="Entities\Card.cs" />
     <Compile Include="Entities\Deck.cs" />
-    <Compile Include="Entities\CardSet.cs" />
+    <Compile Include="Entities\Hand.cs" />
     <Compile Include="Entities\Game.cs" />
     <Compile Include="Entities\History.cs" />
     <Compile Include="Entities\Player.cs" />

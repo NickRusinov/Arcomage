@@ -9,11 +9,11 @@ using AutoMapper;
 
 namespace Arcomage.MonoGame.Droid.AutoMapper
 {
-    public class CardSetProfile : Profile
+    public class HandProfile : Profile
     {
-        public CardSetProfile()
+        public HandProfile()
         {
-            CreateMap<CardSet, CardSetViewModel>()
+            CreateMap<Hand, HandViewModel>()
                 .ForMember(csvm => csvm.CardCollection, mce => mce.MapFrom(cs => cs.Cards))
                 .ConstructUsingServiceLocator();
 

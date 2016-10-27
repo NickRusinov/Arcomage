@@ -28,7 +28,7 @@ namespace Arcomage.Domain.ArtificialIntelligence
 
             Task.Delay(1000).Wait();
 
-            if (player.CardSet.Cards[0].IsEnoughResources(player.Resources))
+            if (player.Hand.Cards[0].IsEnoughResources(player.Resources))
                 playCardGameAction.Execute(game, 0);
             else
                 discardCardGameAction.Execute(game, 0);

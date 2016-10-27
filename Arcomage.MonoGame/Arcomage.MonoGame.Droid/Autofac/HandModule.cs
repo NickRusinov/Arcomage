@@ -9,22 +9,22 @@ using static Arcomage.Domain.Entities.PlayerMode;
 
 namespace Arcomage.MonoGame.Droid.Autofac
 {
-    public class CardSetsModule : Module
+    public class HandModule : Module
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<CardSet>()
-                .Keyed<CardSet>(FirstPlayer)
+            builder.RegisterType<Hand>()
+                .Keyed<Hand>(FirstPlayer)
                 .OnActivating(aea => Activate(aea, 6))
                 .InstancePerLifetimeScope();
 
-            builder.RegisterType<CardSet>()
-                .Keyed<CardSet>(SecondPlayer)
+            builder.RegisterType<Hand>()
+                .Keyed<Hand>(SecondPlayer)
                 .OnActivating(aea => Activate(aea, 6))
                 .InstancePerLifetimeScope();
         }
 
-        private static void Activate(IActivatingEventArgs<CardSet> activated, int cardCount)
+        private static void Activate(IActivatingEventArgs<Hand> activated, int cardCount)
         {
             activated.Instance.Cards = Enumerable.Repeat(activated.Context.Resolve<Deck>(), cardCount)
                 .Select(cd => cd.PopCard(null))

@@ -8,7 +8,7 @@ using PropertyChanged;
 namespace Arcomage.MonoGame.Droid.ViewModels
 {
     [ImplementPropertyChanged]
-    public class CardSetViewModel : ViewModel
+    public class HandViewModel : ViewModel
     {
         public ObservableCollection<CardViewModel> CardCollection { get; set; }
     }

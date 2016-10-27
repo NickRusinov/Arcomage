@@ -10,23 +10,23 @@ using Microsoft.Xna.Framework.Content;
 
 namespace Arcomage.MonoGame.Droid.Views
 {
-    public class CardSetView : View<CardSetViewModel>
+    public class HandView : View<HandViewModel>
     {
         private readonly ContentManager contentManager;
 
-        public CardSetView(ContentManager contentManager, CardSetViewModel cardSetViewModel)
-            : base(cardSetViewModel, 1270, 315)
+        public HandView(ContentManager contentManager, HandViewModel handViewModel)
+            : base(handViewModel, 1270, 315)
         {
             this.contentManager = contentManager;
-            cardSetViewModel.CardCollection.CollectionChanged += CardCollectionOnCollectionChanged;
+            handViewModel.CardCollection.CollectionChanged += CardCollectionOnCollectionChanged;
 
-            if (cardSetViewModel.CardCollection.Count != 0)
+            if (handViewModel.CardCollection.Count != 0)
             {
-                var cardOffset = CalculateCardOffset(cardSetViewModel.CardCollection.Count);
-                var cardPlace = CalculateCardPlace(cardSetViewModel.CardCollection.Count);
-                var cardSize = CalculateCardSize(cardSetViewModel.CardCollection.Count);
+                var cardOffset = CalculateCardOffset(handViewModel.CardCollection.Count);
+                var cardPlace = CalculateCardPlace(handViewModel.CardCollection.Count);
+                var cardSize = CalculateCardSize(handViewModel.CardCollection.Count);
 
-                Items.AddRange(cardSetViewModel.CardCollection.Select((vm, i) => InitializeCard(vm, cardOffset, cardPlace, cardSize, i)));
+                Items.AddRange(handViewModel.CardCollection.Select((vm, i) => InitializeCard(vm, cardOffset, cardPlace, cardSize, i)));
             }
         }
 

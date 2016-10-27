@@ -13,7 +13,7 @@ namespace Arcomage.Domain.Services
         public void Execute(Game game, int cardIndex)
         {
             var player = game.GetCurrentPlayer();
-            var card = player.CardSet.Cards[cardIndex];
+            var card = player.Hand.Cards[cardIndex];
             
             card.Activate(game);
             card.PaymentResources(player.Resources);

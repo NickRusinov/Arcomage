@@ -28,7 +28,7 @@ namespace Arcomage.Domain.Services
             if (game.PlayerMode != playerMode)
                 throw new NotCurrentPlayerException();
 
-            if (!player.CardSet.Cards[cardIndex].IsEnoughResources(player.Resources))
+            if (!player.Hand.Cards[cardIndex].IsEnoughResources(player.Resources))
                 throw new NotEnoughResourcesException();
         }
     }
