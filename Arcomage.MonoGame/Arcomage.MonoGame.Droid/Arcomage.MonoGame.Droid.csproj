@@ -275,6 +275,42 @@
   <ItemGroup>
     <None Include="Content\DeckBackgroundImage.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Content\CardBerserkerImage.jpg" />
+    <None Include="Content\CardCorrosionCloudImage.jpg" />
+    <None Include="Content\CardDragonImage.jpg" />
+    <None Include="Content\CardDwarvesImage.jpg" />
+    <None Include="Content\CardElvenArchersImage.jpg" />
+    <None Include="Content\CardElvenScoutImage.jpg" />
+    <None Include="Content\CardFaerieImage.jpg" />
+    <None Include="Content\CardFullMoonImage.jpg" />
+    <None Include="Content\CardGnomeImage.jpg" />
+    <None Include="Content\CardGoblinArchersImage.jpg" />
+    <None Include="Content\CardGoblinMobImage.jpg" />
+    <None Include="Content\CardImpImage.jpg" />
+    <None Include="Content\CardLittleSnakesImage.jpg" />
+    <None Include="Content\CardMadCowDisease.jpg" />
+    <None Include="Content\CardMinotaurImage.jpg" />
+    <None Include="Content\CardMoodyGoblinsImage.jpg" />
+    <None Include="Content\CardOgreImage.jpg" />
+    <None Include="Content\CardOrcImage.jpg" />
+    <None Include="Content\CardPegasusLancerImage.jpg" />
+    <None Include="Content\CardRabitSheepImage.jpg" />
+    <None Include="Content\CardRockStompersImage.jpg" />
+    <None Include="Content\CardShadowFaerieImage.jpg" />
+    <None Include="Content\CardSlasherImage.jpg" />
+    <None Include="Content\CardSpearmanImage.jpg" />
+    <None Include="Content\CardSpizzerImage.jpg" />
+    <None Include="Content\CardStoneGiantImage.jpg" />
+    <None Include="Content\CardSuccubusImage.jpg" />
+    <None Include="Content\CardThiefImage.jpg" />
+    <None Include="Content\CardTowerGremlinImage.jpg" />
+    <None Include="Content\CardTrollTrainerImage.jpg" />
+    <None Include="Content\CardUnicornImage.jpg" />
+    <None Include="Content\CardVampireImage.jpg" />
+    <None Include="Content\CardWarlordImage.jpg" />
+    <None Include="Content\CardWerewolfImage.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
   <Import Project="..\..\Tools\Fody\build\portable-net+sl+win+wpa+wp\Fody.targets" />

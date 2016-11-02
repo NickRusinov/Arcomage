@@ -545,5 +545,277 @@
       <Key>CardSpellWeaversDescription</Key>
       <Value>+1 монастырь</Value>
     </Item>
+    <Item>
+      <Key>CardBerserkerName</Key>
+      <Value>Берсерк</Value>
+    </Item>
+    <Item>
+      <Key>CardBerserkerDescription</Key>
+      <Value>8 урона,&#13;&#10;3 урона&#13;&#10;вашей башне</Value>
+    </Item>
+    <Item>
+      <Key>CardCorrosionCloudName</Key>
+      <Value>Едкое облако</Value>
+    </Item>
+    <Item>
+      <Key>CardCorrosionCloudDescription</Key>
+      <Value>Если стена&#13;&#10;врага &gt; 10,&#13;&#10;то 10 урона,&#13;&#10;иначе 7 урона</Value>
+    </Item>
+    <Item>
+      <Key>CardDragonName</Key>
+      <Value>Дракон</Value>
+    </Item>
+    <Item>
+      <Key>CardDragonDescription</Key>
+      <Value>20 урона,&#13;&#10;враг теряет 10 маны,&#13;&#10;-1 к его казарме</Value>
+    </Item>
+    <Item>
+      <Key>CardDwarvesName</Key>
+      <Value>Гномы</Value>
+    </Item>
+    <Item>
+      <Key>CardDwarvesDescription</Key>
+      <Value>4 урона,&#13;&#10;+3 к стене</Value>
+    </Item>
+    <Item>
+      <Key>CardElvenArchersName</Key>
+      <Value>Эльфы-лучники</Value>
+    </Item>
+    <Item>
+      <Key>CardElvenArchersDescription</Key>
+      <Value>Если стена больше,&#13;&#10;чем у врага, то&#13;&#10;6 урона башне врага,&#13;&#10;иначе 6 урона</Value>
+    </Item>
+    <Item>
+      <Key>CardElvenScoutName</Key>
+      <Value>Эльфы-скауты</Value>
+    </Item>
+    <Item>
+      <Key>CardElvenScoutDescription</Key>
+      <Value>Сдать 1 карту,&#13;&#10;сбросить карту,&#13;&#10;играем снова</Value>
+    </Item>
+    <Item>
+      <Key>CardFaerieName</Key>
+      <Value>Фея</Value>
+    </Item>
+    <Item>
+      <Key>CardFaerieDescription</Key>
+      <Value>2 единицы урона,&#13;&#10;играем снова</Value>
+    </Item>
+    <Item>
+      <Key>CardFullMoonName</Key>
+      <Value>Полнолуние</Value>
+    </Item>
+    <Item>
+      <Key>CardFullMoonDescription</Key>
+      <Value>+1 казарма&#13;&#10;всем игрокам,&#13;&#10;вы получаете&#13;&#10;3 отряда</Value>
+    </Item>
+    <Item>
+      <Key>CardGnomeName</Key>
+      <Value>Карлик</Value>
+    </Item>
+    <Item>
+      <Key>CardGnomeDescription</Key>
+      <Value>3 урона,&#13;&#10;+1 мана</Value>
+    </Item>
+    <Item>
+      <Key>CardGoblinArchersName</Key>
+      <Value>Гоблины-лучники</Value>
+    </Item>
+    <Item>
+      <Key>CardGoblinArchersDescription</Key>
+      <Value>3 урона&#13;&#10;башне врага.&#13;&#10;Вы получаете&#13;&#10;1 ед. урона</Value>
+    </Item>
+    <Item>
+      <Key>CardGoblinMobName</Key>
+      <Value>Армия гоблинов</Value>
+    </Item>
+    <Item>
+      <Key>CardGoblinMobDescription</Key>
+      <Value>6 единиц урона.&#13;&#10;Вы получаете&#13;&#10;3 единицы урона</Value>
+    </Item>
+    <Item>
+      <Key>CardImpName</Key>
+      <Value>Черт</Value>
+    </Item>
+    <Item>
+      <Key>CardImpDescription</Key>
+      <Value>6 урона,&#13;&#10;все игроки теряют&#13;&#10;по 5 руды, маны,&#13;&#10;отрядов</Value>
+    </Item>
+    <Item>
+      <Key>CardLittleSnakesName</Key>
+      <Value>Маленькие змейки</Value>
+    </Item>
+    <Item>
+      <Key>CardLittleSnakesDescription</Key>
+      <Value>4 урона&#13;&#10;башне врага</Value>
+    </Item>
+    <Item>
+      <Key>CardMadCowDiseaseName</Key>
+      <Value>Коровье бешенство</Value>
+    </Item>
+    <Item>
+      <Key>CardMadCowDiseaseDescription</Key>
+      <Value>Все игроки&#13;&#10;теряют по&#13;&#10;6 отрядов</Value>
+    </Item>
+    <Item>
+      <Key>CardMinotaurName</Key>
+      <Value>Минотавр</Value>
+    </Item>
+    <Item>
+      <Key>CardMinotaurDescription</Key>
+      <Value>+1 казарма</Value>
+    </Item>
+    <Item>
+      <Key>CardMoodyGoblinsName</Key>
+      <Value>Гоблины</Value>
+    </Item>
+    <Item>
+      <Key>CardMoodyGoblinsDescription</Key>
+      <Value>4 единицы урона.&#13;&#10;Вы теряете 3 маны</Value>
+    </Item>
+    <Item>
+      <Key>CardOgreName</Key>
+      <Value>Огр</Value>
+    </Item>
+    <Item>
+      <Key>CardOgreDescription</Key>
+      <Value>7 урона</Value>
+    </Item>
+    <Item>
+      <Key>CardOrcName</Key>
+      <Value>Орк</Value>
+    </Item>
+    <Item>
+      <Key>CardOrcDescription</Key>
+      <Value>5 урона</Value>
+    </Item>
+    <Item>
+      <Key>CardPegasusLancerName</Key>
+      <Value>Всадник на пегасе</Value>
+    </Item>
+    <Item>
+      <Key>CardPegasusLancerDescription</Key>
+      <Value>12 урона&#13;&#10;башне врага</Value>
+    </Item>
+    <Item>
+      <Key>CardRabitSheepName</Key>
+      <Value>Бешеная овца</Value>
+    </Item>
+    <Item>
+      <Key>CardRabitSheepDescription</Key>
+      <Value>6 урона,&#13;&#10;враг теряет&#13;&#10;3 отряда</Value>
+    </Item>
+    <Item>
+      <Key>CardRockStompersName</Key>
+      <Value>Камнееды</Value>
+    </Item>
+    <Item>
+      <Key>CardRockStompersDescription</Key>
+      <Value>8 урона,&#13;&#10;-1 шахта врага</Value>
+    </Item>
+    <Item>
+      <Key>CardShadowFaerieName</Key>
+      <Value>Призрачная фея</Value>
+    </Item>
+    <Item>
+      <Key>CardShadowFaerieDescription</Key>
+      <Value>2 урона&#13;&#10;башне врага,&#13;&#10;играем снова</Value>
+    </Item>
+    <Item>
+      <Key>CardSlasherName</Key>
+      <Value>Крушитель</Value>
+    </Item>
+    <Item>
+      <Key>CardSlasherDescription</Key>
+      <Value>6 урона</Value>
+    </Item>
+    <Item>
+      <Key>CardSpearmanName</Key>
+      <Value>Копьеносец</Value>
+    </Item>
+    <Item>
+      <Key>CardSpearmanDescription</Key>
+      <Value>Если стена больше,&#13;&#10;чем у врага,&#13;&#10;то 3 урона,&#13;&#10;иначе 2 урона</Value>
+    </Item>
+    <Item>
+      <Key>CardSpizzerName</Key>
+      <Value>Жучара</Value>
+    </Item>
+    <Item>
+      <Key>CardSpizzerDescription</Key>
+      <Value>Если стена у&#13;&#10;врага =0,&#13;&#10;то 10 урона,&#13;&#10;иначе 6 урона</Value>
+    </Item>
+    <Item>
+      <Key>CardStoneGiantName</Key>
+      <Value>Каменный гигант</Value>
+    </Item>
+    <Item>
+      <Key>CardStoneGiantDescription</Key>
+      <Value>10 урона,&#13;&#10;+4 к стене</Value>
+    </Item>
+    <Item>
+      <Key>CardSuccubusName</Key>
+      <Value>Суккубы</Value>
+    </Item>
+    <Item>
+      <Key>CardSuccubusDescription</Key>
+      <Value>5 урона&#13;&#10;башне врага,&#13;&#10;враг теряет&#13;&#10;6 отрядов</Value>
+    </Item>
+    <Item>
+      <Key>CardThiefName</Key>
+      <Value>Вор</Value>
+    </Item>
+    <Item>
+      <Key>CardThiefDescription</Key>
+      <Value>Враг теряет&#13;&#10;10 маны, 5 руды.&#13;&#10;Вы получаете&#13;&#10;половину от этого</Value>
+    </Item>
+    <Item>
+      <Key>CardTowerGremlinName</Key>
+      <Value>Гремлин в башне</Value>
+    </Item>
+    <Item>
+      <Key>CardTowerGremlinDescription</Key>
+      <Value>2 урона,&#13;&#10;+4 к стене,&#13;&#10;+2 к башне</Value>
+    </Item>
+    <Item>
+      <Key>CardTrollTrainerName</Key>
+      <Value>Тролль-наставник</Value>
+    </Item>
+    <Item>
+      <Key>CardTrollTrainerDescription</Key>
+      <Value>+2 к казарме</Value>
+    </Item>
+    <Item>
+      <Key>CardUnicornName</Key>
+      <Value>Единорог</Value>
+    </Item>
+    <Item>
+      <Key>CardUnicornDescription</Key>
+      <Value>Если монастырь&#13;&#10;больше, чем у врага,&#13;&#10;то 12 урона,&#13;&#10;иначе 8 урона</Value>
+    </Item>
+    <Item>
+      <Key>CardVampireName</Key>
+      <Value>Вампир</Value>
+    </Item>
+    <Item>
+      <Key>CardVampireDescription</Key>
+      <Value>10 урона,&#13;&#10;враг теряет&#13;&#10;5 отрядов,&#13;&#10;-1 к его казарме</Value>
+    </Item>
+    <Item>
+      <Key>CardWarlordName</Key>
+      <Value>Воитель</Value>
+    </Item>
+    <Item>
+      <Key>CardWarlordDescription</Key>
+      <Value>13 урона,&#13;&#10;вы теряете 3 маны</Value>
+    </Item>
+    <Item>
+      <Key>CardWerewolfName</Key>
+      <Value>Оборотень</Value>
+    </Item>
+    <Item>
+      <Key>CardWerewolfDescription</Key>
+      <Value>9 урона</Value>
+    </Item>
   </Asset>
 </XnaContent>
