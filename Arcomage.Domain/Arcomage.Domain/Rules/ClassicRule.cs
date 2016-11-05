@@ -40,25 +40,26 @@ namespace Arcomage.Domain.Rules
             };
         }
 
-        public override WinResult IsWin(Game game)
+        public override GameResult IsWin(Game game)
         {
             return 
-                IsWinPlayer(game, PlayerMode.FirstPlayer, game.PlayerMode) ??
-                IsWinPlayer(game, PlayerMode.SecondPlayer, game.PlayerMode.GetAdversary());
+                IsWinPlayer(game, PlayerMode.FirstPlayer, game.GetCurrentPlayer()) ??
+                IsWinPlayer(game, PlayerMode.SecondPlayer, game.GetAdversaryPlayer()) ??
+                GameResult.None;
         }
 
-        private WinResult IsWinPlayer(Game game, PlayerMode playerMode, PlayerMode winPlayerMode)
+        private GameResult? IsWinPlayer(Game game, PlayerMode playerMode, Player winPlayer)
         {
             if (game.GetPlayer(playerMode).Buildings.Tower >= MaxTower)
-                return new WinResult { WinPlayerMode = winPlayerMode, WinMode = WinMode.BuildTower };
+                return new GameResult(winPlayer, isTowerBuild: true);
 
             if (game.GetPlayer(playerMode.GetAdversary()).Buildings.Tower <= 0)
-                return new WinResult { WinPlayerMode = winPlayerMode, WinMode = WinMode.DestroyTower };
+                return new GameResult(winPlayer, isTowerDestroy: true);
 
             if (game.GetPlayer(playerMode).Resources.Bricks >= MaxResources &&
                 game.GetPlayer(playerMode).Resources.Gems >= MaxResources &&
                 game.GetPlayer(playerMode).Resources.Recruits >= MaxResources)
-                return new WinResult { WinPlayerMode = winPlayerMode, WinMode = WinMode.AccumulateResources };
+                return new GameResult(winPlayer, isResourcesAccumulate: true);
 
             return null;
         }

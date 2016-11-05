@@ -11,5 +11,7 @@ namespace Arcomage.MonoGame.Droid.ViewModels
     public class PageViewModel : ViewModel
     {
         public ICommand BackCommand { get; set; }
+
+        public ICommand UpdateCommand { get; set; }
     }
 }

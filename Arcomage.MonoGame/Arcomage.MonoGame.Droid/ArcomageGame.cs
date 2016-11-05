@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Arcomage.Domain;
 using Arcomage.MonoGame.Droid.Handlers;
 using Arcomage.MonoGame.Droid.Views;
 using Autofac;
@@ -25,7 +26,7 @@ namespace Arcomage.MonoGame.Droid
     /// </summary>
     public class ArcomageGame : Game
     {
-        private readonly PageView view = new PageView();
+        private readonly MainView view = new MainView();
 
         private SpriteBatch spriteBatch;
 
@@ -59,7 +60,7 @@ namespace Arcomage.MonoGame.Droid
             builder.RegisterSource(new AnyConcreteTypeNotAlreadyRegisteredSource());
             builder.RegisterAssemblyModules(GetType().Assembly);
             builder.RegisterInstance(this).As<Game>();
-            builder.RegisterInstance(view).As<PageView>();
+            builder.RegisterInstance(view).As<MainView>();
             builder.RegisterInstance(Content).As<ContentManager>();
             var container = builder.Build();
             
@@ -67,7 +68,7 @@ namespace Arcomage.MonoGame.Droid
             config.AddProfiles(GetType());
             config.ConstructServicesUsing(container.Resolve);
             var mapper = new Mapper(new MapperConfiguration(config));
-
+            
             ViewModelFactory.Instance = new ViewModelFactory(container, mapper);
             
             // TODO: Add your initialization logic here
@@ -85,7 +86,9 @@ namespace Arcomage.MonoGame.Droid
             canvas = new Canvas(spriteBatch, Vector2.Zero, Vector2.One, 1f);
             handler = new Handler(Vector2.Zero, Vector2.One);
 
-            view.View = new MenuView(Content, ViewModelFactory.Instance.CreateMenuViewModel())
+            var viewModel = ViewModelFactory.Instance.CreateMenuViewModel();
+            view.PageViewModel = viewModel;
+            view.View = new MenuView(Content, viewModel)
             {
                 PositionX = 0, PositionY = 0, SizeX = 1280, SizeY = 720
             };
@@ -166,6 +169,9 @@ namespace Arcomage.MonoGame.Droid
                     view.Handle(handler, new PressUpHandlerData { GameTime = gameTime, Position = touch.Position });
                 }
             }
+
+            if (view.PageViewModel.UpdateCommand.CanExecute(view.PageViewModel))
+                view.PageViewModel.UpdateCommand.Execute(view.PageViewModel);
 
             // TODO: Add your update logic here
 

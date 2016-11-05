@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Arcomage.Domain.Entities
 {
-    public abstract class Player : IIdentifiable
+    public abstract class Player
     {
         public string Identifier { get; set; }
 
@@ -16,6 +16,6 @@ namespace Arcomage.Domain.Entities
 
         public Hand Hand { get; set; }
 
-        public abstract void Play(Game game);
+        public abstract Task<PlayResult> Play(Game game);
     }
 }

@@ -17,9 +17,9 @@ namespace Arcomage.Domain.Players
             this.artificialIntelligence = artificialIntelligence;
         }
 
-        public override void Play(Game game)
+        public override Task<PlayResult> Play(Game game)
         {
-            artificialIntelligence.Execute(game);
+            return artificialIntelligence.Execute(game, this);
         }
     }
 }

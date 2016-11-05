@@ -39,6 +39,11 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Actions\CompositePlayAction.cs" />
+    <Compile Include="Actions\ICardAction.cs" />
+    <Compile Include="Actions\WhenReplacedPlayerAction.cs" />
+    <Compile Include="Actions\IPlayAction.cs" />
+    <Compile Include="Actions\UniformCardAction.cs" />
     <Compile Include="ArtificialIntelligence\FakeArtificialIntelligence.cs" />
     <Compile Include="ArtificialIntelligence\IArtificialIntelligence.cs" />
     <Compile Include="Cards\MadCowDiseaseCard.cs" />
@@ -151,44 +156,39 @@
     <Compile Include="Entities\Buildings.cs" />
     <Compile Include="Entities\Card.cs" />
     <Compile Include="Entities\Deck.cs" />
+    <Compile Include="Entities\GameResult.cs" />
     <Compile Include="Entities\Hand.cs" />
     <Compile Include="Entities\Game.cs" />
     <Compile Include="Entities\History.cs" />
     <Compile Include="Entities\Player.cs" />
     <Compile Include="Entities\PlayerMode.cs" />
+    <Compile Include="Entities\PlayResult.cs" />
     <Compile Include="Entities\Resources.cs" />
     <Compile Include="Entities\Rule.cs" />
-    <Compile Include="Entities\WinMode.cs" />
-    <Compile Include="Entities\WinResult.cs" />
     <Compile Include="Exceptions\ArcomageException.cs" />
     <Compile Include="Exceptions\GameFinishedException.cs" />
     <Compile Include="Exceptions\NotCurrentPlayerException.cs" />
     <Compile Include="Exceptions\NotEnoughResourcesException.cs" />
+    <Compile Include="GameLoop.cs" />
     <Compile Include="Rules\ClassicRule.cs" />
-    <Compile Include="IActivable.cs" />
-    <Compile Include="IIdentifiable.cs" />
     <Compile Include="Internal\BuildingsExtensions.cs" />
     <Compile Include="Internal\GameExtensions.cs" />
     <Compile Include="Internal\PlayerModeExtensions.cs" />
     <Compile Include="Players\ComputerPlayer.cs" />
     <Compile Include="Players\HumanPlayer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\ActivateCardGameAction.cs" />
-    <Compile Include="Services\ClearHistoryGameAction.cs" />
-    <Compile Include="Services\CompositeGameAction.cs" />
+    <Compile Include="Actions\ActivateCardAction.cs" />
+    <Compile Include="Actions\ClearHistoryAction.cs" />
+    <Compile Include="Actions\CompositeCardAction.cs" />
     <Compile Include="Services\DiscardCardCriteria.cs" />
     <Compile Include="Services\IDiscardCardCriteria.cs" />
-    <Compile Include="Services\IGameAction.cs" />
     <Compile Include="Services\IPlayCardCriteria.cs" />
     <Compile Include="Services\PlayCardCriteria.cs" />
-    <Compile Include="Services\PlayGameAction.cs" />
-    <Compile Include="Services\ReplaceCardGameAction.cs" />
-    <Compile Include="Services\ReplacePlayerGameAction.cs" />
-    <Compile Include="Services\UpdateFinishedGameAction.cs" />
-    <Compile Include="Services\UpdateHistoryGameAction.cs" />
-    <Compile Include="Services\UpdateResourcesGameAction.cs" />
-    <Compile Include="Services\VerifyDiscardCardGameAction.cs" />
-    <Compile Include="Services\VerifyPlayCardGameAction.cs" />
+    <Compile Include="Actions\ReplaceCardAction.cs" />
+    <Compile Include="Actions\ReplacePlayerAction.cs" />
+    <Compile Include="Actions\UpdateFinishedAction.cs" />
+    <Compile Include="Actions\UpdateHistoryAction.cs" />
+    <Compile Include="Actions\UpdateResourcesAction.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -4,15 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Arcomage.Domain.Entities;
-using Arcomage.Domain.Internal;
 
-namespace Arcomage.Domain.Services
+namespace Arcomage.Domain.Actions
 {
-    public class ReplaceCardGameAction : IGameAction
+    public class ReplaceCardAction : UniformCardAction
     {
-        public void Execute(Game game, int cardIndex)
+        protected override void Execute(Game game, Player player, int cardIndex)
         {
-            var player = game.GetCurrentPlayer();
             var oldCard = player.Hand.Cards[cardIndex];
 
             game.Deck.PushCard(game, oldCard);

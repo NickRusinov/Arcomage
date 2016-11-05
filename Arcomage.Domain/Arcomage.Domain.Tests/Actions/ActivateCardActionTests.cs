@@ -3,25 +3,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Arcomage.Domain.Actions;
 using Arcomage.Domain.Entities;
-using Arcomage.Domain.Services;
 using Moq;
 using Ploeh.AutoFixture.Xunit2;
 using Xunit;
 
-namespace Arcomage.Domain.Tests.Services
+namespace Arcomage.Domain.Tests.Actions
 {
-    public class ActivateCardGameActionTests
+    public class ActivateCardActionTests
     {
         [Theory, AutoFixture]
         public void ActivateCalledTest(
             [Frozen] Mock<Card> cardMock,
             [Frozen] Game game,
-            ActivateCardGameAction sut)
+            ActivateCardAction sut)
         {
             cardMock.Setup(c => c.IsEnoughResources(It.IsAny<Resources>())).Returns(true);
 
-            sut.Execute(game, 1);
+            sut.PlayExecute(game, game.FirstPlayer, 1);
 
             cardMock.Verify(c => c.Activate(It.IsAny<Game>()), Times.Once);
         }
@@ -30,11 +30,11 @@ namespace Arcomage.Domain.Tests.Services
         public void PaymentResourcesCalledTest(
             [Frozen] Mock<Card> cardMock,
             [Frozen] Game game,
-            ActivateCardGameAction sut)
+            ActivateCardAction sut)
         {
             cardMock.Setup(c => c.IsEnoughResources(It.IsAny<Resources>())).Returns(true);
 
-            sut.Execute(game, 1);
+            sut.PlayExecute(game, game.FirstPlayer, 1);
 
             cardMock.Verify(c => c.PaymentResources(It.IsAny<Resources>()), Times.Once);
         }

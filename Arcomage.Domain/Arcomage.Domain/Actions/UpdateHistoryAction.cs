@@ -4,16 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Arcomage.Domain.Entities;
-using Arcomage.Domain.Internal;
 
-namespace Arcomage.Domain.Services
+namespace Arcomage.Domain.Actions
 {
-    public class UpdateHistoryGameAction : IGameAction
+    public class UpdateHistoryAction : UniformCardAction
     {
-        public void Execute(Game game, int cardIndex)
+        protected override void Execute(Game game, Player player, int cardIndex)
         {
-            var player = game.GetCurrentPlayer();
-
             game.History.Cards.Add(player.Hand.Cards[cardIndex]);
         }
     }

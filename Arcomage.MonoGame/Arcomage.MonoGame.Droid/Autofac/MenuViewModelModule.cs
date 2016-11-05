@@ -14,26 +14,27 @@ namespace Arcomage.MonoGame.Droid.Autofac
         {
             builder.RegisterType<MenuViewModel>()
                 .AsSelf()
-                .OnActivating(aea => aea.Instance.BackCommand = aea.Context.Resolve<ExitCommand>())
-                .OnActivating(aea => aea.Instance.PlayButton = aea.Context.ResolveNamed<ButtonViewModel>("MenuPlayButton"))
-                .OnActivating(aea => aea.Instance.SettingsButton = aea.Context.ResolveNamed<ButtonViewModel>("MenuSettingsButton"))
-                .OnActivating(aea => aea.Instance.ExitButton = aea.Context.ResolveNamed<ButtonViewModel>("MenuExitButton"))
+                .OnActivated(aea => aea.Instance.BackCommand = aea.Context.Resolve<ExitCommand>())
+                .OnActivated(aea => aea.Instance.UpdateCommand = aea.Context.Resolve<Command>())
+                .OnActivated(aea => aea.Instance.PlayButton = aea.Context.ResolveNamed<ButtonViewModel>("MenuPlayButton"))
+                .OnActivated(aea => aea.Instance.SettingsButton = aea.Context.ResolveNamed<ButtonViewModel>("MenuSettingsButton"))
+                .OnActivated(aea => aea.Instance.ExitButton = aea.Context.ResolveNamed<ButtonViewModel>("MenuExitButton"))
                 .InstancePerLifetimeScope();
 
             builder.RegisterType<ButtonViewModel>()
                 .Named<ButtonViewModel>("MenuPlayButton")
-                .OnActivating(aea => aea.Instance.Identifier = "Play")
-                .OnActivating(aea => aea.Instance.Command = aea.Context.Resolve<PlayCommand>());
+                .OnActivated(aea => aea.Instance.Identifier = "Play")
+                .OnActivated(aea => aea.Instance.Command = aea.Context.Resolve<PlayCommand>());
 
             builder.RegisterType<ButtonViewModel>()
                 .Named<ButtonViewModel>("MenuSettingsButton")
-                .OnActivating(aea => aea.Instance.Identifier = "Settings")
-                .OnActivating(aea => aea.Instance.Command = aea.Context.Resolve<SettingsCommand>());
+                .OnActivated(aea => aea.Instance.Identifier = "Settings")
+                .OnActivated(aea => aea.Instance.Command = aea.Context.Resolve<SettingsCommand>());
 
             builder.RegisterType<ButtonViewModel>()
                 .Named<ButtonViewModel>("MenuExitButton")
-                .OnActivating(aea => aea.Instance.Identifier = "Exit")
-                .OnActivating(aea => aea.Instance.Command = aea.Context.Resolve<ExitCommand>());
+                .OnActivated(aea => aea.Instance.Identifier = "Exit")
+                .OnActivated(aea => aea.Instance.Command = aea.Context.Resolve<ExitCommand>());
         }
     }
 }

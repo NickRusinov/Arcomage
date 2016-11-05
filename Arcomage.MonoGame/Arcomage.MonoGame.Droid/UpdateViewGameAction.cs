@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Arcomage.Domain.Entities;
-using Arcomage.Domain.Services;
+using Arcomage.Domain.Actions;
 using Arcomage.MonoGame.Droid.ViewModels;
 using Autofac;
 using AutoMapper;
 
 namespace Arcomage.MonoGame.Droid
 {
-    public class UpdateViewGameAction : IGameAction
+    public class UpdateViewGameAction : IPlayAction, ICardAction
     {
         private readonly ILifetimeScope lifetimeScope;
 
@@ -25,7 +25,11 @@ namespace Arcomage.MonoGame.Droid
             this.gameViewModel = gameViewModel;
         }
 
-        public void Execute(Game game, int cardIndex)
+        public void PlayExecute(Game game, Player player, int cardIndex) => Execute(game, player);
+
+        public void DiscardExecute(Game game, Player player, int cardIndex) => Execute(game, player);
+
+        public void Execute(Game game, Player player)
         {
             mapper.Map(game, gameViewModel, moo => moo.ConstructServicesUsing(lifetimeScope.Resolve));
         }

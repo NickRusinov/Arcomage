@@ -47,6 +47,9 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="Actions\ClearHistoryActionTests.cs" />
+    <Compile Include="Actions\UpdateHistoryActionTests.cs" />
+    <Compile Include="Actions\WhenReplacedPlayerActionTests.cs" />
     <Compile Include="AutoFixtureAttribute.cs" />
     <Compile Include="Cards\BerserkerCardTests.cs" />
     <Compile Include="Cards\CorrosionCloudCardTests.cs" />
@@ -157,15 +160,13 @@
     <Compile Include="Players\ComputerPlayerTests.cs" />
     <Compile Include="Players\HumanPlayerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\ActivateCardGameActionTests.cs" />
+    <Compile Include="Actions\ActivateCardActionTests.cs" />
     <Compile Include="Services\DiscardCardCriteriaTests.cs" />
     <Compile Include="Services\PlayCardCriteriaTests.cs" />
-    <Compile Include="Services\ReplaceCardGameActionTests.cs" />
-    <Compile Include="Services\ReplacePlayerGameActionTests.cs" />
-    <Compile Include="Services\UpdateFinishedGameActionTests.cs" />
-    <Compile Include="Services\UpdateResourcesGameActionTests.cs" />
-    <Compile Include="Services\VerifyDiscardCardGameActionTests.cs" />
-    <Compile Include="Services\VerifyPlayCardGameActionTests.cs" />
+    <Compile Include="Actions\ReplaceCardActionTests.cs" />
+    <Compile Include="Actions\ReplacePlayerActionTests.cs" />
+    <Compile Include="Actions\UpdateFinishedActionTests.cs" />
+    <Compile Include="Actions\UpdateResourcesActionTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -177,6 +178,7 @@
       <Name>Arcomage.Domain</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

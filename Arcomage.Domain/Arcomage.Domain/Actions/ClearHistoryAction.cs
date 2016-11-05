@@ -5,11 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using Arcomage.Domain.Entities;
 
-namespace Arcomage.Domain.Services
+namespace Arcomage.Domain.Actions
 {
-    public class ClearHistoryGameAction : IGameAction
+    public class ClearHistoryAction : IPlayAction
     {
-        public void Execute(Game game, int cardIndex)
+        public void Execute(Game game, Player player)
         {
             game.History.Cards.Clear();
         }

@@ -70,7 +70,7 @@
     <Compile Include="ArcomageActivity.cs" />
     <Compile Include="ArcomageContentManager.cs" />
     <Compile Include="Autofac\ArtificialIntelligenceModule.cs" />
-    <Compile Include="Autofac\GameActionModule.cs" />
+    <Compile Include="Autofac\ActionModule.cs" />
     <Compile Include="Autofac\GameViewModelModule.cs" />
     <Compile Include="Autofac\HistoryModule.cs" />
     <Compile Include="Autofac\MenuViewModelModule.cs" />
@@ -89,9 +89,9 @@
     <Compile Include="AutoMapper\HistoryProfile.cs" />
     <Compile Include="AutoMapper\ObservableCollectionTypeConverter.cs" />
     <Compile Include="AutoMapper\ResourcesProfile.cs" />
+    <Compile Include="Commands\UpdateCommand.cs" />
     <Compile Include="Properties\PropertyChanged.Fody.cs" />
     <Compile Include="ShowFinishedGameAction.cs" />
-    <Compile Include="UpdateHistoryViewGameAction.cs" />
     <Compile Include="UpdateViewGameAction.cs" />
     <Compile Include="Canvas.cs" />
     <Compile Include="ArcomageGame.cs" />
@@ -139,12 +139,12 @@
     <Compile Include="Views\BuildingsLeftView.cs" />
     <Compile Include="Views\BuildingsRightView.cs" />
     <Compile Include="Views\HistoryView.cs" />
+    <Compile Include="Views\MainView.cs" />
     <Compile Include="Views\MenuButtonView.cs" />
     <Compile Include="Views\HandView.cs" />
     <Compile Include="Views\CardView.cs" />
     <Compile Include="Views\GameView.cs" />
     <Compile Include="Views\MenuView.cs" />
-    <Compile Include="Views\PageView.cs" />
     <Compile Include="Views\ResourcesLeftView.cs" />
     <Compile Include="Views\PanelView.cs" />
     <Compile Include="Views\ResourcesRightView.cs" />

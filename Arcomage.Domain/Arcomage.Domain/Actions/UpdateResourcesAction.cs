@@ -4,16 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Arcomage.Domain.Entities;
-using Arcomage.Domain.Internal;
 
-namespace Arcomage.Domain.Services
+namespace Arcomage.Domain.Actions
 {
-    public class UpdateResourcesGameAction : IGameAction
+    public class UpdateResourcesAction : IPlayAction
     {
-        public void Execute(Game game, int cardIndex)
+        public void Execute(Game game, Player player)
         {
-            var player = game.GetCurrentPlayer();
-
             player.Resources.Bricks += player.Resources.Quarry;
             player.Resources.Gems += player.Resources.Magic;
             player.Resources.Recruits += player.Resources.Dungeons;

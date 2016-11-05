@@ -9,6 +9,6 @@ namespace Arcomage.Domain.ArtificialIntelligence
 {
     public interface IArtificialIntelligence
     {
-        void Execute(Game game);
+        Task<PlayResult> Execute(Game game, Player player);
     }
 }

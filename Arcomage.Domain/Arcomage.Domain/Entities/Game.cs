@@ -21,7 +21,7 @@ namespace Arcomage.Domain.Entities
 
         public History History { get; set; }
 
-        public bool IsFinished { get; set; }
+        public GameResult Result { get; set; }
 
         public int PlayAgainTurns
         {

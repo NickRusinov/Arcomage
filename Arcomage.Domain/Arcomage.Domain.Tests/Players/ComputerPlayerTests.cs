@@ -21,7 +21,7 @@ namespace Arcomage.Domain.Tests.Players
         {
             sut.Play(game);
 
-            artificialIntelligenceMock.Verify(ai => ai.Execute(game), Times.Once);
+            artificialIntelligenceMock.Verify(ai => ai.Execute(game, sut), Times.Once);
         }
     }
 }

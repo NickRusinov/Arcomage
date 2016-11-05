@@ -11,20 +11,24 @@ namespace Arcomage.MonoGame.Droid.Commands
     {
         private readonly ContentManager contentManager;
 
-        private readonly PageView pageView;
+        private readonly MainView mainView;
 
-        public MenuCommand(ContentManager contentManager, PageView pageView)
+        public MenuCommand(ContentManager contentManager, MainView mainView)
         {
             this.contentManager = contentManager;
-            this.pageView = pageView;
+            this.mainView = mainView;
         }
 
         public override void Execute(object parameter)
         {
-            pageView.View = new MenuView(contentManager, ViewModelFactory.Instance.CreateMenuViewModel())
+            var viewModel = ViewModelFactory.Instance.CreateMenuViewModel();
+            var view = new MenuView(contentManager, viewModel)
             {
                 PositionX = 0, PositionY = 0, SizeX = 1280, SizeY = 720
             };
+
+            mainView.PageViewModel = viewModel;
+            mainView.View = view;
         }
     }
 }

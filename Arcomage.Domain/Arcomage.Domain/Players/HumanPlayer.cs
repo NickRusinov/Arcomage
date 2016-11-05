@@ -9,9 +9,17 @@ namespace Arcomage.Domain.Players
 {
     public class HumanPlayer : Player
     {
-        public override void Play(Game game)
-        {
+        public PlayResult PlayResult { get; set; }
 
+        public override async Task<PlayResult> Play(Game game)
+        {
+            while (Equals(PlayResult, PlayResult.None))
+                await Task.Delay(100);
+
+            var result = PlayResult;
+            PlayResult = PlayResult.None;
+
+            return result;
         }
     }
 }

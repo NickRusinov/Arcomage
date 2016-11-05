@@ -41,10 +41,10 @@ namespace Arcomage.Domain.Tests.Rules
         {
             sut.MaxTower = 15;
 
-            var winResult = sut.IsWin(game);
+            var gameResult = sut.IsWin(game);
 
-            Assert.Equal(WinMode.BuildTower, winResult.WinMode);
-            Assert.Equal(PlayerMode.FirstPlayer, winResult.WinPlayerMode);
+            Assert.True(gameResult.IsTowerBuild);
+            Assert.Equal(game.FirstPlayer, gameResult.Player);
         }
 
         [Theory, AutoFixture]
@@ -54,10 +54,10 @@ namespace Arcomage.Domain.Tests.Rules
             sut.MaxTower = 25;
             game.SecondPlayer.Buildings.Tower = 0;
 
-            var winResult = sut.IsWin(game);
+            var gameResult = sut.IsWin(game);
 
-            Assert.Equal(WinMode.DestroyTower, winResult.WinMode);
-            Assert.Equal(PlayerMode.FirstPlayer, winResult.WinPlayerMode);
+            Assert.True(gameResult.IsTowerDestroy);
+            Assert.Equal(game.FirstPlayer, gameResult.Player);
         }
 
         [Theory, AutoFixture]
@@ -67,10 +67,10 @@ namespace Arcomage.Domain.Tests.Rules
             sut.MaxResources = 3;
             sut.MaxTower = 25;
 
-            var winResult = sut.IsWin(game);
+            var gameResult = sut.IsWin(game);
 
-            Assert.Equal(WinMode.AccumulateResources, winResult.WinMode);
-            Assert.Equal(PlayerMode.FirstPlayer, winResult.WinPlayerMode);
+            Assert.True(gameResult.IsResourcesAccumulate);
+            Assert.Equal(game.FirstPlayer, gameResult.Player);
         }
 
         [Theory, AutoFixture]
@@ -81,10 +81,10 @@ namespace Arcomage.Domain.Tests.Rules
             sut.MaxTower = 15;
             game.FirstPlayer.Buildings.Tower = 10;
 
-            var winResult = sut.IsWin(game);
+            var gameResult = sut.IsWin(game);
 
-            Assert.Equal(WinMode.BuildTower, winResult.WinMode);
-            Assert.Equal(PlayerMode.SecondPlayer, winResult.WinPlayerMode);
+            Assert.True(gameResult.IsTowerBuild);
+            Assert.Equal(game.SecondPlayer, gameResult.Player);
         }
 
         [Theory, AutoFixture]
@@ -95,10 +95,10 @@ namespace Arcomage.Domain.Tests.Rules
             sut.MaxTower = 25;
             game.FirstPlayer.Buildings.Tower = 0;
 
-            var winResult = sut.IsWin(game);
+            var gameResult = sut.IsWin(game);
 
-            Assert.Equal(WinMode.DestroyTower, winResult.WinMode);
-            Assert.Equal(PlayerMode.SecondPlayer, winResult.WinPlayerMode);
+            Assert.True(gameResult.IsTowerDestroy);
+            Assert.Equal(game.SecondPlayer, gameResult.Player);
         }
 
         [Theory, AutoFixture]
@@ -109,10 +109,10 @@ namespace Arcomage.Domain.Tests.Rules
             sut.MaxTower = 25;
             game.FirstPlayer.Resources.Bricks = 0;
 
-            var winResult = sut.IsWin(game);
+            var gameResult = sut.IsWin(game);
 
-            Assert.Equal(WinMode.AccumulateResources, winResult.WinMode);
-            Assert.Equal(PlayerMode.SecondPlayer, winResult.WinPlayerMode);
+            Assert.True(gameResult.IsResourcesAccumulate);
+            Assert.Equal(game.SecondPlayer, gameResult.Player);
         }
 
         [Theory, AutoFixture]
@@ -122,9 +122,9 @@ namespace Arcomage.Domain.Tests.Rules
             sut.MaxResources = 20;
             sut.MaxTower = 25;
 
-            var winResult = sut.IsWin(game);
+            var gameResult = sut.IsWin(game);
 
-            Assert.Null(winResult);
+            Assert.Equal(GameResult.None, gameResult);
         }
     }
 }
