@@ -17,7 +17,7 @@ namespace Arcomage.Domain.Tests.Actions
             [Frozen] Game game,
             ReplacePlayerAction sut)
         {
-            game.PlayAgainTurns = 0;
+            game.PlayAgain = 0;
 
             sut.PlayExecute(game, game.FirstPlayer, 1);
             
@@ -29,7 +29,7 @@ namespace Arcomage.Domain.Tests.Actions
             [Frozen] Game game,
             ReplacePlayerAction sut)
         {
-            game.PlayAgainTurns = 1;
+            game.PlayAgain = 1;
 
             sut.PlayExecute(game, game.FirstPlayer, 1);
             

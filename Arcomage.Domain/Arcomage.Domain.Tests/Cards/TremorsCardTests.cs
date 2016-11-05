@@ -19,6 +19,7 @@ namespace Arcomage.Domain.Tests.Cards
 
             Assert.Equal(0, game.FirstPlayer.Buildings.Wall);
             Assert.Equal(0, game.SecondPlayer.Buildings.Wall);
+            Assert.Equal(1, game.PlayAgain);
         }
     }
 }

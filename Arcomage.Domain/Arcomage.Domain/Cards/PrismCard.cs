@@ -14,7 +14,7 @@ namespace Arcomage.Domain.Cards
         public override void Activate(Game game)
         {
             // TODO DiscardCard
-            // TODO PlayAgain
+            game.PlayAgain += 2;
         }
     }
 }

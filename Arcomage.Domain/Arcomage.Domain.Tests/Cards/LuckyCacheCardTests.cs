@@ -19,6 +19,7 @@ namespace Arcomage.Domain.Tests.Cards
 
             Assert.Equal(7, game.FirstPlayer.Resources.Bricks);
             Assert.Equal(7, game.FirstPlayer.Resources.Gems);
+            Assert.Equal(1, game.PlayAgain);
         }
     }
 }

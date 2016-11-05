@@ -16,6 +16,8 @@ namespace Arcomage.Domain.Tests.Cards
             ElvenScoutCard sut)
         {
             sut.Activate(game);
+
+            Assert.Equal(2, game.PlayAgain);
         }
     }
 }

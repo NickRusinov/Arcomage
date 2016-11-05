@@ -15,7 +15,7 @@ namespace Arcomage.Domain.Cards
         {
             game.FirstPlayer.Buildings.Wall -= 5;
             game.SecondPlayer.Buildings.Wall -= 5;
-            // TODO PlayAgain
+            game.PlayAgain += 1;
         }
     }
 }

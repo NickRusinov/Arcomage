@@ -16,7 +16,7 @@ namespace Arcomage.Domain.Actions
 
         public void Execute(Game game, Player player)
         {
-            if (game.PlayAgainTurns-- == 0)
+            if (game.PlayAgain-- == 0)
                 game.PlayerMode = game.PlayerMode.GetAdversary();
         }
     }

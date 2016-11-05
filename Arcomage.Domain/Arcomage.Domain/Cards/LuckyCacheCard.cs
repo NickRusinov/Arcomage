@@ -16,7 +16,7 @@ namespace Arcomage.Domain.Cards
         {
             game.GetCurrentPlayer().Resources.Bricks += 2;
             game.GetCurrentPlayer().Resources.Gems += 2;
-            // TODO PlayAgain
+            game.PlayAgain += 1;
         }
     }
 }

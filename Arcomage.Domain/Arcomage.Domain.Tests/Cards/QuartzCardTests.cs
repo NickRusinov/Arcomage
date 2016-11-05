@@ -18,6 +18,7 @@ namespace Arcomage.Domain.Tests.Cards
             sut.Activate(game);
 
             Assert.Equal(21, game.FirstPlayer.Buildings.Tower);
+            Assert.Equal(1, game.PlayAgain);
         }
     }
 }

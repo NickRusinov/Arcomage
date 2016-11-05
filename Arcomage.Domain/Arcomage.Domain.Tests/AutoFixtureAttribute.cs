@@ -17,6 +17,7 @@ namespace Arcomage.Domain.Tests
         public AutoFixtureAttribute()
         {
             Fixture.Customize(new AutoConfiguredMoqCustomization());
+            Fixture.Customize<Game>(cc => cc.With(g => g.PlayAgain, 0));
             
             Fixture.Register((IFixture f) => new FakeRandom() as Random);
 

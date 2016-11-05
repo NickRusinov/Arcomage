@@ -9,7 +9,7 @@ namespace Arcomage.Domain.Entities
 {
     public class Game
     {
-        private int playAgainTurns;
+        private int playAgain;
 
         public Player FirstPlayer { get; set; }
 
@@ -23,10 +23,10 @@ namespace Arcomage.Domain.Entities
 
         public GameResult Result { get; set; }
 
-        public int PlayAgainTurns
+        public int PlayAgain
         {
-            get { return playAgainTurns; }
-            set { playAgainTurns = Max(value, 0); }
+            get { return playAgain; }
+            set { playAgain = Max(value, 0); }
         }
     }
 }
