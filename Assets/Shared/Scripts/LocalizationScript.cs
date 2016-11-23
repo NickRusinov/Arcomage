@@ -12,9 +12,15 @@ namespace Arcomage.Unity.Shared.Scripts
     {
         [SerializeField]
         [Tooltip("Идентификатор строки для локализации")]
-        public string identifier;
+        private string identifier;
 
         private Text text;
+
+        public string Identifier
+        {
+            get { return identifier; }
+            set { FrameworkExtensions.Setter(out identifier, value, Start); }
+        }
 
         public void Awake()
         {

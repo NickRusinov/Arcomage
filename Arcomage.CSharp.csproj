@@ -80,13 +80,15 @@
   <ItemGroup>
     <Compile Include="Assets\GameScene\Scripts\BuildingsScript.cs" />
     <Compile Include="Assets\GameScene\Scripts\CardDragDropScript.cs" />
-    <Compile Include="Assets\GameScene\Scripts\CardExtensions.cs" />
+    <Compile Include="Assets\GameScene\Scripts\FinishedMenuScript.cs" />
+    <Compile Include="Assets\GameScene\Scripts\GameExtensions.cs" />
     <Compile Include="Assets\GameScene\Scripts\CardFactory.cs" />
     <Compile Include="Assets\GameScene\Scripts\CardScript.cs" />
     <Compile Include="Assets\GameScene\Scripts\CardTranslateScript.cs" />
     <Compile Include="Assets\GameScene\Scripts\DiscardCardCommand.cs" />
+    <Compile Include="Assets\GameScene\Scripts\FinishedMenuPlayButtonScript.cs" />
+    <Compile Include="Assets\GameScene\Scripts\FinishedMenuBackButtonScript.cs" />
     <Compile Include="Assets\GameScene\Scripts\GameInstaller.cs" />
-    <Compile Include="Assets\GameScene\Scripts\GameLoopScript.cs" />
     <Compile Include="Assets\GameScene\Scripts\GameSceneScript.cs" />
     <Compile Include="Assets\GameScene\Scripts\GameScript.cs" />
     <Compile Include="Assets\GameScene\Scripts\HandScript.cs" />

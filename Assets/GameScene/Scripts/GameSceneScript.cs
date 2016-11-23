@@ -14,10 +14,12 @@ namespace Arcomage.Unity.GameScene.Scripts
     public class GameSceneScript : Script
     {
         [SerializeField]
-        public GameScript gameScript;
+        [Tooltip("Корневой компонент игры")]
+        public GameScript GameScript;
 
         [SerializeField]
-        public GameLoopScript gameLoopScript;
+        [Tooltip("Компонент сообщения о победе")]
+        public FinishedMenuScript FinishedScript;
 
         private DiContainer container;
 
@@ -31,8 +33,8 @@ namespace Arcomage.Unity.GameScene.Scripts
 
         public override void Start()
         {
-            gameScript.Initialize(container.Resolve<Game>(), (ClassicRule)container.Resolve<Rule>(), container.Resolve<CardFactory>());
-            gameLoopScript.Initialize(container.Resolve<GameLoop>());
+            GameScript.Initialize(container.Resolve<Game>(), container.Resolve<GameLoop>(), (ClassicRule)container.Resolve<Rule>(), container.Resolve<CardFactory>());
+            FinishedScript.Initialize(container.Resolve<Game>());
         }
     }
 }

@@ -759,4 +759,25 @@
   <data name="SettingsRuleText" xml:space="preserve">
     <value>Rule</value>
   </data>
+  <data name="GameFinishedTowerBuildText" xml:space="preserve">
+    <value>Build tower</value>
+  </data>
+  <data name="GameFinishedTowerDestroyText" xml:space="preserve">
+    <value>Destroy tower</value>
+  </data>
+  <data name="GameFinishedResourcesAccumulateText" xml:space="preserve">
+    <value>Accumulate resources</value>
+  </data>
+  <data name="GameFinishedText" xml:space="preserve">
+    <value>Game finished</value>
+  </data>
+  <data name="GameFinishedWinnerText" xml:space="preserve">
+    <value>Win {0}</value>
+  </data>
+  <data name="GameFinishedBackButtonText" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="GameFinishedPlayButtonText" xml:space="preserve">
+    <value>Play again</value>
+  </data>
 </root>

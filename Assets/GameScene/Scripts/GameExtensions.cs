@@ -7,7 +7,7 @@ using Arcomage.Domain.Entities;
 
 namespace Arcomage.Unity.GameScene.Scripts
 {
-    public static class CardExtensions
+    public static class GameExtensions
     {
         public static string GetResources(this Card card)
         {
@@ -27,6 +27,20 @@ namespace Arcomage.Unity.GameScene.Scripts
                 return name.Substring(0, name.Length - 4);
 
             return name;
+        }
+
+        public static string GetIdentifier(this GameResult gameResult)
+        {
+            if (gameResult.IsTowerBuild)
+                return "TowerBuild";
+
+            if (gameResult.IsTowerDestroy)
+                return "TowerDestroy";
+
+            if (gameResult.IsResourcesAccumulate)
+                return "ResourcesAccumulate";
+
+            return "";
         }
     }
 }

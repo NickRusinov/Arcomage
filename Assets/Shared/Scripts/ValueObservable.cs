@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 namespace Arcomage.Unity.Shared.Scripts
 {
     public class ValueObservable<TSource, TValue> : Observable
-        where TValue : IEquatable<TValue>
     {
         private readonly TSource source;
     

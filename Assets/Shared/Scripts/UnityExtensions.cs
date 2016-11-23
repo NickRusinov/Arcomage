@@ -18,6 +18,11 @@ namespace Arcomage.Unity.Shared.Scripts
             monoBehaviour.ResolveScript<TextMesh>(name).text = value.ToString();
         }
 
+        public static void UpdateLocalization(this MonoBehaviour monoBehaviour, string name, string value)
+        {
+            monoBehaviour.ResolveScript<LocalizationScript>(name).Identifier = value;
+        }
+
         public static void UpdateSprite(this MonoBehaviour monoBehaviour, string name, Sprite sprite)
         {
             monoBehaviour.ResolveScript<SpriteRenderer>(name).sprite = sprite;

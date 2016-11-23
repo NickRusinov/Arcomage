@@ -1915,6 +1915,69 @@ namespace Arcomage {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Back.
+        /// </summary>
+        public static string GameFinishedBackButtonText {
+            get {
+                return ResourceManager.GetString("GameFinishedBackButtonText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Play again.
+        /// </summary>
+        public static string GameFinishedPlayButtonText {
+            get {
+                return ResourceManager.GetString("GameFinishedPlayButtonText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Accumulate resources.
+        /// </summary>
+        public static string GameFinishedResourcesAccumulateText {
+            get {
+                return ResourceManager.GetString("GameFinishedResourcesAccumulateText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Game finished.
+        /// </summary>
+        public static string GameFinishedText {
+            get {
+                return ResourceManager.GetString("GameFinishedText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Build tower.
+        /// </summary>
+        public static string GameFinishedTowerBuildText {
+            get {
+                return ResourceManager.GetString("GameFinishedTowerBuildText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Destroy tower.
+        /// </summary>
+        public static string GameFinishedTowerDestroyText {
+            get {
+                return ResourceManager.GetString("GameFinishedTowerDestroyText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Win {0}.
+        /// </summary>
+        public static string GameFinishedWinnerText {
+            get {
+                return ResourceManager.GetString("GameFinishedWinnerText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Exit.
         /// </summary>
         public static string MenuExitButtonText {

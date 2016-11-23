@@ -8,7 +8,6 @@ namespace Arcomage.Unity.Shared.Scripts
     public static class ObservableExtensions
     {
         public static ValueObservable<TSource, TValue> Observable<TSource, TValue>(this TSource source, Func<TSource, TValue> func, Action<TValue, TValue> onChanged, Action<TValue> onInit)
-            where TValue : IEquatable<TValue>
         {
             var observable = new ValueObservable<TSource, TValue>(source, func);
             observable.Changed += onChanged;
@@ -18,7 +17,6 @@ namespace Arcomage.Unity.Shared.Scripts
         }
 
         public static ValueObservable<TSource, TValue> Observable<TSource, TValue>(this TSource source, Func<TSource, TValue> func, Action<TValue> onChanged, Action<TValue> onInit)
-            where TValue : IEquatable<TValue>
         {
             var observable = new ValueObservable<TSource, TValue>(source, func);
             observable.Changed += (old, @new) => onChanged(@new);
@@ -28,7 +26,6 @@ namespace Arcomage.Unity.Shared.Scripts
         }
 
         public static ValueObservable<TSource, TValue> Observable<TSource, TValue>(this TSource source, Func<TSource, TValue> func, Action<TValue> onChangedAndInit)
-            where TValue : IEquatable<TValue>
         {
             var observable = new ValueObservable<TSource, TValue>(source, func);
             observable.Changed += (old, @new) => onChangedAndInit(@new);

@@ -759,4 +759,25 @@
   <data name="SettingsRuleText" xml:space="preserve">
     <value>Правила</value>
   </data>
+  <data name="GameFinishedTowerBuildText" xml:space="preserve">
+    <value>Построив огромную башню</value>
+  </data>
+  <data name="GameFinishedTowerDestroyText" xml:space="preserve">
+    <value>Разрушив башню противника</value>
+  </data>
+  <data name="GameFinishedResourcesAccumulateText" xml:space="preserve">
+    <value>Накопив гору ресурсов</value>
+  </data>
+  <data name="GameFinishedText" xml:space="preserve">
+    <value>Игра закончена</value>
+  </data>
+  <data name="GameFinishedWinnerText" xml:space="preserve">
+    <value>Победил {0}</value>
+  </data>
+  <data name="GameFinishedBackButtonText" xml:space="preserve">
+    <value>Назад</value>
+  </data>
+  <data name="GameFinishedPlayButtonText" xml:space="preserve">
+    <value>Заново</value>
+  </data>
 </root>

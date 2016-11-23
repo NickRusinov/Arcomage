@@ -26,5 +26,7 @@ namespace Arcomage.Domain.Entities
         public bool IsTowerDestroy { get; }
 
         public bool IsResourcesAccumulate { get; }
+
+        public static implicit operator bool(GameResult x) => !x.Equals(None);
     }
 }

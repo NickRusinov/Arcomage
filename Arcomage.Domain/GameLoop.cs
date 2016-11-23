@@ -26,16 +26,19 @@ namespace Arcomage.Domain
             this.cardAction = cardAction;
         }
 
-        public void Update()
+        public GameResult Update()
         {
-            if (playResultTask == null)
+            if (playResultTask == null && !game.Result)
             {
                 playAction.Execute(game, game.GetCurrentPlayer());
-                
+            }
+
+            if (playResultTask == null && !game.Result)
+            { 
                 playResultTask = game.GetCurrentPlayer().Play(game);
             }
 
-            if (playResultTask.IsCompleted)
+            if (playResultTask?.IsCompleted == true && !game.Result)
             {
                 if (playResultTask.Result.IsPlay)
                     cardAction.PlayExecute(game, game.GetCurrentPlayer(), playResultTask.Result.Card);
@@ -45,6 +48,8 @@ namespace Arcomage.Domain
 
                 playResultTask = null;
             }
+
+            return game.Result;
         }
     }
 }
