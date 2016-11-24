@@ -13,8 +13,7 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile>
-    </CompilerResponseFile>
+    <CompilerResponseFile></CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows:5</UnityBuildTarget>
     <UnityVersion>5.4.2f2</UnityVersion>
@@ -80,14 +79,14 @@
   <ItemGroup>
     <Compile Include="Assets\GameScene\Scripts\BuildingsScript.cs" />
     <Compile Include="Assets\GameScene\Scripts\CardDragDropScript.cs" />
-    <Compile Include="Assets\GameScene\Scripts\FinishedMenuScript.cs" />
-    <Compile Include="Assets\GameScene\Scripts\GameExtensions.cs" />
     <Compile Include="Assets\GameScene\Scripts\CardFactory.cs" />
     <Compile Include="Assets\GameScene\Scripts\CardScript.cs" />
     <Compile Include="Assets\GameScene\Scripts\CardTranslateScript.cs" />
     <Compile Include="Assets\GameScene\Scripts\DiscardCardCommand.cs" />
-    <Compile Include="Assets\GameScene\Scripts\FinishedMenuPlayButtonScript.cs" />
     <Compile Include="Assets\GameScene\Scripts\FinishedMenuBackButtonScript.cs" />
+    <Compile Include="Assets\GameScene\Scripts\FinishedMenuPlayButtonScript.cs" />
+    <Compile Include="Assets\GameScene\Scripts\FinishedMenuScript.cs" />
+    <Compile Include="Assets\GameScene\Scripts\GameExtensions.cs" />
     <Compile Include="Assets\GameScene\Scripts\GameInstaller.cs" />
     <Compile Include="Assets\GameScene\Scripts\GameSceneScript.cs" />
     <Compile Include="Assets\GameScene\Scripts\GameScript.cs" />
@@ -105,26 +104,24 @@
     <Compile Include="Assets\Shared\Scripts\CollectionObservable.cs" />
     <Compile Include="Assets\Shared\Scripts\Command.cs" />
     <Compile Include="Assets\Shared\Scripts\CompositeObservable.cs" />
+    <Compile Include="Assets\Shared\Scripts\CultureScript.Editor.cs" />
+    <Compile Include="Assets\Shared\Scripts\CultureScript.cs" />
     <Compile Include="Assets\Shared\Scripts\DropdownScript.cs" />
+    <Compile Include="Assets\Shared\Scripts\FrameworkExtensions.cs" />
+    <Compile Include="Assets\Shared\Scripts\LocalizationScript.Editor.cs" />
+    <Compile Include="Assets\Shared\Scripts\LocalizationScript.cs" />
     <Compile Include="Assets\Shared\Scripts\Observable.cs" />
     <Compile Include="Assets\Shared\Scripts\ObservableExtensions.cs" />
     <Compile Include="Assets\Shared\Scripts\ObservableScript.cs" />
     <Compile Include="Assets\Shared\Scripts\Reference.cs" />
-    <Compile Include="Assets\Shared\Scripts\CultureScript.cs" />
-    <Compile Include="Assets\Shared\Scripts\CultureScript.Editor.cs">
-      <DependentUpon>CultureScript.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Assets\Shared\Scripts\LocalizationScript.cs" />
-    <Compile Include="Assets\Shared\Scripts\LocalizationScript.Editor.cs">
-      <DependentUpon>LocalizationScript.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Assets\Shared\Scripts\FrameworkExtensions.cs" />
     <Compile Include="Assets\Shared\Scripts\Script.cs" />
     <Compile Include="Assets\Shared\Scripts\TextOutlineScript.cs" />
     <Compile Include="Assets\Shared\Scripts\TextWrapScript.cs" />
     <Compile Include="Assets\Shared\Scripts\UnityExtensions.cs" />
     <Compile Include="Assets\Shared\Scripts\ValueObservable.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Assets\GameScene\Shaders\ClipAreaShader.shader" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>

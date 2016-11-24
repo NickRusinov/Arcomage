@@ -33,6 +33,12 @@ namespace Arcomage.Unity.Shared.Scripts
             monoBehaviour.ResolveScript<SpriteRenderer>(name).color = color;
         }
 
+        public static void UpdateSpriteHeight(this MonoBehaviour monoBehaviour, string name, float height)
+        {
+            var spriteRenderer = monoBehaviour.ResolveScript<SpriteRenderer>(name);
+            spriteRenderer.material.SetFloat("_Length", 1f - height / spriteRenderer.sprite.texture.height);
+        }
+
         public static void UpdateY(this MonoBehaviour monoBehaviour, string name, float y)
         {
             var transform = monoBehaviour.transform.Find(name).transform;
