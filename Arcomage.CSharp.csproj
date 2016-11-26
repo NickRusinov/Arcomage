@@ -13,7 +13,8 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile></CompilerResponseFile>
+    <CompilerResponseFile>
+    </CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows:5</UnityBuildTarget>
     <UnityVersion>5.4.2f2</UnityVersion>
@@ -114,6 +115,7 @@
     <Compile Include="Assets\Shared\Scripts\ObservableExtensions.cs" />
     <Compile Include="Assets\Shared\Scripts\ObservableScript.cs" />
     <Compile Include="Assets\Shared\Scripts\Reference.cs" />
+    <Compile Include="Assets\Shared\Scripts\ScaleScript.cs" />
     <Compile Include="Assets\Shared\Scripts\Script.cs" />
     <Compile Include="Assets\Shared\Scripts\TextOutlineScript.cs" />
     <Compile Include="Assets\Shared\Scripts\TextWrapScript.cs" />
