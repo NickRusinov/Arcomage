@@ -28,12 +28,12 @@ namespace Arcomage.Unity.GameScene.Scripts
             Bind(buildings, b => b.Tower)
                 .OnChangedAndInit(t => TowerText.text = t.ToString())
                 .OnChangedAndInit(t => TowerImage.transform.SetLocalPosition(y : -330f + Math.Min(180f, 180f * t / rule.MaxTower)))
-                .OnChangedAndInit(t => TowerImage.material.SetFloat("_Length", 1f - (150f + Math.Min(180f, 180f * t / rule.MaxTower) / TowerImage.sprite.texture.height)));
+                .OnChangedAndInit(t => TowerImage.material.SetFloat("_Length", 1f - (150f + Math.Min(180f, 180f * t / rule.MaxTower)) / TowerImage.sprite.texture.height));
 
             Bind(buildings, b => b.Wall)
                 .OnChangedAndInit(w => WallText.text = w.ToString())
                 .OnChangedAndInit(w => WallImage.transform.SetLocalPosition(y: -430f + Math.Min(280f, 280f * w / rule.MaxTower)))
-                .OnChangedAndInit(w => WallImage.material.SetFloat("_Length", 1f - (50f + Math.Min(280f, 280f * w / rule.MaxTower) / WallImage.sprite.texture.height)));
+                .OnChangedAndInit(w => WallImage.material.SetFloat("_Length", 1f - (50f + Math.Min(280f, 280f * w / rule.MaxTower)) / WallImage.sprite.texture.height));
         }
     }
 }
