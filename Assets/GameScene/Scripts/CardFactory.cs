@@ -5,30 +5,32 @@ using System.Threading.Tasks;
 using Arcomage.Domain.Entities;
 using Arcomage.Unity.Shared.Scripts;
 using UnityEngine;
-using Object = UnityEngine.Object;
 
 namespace Arcomage.Unity.GameScene.Scripts
 {
-    public class CardFactory
+    public class CardFactory : MonoBehaviour
     {
-        private readonly Command playCommand;
+        [Tooltip("Префаб карты")]
+        public GameObject Prefab;
 
-        private readonly Command discardCommand;
+        private Command playCommand;
 
-        public CardFactory(Command playCommand, Command discardCommand)
+        private Command discardCommand;
+
+        public void Initialize(Command playCommand, Command discardCommand)
         {
             this.playCommand = playCommand;
             this.discardCommand = discardCommand;
         }
 
-        public GameObject CreateCard(GameObject prefab, Transform transform, Card card, int index)
+        public GameObject CreateCard(Transform transform, Card card, int index)
         {
-            var cardObject = (GameObject)Object.Instantiate(prefab, transform);
+            var cardObject = (GameObject)Instantiate(Prefab, transform);
+            cardObject.GetComponent<CardScript>().Index = index;
             cardObject.name = "Card" + index;
-            cardObject.tag = "Card";
 
-            cardObject.GetComponent<CardScript>().Initialize(card);
-            cardObject.GetComponent<CardDragDropScript>().Initialize(playCommand, discardCommand, index);
+            cardObject.GetComponent<CardScript>().Initialize(card, playCommand);
+            cardObject.GetComponent<CardDragDropScript>().Initialize(playCommand, discardCommand);
 
             return cardObject;
         }

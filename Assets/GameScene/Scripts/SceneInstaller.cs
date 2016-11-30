@@ -29,12 +29,6 @@ namespace Arcomage.Unity.GameScene.Scripts
                     (HumanPlayer)c.Container.Resolve<Player>(PlayerMode.FirstPlayer),
                     c.Container.Resolve<IDiscardCardCriteria>()))
                 .AsSingle(1);
-
-            Container.Bind<CardFactory>()
-                .FromMethod(c => new CardFactory(
-                    c.Container.Resolve<Command>("PlayCardCommand"),
-                    c.Container.Resolve<Command>("DiscardCardCommand")))
-                .AsSingle(0);
         }
     }
 }

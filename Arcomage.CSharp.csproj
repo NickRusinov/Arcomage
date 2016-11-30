@@ -84,8 +84,6 @@
     <Compile Include="Assets\GameScene\Scripts\CardScript.cs" />
     <Compile Include="Assets\GameScene\Scripts\CardTranslateScript.cs" />
     <Compile Include="Assets\GameScene\Scripts\DiscardCardCommand.cs" />
-    <Compile Include="Assets\GameScene\Scripts\FinishedMenuBackButtonScript.cs" />
-    <Compile Include="Assets\GameScene\Scripts\FinishedMenuPlayButtonScript.cs" />
     <Compile Include="Assets\GameScene\Scripts\FinishedMenuScript.cs" />
     <Compile Include="Assets\GameScene\Scripts\GameExtensions.cs" />
     <Compile Include="Assets\GameScene\Scripts\GameInstaller.cs" />
@@ -102,28 +100,29 @@
     <Compile Include="Assets\SettingsScene\Scripts\DeckDropdownScript.cs" />
     <Compile Include="Assets\SettingsScene\Scripts\PlayButtonScript.cs" />
     <Compile Include="Assets\SettingsScene\Scripts\RuleDropdownScript.cs" />
-    <Compile Include="Assets\Shared\Scripts\CollectionObservable.cs" />
+    <Compile Include="Assets\Shared\Scripts\CollectionBinding.cs" />
     <Compile Include="Assets\Shared\Scripts\Command.cs" />
-    <Compile Include="Assets\Shared\Scripts\CompositeObservable.cs" />
     <Compile Include="Assets\Shared\Scripts\CultureScript.Editor.cs" />
     <Compile Include="Assets\Shared\Scripts\CultureScript.cs" />
     <Compile Include="Assets\Shared\Scripts\DropdownScript.cs" />
     <Compile Include="Assets\Shared\Scripts\FrameworkExtensions.cs" />
     <Compile Include="Assets\Shared\Scripts\LocalizationScript.Editor.cs" />
     <Compile Include="Assets\Shared\Scripts\LocalizationScript.cs" />
-    <Compile Include="Assets\Shared\Scripts\Observable.cs" />
-    <Compile Include="Assets\Shared\Scripts\ObservableExtensions.cs" />
-    <Compile Include="Assets\Shared\Scripts\ObservableScript.cs" />
+    <Compile Include="Assets\Shared\Scripts\Binding.cs" />
+    <Compile Include="Assets\Shared\Scripts\BindingExtensions.cs" />
+    <Compile Include="Assets\Shared\Scripts\View.cs" />
     <Compile Include="Assets\Shared\Scripts\Reference.cs" />
     <Compile Include="Assets\Shared\Scripts\ScaleScript.cs" />
-    <Compile Include="Assets\Shared\Scripts\Script.cs" />
     <Compile Include="Assets\Shared\Scripts\TextOutlineScript.cs" />
     <Compile Include="Assets\Shared\Scripts\TextWrapScript.cs" />
     <Compile Include="Assets\Shared\Scripts\UnityExtensions.cs" />
-    <Compile Include="Assets\Shared\Scripts\ValueObservable.cs" />
+    <Compile Include="Assets\Shared\Scripts\ValueBinding.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\GameScene\Shaders\ClipAreaShader.shader" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>

@@ -8,15 +8,14 @@ using UnityEngine;
 
 namespace Arcomage.Unity.GameScene.Scripts
 {
-    public class CardDragDropScript : ObservableScript
+    [RequireComponent(typeof(CardScript))]
+    public class CardDragDropScript : View
     {
         private static bool globalDraggingItem;
 
         private Command playCommand;
 
         private Command discardCommand;
-    
-        private int index;
 
         private bool draggingItem;
 
@@ -26,19 +25,10 @@ namespace Arcomage.Unity.GameScene.Scripts
 
         private Vector3 latestPosition;
 
-        public void Initialize(Command playCommand, Command discardCommand, int index)
+        public void Initialize(Command playCommand, Command discardCommand)
         {
             this.playCommand = playCommand;
             this.discardCommand = discardCommand;
-            this.index = index;
-
-            Initialize(
-                playCommand.Observable(c => c.CanExecute(index),
-                    () => this.UpdateSpriteColor("BackgroundImage", new Color(1, 1, 1, 1)),
-                    () => this.UpdateSpriteColor("BackgroundImage", new Color(.5f, .5f, .5f, .5f))),
-                playCommand.Observable(c => c.CanExecute(index),
-                    () => this.UpdateSpriteColor("ForegroundImage", new Color(1, 1, 1, 1)),
-                    () => this.UpdateSpriteColor("ForegroundImage", new Color(.5f, .5f, .5f, .5f))));
         }
 
         public Vector3 ResolveLatestPosition()
@@ -75,6 +65,7 @@ namespace Arcomage.Unity.GameScene.Scripts
             if (!Input.GetMouseButton(0) && draggingItem)
             {
                 draggingItem = globalDraggingItem = false;
+                var index = GetComponent<CardScript>().Index;
             
                 if (transform.position.y - initialPosition.y >= + 25f)
                     if (playCommand.CanExecute(index))

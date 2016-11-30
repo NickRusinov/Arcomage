@@ -5,18 +5,18 @@ using System.Threading.Tasks;
 
 namespace Arcomage.Unity.Shared.Scripts
 {
-    public class ValueObservable<TSource, TValue> : Observable
+    public sealed class ValueBinding<TSource, TValue> : Binding
     {
+        private bool init;
+
         private readonly TSource source;
     
         private readonly Func<TSource, TValue> func;
 
-        public ValueObservable(TSource source, Func<TSource, TValue> func)
+        public ValueBinding(TSource source, Func<TSource, TValue> func)
         {
             this.source = source;
             this.func = func;
-
-            Value = func.Invoke(source);
         }
 
         public TValue Value { get; private set; }
@@ -24,6 +24,16 @@ namespace Arcomage.Unity.Shared.Scripts
         public override void Update()
         {
             var newValue = func.Invoke(source);
+
+            if (!init)
+            {
+                init = true;
+                Value = newValue;
+
+                InvokeInit(newValue);
+
+                return;
+            }
 
             if (!Value.Equals(newValue))
             {
@@ -34,12 +44,20 @@ namespace Arcomage.Unity.Shared.Scripts
             }
         }
 
-        protected virtual void InvokeChanged(TValue oldValue, TValue newValue)
+        private void InvokeChanged(TValue oldValue, TValue newValue)
         {
             if (Changed != null)
                 Changed.Invoke(oldValue, newValue);
         }
 
+        private void InvokeInit(TValue newValue)
+        {
+            if (Init != null)
+                Init.Invoke(newValue);
+        } 
+
         public event Action<TValue, TValue> Changed;
+
+        public event Action<TValue> Init;
     }
 }

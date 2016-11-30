@@ -11,34 +11,42 @@ using UnityEngine.Events;
 
 namespace Arcomage.Unity.GameScene.Scripts
 {
-    public class GameScript : ObservableScript
+    public class GameScript : View
     {
-        [SerializeField]
         [Tooltip("Событие: Игра завершена")]
         public UnityEvent FinishedEvent;
 
-        private GameLoop gameLoop;
+        [Tooltip("Компонент ресурсов первого игрока")]
+        public ResourcesScript LeftResources;
 
-        public void Initialize(Game game, GameLoop gameLoop, ClassicRule rule, CardFactory cardFactory)
+        [Tooltip("Компонент ресурсов второго игрока")]
+        public ResourcesScript RightResources;
+
+        [Tooltip("Компонент строений первого игрока")]
+        public BuildingsScript LeftBuildings;
+
+        [Tooltip("Компонент строений второго игрока")]
+        public BuildingsScript RightBuildings;
+
+        [Tooltip("Компонент истории текущего хода")]
+        public HistoryScript History;
+
+        [Tooltip("Компонент карт первого игрока")]
+        public HandScript Hand;
+        
+        public void Initialize(Game game, GameLoop gameLoop, ClassicRule rule)
         {
-            this.gameLoop = gameLoop;
+            Bind(gameLoop, gl => gl.Update())
+                .OnChangedAndInit(gr => gr, gr => FinishedEvent.Invoke());
 
-            this.ResolveScript<ResourcesScript>("ResourcesLeft").Initialize(game.FirstPlayer.Resources);
-            this.ResolveScript<ResourcesScript>("ResourcesRight").Initialize(game.SecondPlayer.Resources);
+            LeftResources.Initialize(game.FirstPlayer.Resources);
+            RightResources.Initialize(game.SecondPlayer.Resources);
 
-            this.ResolveScript<BuildingsScript>("BuildingsLeft").Initialize(game.FirstPlayer.Buildings, rule);
-            this.ResolveScript<BuildingsScript>("BuildingsRight").Initialize(game.SecondPlayer.Buildings, rule);
+            LeftBuildings.Initialize(game.FirstPlayer.Buildings, rule);
+            RightBuildings.Initialize(game.SecondPlayer.Buildings, rule);
 
-            this.ResolveScript<HistoryScript>("History").Initialize(game.History, cardFactory);
-            this.ResolveScript<HandScript>("Hand").Initialize(game.FirstPlayer.Hand, cardFactory);
-        }
-
-        public override void Update()
-        {
-            if (gameLoop.Update())
-                FinishedEvent.Invoke();
-
-            base.Update();
+            History.Initialize(game.History);
+            Hand.Initialize(game.FirstPlayer.Hand);
         }
     }
 }

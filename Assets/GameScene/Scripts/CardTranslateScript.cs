@@ -2,36 +2,33 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Arcomage.Unity.Shared.Scripts;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Arcomage.Unity.GameScene.Scripts
 {
-    public class CardTranslateScript : Script
+    public class CardTranslateScript : MonoBehaviour
     {
-        [SerializeField]
+        [Tooltip("Событие завершения перемещения")]
+        public UnityEvent EndedEvent = new UnityEvent();
+
         [Tooltip("Скрость анимации перемещения")]
-        private float speed = 500f;
+        public float Speed = 1000f;
 
         private Vector3 position;
 
-        private Action<GameObject> onTranslated;
-
-        public void Initialize(Vector3 position, Action<GameObject> onTranslated = null)
+        public void Initialize(Vector3 position)
         {
             this.position = position;
-            this.onTranslated = onTranslated;
         }
 
-        public override void Update()
+        public void Update()
         {
-            transform.position = Vector3.MoveTowards(transform.position, position, Time.deltaTime * speed);
+            transform.position = Vector3.MoveTowards(transform.position, position, Time.deltaTime * Speed);
 
             if (transform.position == position)
             {
-                if (onTranslated != null)
-                    onTranslated.Invoke(gameObject);
-
+                EndedEvent.Invoke();
                 Destroy(this);
             }
         }

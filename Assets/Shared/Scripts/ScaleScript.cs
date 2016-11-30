@@ -6,17 +6,14 @@ using UnityEngine;
 
 namespace Arcomage.Unity.Shared.Scripts
 {
-    public class ScaleScript : Script
+    public class ScaleScript : MonoBehaviour
     {
-        [SerializeField]
         [Tooltip("Требуемая ширина экрана")]
         public float AspectWidth;
-
-        [SerializeField]
         [Tooltip("Требуемая выстоа экрана")]
         public float AspectHeight;
 
-        public override void Update()
+        public void Update()
         {
             //var realHeight = Camera.main.pixelHeight;
             //var realWidth = Camera.main.pixelWidth;

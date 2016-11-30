@@ -9,21 +9,16 @@ using UnityEngine;
 
 namespace Arcomage.Unity.GameScene.Scripts
 {
-    public class HistoryScript : ObservableScript
+    public class HistoryScript : View
     {
-        [SerializeField]
-        [Tooltip("Префаб карты")]
-        public GameObject cardPrefab;
-
-        [SerializeField]
+        [Tooltip("Фабрика создания карт")]
+        public CardFactory СardFactory;
+        
         [Tooltip("Объект, определяющий начальную позицию анимании появления карты и конечную позиция анимации удаления карты")]
-        public GameObject cardInitTemplate;
-
-        [SerializeField]
+        public GameObject СardInitTemplate;
+        
         [Tooltip("Коллекция объектов, определяющих позиции, на которых будут расположены карты после их добавления в историю")]
-        public GameObject[] cardTemplates;
-
-        private CardFactory cardFactory;
+        public GameObject[] СardTemplates;
 
         private ValuePair<Card, Vector3> playedCard;
 
@@ -31,12 +26,11 @@ namespace Arcomage.Unity.GameScene.Scripts
 
         private bool cleared;
 
-        public void Initialize(History history, CardFactory cardFactory)
+        public void Initialize(History history)
         {
-            this.cardFactory = cardFactory;
-
-            Initialize(
-                history.Observable(h => h.Cards, OnAddedCard, OnClearedCard));
+            Bind(history, h => h.Cards)
+                .OnAdded(OnAddedCard)
+                .OnCleared(OnClearedCard);
         }
 
         public Reference<bool> Push(Card card, Vector3 position)
@@ -51,27 +45,31 @@ namespace Arcomage.Unity.GameScene.Scripts
         {
             if (cleared)
             {
-                foreach (var cardTransform in transform.FindByTag("Card"))
-                    cardTransform.gameObject.AddComponent<CardTranslateScript>().Initialize(cardInitTemplate.transform.position,
-                        g => Destroy(g));
+                foreach (var cardScript in GetComponentsInChildren<CardScript>())
+                {
+                    var cardTranslateScript = cardScript.gameObject.AddComponent<CardTranslateScript>();
+                    cardTranslateScript.Initialize(СardInitTemplate.transform.position);
+                    cardTranslateScript.EndedEvent.AddListener(() => ((bool)cardScript).IfTrue(() => Destroy(cardScript.gameObject)));
+                }
             }
 
             if (playedCard != null && playedCard.First == card)
             {
-                var cardTemplate = cardTemplates[index % cardTemplates.Length];
-                var cardObject = cardFactory.CreateCard(cardPrefab, transform, card, index);
+                var cardTemplate = СardTemplates[index % СardTemplates.Length];
+                var cardObject = СardFactory.CreateCard(transform, card, index);
                 cardObject.transform.CopyFrom(cardTemplate.transform);
                 cardObject.transform.position = playedCard.Second;
 
-                cardObject.AddComponent<CardTranslateScript>().Initialize(cardTemplate.transform.position,
-                    g => playedReference.Value = true);
+                var cardTranslateScript = cardObject.AddComponent<CardTranslateScript>();
+                cardTranslateScript.Initialize(cardTemplate.transform.position);
+                cardTranslateScript.EndedEvent.AddListener(() => playedReference.Value = true);
             }
             else
             {
-                var cardTemplate = cardTemplates[index % cardTemplates.Length];
-                var cardObject = cardFactory.CreateCard(cardPrefab, transform, card, index);
+                var cardTemplate = СardTemplates[index % СardTemplates.Length];
+                var cardObject = СardFactory.CreateCard(transform, card, index);
                 cardObject.transform.CopyFrom(cardTemplate.transform);
-                cardObject.transform.position = cardInitTemplate.transform.position;
+                cardObject.transform.position = СardInitTemplate.transform.position;
 
                 cardObject.AddComponent<CardTranslateScript>().Initialize(cardTemplate.transform.position);
                 playedReference.Value = true;

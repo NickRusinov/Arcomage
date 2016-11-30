@@ -9,38 +9,31 @@ using UnityEngine;
 
 namespace Arcomage.Unity.GameScene.Scripts
 {
-    public class HandScript : ObservableScript
+    public class HandScript : View
     {
-        [SerializeField]
-        [Tooltip("Префаб карты")]
-        public GameObject cardPrefab;
+        [Tooltip("Фабрика создания карт")]
+        public CardFactory CardFactory;
 
-        [SerializeField]
-        [Tooltip("Объект колоды карт")]
-        public GameObject deckObject;
+        [Tooltip("Компонент истории текущего хода")]
+        public HistoryScript History;
 
-        [SerializeField]
-        [Tooltip("Объект истории карт")]
-        public GameObject historyObject;
-
-        [SerializeField]
+        [Tooltip("Объект, определяющий начальную позицию анимации появления карты")]
+        public GameObject CardInitTemplate;
+        
         [Tooltip("Коллекция объектов, определяющих положение, вращение и масштаб карт")]
-        public GameObject[] cardTemplates;
+        public GameObject[] CardTemplates;
 
-        private CardFactory cardFactory;
-
-        public void Initialize(Hand hand, CardFactory cardFactory)
+        public void Initialize(Hand hand)
         {
-            this.cardFactory = cardFactory;
-
-            Initialize(
-                hand.Observable(h => h.Cards, OnReplacedCard, OnInitializeCard));
+            Bind(hand, h => h.Cards)
+                .OnInit(OnInitializeCard)
+                .OnReplaced(OnReplacedCard);
         }
 
         private void OnInitializeCard(Card card, int index)
         {
-            var cardTemplate = cardTemplates[index % cardTemplates.Length];
-            var cardObject = cardFactory.CreateCard(cardPrefab, transform, card, index);
+            var cardTemplate = CardTemplates[index % CardTemplates.Length];
+            var cardObject = CardFactory.CreateCard(transform, card, index);
             cardObject.transform.CopyFrom(cardTemplate.transform);
         }
 
@@ -48,14 +41,13 @@ namespace Arcomage.Unity.GameScene.Scripts
         {
             var oldCardObject = transform.Find("Card" + index).gameObject;
             var oldCardDragDropScript = oldCardObject.GetComponent<CardDragDropScript>();
-            var historyScript = historyObject.GetComponent<HistoryScript>();
-            var playedReference = historyScript.Push(oldCard, oldCardDragDropScript.ResolveLatestPosition());
+            var playedReference = History.Push(oldCard, oldCardDragDropScript.ResolveLatestPosition());
             Destroy(oldCardObject);
 
-            var cardTemplate = cardTemplates[index % cardTemplates.Length];
-            var cardObject = cardFactory.CreateCard(cardPrefab, transform, newCard, index);
+            var cardTemplate = CardTemplates[index % CardTemplates.Length];
+            var cardObject = CardFactory.CreateCard(transform, newCard, index);
             cardObject.transform.CopyFrom(cardTemplate.transform);
-            cardObject.transform.position = deckObject.transform.position;
+            cardObject.transform.position = CardInitTemplate.transform.position;
             cardObject.SetActive(false);
 
             StartCoroutine(TranslatePosition(cardObject, cardTemplate, playedReference));

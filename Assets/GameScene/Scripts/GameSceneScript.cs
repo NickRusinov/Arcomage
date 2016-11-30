@@ -11,19 +11,20 @@ using Zenject;
 
 namespace Arcomage.Unity.GameScene.Scripts
 {
-    public class GameSceneScript : Script
+    public class GameSceneScript : MonoBehaviour
     {
-        [SerializeField]
         [Tooltip("Корневой компонент игры")]
         public GameScript GameScript;
 
-        [SerializeField]
+        [Tooltip("Фабрика для создания карт")]
+        public CardFactory CardFactory;
+
         [Tooltip("Компонент сообщения о победе")]
         public FinishedMenuScript FinishedScript;
 
         private DiContainer container;
 
-        public override void Awake()
+        public void Awake()
         {
             container = new DiContainer();
             container.Bind<Settings>().ToSelf().AsSingle(0);
@@ -31,9 +32,10 @@ namespace Arcomage.Unity.GameScene.Scripts
             SceneInstaller.Install(container);
         }
 
-        public override void Start()
+        public void Start()
         {
-            GameScript.Initialize(container.Resolve<Game>(), container.Resolve<GameLoop>(), (ClassicRule)container.Resolve<Rule>(), container.Resolve<CardFactory>());
+            GameScript.Initialize(container.Resolve<Game>(), container.Resolve<GameLoop>(), (ClassicRule)container.Resolve<Rule>());
+            CardFactory.Initialize(container.Resolve<Command>("PlayCardCommand"), container.Resolve<Command>("DiscardCardCommand"));
             FinishedScript.Initialize(container.Resolve<Game>());
         }
     }

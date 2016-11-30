@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace Arcomage.Unity.Shared.Scripts
 {
-    public class Observable
+    public class Binding
     {
-        public static readonly Observable Instance = new Observable();
+        public static readonly Binding Instance = new Binding();
 
         public virtual void Update() { }
     }

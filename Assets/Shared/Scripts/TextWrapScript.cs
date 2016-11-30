@@ -8,7 +8,7 @@ using UnityEngine;
 namespace Arcomage.Unity.Shared.Scripts
 {
     [RequireComponent(typeof(TextMesh))]
-    public class TextWrapScript : Script
+    public class TextWrapScript : MonoBehaviour
     {
         [SerializeField]
         public int maxSymbols;
@@ -17,12 +17,12 @@ namespace Arcomage.Unity.Shared.Scripts
 
         private string prevText;
 
-        public override void Start()
+        public void Start()
         {
             textMesh = GetComponent<TextMesh>();
         }
 
-        public override void Update()
+        public void Update()
         {
             if (prevText == textMesh.text)
                 return;

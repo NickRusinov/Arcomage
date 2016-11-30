@@ -9,13 +9,12 @@ namespace Arcomage.Unity.Shared.Scripts
 {
     public partial class CultureScript : MonoBehaviour
     {
-        [SerializeField]
         [Tooltip("Язык")]
-        public string culture;
+        public string Culture;
 
         public void Start()
         {
-            Thread.CurrentThread.CurrentUICulture = FrameworkExtensions.GetCultureInfoOrInvariant(culture);
+            Thread.CurrentThread.CurrentUICulture = FrameworkExtensions.GetCultureInfoOrInvariant(Culture);
         }
     }
 }

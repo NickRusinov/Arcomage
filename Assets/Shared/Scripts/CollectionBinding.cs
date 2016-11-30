@@ -5,18 +5,18 @@ using System.Threading.Tasks;
 
 namespace Arcomage.Unity.Shared.Scripts
 {
-    public class CollectionObservable<TSource, TValue> : Observable
+    public sealed class CollectionBinding<TSource, TValue> : Binding
     {
+        private bool init;
+
         private readonly TSource source;
 
         private readonly Func<TSource, IList<TValue>> func;
 
-        public CollectionObservable(TSource source, Func<TSource, IList<TValue>> func)
+        public CollectionBinding(TSource source, Func<TSource, IList<TValue>> func)
         {
             this.source = source;
             this.func = func;
-
-            ValueList = func.Invoke(source).ToList();
         }
 
         public IList<TValue> ValueList { get; private set; }
@@ -24,6 +24,16 @@ namespace Arcomage.Unity.Shared.Scripts
         public override void Update()
         {
             var newValueList = func.Invoke(source);
+
+            if (!init)
+            {
+                init = true;
+                ValueList = newValueList.ToList();
+
+                InvokeInit(newValueList);
+
+                return;
+            }
 
             if (ValueList.Count != 0 && newValueList.Count == 0)
             {
@@ -53,22 +63,28 @@ namespace Arcomage.Unity.Shared.Scripts
             }
         }
 
-        protected void InvokeReplaced(TValue oldValue, TValue newValue, int index)
+        private void InvokeReplaced(TValue oldValue, TValue newValue, int index)
         {
             if (Replaced != null)
                 Replaced(oldValue, newValue, index);
         }
 
-        protected void InvokeAdded(TValue value, int index)
+        private void InvokeAdded(TValue value, int index)
         {
             if (Added != null)
                 Added.Invoke(value, index);
         }
 
-        protected void InvokeCleared()
+        private void InvokeCleared()
         {
             if (Cleared != null)
                 Cleared.Invoke();
+        }
+
+        private void InvokeInit(IList<TValue> newValueList)
+        {
+            if (Init != null)
+                Init(newValueList);
         }
 
         public event Action<TValue, TValue, int> Replaced;
@@ -76,5 +92,7 @@ namespace Arcomage.Unity.Shared.Scripts
         public event Action<TValue, int> Added;
 
         public event Action Cleared;
+
+        public event Action<IList<TValue>> Init;
     }
 }
