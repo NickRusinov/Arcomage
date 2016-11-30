@@ -26,6 +26,11 @@ namespace Arcomage.Unity.Shared.Scripts
             return binding;
         }
 
+        public virtual void Start()
+        {
+            bindingCollection.ForEach(b => b.Update());
+        }
+
         public virtual void Update()
         {
             bindingCollection.ForEach(b => b.Update());
