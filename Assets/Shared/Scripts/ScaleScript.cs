@@ -10,22 +10,16 @@ namespace Arcomage.Unity.Shared.Scripts
     {
         [Tooltip("Требуемая ширина экрана")]
         public float AspectWidth;
-        [Tooltip("Требуемая выстоа экрана")]
+
+        [Tooltip("Требуемая высота экрана")]
         public float AspectHeight;
 
         public void Update()
         {
-            //var realHeight = Camera.main.pixelHeight;
-            //var realWidth = Camera.main.pixelWidth;
-
-            //Debug.Log(realHeight + " " + realWidth);
-
-            //var scale = new Vector2(realWidth / AspectWidth, realHeight / AspectHeight);
-            //scale = new Vector2(Math.Min(scale.x, scale.y), Math.Min(scale.x, scale.y));
-
-            //transform.localScale = new Vector3(scale.x, scale.y, transform.localScale.z);
-
-            Camera.main.orthographicSize = 1280f * Screen.height / Screen.width * 0.5f;
+            if (1f * Screen.height / Screen.width >= AspectHeight / AspectWidth)
+                Camera.main.orthographicSize = .5f * AspectWidth * Screen.height / Screen.width;
+            else
+                Camera.main.orthographicSize = .5f * AspectHeight;
         }
     }
 }
