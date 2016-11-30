@@ -38,7 +38,8 @@ namespace Arcomage.Unity.GameScene.Scripts
 
         public override void Update()
         {
-            base.Update();
+            if (GameSceneScript.Pause)
+                return;
 
             if (Input.GetMouseButton(0) && draggingItem)
             {

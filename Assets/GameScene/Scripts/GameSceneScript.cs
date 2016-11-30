@@ -13,6 +13,8 @@ namespace Arcomage.Unity.GameScene.Scripts
 {
     public class GameSceneScript : MonoBehaviour
     {
+        public static bool Pause;
+
         [Tooltip("Корневой компонент игры")]
         public GameScript GameScript;
 
@@ -26,6 +28,7 @@ namespace Arcomage.Unity.GameScene.Scripts
 
         public void Awake()
         {
+            Pause = false;
             container = new DiContainer();
             container.Bind<Settings>().ToSelf().AsSingle(0);
             GameInstaller.Install(container);

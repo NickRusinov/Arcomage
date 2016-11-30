@@ -30,5 +30,10 @@ namespace Arcomage.Unity.GameScene.Scripts
         {
             SceneManager.LoadScene("GameScene");
         }
+
+        public void OnShowHandler()
+        {
+            GameSceneScript.Pause = true;
+        }
     }
 }
