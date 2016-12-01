@@ -780,4 +780,16 @@
   <data name="GameFinishedPlayButtonText" xml:space="preserve">
     <value>Play again</value>
   </data>
+  <data name="SettingsFirstPlayerText" xml:space="preserve">
+    <value>Player's name #1</value>
+  </data>
+  <data name="SettingsSecondPlayerText" xml:space="preserve">
+    <value>Player's name #2</value>
+  </data>
+  <data name="SettingsFirstPlayerPlaceholder" xml:space="preserve">
+    <value>Enter player's name ...</value>
+  </data>
+  <data name="SettingsSecondPlayerPlaceholder" xml:space="preserve">
+    <value>Enter player's name ...</value>
+  </data>
 </root>

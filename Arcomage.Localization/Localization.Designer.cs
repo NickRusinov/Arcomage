@@ -2032,6 +2032,24 @@ namespace Arcomage {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Enter player&apos;s name ....
+        /// </summary>
+        public static string SettingsFirstPlayerPlaceholder {
+            get {
+                return ResourceManager.GetString("SettingsFirstPlayerPlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Player&apos;s name #1.
+        /// </summary>
+        public static string SettingsFirstPlayerText {
+            get {
+                return ResourceManager.GetString("SettingsFirstPlayerText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Play.
         /// </summary>
         public static string SettingsPlayButtonText {
@@ -2046,6 +2064,24 @@ namespace Arcomage {
         public static string SettingsRuleText {
             get {
                 return ResourceManager.GetString("SettingsRuleText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter player&apos;s name ....
+        /// </summary>
+        public static string SettingsSecondPlayerPlaceholder {
+            get {
+                return ResourceManager.GetString("SettingsSecondPlayerPlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Player&apos;s name #2.
+        /// </summary>
+        public static string SettingsSecondPlayerText {
+            get {
+                return ResourceManager.GetString("SettingsSecondPlayerText", resourceCulture);
             }
         }
     }
