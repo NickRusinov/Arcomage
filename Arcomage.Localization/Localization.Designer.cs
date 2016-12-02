@@ -2032,6 +2032,15 @@ namespace Arcomage {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string SettingsFirstPlayerDefaultName {
+            get {
+                return ResourceManager.GetString("SettingsFirstPlayerDefaultName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enter player&apos;s name ....
         /// </summary>
         public static string SettingsFirstPlayerPlaceholder {

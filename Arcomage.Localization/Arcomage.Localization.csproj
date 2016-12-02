@@ -45,9 +45,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Localization.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Localization.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
       <CustomToolNamespace>Arcomage</CustomToolNamespace>
+      <LastGenOutput>Localization1.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Localization.ru-RU.resx" />
   </ItemGroup>

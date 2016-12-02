@@ -792,4 +792,10 @@
   <data name="SettingsSecondPlayerPlaceholder" xml:space="preserve">
     <value>Введите имя игрока ...</value>
   </data>
+  <data name="SettingsFirstPlayerDefaultName" xml:space="preserve">
+    <value>Игрок 1</value>
+  </data>
+  <data name="SettingsSecondPlayerDefaultName" xml:space="preserve">
+    <value>Игрок 2</value>
+  </data>
 </root>

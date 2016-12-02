@@ -100,6 +100,7 @@
     <Compile Include="Assets\SettingsScene\Scripts\DeckDropdownScript.cs" />
     <Compile Include="Assets\SettingsScene\Scripts\PlayButtonScript.cs" />
     <Compile Include="Assets\SettingsScene\Scripts\RuleDropdownScript.cs" />
+    <Compile Include="Assets\SettingsScene\Scripts\SettingsSceneScript.cs" />
     <Compile Include="Assets\Shared\Scripts\CollectionBinding.cs" />
     <Compile Include="Assets\Shared\Scripts\Command.cs" />
     <Compile Include="Assets\Shared\Scripts\CultureScript.Editor.cs" />
@@ -110,6 +111,8 @@
     <Compile Include="Assets\Shared\Scripts\LocalizationScript.cs" />
     <Compile Include="Assets\Shared\Scripts\Binding.cs" />
     <Compile Include="Assets\Shared\Scripts\BindingExtensions.cs" />
+    <Compile Include="Assets\Shared\Scripts\Settings.cs" />
+    <Compile Include="Assets\SettingsScene\Scripts\SettingsScript.cs" />
     <Compile Include="Assets\Shared\Scripts\View.cs" />
     <Compile Include="Assets\Shared\Scripts\Reference.cs" />
     <Compile Include="Assets\Shared\Scripts\ScaleScript.cs" />
