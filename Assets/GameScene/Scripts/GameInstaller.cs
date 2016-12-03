@@ -89,7 +89,7 @@ namespace Arcomage.Unity.GameScene.Scripts
                 .AsSingle(1);
 
             Container.Bind<History>()
-                .FromMethod(c => new History(Enumerable.Empty<Card>().ToList()))
+                .FromMethod(c => new History(Enumerable.Empty<HistoryCard>().ToList()))
                 .AsSingle(0);
 
             Container.Bind<Hand>()

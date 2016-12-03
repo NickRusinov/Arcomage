@@ -12,7 +12,7 @@ namespace Arcomage.Unity.GameScene.Scripts
     public class HistoryScript : View
     {
         [Tooltip("Фабрика создания карт")]
-        public CardFactory СardFactory;
+        public HistoryCardFactory HistoryСardFactory;
         
         [Tooltip("Объект, определяющий начальную позицию анимании появления карты и конечную позиция анимации удаления карты")]
         public GameObject СardInitTemplate;
@@ -41,11 +41,11 @@ namespace Arcomage.Unity.GameScene.Scripts
             return playedReference;
         }
 
-        private void OnAddedCard(Card card, int index)
+        private void OnAddedCard(HistoryCard card, int index)
         {
             if (cleared)
             {
-                foreach (var cardScript in GetComponentsInChildren<CardScript>())
+                foreach (var cardScript in GetComponentsInChildren<HistoryCardScript>())
                 {
                     var cardTranslateScript = cardScript.gameObject.AddComponent<CardTranslateScript>();
                     cardTranslateScript.Initialize(СardInitTemplate.transform.position);
@@ -53,13 +53,13 @@ namespace Arcomage.Unity.GameScene.Scripts
                 }
             }
 
-            if (playedCard != null && playedCard.First == card)
+            if (playedCard != null && playedCard.First == card.Card)
             {
                 var cardTemplate = СardTemplates[index % СardTemplates.Length];
-                var cardObject = СardFactory.CreateCard(transform, card, index);
+                var cardObject = HistoryСardFactory.CreateCard(transform, card, index);
                 cardObject.transform.CopyFrom(cardTemplate.transform);
                 cardObject.transform.position = playedCard.Second;
-
+                
                 var cardTranslateScript = cardObject.AddComponent<CardTranslateScript>();
                 cardTranslateScript.Initialize(cardTemplate.transform.position);
                 cardTranslateScript.EndedEvent.AddListener(() => playedReference.Value = true);
@@ -67,7 +67,7 @@ namespace Arcomage.Unity.GameScene.Scripts
             else
             {
                 var cardTemplate = СardTemplates[index % СardTemplates.Length];
-                var cardObject = СardFactory.CreateCard(transform, card, index);
+                var cardObject = HistoryСardFactory.CreateCard(transform, card, index);
                 cardObject.transform.CopyFrom(cardTemplate.transform);
                 cardObject.transform.position = СardInitTemplate.transform.position;
 

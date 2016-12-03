@@ -21,6 +21,9 @@ namespace Arcomage.Unity.GameScene.Scripts
         [Tooltip("Фабрика для создания карт")]
         public CardFactory CardFactory;
 
+        [Tooltip("Фабрика для создания карт в истории")]
+        public HistoryCardFactory HistoryCardFactory;
+
         [Tooltip("Компонент сообщения о победе")]
         public FinishedMenuScript FinishedScript;
 

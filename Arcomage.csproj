@@ -13,7 +13,8 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile></CompilerResponseFile>
+    <CompilerResponseFile>
+    </CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows:5</UnityBuildTarget>
     <UnityVersion>5.4.2f2</UnityVersion>
@@ -80,7 +81,9 @@
   <ItemGroup>
     <Compile Include="Assets\GameScene\Scripts\BuildingsScript.cs" />
     <Compile Include="Assets\GameScene\Scripts\CardDragDropScript.cs" />
+    <Compile Include="Assets\GameScene\Scripts\HistoryCardFactory.cs" />
     <Compile Include="Assets\GameScene\Scripts\CardFactory.cs" />
+    <Compile Include="Assets\GameScene\Scripts\HistoryCardScript.cs" />
     <Compile Include="Assets\GameScene\Scripts\CardScript.cs" />
     <Compile Include="Assets\GameScene\Scripts\CardTranslateScript.cs" />
     <Compile Include="Assets\GameScene\Scripts\DiscardCardCommand.cs" />

@@ -7,11 +7,16 @@ using Arcomage.Domain.Entities;
 
 namespace Arcomage.Domain.Actions
 {
-    public class UpdateHistoryAction : UniformCardAction
+    public class UpdateHistoryAction : ICardAction
     {
-        protected override void Execute(Game game, Player player, int cardIndex)
+        public void PlayExecute(Game game, Player player, int cardIndex)
         {
-            game.History.Cards.Add(player.Hand.Cards[cardIndex]);
+            game.History.Cards.Add(new HistoryCard(player.Hand.Cards[cardIndex], true));
+        }
+
+        public void DiscardExecute(Game game, Player player, int cardIndex)
+        {
+            game.History.Cards.Add(new HistoryCard(player.Hand.Cards[cardIndex], false));
         }
     }
 }

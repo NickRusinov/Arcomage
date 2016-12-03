@@ -798,4 +798,7 @@
   <data name="SettingsSecondPlayerDefaultName" xml:space="preserve">
     <value>Игрок 2</value>
   </data>
+  <data name="CardDiscardText" xml:space="preserve">
+    <value>Сброшена</value>
+  </data>
 </root>

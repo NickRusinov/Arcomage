@@ -8,11 +8,11 @@ namespace Arcomage.Domain.Entities
 {
     public class History
     {
-        public History(IList<Card> cards)
+        public History(IList<HistoryCard> cards)
         {
             Cards = cards;
         }
 
-        public IList<Card> Cards { get; }
+        public IList<HistoryCard> Cards { get; }
     }
 }
