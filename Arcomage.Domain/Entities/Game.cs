@@ -11,6 +11,8 @@ namespace Arcomage.Domain.Entities
     {
         private int playAgain;
 
+        private int discardOnly;
+
         public Game(Deck deck, History history, Player firstPlayer, Player secondPlayer)
         {
             Deck = deck;
@@ -35,6 +37,12 @@ namespace Arcomage.Domain.Entities
         {
             get { return playAgain; }
             set { playAgain = Max(value, 0); }
+        }
+
+        public int DiscardOnly
+        {
+            get { return discardOnly; }
+            set { discardOnly = Max(value, 0); }
         }
     }
 }

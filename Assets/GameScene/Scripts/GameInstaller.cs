@@ -20,7 +20,8 @@ namespace Arcomage.Unity.GameScene.Scripts
         public override void InstallBindings()
         {
             Container.Bind<IArtificialIntelligence>()
-                .To<FakeArtificialIntelligence>()
+                .FromMethod(c => new FakeArtificialIntelligence(
+                    new PlayCardCriteria(PlayerMode.SecondPlayer)))
                 .AsSingle(0);
 
             Container.Bind<Card>()

@@ -801,4 +801,7 @@
   <data name="CardDiscardText" xml:space="preserve">
     <value>Сброшена</value>
   </data>
+  <data name="GameDiscardText" xml:space="preserve">
+    <value>Сбросьте карту</value>
+  </data>
 </root>

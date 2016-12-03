@@ -2,20 +2,27 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using Arcomage.Domain.Entities;
+using Arcomage.Domain.Services;
 
 namespace Arcomage.Domain.ArtificialIntelligence
 {
     public class FakeArtificialIntelligence : IArtificialIntelligence
     {
+        private readonly IPlayCardCriteria playCardCriteria;
+
+        public FakeArtificialIntelligence(IPlayCardCriteria playCardCriteria)
+        {
+            this.playCardCriteria = playCardCriteria;
+        }
+
         public Task<PlayResult> Execute(Game game, Player player)
         {
             return Internal.TaskExtensions.Delay(1000)
                 .ContinueWith(t =>
                 {
-                    if (player.Hand.Cards[0].IsEnoughResources(player.Resources))
+                    if (playCardCriteria.CanPlayCard(game, 0))
                         return new PlayResult(0, true);
 
                     return new PlayResult(0, false);

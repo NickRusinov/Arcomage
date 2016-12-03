@@ -33,11 +33,19 @@ namespace Arcomage.Unity.GameScene.Scripts
 
         [Tooltip("Компонент карт первого игрока")]
         public HandScript Hand;
+
+        [Tooltip("Текст для вывода информации для сброса карты")]
+        public TextMesh DiscardOnlyText;
         
         public void Initialize(Game game, GameLoop gameLoop, ClassicRule rule)
         {
             Bind(gameLoop, gl => gl.Update())
-                .OnChangedAndInit(gr => gr, gr => FinishedEvent.Invoke());
+                .OnChangedAndInit(gr => gr, 
+                    gr => FinishedEvent.Invoke());
+
+            Bind(game, g => g.DiscardOnly)
+                .OnChangedAndInit(@do => DiscardOnlyText.gameObject.SetActive(@do > 0 && game.PlayerMode == PlayerMode.FirstPlayer))
+                .OnChangedAndInit(@do => DiscardOnlyText.text = Localization.ResourceManager.GetString("GameDiscardText"));
 
             LeftResources.Initialize(game.FirstPlayer.Resources);
             RightResources.Initialize(game.SecondPlayer.Resources);

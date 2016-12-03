@@ -21,7 +21,8 @@ namespace Arcomage.Domain.Services
         {
             var player = game.GetPlayer(playerMode);
 
-            return player.Hand.Cards[cardIndex].IsEnoughResources(player.Resources);
+            return game.DiscardOnly <= 0 &&
+                player.Hand.Cards[cardIndex].IsEnoughResources(player.Resources);
         }
     }
 }

@@ -19,7 +19,7 @@ namespace Arcomage.Domain.Actions
 
         public void DiscardExecute(Game game, Player player, int cardIndex)
         {
-
+            game.DiscardOnly--;
         }
     }
 }
