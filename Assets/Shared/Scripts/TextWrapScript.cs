@@ -17,12 +17,22 @@ namespace Arcomage.Unity.Shared.Scripts
 
         private string prevText;
 
-        public void Start()
+        public void Awake()
         {
             textMesh = GetComponent<TextMesh>();
         }
 
+        public void Start()
+        {
+            UpdateText();
+        }
+
         public void Update()
+        {
+            UpdateText();
+        }
+
+        private void UpdateText()
         {
             if (prevText == textMesh.text)
                 return;
@@ -30,7 +40,7 @@ namespace Arcomage.Unity.Shared.Scripts
             var symbols = 0;
             var builder = new StringBuilder();
             var parts = textMesh.text.Split(new[] { ' ', '\n' }, StringSplitOptions.RemoveEmptyEntries);
-        
+
             foreach (var part in parts)
             {
                 if (symbols + part.Length > maxSymbols)
