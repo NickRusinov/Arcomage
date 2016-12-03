@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{1F4395A5-CD7A-74B5-7D1D-02C0E28D384B}</ProjectGuid>
+    <ProjectGuid>{CA029F01-9C28-4AA2-94AF-66B11863D69B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AssemblyName>Assembly-CSharp</AssemblyName>
     <FileAlignment>512</FileAlignment>
@@ -13,12 +13,12 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile>
-    </CompilerResponseFile>
+    <CompilerResponseFile></CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows:5</UnityBuildTarget>
     <UnityVersion>5.4.2f2</UnityVersion>
     <RootNamespace>Arcomage.Unity</RootNamespace>
+    <LangVersion Condition=" '$(VisualStudioVersion)' != '10.0' ">4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -101,6 +101,9 @@
     <Compile Include="Assets\SettingsScene\Scripts\PlayButtonScript.cs" />
     <Compile Include="Assets\SettingsScene\Scripts\RuleDropdownScript.cs" />
     <Compile Include="Assets\SettingsScene\Scripts\SettingsSceneScript.cs" />
+    <Compile Include="Assets\SettingsScene\Scripts\SettingsScript.cs" />
+    <Compile Include="Assets\Shared\Scripts\Binding.cs" />
+    <Compile Include="Assets\Shared\Scripts\BindingExtensions.cs" />
     <Compile Include="Assets\Shared\Scripts\CollectionBinding.cs" />
     <Compile Include="Assets\Shared\Scripts\Command.cs" />
     <Compile Include="Assets\Shared\Scripts\CultureScript.Editor.cs" />
@@ -109,23 +112,18 @@
     <Compile Include="Assets\Shared\Scripts\FrameworkExtensions.cs" />
     <Compile Include="Assets\Shared\Scripts\LocalizationScript.Editor.cs" />
     <Compile Include="Assets\Shared\Scripts\LocalizationScript.cs" />
-    <Compile Include="Assets\Shared\Scripts\Binding.cs" />
-    <Compile Include="Assets\Shared\Scripts\BindingExtensions.cs" />
-    <Compile Include="Assets\Shared\Scripts\Settings.cs" />
-    <Compile Include="Assets\SettingsScene\Scripts\SettingsScript.cs" />
-    <Compile Include="Assets\Shared\Scripts\View.cs" />
     <Compile Include="Assets\Shared\Scripts\Reference.cs" />
     <Compile Include="Assets\Shared\Scripts\ScaleScript.cs" />
+    <Compile Include="Assets\Shared\Scripts\Settings.cs" />
     <Compile Include="Assets\Shared\Scripts\TextOutlineScript.cs" />
     <Compile Include="Assets\Shared\Scripts\TextWrapScript.cs" />
     <Compile Include="Assets\Shared\Scripts\UnityExtensions.cs" />
     <Compile Include="Assets\Shared\Scripts\ValueBinding.cs" />
+    <Compile Include="Assets\Shared\Scripts\View.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\GameScene\Shaders\ClipAreaShader.shader" />
   </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="GenerateTargetFrameworkMonikerAttribute" />
 </Project>

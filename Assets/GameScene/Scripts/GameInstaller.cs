@@ -10,6 +10,7 @@ using Arcomage.Domain.Entities;
 using Arcomage.Domain.Players;
 using Arcomage.Domain.Rules;
 using Arcomage.Domain.Services;
+using Arcomage.Unity.Shared.Scripts;
 using Zenject;
 
 namespace Arcomage.Unity.GameScene.Scripts
@@ -40,8 +41,8 @@ namespace Arcomage.Unity.GameScene.Scripts
                     new ActivateCardAction(),
                     new UpdateHistoryAction(),
                     new ReplaceCardAction(),
-                    new ReplacePlayerAction(),
-                    new UpdateFinishedAction(c.Container.Resolve<Rule>())))
+                    new UpdateFinishedAction(c.Container.Resolve<Rule>()),
+                    new ReplacePlayerAction()))
                 .AsSingle(0);
 
             Container.Bind<IPlayCardCriteria>()
@@ -69,7 +70,10 @@ namespace Arcomage.Unity.GameScene.Scripts
                 .FromMethod(c => new HumanPlayer(
                     c.Container.Resolve<Rule>().CreateBuildings(),
                     c.Container.Resolve<Rule>().CreateResources(),
-                    c.Container.Resolve<Hand>(PlayerMode.FirstPlayer)))
+                    c.Container.Resolve<Hand>(PlayerMode.FirstPlayer))
+                {
+                    Identifier = Settings.Instance.FirstPlayer
+                })
                 .AsSingle(0);
 
             Container.Bind<Player>()
@@ -78,7 +82,10 @@ namespace Arcomage.Unity.GameScene.Scripts
                     c.Container.Resolve<IArtificialIntelligence>(),
                     c.Container.Resolve<Rule>().CreateBuildings(),
                     c.Container.Resolve<Rule>().CreateResources(),
-                    c.Container.Resolve<Hand>(PlayerMode.SecondPlayer)))
+                    c.Container.Resolve<Hand>(PlayerMode.SecondPlayer))
+                {
+                    Identifier = Settings.Instance.SecondPlayer
+                })
                 .AsSingle(1);
 
             Container.Bind<History>()
@@ -98,7 +105,7 @@ namespace Arcomage.Unity.GameScene.Scripts
                 .AsSingle(1);
 
             Container.Bind<Deck>()
-                .FromMethod(c => c.Container.Resolve<Deck>(c.Container.Resolve<Settings>().DeckMode))
+                .FromMethod(c => c.Container.Resolve<Deck>(Settings.Instance.Deck))
                 .AsSingle(0);
 
             Container.Bind<Deck>()
@@ -112,26 +119,13 @@ namespace Arcomage.Unity.GameScene.Scripts
                 .AsSingle(2);
 
             Container.Bind<Rule>()
-                .FromMethod(c => c.Container.Resolve<Rule>(c.Container.Resolve<Settings>().RuleMode))
+                .FromMethod(c => c.Container.Resolve<Rule>(Settings.Instance.Rule))
                 .AsSingle(0);
 
             Container.Bind<Rule>()
-                .WithId("EmpiresCapital")
+                .WithId("EmpireCapital")
                 .FromMethod(c => new ClassicRule(new Buildings(5, 20), new Resources(2, 5, 2, 5, 2, 5), 50, 150))
                 .AsSingle(1);
         }
-    }
-
-    public class Settings
-    {
-        public Settings()
-        {
-            DeckMode = "Classic";
-            RuleMode = "EmpiresCapital";
-        }
-
-        public string DeckMode { get; set; }
-
-        public string RuleMode { get; set; }
     }
 }

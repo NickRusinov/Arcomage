@@ -15,10 +15,16 @@ namespace Arcomage.Unity.GameScene.Scripts
         [Tooltip("Текст для вывода причины завершения игры")]
         public Text CauseText;
 
+        [Tooltip("Текст для вывода имени игрока победителя")]
+        public Text WinnerText;
+
         public void Initialize(Game game)
         {
             Bind(game, g => g.Result.GetIdentifier())
                 .OnChangedAndInit(i => CauseText.text = Localization.ResourceManager.GetString("GameFinished" + i + "Text"));
+
+            Bind(game, g => g.Result.Player.Identifier)
+                .OnChangedAndInit(i => WinnerText.text = string.Format(Localization.GameFinishedWinnerText, i));
         }
 
         public void OnBackClickHandler()
