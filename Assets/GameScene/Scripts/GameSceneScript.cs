@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Arcomage.Domain;
 using Arcomage.Domain.Entities;
 using Arcomage.Domain.Rules;
+using Arcomage.Unity.GameScene.Views;
 using Arcomage.Unity.Shared.Scripts;
 using UnityEngine;
 using Zenject;
@@ -16,7 +17,7 @@ namespace Arcomage.Unity.GameScene.Scripts
         public static bool Pause;
 
         [Tooltip("Корневой компонент игры")]
-        public GameScript GameScript;
+        public GameView GameScript;
 
         [Tooltip("Фабрика для создания карт")]
         public CardFactory CardFactory;
@@ -25,7 +26,7 @@ namespace Arcomage.Unity.GameScene.Scripts
         public HistoryCardFactory HistoryCardFactory;
 
         [Tooltip("Компонент сообщения о победе")]
-        public FinishedMenuScript FinishedScript;
+        public FinishedMenuView FinishedScript;
 
         private DiContainer container;
 

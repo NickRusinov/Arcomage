@@ -9,30 +9,30 @@ using Arcomage.Unity.Shared.Scripts;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Arcomage.Unity.GameScene.Scripts
+namespace Arcomage.Unity.GameScene.Views
 {
-    public class GameScript : View
+    public class GameView : View
     {
         [Tooltip("Событие: Игра завершена")]
         public UnityEvent FinishedEvent;
 
         [Tooltip("Компонент ресурсов первого игрока")]
-        public ResourcesScript LeftResources;
+        public ResourcesView LeftResources;
 
         [Tooltip("Компонент ресурсов второго игрока")]
-        public ResourcesScript RightResources;
+        public ResourcesView RightResources;
 
         [Tooltip("Компонент строений первого игрока")]
-        public BuildingsScript LeftBuildings;
+        public BuildingsView LeftBuildings;
 
         [Tooltip("Компонент строений второго игрока")]
-        public BuildingsScript RightBuildings;
+        public BuildingsView RightBuildings;
 
         [Tooltip("Компонент истории текущего хода")]
-        public HistoryScript History;
+        public HistoryView History;
 
         [Tooltip("Компонент карт первого игрока")]
-        public HandScript Hand;
+        public HandView Hand;
 
         [Tooltip("Текст для вывода информации для сброса карты")]
         public TextMesh DiscardOnlyText;

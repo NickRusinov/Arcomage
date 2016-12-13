@@ -6,9 +6,9 @@ using Arcomage.Unity.Shared.Scripts;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Arcomage.Unity.SettingsScene.Scripts
+namespace Arcomage.Unity.SettingsScene.Views
 {
-    public class SettingsScript : View
+    public class SettingsView : View
     {
         [Tooltip("Поле ввода имени первого игрока")]
         public InputField FirstPlayerInput;

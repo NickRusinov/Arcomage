@@ -4,18 +4,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Arcomage.Domain.Entities;
+using Arcomage.Unity.GameScene.Scripts;
 using Arcomage.Unity.Shared.Scripts;
 using UnityEngine;
 
-namespace Arcomage.Unity.GameScene.Scripts
+namespace Arcomage.Unity.GameScene.Views
 {
-    public class HandScript : View
+    public class HandView : View
     {
         [Tooltip("Фабрика создания карт")]
         public CardFactory CardFactory;
 
         [Tooltip("Компонент истории текущего хода")]
-        public HistoryScript History;
+        public HistoryView History;
 
         [Tooltip("Объект, определяющий начальную позицию анимации появления карты")]
         public GameObject CardInitTemplate;

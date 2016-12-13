@@ -8,9 +8,14 @@ using UnityEngine.UI;
 
 namespace Arcomage.Unity.Shared.Scripts
 {
-    public class DropdownScript : Dropdown
+    public class DropdownView : Dropdown
     {
         private static readonly FieldInfo itemsFieldInfo = typeof(Dropdown).GetField("m_Items", BindingFlags.Instance | BindingFlags.NonPublic);
+
+        protected DropdownView()
+        {
+            onValueChanged.AddListener(OnChangedHandler);
+        }
 
         protected sealed override DropdownItem CreateItem(DropdownItem itemTemplate)
         {
@@ -27,7 +32,7 @@ namespace Arcomage.Unity.Shared.Scripts
         
         }
 
-        public virtual void OnChangedHandler(int index)
+        protected virtual void OnChangedHandler(int index)
         {
 
         }

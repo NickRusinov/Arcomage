@@ -7,9 +7,9 @@ using Arcomage.Domain.Rules;
 using Arcomage.Unity.Shared.Scripts;
 using UnityEngine;
 
-namespace Arcomage.Unity.GameScene.Scripts
+namespace Arcomage.Unity.GameScene.Views
 {
-    public class BuildingsScript : View
+    public class BuildingsView : View
     {
         [Tooltip("Текст для вывода высоты башни")]
         public TextMesh TowerText;

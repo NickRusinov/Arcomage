@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Arcomage.Domain.Entities;
+using Arcomage.Unity.GameScene.Views;
 using Arcomage.Unity.Shared.Scripts;
 using UnityEngine;
 
@@ -26,10 +27,10 @@ namespace Arcomage.Unity.GameScene.Scripts
         public GameObject CreateCard(Transform transform, Card card, int index)
         {
             var cardObject = (GameObject)Instantiate(Prefab, transform);
-            cardObject.GetComponent<CardScript>().Index = index;
+            cardObject.GetComponent<CardView>().Index = index;
             cardObject.name = "Card" + index;
 
-            cardObject.GetComponent<CardScript>().Initialize(card, playCommand);
+            cardObject.GetComponent<CardView>().Initialize(card, playCommand);
             cardObject.GetComponent<CardDragDropScript>().Initialize(playCommand, discardCommand);
 
             return cardObject;

@@ -2,15 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using Arcomage.Domain.Entities;
+using Arcomage.Unity.GameScene.Scripts;
 using Arcomage.Unity.Shared.Scripts;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-namespace Arcomage.Unity.GameScene.Scripts
+namespace Arcomage.Unity.GameScene.Views
 {
-    public class FinishedMenuScript : View
+    public class FinishedMenuView : View
     {
         [Tooltip("Текст для вывода причины завершения игры")]
         public Text CauseText;

@@ -6,9 +6,9 @@ using Arcomage.Unity.Shared.Scripts;
 using UnityEngine;
 using Resources = Arcomage.Domain.Entities.Resources;
 
-namespace Arcomage.Unity.GameScene.Scripts
+namespace Arcomage.Unity.GameScene.Views
 {
-    public class ResourcesScript : View
+    public class ResourcesView : View
     {
         [Tooltip("Текст для вывода количества шахт")]
         public TextMesh QuarryText;

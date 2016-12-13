@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Arcomage.Domain.Entities;
+using Arcomage.Unity.GameScene.Scripts;
 using Arcomage.Unity.Shared.Scripts;
 using ModestTree.Util;
 using UnityEngine;
 
-namespace Arcomage.Unity.GameScene.Scripts
+namespace Arcomage.Unity.GameScene.Views
 {
-    public class HistoryScript : View
+    public class HistoryView : View
     {
         [Tooltip("Фабрика создания карт")]
         public HistoryCardFactory HistoryСardFactory;
@@ -45,7 +46,7 @@ namespace Arcomage.Unity.GameScene.Scripts
         {
             if (cleared)
             {
-                foreach (var cardScript in GetComponentsInChildren<HistoryCardScript>())
+                foreach (var cardScript in GetComponentsInChildren<HistoryCardView>())
                 {
                     var cardTranslateScript = cardScript.gameObject.AddComponent<CardTranslateScript>();
                     cardTranslateScript.Initialize(СardInitTemplate.transform.position);

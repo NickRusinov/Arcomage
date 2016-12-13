@@ -3,13 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Arcomage.Unity.GameScene.Views;
 using Arcomage.Unity.Shared.Scripts;
 using UnityEngine;
 
 namespace Arcomage.Unity.GameScene.Scripts
 {
-    [RequireComponent(typeof(CardScript))]
-    public class CardDragDropScript : View
+    [RequireComponent(typeof(CardView))]
+    public class CardDragDropScript : MonoBehaviour
     {
         private static bool globalDraggingItem;
 
@@ -36,7 +37,7 @@ namespace Arcomage.Unity.GameScene.Scripts
             return latestPosition;
         }
 
-        public override void Update()
+        public void Update()
         {
             if (GameSceneScript.Pause)
                 return;
@@ -66,7 +67,7 @@ namespace Arcomage.Unity.GameScene.Scripts
             if (!Input.GetMouseButton(0) && draggingItem)
             {
                 draggingItem = globalDraggingItem = false;
-                var index = GetComponent<CardScript>().Index;
+                var index = GetComponent<CardView>().Index;
             
                 if (transform.position.y - initialPosition.y >= + 25f)
                     if (playCommand.CanExecute(index))

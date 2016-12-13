@@ -5,9 +5,9 @@ using System.Text;
 using Arcomage.Unity.Shared.Scripts;
 using UnityEngine.UI;
 
-namespace Arcomage.Unity.SettingsScene.Scripts
+namespace Arcomage.Unity.SettingsScene.Views
 {
-    public class DeckDropdownScript : DropdownScript
+    public class DeckDropdownView : DropdownView
     {
         protected override void CreateItem(DropdownItem item, int index)
         {
@@ -16,7 +16,7 @@ namespace Arcomage.Unity.SettingsScene.Scripts
             itemLabelText.text = Localization.ResourceManager.GetString("Deck" + options[index].text + "Name");
         }
 
-        public override void OnChangedHandler(int index)
+        protected override void OnChangedHandler(int index)
         {
             captionText.text = Localization.ResourceManager.GetString("Deck" + options[index].text + "Name");
         }

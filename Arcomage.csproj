@@ -13,7 +13,8 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile></CompilerResponseFile>
+    <CompilerResponseFile>
+    </CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>Android:13</UnityBuildTarget>
     <UnityVersion>5.4.2f2</UnityVersion>
@@ -78,39 +79,39 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\GameScene\Scripts\BuildingsScript.cs" />
     <Compile Include="Assets\GameScene\Scripts\CardDragDropScript.cs" />
     <Compile Include="Assets\GameScene\Scripts\CardFactory.cs" />
-    <Compile Include="Assets\GameScene\Scripts\CardScript.cs" />
     <Compile Include="Assets\GameScene\Scripts\CardTranslateScript.cs" />
     <Compile Include="Assets\GameScene\Scripts\DiscardCardCommand.cs" />
-    <Compile Include="Assets\GameScene\Scripts\FinishedMenuScript.cs" />
     <Compile Include="Assets\GameScene\Scripts\GameExtensions.cs" />
     <Compile Include="Assets\GameScene\Scripts\GameInstaller.cs" />
     <Compile Include="Assets\GameScene\Scripts\GameSceneScript.cs" />
-    <Compile Include="Assets\GameScene\Scripts\GameScript.cs" />
-    <Compile Include="Assets\GameScene\Scripts\HandScript.cs" />
     <Compile Include="Assets\GameScene\Scripts\HistoryCardFactory.cs" />
-    <Compile Include="Assets\GameScene\Scripts\HistoryCardScript.cs" />
-    <Compile Include="Assets\GameScene\Scripts\HistoryScript.cs" />
     <Compile Include="Assets\GameScene\Scripts\PlayCardCommand.cs" />
-    <Compile Include="Assets\GameScene\Scripts\ResourcesScript.cs" />
     <Compile Include="Assets\GameScene\Scripts\SceneInstaller.cs" />
+    <Compile Include="Assets\GameScene\Views\BuildingsView.cs" />
+    <Compile Include="Assets\GameScene\Views\CardView.cs" />
+    <Compile Include="Assets\GameScene\Views\FinishedMenuView.cs" />
+    <Compile Include="Assets\GameScene\Views\GameView.cs" />
+    <Compile Include="Assets\GameScene\Views\HandView.cs" />
+    <Compile Include="Assets\GameScene\Views\HistoryCardView.cs" />
+    <Compile Include="Assets\GameScene\Views\HistoryView.cs" />
+    <Compile Include="Assets\GameScene\Views\ResourcesView.cs" />
     <Compile Include="Assets\MenuScene\Scripts\ExitButtonScript.cs" />
     <Compile Include="Assets\MenuScene\Scripts\PlayButtonScript.cs" />
     <Compile Include="Assets\SettingsScene\Scripts\BackButtonScript.cs" />
-    <Compile Include="Assets\SettingsScene\Scripts\DeckDropdownScript.cs" />
+    <Compile Include="Assets\SettingsScene\Views\DeckDropdownView.cs" />
     <Compile Include="Assets\SettingsScene\Scripts\PlayButtonScript.cs" />
-    <Compile Include="Assets\SettingsScene\Scripts\RuleDropdownScript.cs" />
+    <Compile Include="Assets\SettingsScene\Views\RuleDropdownView.cs" />
     <Compile Include="Assets\SettingsScene\Scripts\SettingsSceneScript.cs" />
-    <Compile Include="Assets\SettingsScene\Scripts\SettingsScript.cs" />
+    <Compile Include="Assets\SettingsScene\Views\SettingsView.cs" />
     <Compile Include="Assets\Shared\Scripts\Binding.cs" />
     <Compile Include="Assets\Shared\Scripts\BindingExtensions.cs" />
     <Compile Include="Assets\Shared\Scripts\CollectionBinding.cs" />
     <Compile Include="Assets\Shared\Scripts\Command.cs" />
     <Compile Include="Assets\Shared\Scripts\CultureScript.Editor.cs" />
     <Compile Include="Assets\Shared\Scripts\CultureScript.cs" />
-    <Compile Include="Assets\Shared\Scripts\DropdownScript.cs" />
+    <Compile Include="Assets\Shared\Scripts\DropdownView.cs" />
     <Compile Include="Assets\Shared\Scripts\FrameworkExtensions.cs" />
     <Compile Include="Assets\Shared\Scripts\LocalizationScript.Editor.cs" />
     <Compile Include="Assets\Shared\Scripts\LocalizationScript.cs" />
