@@ -7,48 +7,55 @@ namespace Arcomage.Unity.Shared.Scripts
 {
     public static class BindingExtensions
     {
-        public static ValueBinding<TSource, TValue> OnChangedAndInit<TSource, TValue>(this ValueBinding<TSource, TValue> observable, Action<TValue> action)
+        public static ValueBinding<TSource, TValue> OnChangedAndInit<TSource, TValue>(this ValueBinding<TSource, TValue> binding, Action<TValue> action)
         {
-            observable.Changed += (oldValue, newValue) => action(newValue);
-            observable.Init += action;
+            binding.Changed += (oldValue, newValue) => action(newValue);
+            binding.Init += action;
 
-            return observable;
+            return binding;
         }
 
-        public static ValueBinding<TSource, TValue> OnChangedAndInit<TSource, TValue>(this ValueBinding<TSource, TValue> observable, Predicate<TValue> predicate, Action<TValue> action)
+        public static ValueBinding<TSource, TValue> OnChangedAndInit<TSource, TValue>(this ValueBinding<TSource, TValue> binding, Predicate<TValue> predicate, Action<TValue> action)
         {
-            observable.Changed += (oldValue, newValue) => predicate(newValue).IfTrue(() => action(newValue));
-            observable.Init += newValue => predicate(newValue).IfTrue(() => action(newValue));
+            binding.Changed += (oldValue, newValue) => predicate(newValue).IfTrue(() => action(newValue));
+            binding.Init += newValue => predicate(newValue).IfTrue(() => action(newValue));
 
-            return observable;
+            return binding;
         }
 
-        public static CollectionBinding<TSource, TValue> OnInit<TSource, TValue>(this CollectionBinding<TSource, TValue> observable, Action<TValue, int> action)
+        public static ValueBinding<TSource, TValue> OnChanged<TSource, TValue>(this ValueBinding<TSource, TValue> binding, Action<TValue> action)
         {
-            observable.Init += newValueList => newValueList.ForEach(action);
+            binding.Changed += (oldValue, newValue) => action(newValue);
 
-            return observable;
+            return binding;
         }
 
-        public static CollectionBinding<TSource, TValue> OnReplaced<TSource, TValue>(this CollectionBinding<TSource, TValue> observable, Action<TValue, TValue, int> action)
+        public static CollectionBinding<TSource, TValue> OnInit<TSource, TValue>(this CollectionBinding<TSource, TValue> binding, Action<TValue, int> action)
         {
-            observable.Replaced += action;
+            binding.Init += newValueList => newValueList.ForEach(action);
 
-            return observable;
+            return binding;
         }
 
-        public static CollectionBinding<TSource, TValue> OnAdded<TSource, TValue>(this CollectionBinding<TSource, TValue> observable, Action<TValue, int> action)
+        public static CollectionBinding<TSource, TValue> OnReplaced<TSource, TValue>(this CollectionBinding<TSource, TValue> binding, Action<TValue, TValue, int> action)
         {
-            observable.Added += action;
+            binding.Replaced += action;
 
-            return observable;
+            return binding;
         }
 
-        public static CollectionBinding<TSource, TValue> OnCleared<TSource, TValue>(this CollectionBinding<TSource, TValue> observable, Action action)
+        public static CollectionBinding<TSource, TValue> OnAdded<TSource, TValue>(this CollectionBinding<TSource, TValue> binding, Action<TValue, int> action)
         {
-            observable.Cleared += action;
+            binding.Added += action;
 
-            return observable;
+            return binding;
+        }
+
+        public static CollectionBinding<TSource, TValue> OnCleared<TSource, TValue>(this CollectionBinding<TSource, TValue> binding, Action action)
+        {
+            binding.Cleared += action;
+
+            return binding;
         }
     }
 }

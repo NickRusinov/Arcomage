@@ -64,10 +64,8 @@ namespace Arcomage.Unity.Shared.Scripts
             //outlineColor.a = textMesh.color.a * textMesh.color.a;
 
             // copy attributes
-            for (int i = 0; i < transform.childCount; i++)
+            foreach (var other in transform.GetComponentsInChildren<TextMesh>())
             {
-
-                TextMesh other = transform.GetChild(i).GetComponent<TextMesh>();
                 other.text = textMesh.text;
                 //other.color = outlineColor;
                 //other.alignment = textMesh.alignment;
