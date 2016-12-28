@@ -6,6 +6,7 @@ using Arcomage.Domain;
 using Arcomage.Domain.Entities;
 using Arcomage.Domain.Rules;
 using Arcomage.Unity.Shared.Scripts;
+using SmartLocalization;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -45,7 +46,7 @@ namespace Arcomage.Unity.GameScene.Views
 
             Bind(game, g => g.DiscardOnly)
                 .OnChangedAndInit(@do => DiscardOnlyText.gameObject.SetActive(@do > 0 && game.PlayerMode == PlayerMode.FirstPlayer))
-                .OnChangedAndInit(@do => DiscardOnlyText.text = Localization.ResourceManager.GetString("GameDiscardText"));
+                .OnChangedAndInit(@do => DiscardOnlyText.text = LanguageManager.Instance.GetTextValue("GameDiscardText"));
 
             LeftResources.Initialize(game.FirstPlayer.Resources);
             RightResources.Initialize(game.SecondPlayer.Resources);

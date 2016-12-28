@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Arcomage.Domain.Entities;
 using Arcomage.Unity.GameScene.Scripts;
 using Arcomage.Unity.Shared.Scripts;
+using SmartLocalization;
 using UnityEngine;
 
 namespace Arcomage.Unity.GameScene.Views
@@ -35,8 +36,8 @@ namespace Arcomage.Unity.GameScene.Views
 
             Bind(card, c => c.Identifier)
                 .OnChangedAndInit(i => ForegroundImage.sprite = UnityEngine.Resources.Load<Sprite>("Card" + i + "Image"))
-                .OnChangedAndInit(i => NameText.text = Localization.ResourceManager.GetString("Card" + i + "Name"))
-                .OnChangedAndInit(i => DescriptionText.text = Localization.ResourceManager.GetString("Card" + i + "Description"));
+                .OnChangedAndInit(i => NameText.text = LanguageManager.Instance.GetTextValue("Card" + i + "Name"))
+                .OnChangedAndInit(i => DescriptionText.text = LanguageManager.Instance.GetTextValue("Card" + i + "Description"));
 
             Bind(card, c => c.GetResources())
                 .OnChangedAndInit(r => BackgroundImage.sprite = UnityEngine.Resources.Load<Sprite>("Card" + r + "Image"));

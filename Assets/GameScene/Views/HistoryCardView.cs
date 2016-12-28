@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Arcomage.Domain.Entities;
 using Arcomage.Unity.GameScene.Scripts;
 using Arcomage.Unity.Shared.Scripts;
+using SmartLocalization;
 using UnityEngine;
 
 namespace Arcomage.Unity.GameScene.Views
@@ -38,8 +39,8 @@ namespace Arcomage.Unity.GameScene.Views
 
             Bind(historyCard, c => c.Card.Identifier)
                 .OnChangedAndInit(i => ForegroundImage.sprite = UnityEngine.Resources.Load<Sprite>("Card" + i + "Image"))
-                .OnChangedAndInit(i => NameText.text = Localization.ResourceManager.GetString("Card" + i + "Name"))
-                .OnChangedAndInit(i => DescriptionText.text = Localization.ResourceManager.GetString("Card" + i + "Description"));
+                .OnChangedAndInit(i => NameText.text = LanguageManager.Instance.GetTextValue("Card" + i + "Name"))
+                .OnChangedAndInit(i => DescriptionText.text = LanguageManager.Instance.GetTextValue("Card" + i + "Description"));
 
             Bind(historyCard, c => c.Card.GetResources())
                 .OnChangedAndInit(r => BackgroundImage.sprite = UnityEngine.Resources.Load<Sprite>("Card" + r + "Image"));
@@ -49,7 +50,7 @@ namespace Arcomage.Unity.GameScene.Views
 
             Bind(historyCard, c => c.IsPlayed)
                 .OnChangedAndInit(b => DiscardText.gameObject.SetActive(!b))
-                .OnChangedAndInit(b => DiscardText.text = Localization.ResourceManager.GetString("CardDiscardText"));
+                .OnChangedAndInit(b => DiscardText.text = LanguageManager.Instance.GetTextValue("CardDiscardText"));
         }
     }
 }

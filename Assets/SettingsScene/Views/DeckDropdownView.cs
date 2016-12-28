@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Arcomage.Unity.Shared.Scripts;
+using SmartLocalization;
 using UnityEngine.UI;
 
 namespace Arcomage.Unity.SettingsScene.Views
@@ -13,12 +14,12 @@ namespace Arcomage.Unity.SettingsScene.Views
         {
             var itemLabelText = item.transform.Find("ItemLabel").GetComponent<Text>();
 
-            itemLabelText.text = Localization.ResourceManager.GetString("Deck" + options[index].text + "Name");
+            itemLabelText.text = LanguageManager.Instance.GetTextValue("Deck" + options[index].text + "Name");
         }
 
         protected override void OnChangedHandler(int index)
         {
-            captionText.text = Localization.ResourceManager.GetString("Deck" + options[index].text + "Name");
+            captionText.text = LanguageManager.Instance.GetTextValue("Deck" + options[index].text + "Name");
         }
     }
 }

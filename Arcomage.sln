@@ -5,8 +5,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Arcomage", "Arcomage.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Arcomage.Domain", "Arcomage.Domain\Arcomage.Domain.csproj", "{C8270B38-0B3C-4D16-8F05-D96F26E4D995}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Arcomage.Localization", "Arcomage.Localization\Arcomage.Localization.csproj", "{58C82D05-B514-4EDA-BA00-13420D261A71}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Arcomage.Domain.Tests", "Arcomage.Domain.Tests\Arcomage.Domain.Tests.csproj", "{AEE3DABD-4C1C-4B8F-AD4D-3C5C406D965D}"
 EndProject
 Global
@@ -23,10 +21,6 @@ Global
 		{C8270B38-0B3C-4D16-8F05-D96F26E4D995}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C8270B38-0B3C-4D16-8F05-D96F26E4D995}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C8270B38-0B3C-4D16-8F05-D96F26E4D995}.Release|Any CPU.Build.0 = Release|Any CPU
-		{58C82D05-B514-4EDA-BA00-13420D261A71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{58C82D05-B514-4EDA-BA00-13420D261A71}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{58C82D05-B514-4EDA-BA00-13420D261A71}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{58C82D05-B514-4EDA-BA00-13420D261A71}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AEE3DABD-4C1C-4B8F-AD4D-3C5C406D965D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AEE3DABD-4C1C-4B8F-AD4D-3C5C406D965D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AEE3DABD-4C1C-4B8F-AD4D-3C5C406D965D}.Release|Any CPU.ActiveCfg = Release|Any CPU

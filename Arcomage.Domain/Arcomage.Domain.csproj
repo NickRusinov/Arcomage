@@ -202,6 +202,6 @@
   <Target Name="BeforeBuild">
   </Target>
   <Target Name="AfterBuild">
-    <Copy SourceFiles="$(TargetPath)" DestinationFiles="$(ProjectDir)..\Assets\References\$(TargetFileName)" />
+    <Copy SourceFiles="$(TargetPath)" DestinationFiles="$(ProjectDir)..\Assets\Packages\$(TargetFileName)" />
   </Target>
 </Project>

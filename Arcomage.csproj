@@ -61,20 +61,17 @@
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
     </Reference>
-    <Reference Include="Arcomage.Localization">
-      <HintPath>Assets\Localization\Arcomage.Localization.dll</HintPath>
-    </Reference>
-    <Reference Include="Arcomage.Localization.resources">
-      <HintPath>Assets\Localization\ru-RU\Arcomage.Localization.resources.dll</HintPath>
-    </Reference>
-    <Reference Include="Arcomage.Domain">
-      <HintPath>Assets\References\Arcomage.Domain.dll</HintPath>
+    <Reference Include="SmartLocalization_Runtime">
+      <HintPath>Assets\Packages\SmartLocalization\SmartLocalization_Runtime.dll</HintPath>
     </Reference>
     <Reference Include="System.Threading">
-      <HintPath>Assets\References\System.Threading.dll</HintPath>
+      <HintPath>Assets\Packages\TaskParallelLibrary\System.Threading.dll</HintPath>
     </Reference>
     <Reference Include="Zenject">
-      <HintPath>Assets\References\Zenject.dll</HintPath>
+      <HintPath>Assets\Packages\Zenject\Zenject.dll</HintPath>
+    </Reference>
+    <Reference Include="Arcomage.Domain">
+      <HintPath>Assets\Packages\Arcomage.Domain.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -108,11 +105,8 @@
     <Compile Include="Assets\Shared\Scripts\BindingExtensions.cs" />
     <Compile Include="Assets\Shared\Scripts\CollectionBinding.cs" />
     <Compile Include="Assets\Shared\Scripts\Command.cs" />
-    <Compile Include="Assets\Shared\Scripts\CultureScript.Editor.cs" />
-    <Compile Include="Assets\Shared\Scripts\CultureScript.cs" />
     <Compile Include="Assets\Shared\Scripts\DropdownView.cs" />
     <Compile Include="Assets\Shared\Scripts\FrameworkExtensions.cs" />
-    <Compile Include="Assets\Shared\Scripts\LocalizationScript.Editor.cs" />
     <Compile Include="Assets\Shared\Scripts\LocalizationScript.cs" />
     <Compile Include="Assets\Shared\Scripts\Reference.cs" />
     <Compile Include="Assets\Shared\Scripts\ScaleScript.cs" />
@@ -126,7 +120,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\GameScene\Shaders\ClipAreaShader.shader" />
-    <None Include="Assets\link.xml" />
+    <None Include="Assets\SmartLocalizationWorkspace\Data\LanguageData\Language.en-US.resx" />
+    <None Include="Assets\SmartLocalizationWorkspace\Data\LanguageData\Language.resx" />
+    <None Include="Assets\SmartLocalizationWorkspace\Data\LanguageData\Language.ru-RU.resx" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

@@ -2,34 +2,48 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using SmartLocalization;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Arcomage.Unity.Shared.Scripts
 {
+    [ExecuteInEditMode]
     [RequireComponent(typeof(Text))]
-    public partial class LocalizationScript : MonoBehaviour
+    public partial class LocalizationScript : View
     {
-        [SerializeField]
         [Tooltip("Идентификатор строки для локализации")]
-        private string identifier;
-
-        private Text text;
-
-        public string Identifier
-        {
-            get { return identifier; }
-            set { FrameworkExtensions.Setter(out identifier, value, Start); }
-        }
-
+        public string identifier;
+        
         public void Awake()
         {
-            text = GetComponent<Text>();
+            var text = GetComponent<Text>();
+            
+            Bind(this, t => t.identifier)
+                .OnChangedAndInit(i => text.text = LanguageManager.Instance.GetTextValue(i));
+
+            LanguageManager.Instance.OnChangeLanguage +=
+                _ => text.text = LanguageManager.Instance.GetTextValue(identifier);
         }
 
-        public void Start()
+#if UNITY_EDITOR
+        private string oldLanguageCode;
+
+        private string oldIdentifier;
+
+        public override void Update()
         {
-            text.text = Localization.ResourceManager.GetString(identifier);
+            if (oldLanguageCode == LanguageManager.Instance.defaultLanguage && oldIdentifier == identifier)
+                return;
+
+            oldLanguageCode = LanguageManager.Instance.defaultLanguage;
+            oldIdentifier = identifier;
+
+            if (LanguageManager.Instance.IsCultureSupported(LanguageManager.Instance.defaultLanguage))
+                LanguageManager.Instance.ChangeLanguage(LanguageManager.Instance.defaultLanguage);
+
+            GetComponent<Text>().text = LanguageManager.Instance.GetTextValue(identifier);
         }
+#endif
     }
 }
