@@ -12,7 +12,7 @@ using Zenject;
 
 namespace Arcomage.Unity.GameScene.Scripts
 {
-    public class GameSceneScript : MonoBehaviour
+    public class GameSceneScript : SceneScript
     {
         public static bool Pause;
 

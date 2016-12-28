@@ -5,16 +5,17 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{CA029F01-9C28-4AA2-94AF-66B11863D69B}</ProjectGuid>
+    <ProjectGuid>{B1D0A44C-E454-A1BE-433B-3484B979E58E}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <AssemblyName>Assembly-CSharp</AssemblyName>
+    <AssemblyName>Assembly-CSharp-firstpass</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile></CompilerResponseFile>
-    <UnityProjectType>Game:1</UnityProjectType>
+    <CompilerResponseFile>
+    </CompilerResponseFile>
+    <UnityProjectType>GamePlugins:3</UnityProjectType>
     <UnityBuildTarget>Android:13</UnityBuildTarget>
     <UnityVersion>5.4.2f2</UnityVersion>
     <RootNamespace>Arcomage.Unity</RootNamespace>
@@ -78,51 +79,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\GameScene\Scripts\CardDragDropScript.cs" />
-    <Compile Include="Assets\GameScene\Scripts\CardFactory.cs" />
-    <Compile Include="Assets\GameScene\Scripts\CardTranslateScript.cs" />
-    <Compile Include="Assets\GameScene\Scripts\DiscardCardCommand.cs" />
-    <Compile Include="Assets\GameScene\Scripts\GameExtensions.cs" />
-    <Compile Include="Assets\GameScene\Scripts\GameInstaller.cs" />
-    <Compile Include="Assets\GameScene\Scripts\GameSceneScript.cs" />
-    <Compile Include="Assets\GameScene\Scripts\HistoryCardFactory.cs" />
-    <Compile Include="Assets\GameScene\Scripts\PlayCardCommand.cs" />
-    <Compile Include="Assets\GameScene\Scripts\SceneInstaller.cs" />
-    <Compile Include="Assets\GameScene\Views\BuildingsView.cs" />
-    <Compile Include="Assets\GameScene\Views\CardView.cs" />
-    <Compile Include="Assets\GameScene\Views\FinishedMenuView.cs" />
-    <Compile Include="Assets\GameScene\Views\GameView.cs" />
-    <Compile Include="Assets\GameScene\Views\HandView.cs" />
-    <Compile Include="Assets\GameScene\Views\HistoryCardView.cs" />
-    <Compile Include="Assets\GameScene\Views\HistoryView.cs" />
-    <Compile Include="Assets\GameScene\Views\ResourcesView.cs" />
-    <Compile Include="Assets\MenuScene\Scripts\ExitButtonScript.cs" />
-    <Compile Include="Assets\MenuScene\Scripts\PlayButtonScript.cs" />
-    <Compile Include="Assets\SettingsScene\Scripts\BackButtonScript.cs" />
-    <Compile Include="Assets\SettingsScene\Scripts\PlayButtonScript.cs" />
-    <Compile Include="Assets\SettingsScene\Scripts\SettingsSceneScript.cs" />
-    <Compile Include="Assets\SettingsScene\Views\DeckDropdownView.cs" />
-    <Compile Include="Assets\SettingsScene\Views\RuleDropdownView.cs" />
-    <Compile Include="Assets\SettingsScene\Views\SettingsView.cs" />
-    <Compile Include="Assets\Shared\Scripts\Binding.cs" />
-    <Compile Include="Assets\Shared\Scripts\BindingExtensions.cs" />
-    <Compile Include="Assets\Shared\Scripts\CollectionBinding.cs" />
-    <Compile Include="Assets\Shared\Scripts\Command.cs" />
-    <Compile Include="Assets\Shared\Scripts\CultureScript.Editor.cs" />
-    <Compile Include="Assets\Shared\Scripts\CultureScript.cs" />
-    <Compile Include="Assets\Shared\Scripts\DropdownView.cs" />
-    <Compile Include="Assets\Shared\Scripts\FrameworkExtensions.cs" />
-    <Compile Include="Assets\Shared\Scripts\LocalizationScript.Editor.cs" />
-    <Compile Include="Assets\Shared\Scripts\LocalizationScript.cs" />
-    <Compile Include="Assets\Shared\Scripts\Reference.cs" />
-    <Compile Include="Assets\Shared\Scripts\ScaleScript.cs" />
-    <Compile Include="Assets\Shared\Scripts\SceneScript.cs" />
-    <Compile Include="Assets\Shared\Scripts\Settings.cs" />
-    <Compile Include="Assets\Shared\Scripts\TextOutlineScript.cs" />
-    <Compile Include="Assets\Shared\Scripts\TextWrapScript.cs" />
-    <Compile Include="Assets\Shared\Scripts\UnityExtensions.cs" />
-    <Compile Include="Assets\Shared\Scripts\ValueBinding.cs" />
-    <Compile Include="Assets\Shared\Scripts\View.cs" />
+    <Compile Include="Assets\Plugins\Android\CrashReporter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\GameScene\Shaders\ClipAreaShader.shader" />
