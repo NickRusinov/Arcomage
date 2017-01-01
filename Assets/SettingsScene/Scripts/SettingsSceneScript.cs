@@ -5,17 +5,37 @@ using System.Text;
 using Arcomage.Unity.SettingsScene.Views;
 using Arcomage.Unity.Shared.Scripts;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Arcomage.Unity.SettingsScene.Scripts
 {
+    /// <summary>
+    /// Root script for settings scene
+    /// </summary>
     public class SettingsSceneScript : SceneScript
     {
         [Tooltip("Компонент настроек игры")]
-        public SettingsView SettingsScript;
+        public SettingsView Settings;
 
         public void Start()
         {
-            SettingsScript.Initialize();
+            Settings.Initialize();
+        }
+
+        /// <summary>
+        /// Click handler for play button of menu
+        /// </summary>
+        public void OnPlayClickHandler()
+        {
+            SceneManager.LoadScene("GameScene");
+        }
+
+        /// <summary>
+        /// Click handler for back button of menu
+        /// </summary>
+        public void OnBackClickHandler()
+        {
+            SceneManager.LoadScene("MenuScene");
         }
     }
 }

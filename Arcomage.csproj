@@ -61,6 +61,9 @@
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
     </Reference>
+    <Reference Include="Arcomage.Domain">
+      <HintPath>Assets\Packages\Arcomage.Domain.dll</HintPath>
+    </Reference>
     <Reference Include="SmartLocalization_Runtime">
       <HintPath>Assets\Packages\SmartLocalization\SmartLocalization_Runtime.dll</HintPath>
     </Reference>
@@ -69,9 +72,6 @@
     </Reference>
     <Reference Include="Zenject">
       <HintPath>Assets\Packages\Zenject\Zenject.dll</HintPath>
-    </Reference>
-    <Reference Include="Arcomage.Domain">
-      <HintPath>Assets\Packages\Arcomage.Domain.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -93,10 +93,7 @@
     <Compile Include="Assets\GameScene\Views\HistoryCardView.cs" />
     <Compile Include="Assets\GameScene\Views\HistoryView.cs" />
     <Compile Include="Assets\GameScene\Views\ResourcesView.cs" />
-    <Compile Include="Assets\MenuScene\Scripts\ExitButtonScript.cs" />
-    <Compile Include="Assets\MenuScene\Scripts\PlayButtonScript.cs" />
-    <Compile Include="Assets\SettingsScene\Scripts\BackButtonScript.cs" />
-    <Compile Include="Assets\SettingsScene\Scripts\PlayButtonScript.cs" />
+    <Compile Include="Assets\MenuScene\Scripts\MenuSceneScript.cs" />
     <Compile Include="Assets\SettingsScene\Scripts\SettingsSceneScript.cs" />
     <Compile Include="Assets\SettingsScene\Views\DeckDropdownView.cs" />
     <Compile Include="Assets\SettingsScene\Views\RuleDropdownView.cs" />
@@ -119,7 +116,7 @@
     <Compile Include="Assets\Shared\Scripts\View.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\GameScene\Shaders\ClipAreaShader.shader" />
+    <None Include="Assets\Shared\Shaders\ClipAreaShader.shader" />
     <None Include="Assets\SmartLocalizationWorkspace\Data\LanguageData\Language.en-US.resx" />
     <None Include="Assets\SmartLocalizationWorkspace\Data\LanguageData\Language.resx" />
     <None Include="Assets\SmartLocalizationWorkspace\Data\LanguageData\Language.ru-RU.resx" />

@@ -1,6 +1,7 @@
-<?xml version="1.0"?>
+<?xml version="1.0" ?>
+
 <linker>
-  <assembly fullname="mscorlib">
-    <type fullname="System.Resources.RuntimeResourceSet" preserve="all"/>
+  <assembly fullname="Arcomage.Domain" preserve="all">
+    <type fullname="Arcomage.Domain.*" preserve="all" />
   </assembly>
 </linker>
