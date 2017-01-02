@@ -47,5 +47,11 @@ namespace Arcomage.Unity.GameScene.Scripts
             CardFactory.Initialize(container.Resolve<Command>("PlayCardCommand"), container.Resolve<Command>("DiscardCardCommand"));
             FinishedScript.Initialize(container.Resolve<Game>());
         }
+
+        public void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+                FinishedScript.OnBackClickHandler();
+        }
     }
 }

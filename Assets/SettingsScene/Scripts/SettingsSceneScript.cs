@@ -22,6 +22,12 @@ namespace Arcomage.Unity.SettingsScene.Scripts
             Settings.Initialize();
         }
 
+        public void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+                OnBackClickHandler();
+        }
+
         /// <summary>
         /// Click handler for play button of menu
         /// </summary>

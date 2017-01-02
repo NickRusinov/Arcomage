@@ -13,6 +13,12 @@ namespace Arcomage.Unity.MenuScene.Scripts
     /// </summary>
     public class MenuSceneScript : SceneScript
     {
+        public void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+                OnExitClickHandler();
+        }
+
         /// <summary>
         /// Click handler for play button of menu
         /// </summary>
