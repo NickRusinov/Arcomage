@@ -8,38 +8,24 @@ using UnityEngine;
 namespace Arcomage.Unity.Shared.Scripts
 {
     [RequireComponent(typeof(TextMesh))]
-    public class TextWrapScript : MonoBehaviour
+    public class TextWrapScript : View
     {
-        [SerializeField]
+        [Tooltip("Количество символов в строке")]
         public int maxSymbols;
-
-        private TextMesh textMesh;
-
-        private string prevText;
 
         public void Awake()
         {
-            textMesh = GetComponent<TextMesh>();
+            var textMesh = GetComponent<TextMesh>();
+
+            Bind(textMesh, tm => tm.text)
+                .OnChangedAndInit(s => textMesh.text = UpdateText(s));
         }
 
-        public void Start()
+        private string UpdateText(string text)
         {
-            UpdateText();
-        }
-
-        public void Update()
-        {
-            UpdateText();
-        }
-
-        private void UpdateText()
-        {
-            if (prevText == textMesh.text)
-                return;
-
             var symbols = 0;
             var builder = new StringBuilder();
-            var parts = textMesh.text.Split(new[] { ' ', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+            var parts = text.Replace("-", "- ").Split(new[] { ' ', '\n' }, StringSplitOptions.RemoveEmptyEntries);
 
             foreach (var part in parts)
             {
@@ -48,7 +34,7 @@ namespace Arcomage.Unity.Shared.Scripts
                     symbols = 0;
                     builder.Append('\n');
                 }
-                else
+                else if (part[part.Length - 1] != '-')
                 {
                     builder.Append(' ');
                 }
@@ -57,8 +43,7 @@ namespace Arcomage.Unity.Shared.Scripts
                 builder.Append(part);
             }
 
-            prevText = builder.ToString();
-            textMesh.text = builder.ToString();
+            return builder.ToString().Trim(' ', '\n');
         }
     }
 }
