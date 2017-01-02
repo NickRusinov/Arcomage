@@ -47,7 +47,7 @@ namespace Arcomage.Unity.GameScene.Scripts
                 Vector2 inputPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
                 transform.position = inputPosition + touchOffset;
-                transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, -100);
+                transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, -0.50f);
             }
 
             if (Input.GetMouseButton(0) && !draggingItem && !globalDraggingItem)
