@@ -555,7 +555,7 @@
 		<value>+8 к стене</value>
 	</data>
 	<data name="CardReinforcedWallName" xml:space="preserve">
-		<value>Велика стена</value>
+		<value>Великая стена</value>
 	</data>
 	<data name="CardRockGardenDescription" xml:space="preserve">
 		<value>+1 к стене, +1 к башне, +2 отряда</value>
