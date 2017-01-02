@@ -14,16 +14,22 @@ namespace Arcomage.Unity.Shared.Scripts
     {
         [Tooltip("Идентификатор строки для локализации")]
         public string identifier;
+
+        [Tooltip("Дополнительные параметры для локализации")]
+        public string[] arguments;
         
         public void Awake()
         {
             var text = GetComponent<Text>();
             
             Bind(this, t => t.identifier)
-                .OnChangedAndInit(i => text.text = LanguageManager.Instance.GetTextValue(i));
+                .OnChangedAndInit(i => text.text = LanguageManager.Instance.GetTextValue(i).TryFormat(arguments));
+
+            Bind(this, t => t.arguments)
+                .OnChangedAndInit(a => text.text = LanguageManager.Instance.GetTextValue(identifier).TryFormat(a));
 
             LanguageManager.Instance.OnChangeLanguage +=
-                _ => text.text = LanguageManager.Instance.GetTextValue(identifier);
+                _ => text.text = LanguageManager.Instance.GetTextValue(identifier).TryFormat(arguments);
         }
 
 #if UNITY_EDITOR
@@ -31,8 +37,23 @@ namespace Arcomage.Unity.Shared.Scripts
 
         private string oldIdentifier;
 
+        public override void Start()
+        {
+            if (Application.isPlaying)
+            {
+                base.Start();
+                return;
+            }
+        }
+
         public override void Update()
         {
+            if (Application.isPlaying)
+            {
+                base.Update();
+                return;
+            }
+
             if (oldLanguageCode == LanguageManager.Instance.defaultLanguage && oldIdentifier == identifier)
                 return;
 

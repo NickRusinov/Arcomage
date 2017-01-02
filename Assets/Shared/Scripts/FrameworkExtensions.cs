@@ -8,12 +8,6 @@ namespace Arcomage.Unity.Shared.Scripts
 {
     public static class FrameworkExtensions
     {
-        public static void Setter<T>(out T field, T value, Action onSet)
-        {
-            field = value;
-            onSet.Invoke();
-        }
-
         public static bool IfTrue(this bool boolean, Action action)
         {
             if (boolean)
@@ -28,6 +22,18 @@ namespace Arcomage.Unity.Shared.Scripts
                 action();
 
             return boolean;
+        }
+
+        public static T Try<T>(Func<T> func, T def = default(T))
+        {
+            try
+            {
+                return func();
+            }
+            catch
+            {
+                return def;
+            }
         }
 
         public static ICollection<T> ForEach<T>(this ICollection<T> collection, Action<T> action)
@@ -47,11 +53,9 @@ namespace Arcomage.Unity.Shared.Scripts
             return collection;
         }
 
-        public static CultureInfo GetCultureInfoOrInvariant(string name)
+        public static string TryFormat(this string str, params string[] args)
         {
-            return CultureInfo.GetCultures(CultureTypes.AllCultures)
-                .SingleOrDefault(ci => string.Equals(ci.Name, name, StringComparison.OrdinalIgnoreCase)) ??
-                CultureInfo.InvariantCulture;
+            return Try(() => string.Format(str, args), str);
         }
     }
 }

@@ -6,28 +6,27 @@ using System.Threading.Tasks;
 using Arcomage.Domain.Entities;
 using Arcomage.Unity.GameScene.Scripts;
 using Arcomage.Unity.Shared.Scripts;
-using SmartLocalization;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 namespace Arcomage.Unity.GameScene.Views
 {
     public class FinishedMenuView : View
     {
         [Tooltip("Текст для вывода причины завершения игры")]
-        public Text CauseText;
+        public LocalizationScript CauseText;
 
         [Tooltip("Текст для вывода имени игрока победителя")]
-        public Text WinnerText;
+        public LocalizationScript WinnerText;
 
         public void Initialize(Game game)
         {
             Bind(game, g => g.Result.GetIdentifier())
-                .OnChangedAndInit(i => CauseText.text = LanguageManager.Instance.GetTextValue("GameFinished" + i + "Text"));
+                .OnChangedAndInit(i => CauseText.identifier = "GameFinished" + i + "Text");
 
             Bind(game, g => g.Result.Player)
-                .OnChangedAndInit(p => p != null, p => WinnerText.text = string.Format(LanguageManager.Instance.GetTextValue("GameFinishedWinnerText"), p.Identifier));
+                .OnChangedAndInit(p => WinnerText.identifier = "GameFinishedWinnerText")
+                .OnChangedAndInit(p => WinnerText.arguments = new[] { p.Identifier });
         }
 
         public void OnBackClickHandler()
