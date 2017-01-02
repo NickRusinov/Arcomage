@@ -13,7 +13,8 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile></CompilerResponseFile>
+    <CompilerResponseFile>
+    </CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>Android:13</UnityBuildTarget>
     <UnityVersion>5.4.2f2</UnityVersion>
@@ -117,6 +118,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Shared\Shaders\ClipAreaShader.shader" />
+    <None Include="Assets\Shared\Shaders\GrayScaleShader.shader" />
     <None Include="Assets\SmartLocalizationWorkspace\Data\LanguageData\Language.en-US.resx" />
     <None Include="Assets\SmartLocalizationWorkspace\Data\LanguageData\Language.resx" />
     <None Include="Assets\SmartLocalizationWorkspace\Data\LanguageData\Language.ru-RU.resx" />

@@ -27,6 +27,12 @@ namespace Arcomage.Unity.GameScene.Views
         [Tooltip("Спрайт изображения карты")]
         public SpriteRenderer ForegroundImage;
 
+        [Tooltip("Материал для фона карты, когда она может быть разыграна")]
+        public Material BackgroundCanPlayMaterial;
+
+        [Tooltip("Материал для фона карты, когда она не может быть разыграна")]
+        public Material BackgroundCannotPlayMaterial;
+
         [NonSerialized]
         public int Index;
 
@@ -46,8 +52,8 @@ namespace Arcomage.Unity.GameScene.Views
                 .OnChangedAndInit(p => PriceText.text = p.ToString());
 
             Bind(playCommand, c => c.CanExecute(Index))
-                .OnChangedAndInit(can => can, can => BackgroundImage.color = new Color(1f, 1f, 1f))
-                .OnChangedAndInit(can => !can, can => BackgroundImage.color = new Color(.5f, .5f, .5f, .5f));
+                .OnChangedAndInit(can => can, can => BackgroundImage.material = BackgroundCanPlayMaterial)
+                .OnChangedAndInit(can => !can, can => BackgroundImage.material = BackgroundCannotPlayMaterial);
         }
     }
 }
