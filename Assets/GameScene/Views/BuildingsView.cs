@@ -40,8 +40,8 @@ namespace Arcomage.Unity.GameScene.Views
             Bind(buildings, b => b.Wall)
                 .OnChanged(w => WallParticle.Play())
                 .OnChangedAndInit(w => WallText.text = w.ToString())
-                .OnChangedAndInit(w => WallImage.transform.SetLocalPosition(y: -430f + Math.Min(280f, 280f * w / rule.MaxTower)))
-                .OnChangedAndInit(w => WallImage.material.SetFloat("_Length", 1f - (50f + Math.Min(280f, 280f * w / rule.MaxTower)) / WallImage.sprite.texture.height));
+                .OnChangedAndInit(w => WallImage.transform.SetLocalPosition(y: -460f + Math.Min(280f, 280f * w / rule.MaxTower)))
+                .OnChangedAndInit(w => WallImage.material.SetFloat("_Length", 1f - (20f + Math.Min(280f, 280f * w / rule.MaxTower)) / WallImage.sprite.texture.height));
         }
     }
 }
