@@ -30,8 +30,10 @@ namespace Arcomage.Unity.GameScene.Scripts
 
         private DiContainer container;
 
-        public void Awake()
+        public override void Awake()
         {
+            base.Awake();
+
             Pause = false;
             container = new DiContainer();
             container.Bind<Settings>().ToSelf().AsSingle(0);

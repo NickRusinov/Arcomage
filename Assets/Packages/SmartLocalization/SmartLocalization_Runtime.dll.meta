@@ -1,12 +1,11 @@
 fileFormatVersion: 2
-guid: 726b106c7931e4a7a9c83ac4fb5e5d9a
-timeCreated: 1483295178
+guid: 10f7d305644f7644588620d134ff9e81
+timeCreated: 1483355638
 licenseType: Free
 PluginImporter:
   serializedVersion: 1
   iconMap: {}
-  executionOrder:
-    SmartLocalization.LanguageManager: -10000
+  executionOrder: {}
   isPreloaded: 0
   platformData:
     Any:

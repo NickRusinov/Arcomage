@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using SmartLocalization;
 using UnityEngine;
 
 namespace Arcomage.Unity.Shared.Scripts
@@ -12,13 +13,14 @@ namespace Arcomage.Unity.Shared.Scripts
 
         static partial void OnWarning(string message, string stackTrace);
 
-        static partial void OnLog(string message, string stackTrace);
+        static partial void OnLog(string message, string stackTrace); 
 
-        static SceneScript()
+        public virtual void Awake()
         {
-#if !UNITY_EDITOR
             Application.logMessageReceived += OnLogMessageReceived;
-#endif
+            
+            LanguageManager.Instance.defaultLanguage = GetLanguageCode(Application.systemLanguage);
+            LanguageManager.Instance.ChangeLanguage(LanguageManager.Instance.defaultLanguage);
         }
 
         private static void OnLogMessageReceived(string message, string stackTrace, LogType logType)
@@ -36,6 +38,21 @@ namespace Arcomage.Unity.Shared.Scripts
                 case LogType.Log:
                     OnLog(message, stackTrace);
                     break;
+            }
+        }
+
+        private static string GetLanguageCode(SystemLanguage language)
+        {
+            switch (language)
+            {
+                case SystemLanguage.English:
+                    return "en-US";
+
+                case SystemLanguage.Russian:
+                    return "ru-RU";
+
+                default:
+                    return "en-US";
             }
         }
         

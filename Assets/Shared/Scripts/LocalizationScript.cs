@@ -10,7 +10,7 @@ namespace Arcomage.Unity.Shared.Scripts
 {
     [ExecuteInEditMode]
     [RequireComponent(typeof(Text))]
-    public partial class LocalizationScript : View
+    public class LocalizationScript : View
     {
         [Tooltip("Идентификатор строки для локализации")]
         public string identifier;

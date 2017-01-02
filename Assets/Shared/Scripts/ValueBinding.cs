@@ -10,7 +10,7 @@ namespace Arcomage.Unity.Shared.Scripts
         private bool init;
 
         private readonly TSource source;
-    
+
         private readonly Func<TSource, TValue> func;
 
         public ValueBinding(TSource source, Func<TSource, TValue> func)
@@ -35,7 +35,7 @@ namespace Arcomage.Unity.Shared.Scripts
                 return;
             }
 
-            if (!Value.Equals(newValue))
+            if (!Equals(Value, newValue))
             {
                 var oldValue = Value;
                 Value = newValue;

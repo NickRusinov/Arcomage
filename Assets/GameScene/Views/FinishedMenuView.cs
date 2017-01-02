@@ -26,8 +26,8 @@ namespace Arcomage.Unity.GameScene.Views
             Bind(game, g => g.Result.GetIdentifier())
                 .OnChangedAndInit(i => CauseText.text = LanguageManager.Instance.GetTextValue("GameFinished" + i + "Text"));
 
-            Bind(game, g => g.Result.Player.Identifier)
-                .OnChangedAndInit(i => WinnerText.text = string.Format(LanguageManager.Instance.GetTextValue("GameFinishedWinnerText"), i));
+            Bind(game, g => g.Result.Player)
+                .OnChangedAndInit(p => p != null, p => WinnerText.text = string.Format(LanguageManager.Instance.GetTextValue("GameFinishedWinnerText"), p.Identifier));
         }
 
         public void OnBackClickHandler()
