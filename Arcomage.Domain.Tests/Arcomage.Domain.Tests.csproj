@@ -174,7 +174,7 @@
     <Compile Include="Cards\PrismCardTests.cs" />
     <Compile Include="Cards\QuarrysHelpCardTests.cs" />
     <Compile Include="Cards\QuartzCardTests.cs" />
-    <Compile Include="Cards\RabitSheepCardTests.cs" />
+    <Compile Include="Cards\RabidSheepCardTests.cs" />
     <Compile Include="Cards\RainbowCardTests.cs" />
     <Compile Include="Cards\ReinforcedWallCardTests.cs" />
     <Compile Include="Cards\RockGardenCardTests.cs" />

@@ -127,7 +127,7 @@
     <Compile Include="Cards\PrismCard.cs" />
     <Compile Include="Cards\QuarrysHelpCard.cs" />
     <Compile Include="Cards\QuartzCard.cs" />
-    <Compile Include="Cards\RabitSheepCard.cs" />
+    <Compile Include="Cards\RabidSheepCard.cs" />
     <Compile Include="Cards\RainbowCard.cs" />
     <Compile Include="Cards\RecruitsCard.cs" />
     <Compile Include="Cards\ReinforcedWallCard.cs" />

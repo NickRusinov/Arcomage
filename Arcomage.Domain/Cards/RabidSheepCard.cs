@@ -8,7 +8,7 @@ using Arcomage.Domain.Internal;
 
 namespace Arcomage.Domain.Cards
 {
-    public class RabitSheepCard : RecruitsCard
+    public class RabidSheepCard : RecruitsCard
     {
         public override int ResourcePrice { get; set; } = 6;
 

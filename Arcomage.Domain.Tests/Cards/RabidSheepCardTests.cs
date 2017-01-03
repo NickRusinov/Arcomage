@@ -9,11 +9,11 @@ using Xunit;
 
 namespace Arcomage.Domain.Tests.Cards
 {
-    public class RabitSheepCardTests
+    public class RabidSheepCardTests
     {
         [Theory, AutoFixture]
         public void ActivateTest(Game game,
-            RabitSheepCard sut)
+            RabidSheepCard sut)
         {
             sut.Activate(game);
 

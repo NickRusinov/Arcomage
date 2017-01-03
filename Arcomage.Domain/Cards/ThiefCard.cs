@@ -18,10 +18,10 @@ namespace Arcomage.Domain.Cards
             var oldBricks = game.GetAdversaryPlayer().Resources.Bricks;
             var oldGems = game.GetAdversaryPlayer().Resources.Gems;
 
-            game.GetAdversaryPlayer().Resources.Bricks -= 10;
-            game.GetAdversaryPlayer().Resources.Gems -= 5;
-            game.GetCurrentPlayer().Resources.Bricks += Min(10, oldBricks) / 2;
-            game.GetCurrentPlayer().Resources.Gems += Min(5, oldGems) / 2;
+            game.GetAdversaryPlayer().Resources.Bricks -= 5;
+            game.GetAdversaryPlayer().Resources.Gems -= 10;
+            game.GetCurrentPlayer().Resources.Bricks += Min(5, oldBricks) / 2;
+            game.GetCurrentPlayer().Resources.Gems += Min(10, oldGems) / 2;
         }
     }
 }
