@@ -1,0 +1,36 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using Arcomage.Unity.SettingsScene.Views;
+using Arcomage.Unity.Shared.Scripts;
+using UnityEngine;
+using UnityEngine.UI;
+
+namespace Arcomage.Unity.SettingsScene.Scripts
+{
+    public class DeckFactory : MonoBehaviour
+    {
+        [Tooltip("Префаб колоды")]
+        public GameObject Prefab;
+
+        [Tooltip("Аниматор, анимирующие появление и скрытие списка выбора колоды")]
+        public Animator Animator;
+
+        public GameObject CreateDeck(Transform transform, DeckInfo deckInfo)
+        {
+            var deckObject = (GameObject)Instantiate(Prefab, transform);
+            deckObject.transform.localScale = Vector3.one;
+            deckObject.name = "Deck" + deckInfo.Identifier;
+
+            var deckView = deckObject.GetComponent<DeckView>();
+            deckView.Initialize(deckInfo);
+
+            var deckButton = deckObject.GetComponent<Button>();
+            deckButton.onClick.AddListener(() => Settings.Instance.Deck = deckInfo);
+            deckButton.onClick.AddListener(() => Animator.Play("HideDeckAnimation"));
+
+            return deckObject;
+        }
+    }
+}

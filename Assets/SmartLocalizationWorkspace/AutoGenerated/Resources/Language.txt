@@ -731,8 +731,14 @@
 	<data name="CardWorkOvertimeName" xml:space="preserve">
 		<value>Work Overtime</value>
 	</data>
+	<data name="DeckClassicDescription" xml:space="preserve">
+		<value>TODO Classic Description</value>
+	</data>
 	<data name="DeckClassicName" xml:space="preserve">
 		<value>Classic</value>
+	</data>
+	<data name="DeckInfinityDescription" xml:space="preserve">
+		<value>TODO Infinity Description</value>
 	</data>
 	<data name="DeckInfinityName" xml:space="preserve">
 		<value>Infinity</value>
@@ -767,8 +773,14 @@
 	<data name="MenuPlayButtonText" xml:space="preserve">
 		<value>Play</value>
 	</data>
+	<data name="RuleEmpireCapitalDescription" xml:space="preserve">
+		<value>To win, build a tower height of {8}, {9} accumuate each resource or destroy the opponent's tower</value>
+	</data>
 	<data name="RuleEmpireCapitalName" xml:space="preserve">
 		<value>Empire Capital</value>
+	</data>
+	<data name="RuleTigersLakeDescription" xml:space="preserve">
+		<value>To win, build a tower height of {8}, {9} accumuate each resource or destroy the opponent's tower</value>
 	</data>
 	<data name="RuleTigersLakeName" xml:space="preserve">
 		<value>Tiger's Lake</value>
@@ -802,5 +814,11 @@
 	</data>
 	<data name="SettingsSecondPlayerText" xml:space="preserve">
 		<value>Player's name #2</value>
+	</data>
+	<data name="RuleEastRiverName" xml:space="preserve">
+		<value>East River</value>
+	</data>
+	<data name="RuleEastRiverDescription" xml:space="preserve">
+		<value>To win, build a tower height of {8}, {9} accumuate each resource or destroy the opponent's tower</value>
 	</data>
 </root>

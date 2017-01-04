@@ -106,7 +106,7 @@ namespace Arcomage.Unity.GameScene.Scripts
                 .AsSingle(1);
 
             Container.Bind<Deck>()
-                .FromMethod(c => c.Container.Resolve<Deck>(Settings.Instance.Deck))
+                .FromMethod(c => c.Container.Resolve<Deck>(Settings.Instance.Deck.Identifier))
                 .AsSingle(0);
 
             Container.Bind<Deck>()
@@ -120,13 +120,15 @@ namespace Arcomage.Unity.GameScene.Scripts
                 .AsSingle(2);
 
             Container.Bind<Rule>()
-                .FromMethod(c => c.Container.Resolve<Rule>(Settings.Instance.Rule))
+                .FromMethod(c => new ClassicRule(
+                    new Buildings(
+                        Settings.Instance.Rule.Wall, Settings.Instance.Rule.Tower),
+                    new Resources(
+                        Settings.Instance.Rule.Quarry, Settings.Instance.Rule.Bricks, 
+                        Settings.Instance.Rule.Magic, Settings.Instance.Rule.Gems, 
+                        Settings.Instance.Rule.Dungeons, Settings.Instance.Rule.Recruits),
+                    Settings.Instance.Rule.MaxTower, Settings.Instance.Rule.MaxResources))
                 .AsSingle(0);
-
-            Container.Bind<Rule>()
-                .WithId("EmpireCapital")
-                .FromMethod(c => new ClassicRule(new Buildings(5, 20), new Resources(2, 5, 2, 5, 2, 5), 50, 150))
-                .AsSingle(1);
         }
     }
 }

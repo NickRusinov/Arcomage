@@ -731,8 +731,14 @@
 	<data name="CardWorkOvertimeName" xml:space="preserve">
 		<value>Сверхурочные</value>
 	</data>
+	<data name="DeckClassicDescription" xml:space="preserve">
+		<value>TODO Описание классической колоды</value>
+	</data>
 	<data name="DeckClassicName" xml:space="preserve">
 		<value>Классическая</value>
+	</data>
+	<data name="DeckInfinityDescription" xml:space="preserve">
+		<value>TODO Описание бесконечной колоды</value>
 	</data>
 	<data name="DeckInfinityName" xml:space="preserve">
 		<value>Бесконечная</value>
@@ -767,8 +773,20 @@
 	<data name="MenuPlayButtonText" xml:space="preserve">
 		<value>Играть</value>
 	</data>
+	<data name="RuleEastRiverDescription" xml:space="preserve">
+		<value>Для победы постройте башню высотой {8}, накопите {9} каждого ресурса или уничтожьте башню соперника</value>
+	</data>
+	<data name="RuleEastRiverName" xml:space="preserve">
+		<value>Восточная река</value>
+	</data>
+	<data name="RuleEmpireCapitalDescription" xml:space="preserve">
+		<value>Для победы постройте башню высотой {8}, накопите {9} каждого ресурса или уничтожьте башню соперника</value>
+	</data>
 	<data name="RuleEmpireCapitalName" xml:space="preserve">
 		<value>Столица Империи</value>
+	</data>
+	<data name="RuleTigersLakeDescription" xml:space="preserve">
+		<value>Для победы постройте башню высотой {8}, накопите {9} каждого ресурса или уничтожьте башню соперника</value>
 	</data>
 	<data name="RuleTigersLakeName" xml:space="preserve">
 		<value>Тигриное Озеро</value>

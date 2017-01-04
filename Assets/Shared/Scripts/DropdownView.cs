@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
+using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace Arcomage.Unity.Shared.Scripts
@@ -12,9 +14,29 @@ namespace Arcomage.Unity.Shared.Scripts
     {
         private static readonly FieldInfo itemsFieldInfo = typeof(Dropdown).GetField("m_Items", BindingFlags.Instance | BindingFlags.NonPublic);
 
+        [Tooltip("Событие, вызываемое при открытии списка")]
+        public UnityEvent OnDropdownOpened;
+
+        [Tooltip("Событие, вызываемое при закрытии списка")]
+        public UnityEvent OnDropdownClosed;
+
         protected DropdownView()
         {
             onValueChanged.AddListener(OnChangedHandler);
+        }
+
+        protected override GameObject CreateDropdownList(GameObject template)
+        {
+            var list = base.CreateDropdownList(template);
+            OnDropdownOpened.Invoke();
+
+            return list;
+        }
+
+        protected override void DestroyDropdownList(GameObject dropdownList)
+        {
+            base.DestroyDropdownList(dropdownList);
+            OnDropdownClosed.Invoke();
         }
 
         protected sealed override DropdownItem CreateItem(DropdownItem itemTemplate)
