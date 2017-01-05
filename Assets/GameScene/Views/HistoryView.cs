@@ -23,7 +23,7 @@ namespace Arcomage.Unity.GameScene.Views
 
         private ValuePair<Card, Vector3> playedCard;
 
-        private Reference<bool> playedReference;
+        private Reference<bool> playedReference = new Reference<bool>();
 
         private bool cleared;
 

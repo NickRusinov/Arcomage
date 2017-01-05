@@ -9,6 +9,7 @@ using Arcomage.Unity.GameScene.Views;
 using Arcomage.Unity.Shared.Scripts;
 using UnityEngine;
 using Zenject;
+using Random = System.Random;
 
 namespace Arcomage.Unity.GameScene.Scripts
 {
@@ -43,9 +44,17 @@ namespace Arcomage.Unity.GameScene.Scripts
 
         public void Start()
         {
-            GameScript.Initialize(container.Resolve<Game>(), container.Resolve<GameLoop>(), (ClassicRuleInfo)Settings.Instance.Rule);
-            CardFactory.Initialize(container.Resolve<Command>("PlayCardCommand"), container.Resolve<Command>("DiscardCardCommand"));
-            FinishedScript.Initialize(container.Resolve<Game>());
+            var game = container.Resolve<Game>();
+            var gameLoop = container.Resolve<GameLoop>();
+            var playCardCommand = container.Resolve<Command>("PlayCardCommand");
+            var discardCardCommand = container.Resolve<Command>("DiscardCardCommand");
+            
+            GameScript.Initialize(game, gameLoop, (ClassicRuleInfo)Settings.Instance.Rule);
+            CardFactory.Initialize(playCardCommand, discardCardCommand);
+            FinishedScript.Initialize(game);
+
+            if (new Random().Next(100) < 50)
+                game.SwapPlayer();
         }
 
         public void Update()
