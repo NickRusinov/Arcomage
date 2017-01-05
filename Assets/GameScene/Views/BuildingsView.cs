@@ -29,19 +29,19 @@ namespace Arcomage.Unity.GameScene.Views
         [Tooltip("Спрайт стены")]
         public SpriteRenderer WallImage;
 
-        public void Initialize(Buildings buildings, ClassicRule rule)
+        public void Initialize(Buildings buildings, ClassicRuleInfo ruleInfo)
         {
             Bind(buildings, b => b.Tower)
                 .OnChanged(t => TowerParticle.Play())
                 .OnChangedAndInit(t => TowerText.text = t.ToString())
-                .OnChangedAndInit(t => TowerImage.transform.SetLocalPosition(y : -330f + Math.Min(180f, 180f * t / rule.MaxTower)))
-                .OnChangedAndInit(t => TowerImage.material.SetFloat("_Length", 1f - (150f + Math.Min(180f, 180f * t / rule.MaxTower)) / TowerImage.sprite.texture.height));
+                .OnChangedAndInit(t => TowerImage.transform.SetLocalPosition(y : -330f + Math.Min(180f, 180f * t / ruleInfo.MaxTower)))
+                .OnChangedAndInit(t => TowerImage.material.SetFloat("_Length", 1f - (150f + Math.Min(180f, 180f * t / ruleInfo.MaxTower)) / TowerImage.sprite.texture.height));
 
             Bind(buildings, b => b.Wall)
                 .OnChanged(w => WallParticle.Play())
                 .OnChangedAndInit(w => WallText.text = w.ToString())
-                .OnChangedAndInit(w => WallImage.transform.SetLocalPosition(y: -460f + Math.Min(280f, 280f * w / rule.MaxTower)))
-                .OnChangedAndInit(w => WallImage.material.SetFloat("_Length", 1f - (20f + Math.Min(280f, 280f * w / rule.MaxTower)) / WallImage.sprite.texture.height));
+                .OnChangedAndInit(w => WallImage.transform.SetLocalPosition(y: -460f + Math.Min(280f, 280f * w / ruleInfo.MaxTower)))
+                .OnChangedAndInit(w => WallImage.material.SetFloat("_Length", 1f - (20f + Math.Min(280f, 280f * w / ruleInfo.MaxTower)) / WallImage.sprite.texture.height));
         }
     }
 }

@@ -14,10 +14,10 @@ namespace Arcomage.Domain.Cards
 
         public override void Activate(Game game)
         {
-            if (game.GetCurrentPlayer().Buildings.Tower < game.GetAdversaryPlayer().Buildings.Tower)
-                game.GetCurrentPlayer().Buildings.Tower += 2;
+            if (game.CurrentPlayer.Buildings.Tower < game.AdversaryPlayer.Buildings.Tower)
+                game.CurrentPlayer.Buildings.Tower += 2;
             else
-                game.GetCurrentPlayer().Buildings.Tower += 1;
+                game.CurrentPlayer.Buildings.Tower += 1;
         }
     }
 }

@@ -16,7 +16,7 @@ namespace Arcomage.Domain.Cards
         {
             game.FirstPlayer.Buildings.Tower += 1;
             game.SecondPlayer.Buildings.Tower += 1;
-            game.GetCurrentPlayer().Resources.Gems += 3;
+            game.CurrentPlayer.Resources.Gems += 3;
         }
     }
 }

@@ -9,6 +9,6 @@ namespace Arcomage.Domain.Services
 {
     public interface IDiscardCardCriteria
     {
-        bool CanDiscardCard(Game game, int cardIndex);
+        bool CanDiscardCard(Game game, Player player, int cardIndex);
     }
 }

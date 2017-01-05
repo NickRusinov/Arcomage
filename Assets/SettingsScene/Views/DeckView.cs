@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Arcomage.Domain.Decks;
 using Arcomage.Unity.Shared.Scripts;
 using UnityEngine;
 
@@ -19,7 +20,7 @@ namespace Arcomage.Unity.SettingsScene.Views
         {
             NameText.identifier = "Deck" + deckInfo.Identifier + "Name";
             DescriptionText.identifier = "Deck" + deckInfo.Identifier + "Description";
-            DescriptionText.arguments = deckInfo.GetArguments();
+            DescriptionText.arguments = new string[0];
         }
     }
 }

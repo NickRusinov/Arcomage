@@ -30,21 +30,21 @@ namespace Arcomage.Domain
         {
             if (playResultTask == null && !game.Result)
             {
-                playAction.Execute(game, game.GetCurrentPlayer());
+                playAction.Execute(game, game.CurrentPlayer);
             }
 
             if (playResultTask == null && !game.Result)
             { 
-                playResultTask = game.GetCurrentPlayer().Play(game);
+                playResultTask = game.CurrentPlayer.Play(game);
             }
 
             if (playResultTask?.IsCompleted == true && !game.Result)
             {
                 if (playResultTask.Result.IsPlay)
-                    cardAction.PlayExecute(game, game.GetCurrentPlayer(), playResultTask.Result.Card);
+                    cardAction.PlayExecute(game, game.CurrentPlayer, playResultTask.Result.Card);
 
                 if (playResultTask.Result.IsDiscard)
-                    cardAction.DiscardExecute(game, game.GetCurrentPlayer(), playResultTask.Result.Card);
+                    cardAction.DiscardExecute(game, game.CurrentPlayer, playResultTask.Result.Card);
 
                 playResultTask = null;
             }

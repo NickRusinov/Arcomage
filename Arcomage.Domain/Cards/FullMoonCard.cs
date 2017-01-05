@@ -16,7 +16,7 @@ namespace Arcomage.Domain.Cards
         {
             game.FirstPlayer.Resources.Dungeons += 1;
             game.SecondPlayer.Resources.Dungeons += 1;
-            game.GetCurrentPlayer().Resources.Recruits += 3;
+            game.CurrentPlayer.Resources.Recruits += 3;
         }
     }
 }

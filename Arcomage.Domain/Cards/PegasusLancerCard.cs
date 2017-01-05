@@ -14,7 +14,7 @@ namespace Arcomage.Domain.Cards
 
         public override void Activate(Game game)
         {
-            game.GetAdversaryPlayer().Buildings.Tower -= 12;
+            game.AdversaryPlayer.Buildings.Tower -= 12;
         }
     }
 }

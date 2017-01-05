@@ -16,7 +16,7 @@ namespace Arcomage.Domain.Cards
         {
             game.FirstPlayer.Resources.Quarry += 1;
             game.SecondPlayer.Resources.Quarry += 1;
-            game.GetCurrentPlayer().Resources.Gems += 4;
+            game.CurrentPlayer.Resources.Gems += 4;
         }
     }
 }

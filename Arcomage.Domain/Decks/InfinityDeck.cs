@@ -13,9 +13,9 @@ namespace Arcomage.Domain.Decks
 
         private readonly List<Card> cardCollection;
 
-        public InfinityDeck(Random random, ICollection<Card> cardCollection)
+        public InfinityDeck(InfinityDeckInfo deckInfo, ICollection<Card> cardCollection)
         {
-            this.random = random;
+            this.random = deckInfo.Random;
             this.cardCollection = new List<Card>(cardCollection);
         }
 

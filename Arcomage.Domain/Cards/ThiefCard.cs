@@ -15,13 +15,13 @@ namespace Arcomage.Domain.Cards
 
         public override void Activate(Game game)
         {
-            var oldBricks = game.GetAdversaryPlayer().Resources.Bricks;
-            var oldGems = game.GetAdversaryPlayer().Resources.Gems;
+            var oldBricks = game.AdversaryPlayer.Resources.Bricks;
+            var oldGems = game.AdversaryPlayer.Resources.Gems;
 
-            game.GetAdversaryPlayer().Resources.Bricks -= 5;
-            game.GetAdversaryPlayer().Resources.Gems -= 10;
-            game.GetCurrentPlayer().Resources.Bricks += Min(5, oldBricks) / 2;
-            game.GetCurrentPlayer().Resources.Gems += Min(10, oldGems) / 2;
+            game.AdversaryPlayer.Resources.Bricks -= 5;
+            game.AdversaryPlayer.Resources.Gems -= 10;
+            game.CurrentPlayer.Resources.Bricks += Min(5, oldBricks) / 2;
+            game.CurrentPlayer.Resources.Gems += Min(10, oldGems) / 2;
         }
     }
 }

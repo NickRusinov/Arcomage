@@ -107,12 +107,10 @@
     <Compile Include="Assets\Shared\Scripts\BindingExtensions.cs" />
     <Compile Include="Assets\Shared\Scripts\CollectionBinding.cs" />
     <Compile Include="Assets\Shared\Scripts\Command.cs" />
-    <Compile Include="Assets\Shared\Scripts\DeckInfo.cs" />
     <Compile Include="Assets\Shared\Scripts\DropdownView.cs" />
     <Compile Include="Assets\Shared\Scripts\FrameworkExtensions.cs" />
     <Compile Include="Assets\Shared\Scripts\LocalizationScript.cs" />
     <Compile Include="Assets\Shared\Scripts\Reference.cs" />
-    <Compile Include="Assets\Shared\Scripts\RuleInfo.cs" />
     <Compile Include="Assets\Shared\Scripts\ScaleScript.cs" />
     <Compile Include="Assets\Shared\Scripts\SceneScript.cs" />
     <Compile Include="Assets\Shared\Scripts\Settings.cs" />

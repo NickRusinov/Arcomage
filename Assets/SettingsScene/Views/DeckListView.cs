@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Arcomage.Domain.Decks;
 using Arcomage.Unity.SettingsScene.Scripts;
 using Arcomage.Unity.Shared.Scripts;
 using UnityEngine;
+using Random = System.Random;
 
 namespace Arcomage.Unity.SettingsScene.Views
 {
@@ -15,8 +17,8 @@ namespace Arcomage.Unity.SettingsScene.Views
 
         public void Initialize()
         {
-            DeckFactory.CreateDeck(transform, new DeckInfo("Classic"));
-            DeckFactory.CreateDeck(transform, new DeckInfo("Infinity"));
+            DeckFactory.CreateDeck(transform, new ClassicDeckInfo("Classic", new Random()));
+            DeckFactory.CreateDeck(transform, new InfinityDeckInfo("Infinity", new Random()));
         }
     }
 }

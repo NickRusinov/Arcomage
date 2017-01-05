@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Arcomage.Domain.Rules;
 using Arcomage.Unity.Shared.Scripts;
 using UnityEngine;
 using UnityEngine.UI;
@@ -40,11 +41,11 @@ namespace Arcomage.Unity.SettingsScene.Views
         [Tooltip("Текст для вывода начального значения высоты башни")]
         public Text TowerText;
 
-        public void Initialize(RuleInfo ruleInfo)
+        public void Initialize(ClassicRuleInfo ruleInfo)
         {
             NameText.identifier = "Rule" + ruleInfo.Identifier + "Name";
             DescriptionText.identifier = "Rule" + ruleInfo.Identifier + "Description";
-            DescriptionText.arguments = ruleInfo.GetArguments();
+            DescriptionText.arguments = new[] { ruleInfo.MaxTower.ToString(), ruleInfo.MaxResources.ToString() };
 
             QuarryText.text = "+" + ruleInfo.Quarry;
             BricksText.text = ruleInfo.Bricks.ToString();

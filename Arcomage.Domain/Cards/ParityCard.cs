@@ -15,10 +15,10 @@ namespace Arcomage.Domain.Cards
 
         public override void Activate(Game game)
         {
-            var maxMagic = Max(game.GetCurrentPlayer().Resources.Magic, game.GetAdversaryPlayer().Resources.Magic);
+            var maxMagic = Max(game.CurrentPlayer.Resources.Magic, game.AdversaryPlayer.Resources.Magic);
 
-            game.GetCurrentPlayer().Resources.Magic = maxMagic;
-            game.GetAdversaryPlayer().Resources.Magic = maxMagic;
+            game.CurrentPlayer.Resources.Magic = maxMagic;
+            game.AdversaryPlayer.Resources.Magic = maxMagic;
         }
     }
 }

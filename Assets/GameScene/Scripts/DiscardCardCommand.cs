@@ -31,7 +31,7 @@ namespace Arcomage.Unity.GameScene.Scripts
 
         public override bool CanExecute(object parameter)
         {
-            return discardCardCriteria.CanDiscardCard(game, (int)parameter);
+            return discardCardCriteria.CanDiscardCard(game, player, (int)parameter);
         }
     }
 }

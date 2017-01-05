@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Arcomage.Domain.Decks;
+using Arcomage.Domain.Rules;
 using SmartLocalization;
 
 namespace Arcomage.Unity.Shared.Scripts
@@ -14,8 +16,8 @@ namespace Arcomage.Unity.Shared.Scripts
 
         public string SecondPlayer = LanguageManager.Instance.GetTextValue("SettingsSecondPlayerDefaultName");
 
-        public RuleInfo Rule = new RuleInfo("EmpireCapital", 2, 5, 2, 5, 2, 5, 5, 20, 50, 150);
+        public RuleInfo Rule = new ClassicRuleInfo("EmpireCapital", 2, 5, 2, 5, 2, 5, 5, 20, 50, 150);
 
-        public DeckInfo Deck = new DeckInfo("Classic");
+        public DeckInfo Deck = new ClassicDeckInfo("Classic", new Random());
     }
 }

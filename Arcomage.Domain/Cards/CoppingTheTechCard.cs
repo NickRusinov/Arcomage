@@ -14,8 +14,8 @@ namespace Arcomage.Domain.Cards
 
         public override void Activate(Game game)
         {
-            if (game.GetCurrentPlayer().Resources.Quarry < game.GetAdversaryPlayer().Resources.Quarry)
-                game.GetCurrentPlayer().Resources.Quarry = game.GetAdversaryPlayer().Resources.Quarry;
+            if (game.CurrentPlayer.Resources.Quarry < game.AdversaryPlayer.Resources.Quarry)
+                game.CurrentPlayer.Resources.Quarry = game.AdversaryPlayer.Resources.Quarry;
         }
     }
 }

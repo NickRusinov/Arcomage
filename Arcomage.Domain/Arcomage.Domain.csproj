@@ -161,7 +161,10 @@
     <Compile Include="Cards\WerewolfCard.cs" />
     <Compile Include="Cards\WorkOvertimeCard.cs" />
     <Compile Include="Decks\ClassicDeck.cs" />
+    <Compile Include="Decks\ClassicDeckInfo.cs" />
+    <Compile Include="Decks\DeckInfo.cs" />
     <Compile Include="Decks\InfinityDeck.cs" />
+    <Compile Include="Decks\InfinityDeckInfo.cs" />
     <Compile Include="Entities\Buildings.cs" />
     <Compile Include="Entities\Card.cs" />
     <Compile Include="Entities\Deck.cs" />
@@ -171,7 +174,6 @@
     <Compile Include="Entities\History.cs" />
     <Compile Include="Entities\HistoryCard.cs" />
     <Compile Include="Entities\Player.cs" />
-    <Compile Include="Entities\PlayerMode.cs" />
     <Compile Include="Entities\PlayResult.cs" />
     <Compile Include="Entities\Resources.cs" />
     <Compile Include="Entities\Rule.cs" />
@@ -181,13 +183,13 @@
     <Compile Include="Exceptions\NotEnoughResourcesException.cs" />
     <Compile Include="GameLoop.cs" />
     <Compile Include="Internal\BuildingsExtensions.cs" />
-    <Compile Include="Internal\GameExtensions.cs" />
-    <Compile Include="Internal\PlayerModeExtensions.cs" />
     <Compile Include="Internal\TaskExtensions.cs" />
     <Compile Include="Players\ComputerPlayer.cs" />
     <Compile Include="Players\HumanPlayer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rules\ClassicRule.cs" />
+    <Compile Include="Rules\ClassicRuleInfo.cs" />
+    <Compile Include="Rules\RuleInfo.cs" />
     <Compile Include="Services\DiscardCardCriteria.cs" />
     <Compile Include="Services\IDiscardCardCriteria.cs" />
     <Compile Include="Services\IPlayCardCriteria.cs" />

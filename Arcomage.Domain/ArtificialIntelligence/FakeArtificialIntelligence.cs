@@ -22,7 +22,7 @@ namespace Arcomage.Domain.ArtificialIntelligence
             return Internal.TaskExtensions.Delay(1000)
                 .ContinueWith(t =>
                 {
-                    if (playCardCriteria.CanPlayCard(game, 0))
+                    if (playCardCriteria.CanPlayCard(game, player, 0))
                         return new PlayResult(0, true);
 
                     return new PlayResult(0, false);

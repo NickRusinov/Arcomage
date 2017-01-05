@@ -14,9 +14,9 @@ namespace Arcomage.Domain.Cards
 
         public override void Activate(Game game)
         {
-            if (game.GetCurrentPlayer().Buildings.Tower > game.GetAdversaryPlayer().Buildings.Wall)
+            if (game.CurrentPlayer.Buildings.Tower > game.AdversaryPlayer.Buildings.Wall)
             {
-                game.GetAdversaryPlayer().Buildings.Tower -= 8;
+                game.AdversaryPlayer.Buildings.Tower -= 8;
             }
             else
             {

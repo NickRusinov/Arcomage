@@ -31,7 +31,7 @@ namespace Arcomage.Unity.GameScene.Scripts
 
         public override bool CanExecute(object parameter)
         {
-            return playCardCriteria.CanPlayCard(game, (int)parameter);
+            return playCardCriteria.CanPlayCard(game, player, (int)parameter);
         }
     }
 }

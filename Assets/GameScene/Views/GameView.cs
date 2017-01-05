@@ -38,20 +38,20 @@ namespace Arcomage.Unity.GameScene.Views
         [Tooltip("Текст для вывода информации для сброса карты")]
         public TextMesh DiscardOnlyText;
         
-        public void Initialize(Game game, GameLoop gameLoop, ClassicRule rule)
+        public void Initialize(Game game, GameLoop gameLoop, ClassicRuleInfo ruleInfo)
         {
             Bind(gameLoop, gl => gl.Update())
                 .OnChangedAndInit(gr => gr, gr => FinishedEvent.Invoke());
 
             Bind(game, g => g.DiscardOnly)
-                .OnChangedAndInit(@do => DiscardOnlyText.gameObject.SetActive(@do > 0 && game.PlayerMode == PlayerMode.FirstPlayer))
+                .OnChangedAndInit(@do => DiscardOnlyText.gameObject.SetActive(@do > 0 && game.FirstPlayer == game.CurrentPlayer))
                 .OnChangedAndInit(@do => DiscardOnlyText.text = LanguageManager.Instance.GetTextValue("GameDiscardText"));
 
             LeftResources.Initialize(game.FirstPlayer, game.FirstPlayer.Resources);
             RightResources.Initialize(game.SecondPlayer, game.SecondPlayer.Resources);
 
-            LeftBuildings.Initialize(game.FirstPlayer.Buildings, rule);
-            RightBuildings.Initialize(game.SecondPlayer.Buildings, rule);
+            LeftBuildings.Initialize(game.FirstPlayer.Buildings, ruleInfo);
+            RightBuildings.Initialize(game.SecondPlayer.Buildings, ruleInfo);
 
             History.Initialize(game.History);
             Hand.Initialize(game.FirstPlayer.Hand);

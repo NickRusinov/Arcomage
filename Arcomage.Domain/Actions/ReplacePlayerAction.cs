@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Arcomage.Domain.Entities;
-using Arcomage.Domain.Internal;
 
 namespace Arcomage.Domain.Actions
 {
@@ -17,7 +16,7 @@ namespace Arcomage.Domain.Actions
         public void Execute(Game game, Player player)
         {
             if (game.PlayAgain-- == 0)
-                game.PlayerMode = game.PlayerMode.GetAdversary();
+                game.SwapPlayer();
         }
     }
 }

@@ -19,6 +19,8 @@ namespace Arcomage.Domain.Entities
             History = history;
             FirstPlayer = firstPlayer;
             SecondPlayer = secondPlayer;
+            CurrentPlayer = firstPlayer;
+            AdversaryPlayer = secondPlayer;
         }
         
         public Deck Deck { get; }
@@ -29,7 +31,9 @@ namespace Arcomage.Domain.Entities
 
         public Player SecondPlayer { get; }
 
-        public PlayerMode PlayerMode { get; set; }
+        public Player CurrentPlayer { get; private set; }
+
+        public Player AdversaryPlayer { get; private set; }
 
         public GameResult Result { get; set; }
 
@@ -43,6 +47,15 @@ namespace Arcomage.Domain.Entities
         {
             get { return discardOnly; }
             set { discardOnly = Max(value, 0); }
+        }
+
+        public void SwapPlayer()
+        {
+            var oldCurrentPlayer = CurrentPlayer;
+            var oldAdversaryPlayer = AdversaryPlayer;
+
+            CurrentPlayer = oldAdversaryPlayer;
+            AdversaryPlayer = oldCurrentPlayer;
         }
     }
 }

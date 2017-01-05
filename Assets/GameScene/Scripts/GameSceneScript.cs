@@ -43,7 +43,7 @@ namespace Arcomage.Unity.GameScene.Scripts
 
         public void Start()
         {
-            GameScript.Initialize(container.Resolve<Game>(), container.Resolve<GameLoop>(), (ClassicRule)container.Resolve<Rule>());
+            GameScript.Initialize(container.Resolve<Game>(), container.Resolve<GameLoop>(), (ClassicRuleInfo)Settings.Instance.Rule);
             CardFactory.Initialize(container.Resolve<Command>("PlayCardCommand"), container.Resolve<Command>("DiscardCardCommand"));
             FinishedScript.Initialize(container.Resolve<Game>());
         }

@@ -14,10 +14,10 @@ namespace Arcomage.Domain.Cards
 
         public override void Activate(Game game)
         {
-            if (game.GetCurrentPlayer().Resources.Magic > game.GetAdversaryPlayer().Resources.Magic)
-                game.GetAdversaryPlayer().Buildings.Damage(12);
+            if (game.CurrentPlayer.Resources.Magic > game.AdversaryPlayer.Resources.Magic)
+                game.AdversaryPlayer.Buildings.Damage(12);
             else
-                game.GetAdversaryPlayer().Buildings.Damage(8);
+                game.AdversaryPlayer.Buildings.Damage(8);
         }
     }
 }

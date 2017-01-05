@@ -14,11 +14,11 @@ namespace Arcomage.Domain.Cards
 
         public override void Activate(Game game)
         {
-            var currentWall = game.GetCurrentPlayer().Buildings.Wall;
-            var adversaryWall = game.GetAdversaryPlayer().Buildings.Wall;
+            var currentWall = game.CurrentPlayer.Buildings.Wall;
+            var adversaryWall = game.AdversaryPlayer.Buildings.Wall;
 
-            game.GetCurrentPlayer().Buildings.Wall = adversaryWall;
-            game.GetAdversaryPlayer().Buildings.Wall = currentWall;
+            game.CurrentPlayer.Buildings.Wall = adversaryWall;
+            game.AdversaryPlayer.Buildings.Wall = currentWall;
         }
     }
 }

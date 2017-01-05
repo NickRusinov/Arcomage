@@ -14,8 +14,8 @@ namespace Arcomage.Domain.Cards
 
         public override void Activate(Game game)
         {
-            game.GetAdversaryPlayer().Buildings.Damage(8);
-            game.GetAdversaryPlayer().Resources.Quarry -= 1;
+            game.AdversaryPlayer.Buildings.Damage(8);
+            game.AdversaryPlayer.Resources.Quarry -= 1;
         }
     }
 }

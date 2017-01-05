@@ -18,7 +18,7 @@ namespace Arcomage.Unity.GameScene.Scripts
                 .WithId("PlayCardCommand")
                 .FromMethod(c => new PlayCardCommand(
                     c.Container.Resolve<Game>(),
-                    (HumanPlayer)c.Container.Resolve<Player>(PlayerMode.FirstPlayer),
+                    (HumanPlayer)c.Container.Resolve<Player>("FirstPlayer"),
                     c.Container.Resolve<IPlayCardCriteria>()))
                 .AsSingle(0);
 
@@ -26,7 +26,7 @@ namespace Arcomage.Unity.GameScene.Scripts
                 .WithId("DiscardCardCommand")
                 .FromMethod(c => new DiscardCardCommand(
                     c.Container.Resolve<Game>(),
-                    (HumanPlayer)c.Container.Resolve<Player>(PlayerMode.FirstPlayer),
+                    (HumanPlayer)c.Container.Resolve<Player>("FirstPlayer"),
                     c.Container.Resolve<IDiscardCardCriteria>()))
                 .AsSingle(1);
         }

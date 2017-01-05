@@ -21,7 +21,7 @@ namespace Arcomage.Unity.GameScene.Scripts
         {
             Container.Bind<IArtificialIntelligence>()
                 .FromMethod(c => new FakeArtificialIntelligence(
-                    new PlayCardCriteria(PlayerMode.SecondPlayer)))
+                    new PlayCardCriteria()))
                 .AsSingle(0);
 
             Container.Bind<Card>()
@@ -47,7 +47,7 @@ namespace Arcomage.Unity.GameScene.Scripts
                 .AsSingle(0);
 
             Container.Bind<IPlayCardCriteria>()
-                .FromMethod(c => new PlayCardCriteria(PlayerMode.FirstPlayer))
+                .To<PlayCardCriteria>()
                 .AsSingle(0);
 
             Container.Bind<IDiscardCardCriteria>()
@@ -62,28 +62,28 @@ namespace Arcomage.Unity.GameScene.Scripts
                 .FromMethod(c => new Game(
                     c.Container.Resolve<Deck>(),
                     c.Container.Resolve<History>(),
-                    c.Container.Resolve<Player>(PlayerMode.FirstPlayer),
-                    c.Container.Resolve<Player>(PlayerMode.SecondPlayer)))
+                    c.Container.Resolve<Player>("FirstPlayer"),
+                    c.Container.Resolve<Player>("SecondPlayer")))
                 .AsSingle();
 
             Container.Bind<Player>()
-                .WithId(PlayerMode.FirstPlayer)
+                .WithId("FirstPlayer")
                 .FromMethod(c => new HumanPlayer(
                     c.Container.Resolve<Rule>().CreateBuildings(),
                     c.Container.Resolve<Rule>().CreateResources(),
-                    c.Container.Resolve<Hand>(PlayerMode.FirstPlayer))
+                    c.Container.Resolve<Hand>("FirstPlayer"))
                 {
                     Identifier = Settings.Instance.FirstPlayer
                 })
                 .AsSingle(0);
 
             Container.Bind<Player>()
-                .WithId(PlayerMode.SecondPlayer)
+                .WithId("SecondPlayer")
                 .FromMethod(c => new ComputerPlayer(
                     c.Container.Resolve<IArtificialIntelligence>(),
                     c.Container.Resolve<Rule>().CreateBuildings(),
                     c.Container.Resolve<Rule>().CreateResources(),
-                    c.Container.Resolve<Hand>(PlayerMode.SecondPlayer))
+                    c.Container.Resolve<Hand>("SecondPlayer"))
                 {
                     Identifier = Settings.Instance.SecondPlayer
                 })
@@ -94,13 +94,13 @@ namespace Arcomage.Unity.GameScene.Scripts
                 .AsSingle(0);
 
             Container.Bind<Hand>()
-                .WithId(PlayerMode.FirstPlayer)
+                .WithId("FirstPlayer")
                 .FromMethod(c => new Hand(
                     Enumerable.Repeat(c.Container.Resolve<Deck>(), 6).Select(d => d.PopCard(null)).ToList()))
                 .AsSingle(0);
 
             Container.Bind<Hand>()
-                .WithId(PlayerMode.SecondPlayer)
+                .WithId("SecondPlayer")
                 .FromMethod(c => new Hand(
                     Enumerable.Repeat(c.Container.Resolve<Deck>(), 6).Select(d => d.PopCard(null)).ToList()))
                 .AsSingle(1);
@@ -111,23 +111,16 @@ namespace Arcomage.Unity.GameScene.Scripts
 
             Container.Bind<Deck>()
                 .WithId("Classic")
-                .FromMethod(c => new ClassicDeck(new Random(), c.Container.ResolveAll<Card>()))
+                .FromMethod(c => new ClassicDeck((ClassicDeckInfo)Settings.Instance.Deck, c.Container.ResolveAll<Card>()))
                 .AsSingle(1);
 
             Container.Bind<Deck>()
                 .WithId("Infinity")
-                .FromMethod(c => new InfinityDeck(new Random(), c.Container.ResolveAll<Card>()))
+                .FromMethod(c => new InfinityDeck((InfinityDeckInfo)Settings.Instance.Deck, c.Container.ResolveAll<Card>()))
                 .AsSingle(2);
 
             Container.Bind<Rule>()
-                .FromMethod(c => new ClassicRule(
-                    new Buildings(
-                        Settings.Instance.Rule.Wall, Settings.Instance.Rule.Tower),
-                    new Resources(
-                        Settings.Instance.Rule.Quarry, Settings.Instance.Rule.Bricks, 
-                        Settings.Instance.Rule.Magic, Settings.Instance.Rule.Gems, 
-                        Settings.Instance.Rule.Dungeons, Settings.Instance.Rule.Recruits),
-                    Settings.Instance.Rule.MaxTower, Settings.Instance.Rule.MaxResources))
+                .FromMethod(c => new ClassicRule((ClassicRuleInfo)Settings.Instance.Rule))
                 .AsSingle(0);
         }
     }

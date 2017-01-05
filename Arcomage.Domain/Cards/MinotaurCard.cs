@@ -14,7 +14,7 @@ namespace Arcomage.Domain.Cards
 
         public override void Activate(Game game)
         {
-            game.GetCurrentPlayer().Resources.Dungeons += 1;
+            game.CurrentPlayer.Resources.Dungeons += 1;
         }
     }
 }
