@@ -7,6 +7,7 @@ using Arcomage.Domain.Entities;
 
 namespace Arcomage.Domain.Cards
 {
+    [Serializable]
     public class TremorsCard : BricksCard
     {
         public override int ResourcePrice { get; set; } = 7;

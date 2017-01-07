@@ -7,6 +7,7 @@ using Arcomage.Domain.Entities;
 
 namespace Arcomage.Domain.Cards
 {
+    [Serializable]
     public abstract class RecruitsCard : Card
     {
         public override bool IsEnoughResources(Resources resources)

@@ -8,6 +8,7 @@ using Arcomage.Domain.Internal;
 
 namespace Arcomage.Domain.Cards
 {
+    [Serializable]
     public class LightningShardCard : GemsCard
     {
         public override int ResourcePrice { get; set; } = 11;

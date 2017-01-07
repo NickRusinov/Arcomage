@@ -4,10 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Arcomage.Domain.Entities;
+using Arcomage.Domain.Internal;
 using Arcomage.Domain.Services;
 
 namespace Arcomage.Domain.ArtificialIntelligence
 {
+    [Serializable]
     public class FakeArtificialIntelligence : IArtificialIntelligence
     {
         private readonly IPlayCardCriteria playCardCriteria;
@@ -19,7 +21,7 @@ namespace Arcomage.Domain.ArtificialIntelligence
 
         public Task<PlayResult> Execute(Game game, Player player)
         {
-            return Internal.TaskExtensions.Delay(1000)
+            return FrameworkExtensions.Delay(1000)
                 .ContinueWith(t =>
                 {
                     if (playCardCriteria.CanPlayCard(game, player, 0))

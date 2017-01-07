@@ -7,6 +7,7 @@ using static System.Math;
 
 namespace Arcomage.Domain.Entities
 {
+    [Serializable]
     public class Game
     {
         private int playAgain;
@@ -34,6 +35,8 @@ namespace Arcomage.Domain.Entities
         public Player CurrentPlayer { get; private set; }
 
         public Player AdversaryPlayer { get; private set; }
+
+        public Player PreviousPlayer { get; set; }
 
         public GameResult Result { get; set; }
 

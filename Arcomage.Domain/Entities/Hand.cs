@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Arcomage.Domain.Entities
 {
+    [Serializable]
     public class Hand
     {
         public Hand(IList<Card> cards)

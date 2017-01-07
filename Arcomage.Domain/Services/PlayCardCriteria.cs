@@ -7,6 +7,7 @@ using Arcomage.Domain.Entities;
 
 namespace Arcomage.Domain.Services
 {
+    [Serializable]
     public class PlayCardCriteria : IPlayCardCriteria
     {
         public bool CanPlayCard(Game game, Player player, int cardIndex)

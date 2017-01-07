@@ -7,6 +7,7 @@ using Arcomage.Domain.Entities;
 
 namespace Arcomage.Domain.Rules
 {
+    [Serializable]
     public class ClassicRule : Rule
     {
         private readonly ClassicRuleInfo ruleInfo;

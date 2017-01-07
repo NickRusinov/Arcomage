@@ -7,8 +7,10 @@ using Arcomage.Domain.Entities;
 
 namespace Arcomage.Domain.Players
 {
+    [Serializable]
     public class HumanPlayer : Player
     {
+        [NonSerialized]
         private TaskCompletionSource<PlayResult> playResultSource;
 
         public HumanPlayer(Buildings buildings, Resources resources, Hand hand)

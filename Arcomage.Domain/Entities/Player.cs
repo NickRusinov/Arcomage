@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Arcomage.Domain.Entities
 {
+    [Serializable]
     public abstract class Player
     {
         protected Player(Buildings buildings, Resources resources, Hand hand)

@@ -7,6 +7,7 @@ using Arcomage.Domain.Entities;
 
 namespace Arcomage.Domain.Decks
 {
+    [Serializable]
     public class InfinityDeck : Deck
     {
         private readonly Random random;

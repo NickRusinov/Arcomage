@@ -8,8 +8,10 @@ using Arcomage.Domain.Entities;
 
 namespace Arcomage.Domain.Players
 {
+    [Serializable]
     public class ComputerPlayer : Player
     {
+        [NonSerialized]
         private readonly IArtificialIntelligence artificialIntelligence;
 
         public ComputerPlayer(IArtificialIntelligence artificialIntelligence, Buildings buildings, Resources resources, Hand hand)

@@ -7,6 +7,7 @@ using static System.Math;
 
 namespace Arcomage.Domain.Entities
 {
+    [Serializable]
     public class Resources
     {
         private int quarry;

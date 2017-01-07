@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Arcomage.Domain.Entities
 {
+    [Serializable]
     public abstract class Rule
     {
         public string Identifier { get; set; }

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Arcomage.Domain.Entities
 {
+    [Serializable]
     public abstract class Card
     {
         public string Identifier { get; set; }

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Arcomage.Domain.Entities
 {
+    [Serializable]
     public struct GameResult
     {
         public static readonly GameResult None = new GameResult();

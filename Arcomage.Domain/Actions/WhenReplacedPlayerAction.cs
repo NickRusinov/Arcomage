@@ -10,9 +10,7 @@ namespace Arcomage.Domain.Actions
     public class WhenReplacedPlayerAction : IPlayAction
     {
         private readonly IPlayAction whenReplacedPlayerAction;
-
-        private Player previousPlayer;
-
+        
         public WhenReplacedPlayerAction(IPlayAction whenReplacedPlayerAction)
         {
             this.whenReplacedPlayerAction = whenReplacedPlayerAction;
@@ -20,9 +18,9 @@ namespace Arcomage.Domain.Actions
 
         public void Execute(Game game, Player player)
         {
-            if (previousPlayer != player)
+            if (game.PreviousPlayer != player)
             {
-                previousPlayer = player;
+                game.PreviousPlayer = player;
                 whenReplacedPlayerAction.Execute(game, player);
             }
         }

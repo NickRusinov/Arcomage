@@ -5,6 +5,7 @@ using System.Text;
 
 namespace Arcomage.Domain.Entities
 {
+    [Serializable]
     public class HistoryCard
     {
         public HistoryCard(Card card, bool isPlayed)

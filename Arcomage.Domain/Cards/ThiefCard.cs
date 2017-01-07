@@ -9,6 +9,7 @@ using static System.Math;
 
 namespace Arcomage.Domain.Cards
 {
+    [Serializable]
     public class ThiefCard : RecruitsCard
     {
         public override int ResourcePrice { get; set; } = 12;

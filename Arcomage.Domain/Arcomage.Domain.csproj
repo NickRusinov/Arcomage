@@ -53,7 +53,9 @@
     <Compile Include="Actions\UpdateHistoryAction.cs" />
     <Compile Include="Actions\UpdateResourcesAction.cs" />
     <Compile Include="Actions\WhenReplacedPlayerAction.cs" />
+    <Compile Include="ArtificialIntelligence\ArtificialIntelligence.cs" />
     <Compile Include="ArtificialIntelligence\FakeArtificialIntelligence.cs" />
+    <Compile Include="ArtificialIntelligence\GameComparer.cs" />
     <Compile Include="ArtificialIntelligence\IArtificialIntelligence.cs" />
     <Compile Include="Cards\AmethystCard.cs" />
     <Compile Include="Cards\ApprenticeCard.cs" />
@@ -183,7 +185,7 @@
     <Compile Include="Exceptions\NotEnoughResourcesException.cs" />
     <Compile Include="GameLoop.cs" />
     <Compile Include="Internal\BuildingsExtensions.cs" />
-    <Compile Include="Internal\TaskExtensions.cs" />
+    <Compile Include="Internal\FrameworkExtensions.cs" />
     <Compile Include="Players\ComputerPlayer.cs" />
     <Compile Include="Players\HumanPlayer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

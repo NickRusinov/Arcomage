@@ -11,22 +11,19 @@ namespace Arcomage.Domain
 {
     public class GameLoop
     {
-        private readonly Game game;
-
         private readonly IPlayAction playAction;
 
         private readonly ICardAction cardAction;
 
         private Task<PlayResult> playResultTask;
 
-        public GameLoop(Game game, IPlayAction playAction, ICardAction cardAction)
+        public GameLoop(IPlayAction playAction, ICardAction cardAction)
         {
-            this.game = game;
             this.playAction = playAction;
             this.cardAction = cardAction;
         }
 
-        public GameResult Update()
+        public GameResult Update(Game game)
         {
             if (playResultTask == null && !game.Result)
             {
@@ -48,6 +45,20 @@ namespace Arcomage.Domain
 
                 playResultTask = null;
             }
+
+            return game.Result;
+        }
+
+        public GameResult Update(Game game, PlayResult playResult)
+        {
+            if (!game.Result && playResult.IsPlay)
+                cardAction.PlayExecute(game, game.CurrentPlayer, playResult.Card);
+
+            if (!game.Result && playResult.IsDiscard)
+                cardAction.DiscardExecute(game, game.CurrentPlayer, playResult.Card);
+
+            if (!game.Result)
+                playAction.Execute(game, game.CurrentPlayer);
 
             return game.Result;
         }

@@ -40,7 +40,7 @@ namespace Arcomage.Unity.GameScene.Views
         
         public void Initialize(Game game, GameLoop gameLoop, ClassicRuleInfo ruleInfo)
         {
-            Bind(gameLoop, gl => gl.Update())
+            Bind(gameLoop, gl => gl.Update(game))
                 .OnChangedAndInit(gr => gr, gr => FinishedEvent.Invoke());
 
             Bind(game, g => g.DiscardOnly)
