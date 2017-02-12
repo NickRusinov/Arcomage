@@ -4,19 +4,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Arcomage.Domain.Entities;
-using Arcomage.Domain.Internal;
 
 namespace Arcomage.Domain.Cards
 {
+    /// <summary>
+    /// Игровая карта "Огненный рубин"
+    /// </summary>
     [Serializable]
-    public class FireRubyCard : GemsCard
+    public class FireRubyCard : Card
     {
-        public override int ResourcePrice { get; set; } = 13;
+        /// <inheritdoc/>
+        public override int Price { get; } = 13;
 
+        /// <inheritdoc/>
+        public override ResourceKind Kind { get; } = ResourceKind.Gems;
+
+        /// <inheritdoc/>
         public override void Activate(Game game)
         {
-            game.CurrentPlayer.Buildings.Tower += 6;
-            game.AdversaryPlayer.Buildings.Tower -= 4;
+            game.Players.CurrentPlayer.Buildings.Tower += 6;
+            game.Players.AdversaryPlayer.Buildings.Tower -= 4;
         }
     }
 }

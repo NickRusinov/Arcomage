@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Arcomage.Domain.Entities;
+using Arcomage.Unity.GameScene.Scripts;
 using Arcomage.Unity.Shared.Scripts;
 using UnityEngine;
 using Resources = Arcomage.Domain.Entities.Resources;
@@ -50,9 +51,9 @@ namespace Arcomage.Unity.GameScene.Views
         [Tooltip("Система частиц, запускаемая при изменении количества отрядов")]
         public ParticleSystem RecruitsParticle;
 
-        public void Initialize(Player player, Resources resources)
+        public void Initialize(PlayerKind playerKind, Resources resources)
         {
-            Bind(player, p => p.Identifier)
+            Bind(playerKind, p => p.GetName())
                 .OnChangedAndInit(i => PlayerText.text = i);
 
             Bind(resources, r => r.Quarry)

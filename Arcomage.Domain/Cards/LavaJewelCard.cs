@@ -4,19 +4,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Arcomage.Domain.Entities;
-using Arcomage.Domain.Internal;
 
 namespace Arcomage.Domain.Cards
 {
+    /// <summary>
+    /// Игровая карта "Сияющий камень"
+    /// </summary>
     [Serializable]
-    public class LavaJewelCard : GemsCard
+    public class LavaJewelCard : Card
     {
-        public override int ResourcePrice { get; set; } = 17;
+        /// <inheritdoc/>
+        public override int Price { get; } = 17;
 
+        /// <inheritdoc/>
+        public override ResourceKind Kind { get; } = ResourceKind.Gems;
+
+        /// <inheritdoc/>
         public override void Activate(Game game)
         {
-            game.CurrentPlayer.Buildings.Tower += 12;
-            game.AdversaryPlayer.Buildings.Damage(6);
+            game.Players.CurrentPlayer.Buildings.Tower += 12;
+            game.Players.AdversaryPlayer.Buildings.Full -= 6;
         }
     }
 }

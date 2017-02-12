@@ -7,21 +7,32 @@ using Arcomage.Domain.Entities;
 
 namespace Arcomage.Domain.Actions
 {
-    public class WhenReplacedPlayerAction : IPlayAction
+    /// <summary>
+    /// Выполняет игровое действие только в случае смены игрока
+    /// </summary>
+    public class WhenReplacedPlayerAction : IBeforePlayAction
     {
-        private readonly IPlayAction whenReplacedPlayerAction;
-        
-        public WhenReplacedPlayerAction(IPlayAction whenReplacedPlayerAction)
+        /// <summary>
+        /// Действие, выполняемое в случае смены игрока
+        /// </summary>
+        private readonly IBeforePlayAction whenReplacedPlayerAction;
+
+        /// <summary>
+        /// Инициализирует экземпляр класса <see cref="WhenReplacedPlayerAction"/>
+        /// </summary>
+        /// <param name="whenReplacedPlayerAction">Действие, выполняемое в случае смены игрока</param>
+        public WhenReplacedPlayerAction(IBeforePlayAction whenReplacedPlayerAction)
         {
             this.whenReplacedPlayerAction = whenReplacedPlayerAction;
         }
 
-        public void Execute(Game game, Player player)
+        /// <inheritdoc/>
+        public void Play(Game game)
         {
-            if (game.PreviousPlayer != player)
+            if (game.PreviousPlayer != game.Players.CurrentPlayer)
             {
-                game.PreviousPlayer = player;
-                whenReplacedPlayerAction.Execute(game, player);
+                game.PreviousPlayer = game.Players.CurrentPlayer;
+                whenReplacedPlayerAction.Play(game);
             }
         }
     }

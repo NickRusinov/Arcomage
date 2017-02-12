@@ -7,15 +7,23 @@ using Arcomage.Domain.Entities;
 
 namespace Arcomage.Domain.Cards
 {
+    /// <summary>
+    /// Игровая карта "Землетрясение"
+    /// </summary>
     [Serializable]
-    public class EarthquakeCard : BricksCard
+    public class EarthquakeCard : Card
     {
-        public override int ResourcePrice { get; set; } = 0;
+        /// <inheritdoc/>
+        public override int Price { get; } = 0;
 
+        /// <inheritdoc/>
+        public override ResourceKind Kind { get; } = ResourceKind.Bricks;
+
+        /// <inheritdoc/>
         public override void Activate(Game game)
         {
-            game.FirstPlayer.Resources.Quarry -= 1;
-            game.SecondPlayer.Resources.Quarry -= 1;
+            game.Players.FirstPlayer.Resources.Quarry -= 1;
+            game.Players.SecondPlayer.Resources.Quarry -= 1;
         }
     }
 }

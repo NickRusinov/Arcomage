@@ -4,18 +4,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Arcomage.Domain.Entities;
-using Arcomage.Domain.Internal;
 
 namespace Arcomage.Domain.Cards
 {
+    /// <summary>
+    /// Игровая карта "Маленькие змейки"
+    /// </summary>
     [Serializable]
-    public class LittleSnakesCard : RecruitsCard
+    public class LittleSnakesCard : Card
     {
-        public override int ResourcePrice { get; set; } = 6;
+        /// <inheritdoc/>
+        public override int Price { get; } = 6;
 
+        /// <inheritdoc/>
+        public override ResourceKind Kind { get; } = ResourceKind.Recruits;
+
+        /// <inheritdoc/>
         public override void Activate(Game game)
         {
-            game.AdversaryPlayer.Buildings.Tower -= 4;
+            game.Players.AdversaryPlayer.Buildings.Tower -= 4;
         }
     }
 }

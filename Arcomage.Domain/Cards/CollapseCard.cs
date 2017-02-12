@@ -4,18 +4,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Arcomage.Domain.Entities;
-using Arcomage.Domain.Internal;
 
 namespace Arcomage.Domain.Cards
 {
+    /// <summary>
+    /// Игровая карта "Обвал"
+    /// </summary>
     [Serializable]
-    public class CollapseCard : BricksCard
+    public class CollapseCard : Card
     {
-        public override int ResourcePrice { get; set; } = 4;
+        /// <inheritdoc/>
+        public override int Price { get; } = 4;
 
+        /// <inheritdoc/>
+        public override ResourceKind Kind { get; } = ResourceKind.Bricks;
+
+        /// <inheritdoc/>
         public override void Activate(Game game)
         {
-            game.AdversaryPlayer.Resources.Quarry -= 1;
+            game.Players.AdversaryPlayer.Resources.Quarry -= 1;
         }
     }
 }

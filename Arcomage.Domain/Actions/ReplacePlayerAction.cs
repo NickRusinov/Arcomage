@@ -4,19 +4,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Arcomage.Domain.Entities;
+using static Arcomage.Domain.Entities.Players;
 
 namespace Arcomage.Domain.Actions
 {
-    public class ReplacePlayerAction : IPlayAction, ICardAction
+    /// <summary>
+    /// Выполняет передачу хода другому игроку, в случае окончания хода текущего
+    /// </summary>
+    public class ReplacePlayerAction : IAfterPlayAction
     {
-        public void PlayExecute(Game game, Player player, int cardIndex) => Execute(game, player);
-
-        public void DiscardExecute(Game game, Player player, int cardIndex) => Execute(game, player);
-
-        public void Execute(Game game, Player player)
+        /// <inheritdoc/>
+        public void Play(Game game, PlayResult playResult)
         {
             if (game.PlayAgain-- == 0)
-                game.SwapPlayer();
+                game.Players.Kind = NextPlayerKind(game.Players.Kind);
         }
     }
 }

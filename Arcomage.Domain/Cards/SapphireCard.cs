@@ -4,18 +4,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Arcomage.Domain.Entities;
-using Arcomage.Domain.Internal;
 
 namespace Arcomage.Domain.Cards
 {
+    /// <summary>
+    /// Игровая карта "Сапфир"
+    /// </summary>
     [Serializable]
-    public class SapphireCard : GemsCard
+    public class SapphireCard : Card
     {
-        public override int ResourcePrice { get; set; } = 10;
+        /// <inheritdoc/>
+        public override int Price { get; } = 10;
 
+        /// <inheritdoc/>
+        public override ResourceKind Kind { get; } = ResourceKind.Gems;
+
+        /// <inheritdoc/>
         public override void Activate(Game game)
         {
-            game.CurrentPlayer.Buildings.Tower += 11;
+            game.Players.CurrentPlayer.Buildings.Tower += 11;
         }
     }
 }

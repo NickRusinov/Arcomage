@@ -4,19 +4,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Arcomage.Domain.Entities;
-using Arcomage.Domain.Internal;
 
 namespace Arcomage.Domain.Cards
 {
+    /// <summary>
+    /// Игровая карта "Карлик"
+    /// </summary>
     [Serializable]
-    public class GnomeCard : RecruitsCard
+    public class GnomeCard : Card
     {
-        public override int ResourcePrice { get; set; } = 2;
+        /// <inheritdoc/>
+        public override int Price { get; } = 2;
 
+        /// <inheritdoc/>
+        public override ResourceKind Kind { get; } = ResourceKind.Recruits;
+
+        /// <inheritdoc/>
         public override void Activate(Game game)
         {
-            game.AdversaryPlayer.Buildings.Damage(3);
-            game.CurrentPlayer.Resources.Gems += 1;
+            game.Players.AdversaryPlayer.Buildings.Full -= 3;
+            game.Players.CurrentPlayer.Resources.Gems += 1;
         }
     }
 }

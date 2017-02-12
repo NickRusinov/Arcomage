@@ -4,18 +4,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Arcomage.Domain.Entities;
-using Arcomage.Domain.Internal;
 
 namespace Arcomage.Domain.Cards
 {
+    /// <summary>
+    /// Игровая карта "Секретная пещера"
+    /// </summary>
     [Serializable]
-    public class SecretRoomCard : BricksCard
+    public class SecretRoomCard : Card
     {
-        public override int ResourcePrice { get; set; } = 8;
+        /// <inheritdoc/>
+        public override int Price { get; } = 8;
 
+        /// <inheritdoc/>
+        public override ResourceKind Kind { get; } = ResourceKind.Bricks;
+
+        /// <inheritdoc/>
         public override void Activate(Game game)
         {
-            game.CurrentPlayer.Resources.Magic += 1;
+            game.Players.CurrentPlayer.Resources.Magic += 1;
             game.PlayAgain += 1;
         }
     }

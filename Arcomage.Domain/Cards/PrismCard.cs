@@ -7,11 +7,19 @@ using Arcomage.Domain.Entities;
 
 namespace Arcomage.Domain.Cards
 {
+    /// <summary>
+    /// Игровая карта "Призма"
+    /// </summary>
     [Serializable]
-    public class PrismCard : GemsCard
+    public class PrismCard : Card
     {
-        public override int ResourcePrice { get; set; } = 2;
+        /// <inheritdoc/>
+        public override int Price { get; } = 2;
 
+        /// <inheritdoc/>
+        public override ResourceKind Kind { get; } = ResourceKind.Gems;
+
+        /// <inheritdoc/>
         public override void Activate(Game game)
         {
             game.DiscardOnly += 1;

@@ -6,24 +6,44 @@ using Arcomage.Domain.Entities;
 
 namespace Arcomage.Domain.ArtificialIntelligence
 {
+    /// <summary>
+    /// Компаратор, сравнивающий успешность одного варианта контекста игры с другим
+    /// </summary>
     public class GameComparer : IComparer<Game>
     {
-        private readonly Func<Game, Player> currentSelector;
+        /// <summary>
+        /// Номер текущего игрока
+        /// </summary>
+        private readonly PlayerKind currentPlayerKind;
 
-        private readonly Func<Game, Player> adversarySelector;
+        /// <summary>
+        /// Номер соперничающего игрока
+        /// </summary>
+        private readonly PlayerKind adversaryPlayerKind;
 
-        public GameComparer(Func<Game, Player> currentSelector, Func<Game, Player> adversarySelector)
+        /// <summary>
+        /// Инициализирует экземпляр класса <see cref="GameComparer"/>
+        /// </summary>
+        /// <param name="currentPlayerKind">Номер текущего игрока</param>
+        /// <param name="adversaryPlayerKind">Номер соперничающего игрока</param>
+        public GameComparer(PlayerKind currentPlayerKind, PlayerKind adversaryPlayerKind)
         {
-            this.currentSelector = currentSelector;
-            this.adversarySelector = adversarySelector;
+            this.currentPlayerKind = currentPlayerKind;
+            this.adversaryPlayerKind = adversaryPlayerKind;
         }
-
+        
+        /// <summary>
+        /// Сравнивает один контекст игры с другим путем сравнения их весов
+        /// </summary>
+        /// <param name="x">Первый контект игры</param>
+        /// <param name="y">Второй контекст игры</param>
+        /// <returns>Результат сравнения</returns>
         public int Compare(Game x, Game y)
         {
-            if (x.Result)
+            if (x.Rule.IsWin(x))
                 return +1;
 
-            if (y.Result)
+            if (y.Rule.IsWin(y))
                 return -1;
 
             var currentWeight = GetWeight(x);
@@ -32,10 +52,15 @@ namespace Arcomage.Domain.ArtificialIntelligence
             return currentWeight.CompareTo(adversaryWeight);
         }
 
+        /// <summary>
+        /// Получает значение веса контекста игры для сравнения
+        /// </summary>
+        /// <param name="game">Контекст игры</param>
+        /// <returns>Вес контекста игры</returns>
         private float GetWeight(Game game)
         {
-            var currentPlayer = currentSelector.Invoke(game);
-            var adversaryPlayer = adversarySelector.Invoke(game);
+            var currentPlayer = game.Players[currentPlayerKind];
+            var adversaryPlayer = game.Players[adversaryPlayerKind];
 
             var currentWeight = GetWeight(currentPlayer);
             var adversaryWeight = GetWeight(adversaryPlayer);
@@ -43,6 +68,11 @@ namespace Arcomage.Domain.ArtificialIntelligence
             return currentWeight - adversaryWeight;
         }
 
+        /// <summary>
+        /// Получает значение веса характеристик игрока для сравнения
+        /// </summary>
+        /// <param name="player">Игрок</param>
+        /// <returns>Вес характеристик игрока</returns>
         private float GetWeight(Player player)
         {
             return player.Buildings.Tower * 1f +

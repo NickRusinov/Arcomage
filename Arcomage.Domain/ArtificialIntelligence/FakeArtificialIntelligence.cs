@@ -9,16 +9,27 @@ using Arcomage.Domain.Services;
 
 namespace Arcomage.Domain.ArtificialIntelligence
 {
+    /// <summary>
+    /// Самая простая реализация ИИ для компьютерного игрока
+    /// </summary>
     [Serializable]
     public class FakeArtificialIntelligence : IArtificialIntelligence
     {
+        /// <summary>
+        /// Критерий возможности активации карты
+        /// </summary>
         private readonly IPlayCardCriteria playCardCriteria;
 
+        /// <summary>
+        /// Инициализирует экземпляр класса <see cref="FakeArtificialIntelligence"/>
+        /// </summary>
+        /// <param name="playCardCriteria">Критерий возможности активации карты</param>
         public FakeArtificialIntelligence(IPlayCardCriteria playCardCriteria)
         {
             this.playCardCriteria = playCardCriteria;
         }
-
+        
+        /// <inheritdoc/>
         public Task<PlayResult> Execute(Game game, Player player)
         {
             return FrameworkExtensions.Delay(1000)

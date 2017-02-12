@@ -4,21 +4,28 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Arcomage.Domain.Entities;
-using Arcomage.Domain.Internal;
 
 namespace Arcomage.Domain.Cards
 {
+    /// <summary>
+    /// Игровая карта "Фундамент"
+    /// </summary>
     [Serializable]
-    public class FoundationsCard : BricksCard
+    public class FoundationsCard : Card
     {
-        public override int ResourcePrice { get; set; } = 3;
+        /// <inheritdoc/>
+        public override int Price { get; } = 3;
 
+        /// <inheritdoc/>
+        public override ResourceKind Kind { get; } = ResourceKind.Bricks;
+
+        /// <inheritdoc/>
         public override void Activate(Game game)
         {
-            if (game.CurrentPlayer.Buildings.Wall == 0)
-                game.CurrentPlayer.Buildings.Wall += 6;
+            if (game.Players.CurrentPlayer.Buildings.Wall == 0)
+                game.Players.CurrentPlayer.Buildings.Wall += 6;
             else
-                game.CurrentPlayer.Buildings.Wall += 3;
+                game.Players.CurrentPlayer.Buildings.Wall += 3;
         }
     }
 }

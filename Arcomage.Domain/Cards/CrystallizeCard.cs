@@ -4,19 +4,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Arcomage.Domain.Entities;
-using Arcomage.Domain.Internal;
 
 namespace Arcomage.Domain.Cards
 {
+    /// <summary>
+    /// Игровая карта "Отвердение"
+    /// </summary>
     [Serializable]
-    public class CrystallizeCard : GemsCard
+    public class CrystallizeCard : Card
     {
-        public override int ResourcePrice { get; set; } = 8;
+        /// <inheritdoc/>
+        public override int Price { get; } = 8;
 
+        /// <inheritdoc/>
+        public override ResourceKind Kind { get; } = ResourceKind.Gems;
+
+        /// <inheritdoc/>
         public override void Activate(Game game)
         {
-            game.CurrentPlayer.Buildings.Tower += 11;
-            game.CurrentPlayer.Buildings.Wall -= 6;
+            game.Players.CurrentPlayer.Buildings.Tower += 11;
+            game.Players.CurrentPlayer.Buildings.Wall -= 6;
         }
     }
 }

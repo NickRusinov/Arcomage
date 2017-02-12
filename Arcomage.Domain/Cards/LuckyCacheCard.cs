@@ -4,19 +4,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Arcomage.Domain.Entities;
-using Arcomage.Domain.Internal;
 
 namespace Arcomage.Domain.Cards
 {
+    /// <summary>
+    /// Игровая карта "Счастливая монетка"
+    /// </summary>
     [Serializable]
-    public class LuckyCacheCard : BricksCard
+    public class LuckyCacheCard : Card
     {
-        public override int ResourcePrice { get; set; } = 0;
+        /// <inheritdoc/>
+        public override int Price { get; } = 0;
 
+        /// <inheritdoc/>
+        public override ResourceKind Kind { get; } = ResourceKind.Bricks;
+
+        /// <inheritdoc/>
         public override void Activate(Game game)
         {
-            game.CurrentPlayer.Resources.Bricks += 2;
-            game.CurrentPlayer.Resources.Gems += 2;
+            game.Players.CurrentPlayer.Resources.Bricks += 2;
+            game.Players.CurrentPlayer.Resources.Gems += 2;
             game.PlayAgain += 1;
         }
     }

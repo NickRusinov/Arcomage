@@ -4,19 +4,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Arcomage.Domain.Entities;
-using Arcomage.Domain.Internal;
 
 namespace Arcomage.Domain.Cards
 {
+    /// <summary>
+    /// Игровая карта "Затмение"
+    /// </summary>
     [Serializable]
-    public class SolarFlareCard : GemsCard
+    public class SolarFlareCard : Card
     {
-        public override int ResourcePrice { get; set; } = 4;
+        /// <inheritdoc/>
+        public override int Price { get; } = 4;
 
+        /// <inheritdoc/>
+        public override ResourceKind Kind { get; } = ResourceKind.Gems;
+
+        /// <inheritdoc/>
         public override void Activate(Game game)
         {
-            game.CurrentPlayer.Buildings.Tower += 2;
-            game.AdversaryPlayer.Buildings.Tower -= 2;
+            game.Players.CurrentPlayer.Buildings.Tower += 2;
+            game.Players.AdversaryPlayer.Buildings.Tower -= 2;
         }
     }
 }

@@ -4,19 +4,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Arcomage.Domain.Entities;
-using Arcomage.Domain.Internal;
 
 namespace Arcomage.Domain.Cards
 {
+    /// <summary>
+    /// Игровая карта "Каменный гигант"
+    /// </summary>
     [Serializable]
-    public class StoneGiantCard : RecruitsCard
+    public class StoneGiantCard : Card
     {
-        public override int ResourcePrice { get; set; } = 15;
+        /// <inheritdoc/>
+        public override int Price { get; } = 15;
 
+        /// <inheritdoc/>
+        public override ResourceKind Kind { get; } = ResourceKind.Recruits;
+
+        /// <inheritdoc/>
         public override void Activate(Game game)
         {
-            game.AdversaryPlayer.Buildings.Damage(10);
-            game.CurrentPlayer.Buildings.Wall += 4;
+            game.Players.AdversaryPlayer.Buildings.Full -= 10;
+            game.Players.CurrentPlayer.Buildings.Wall += 4;
         }
     }
 }

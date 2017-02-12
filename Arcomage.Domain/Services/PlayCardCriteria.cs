@@ -7,13 +7,19 @@ using Arcomage.Domain.Entities;
 
 namespace Arcomage.Domain.Services
 {
+    /// <summary>
+    /// Критерий возможности активации карты
+    /// </summary>
     [Serializable]
     public class PlayCardCriteria : IPlayCardCriteria
     {
+        /// <inheritdoc/>
         public bool CanPlayCard(Game game, Player player, int cardIndex)
         {
+            var card = player.Hand.Cards[cardIndex];
+
             return game.DiscardOnly <= 0 &&
-                player.Hand.Cards[cardIndex].IsEnoughResources(player.Resources);
+                card.Price <= player.Resources[card.Kind].Value;
         }
     }
 }

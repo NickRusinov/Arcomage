@@ -22,6 +22,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\Arcomage.Domain.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -30,8 +31,10 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\Arcomage.Domain.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Contracts, Version=1.0.0.0, Culture=neutral, PublicKeyToken=736440c9b414ea16, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Threading, Version=1.0.2856.102, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -42,16 +45,14 @@
   <ItemGroup>
     <Compile Include="Actions\ActivateCardAction.cs" />
     <Compile Include="Actions\ClearHistoryAction.cs" />
-    <Compile Include="Actions\CompositeCardAction.cs" />
-    <Compile Include="Actions\CompositePlayAction.cs" />
-    <Compile Include="Actions\ICardAction.cs" />
-    <Compile Include="Actions\IPlayAction.cs" />
+    <Compile Include="Actions\CompositeAfterPlayAction.cs" />
+    <Compile Include="Actions\CompositeBeforePlayAction.cs" />
+    <Compile Include="Actions\IAfterPlayAction.cs" />
+    <Compile Include="Actions\IBeforePlayAction.cs" />
     <Compile Include="Actions\ReplaceCardAction.cs" />
     <Compile Include="Actions\ReplacePlayerAction.cs" />
-    <Compile Include="Actions\UniformCardAction.cs" />
-    <Compile Include="Actions\UpdateFinishedAction.cs" />
-    <Compile Include="Actions\UpdateHistoryAction.cs" />
-    <Compile Include="Actions\UpdateResourcesAction.cs" />
+    <Compile Include="Actions\AddHistoryAction.cs" />
+    <Compile Include="Actions\IncreaseResourcesAction.cs" />
     <Compile Include="Actions\WhenReplacedPlayerAction.cs" />
     <Compile Include="ArtificialIntelligence\ArtificialIntelligence.cs" />
     <Compile Include="ArtificialIntelligence\FakeArtificialIntelligence.cs" />
@@ -65,7 +66,6 @@
     <Compile Include="Cards\BattlementsCard.cs" />
     <Compile Include="Cards\BerserkerCard.cs" />
     <Compile Include="Cards\BigWallCard.cs" />
-    <Compile Include="Cards\BricksCard.cs" />
     <Compile Include="Cards\BrickShortageCard.cs" />
     <Compile Include="Cards\CollapseCard.cs" />
     <Compile Include="Cards\CoppingTheTechCard.cs" />
@@ -95,7 +95,6 @@
     <Compile Include="Cards\FoundationsCard.cs" />
     <Compile Include="Cards\FriendlyTerrainCard.cs" />
     <Compile Include="Cards\FullMoonCard.cs" />
-    <Compile Include="Cards\GemsCard.cs" />
     <Compile Include="Cards\GemSpearCard.cs" />
     <Compile Include="Cards\GemstoneFlawCard.cs" />
     <Compile Include="Cards\GnomeCard.cs" />
@@ -131,7 +130,6 @@
     <Compile Include="Cards\QuartzCard.cs" />
     <Compile Include="Cards\RabidSheepCard.cs" />
     <Compile Include="Cards\RainbowCard.cs" />
-    <Compile Include="Cards\RecruitsCard.cs" />
     <Compile Include="Cards\ReinforcedWallCard.cs" />
     <Compile Include="Cards\RockGardenCard.cs" />
     <Compile Include="Cards\RockLauncherCard.cs" />
@@ -176,15 +174,14 @@
     <Compile Include="Entities\History.cs" />
     <Compile Include="Entities\HistoryCard.cs" />
     <Compile Include="Entities\Player.cs" />
+    <Compile Include="Entities\PlayerKind.cs" />
+    <Compile Include="Entities\Players.cs" />
     <Compile Include="Entities\PlayResult.cs" />
+    <Compile Include="Entities\Resource.cs" />
+    <Compile Include="Entities\ResourceKind.cs" />
     <Compile Include="Entities\Resources.cs" />
     <Compile Include="Entities\Rule.cs" />
-    <Compile Include="Exceptions\ArcomageException.cs" />
-    <Compile Include="Exceptions\GameFinishedException.cs" />
-    <Compile Include="Exceptions\NotCurrentPlayerException.cs" />
-    <Compile Include="Exceptions\NotEnoughResourcesException.cs" />
     <Compile Include="GameLoop.cs" />
-    <Compile Include="Internal\BuildingsExtensions.cs" />
     <Compile Include="Internal\FrameworkExtensions.cs" />
     <Compile Include="Players\ComputerPlayer.cs" />
     <Compile Include="Players\HumanPlayer.cs" />

@@ -9,7 +9,6 @@ using Arcomage.Unity.GameScene.Views;
 using Arcomage.Unity.Shared.Scripts;
 using UnityEngine;
 using Zenject;
-using Random = System.Random;
 
 namespace Arcomage.Unity.GameScene.Scripts
 {
@@ -52,9 +51,6 @@ namespace Arcomage.Unity.GameScene.Scripts
             GameScript.Initialize(game, gameLoop, (ClassicRuleInfo)Settings.Instance.Rule);
             CardFactory.Initialize(playCardCommand, discardCardCommand);
             FinishedScript.Initialize(game);
-
-            if (new Random().Next(100) < 50)
-                game.SwapPlayer();
         }
 
         public void Update()

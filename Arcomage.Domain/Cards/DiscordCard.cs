@@ -7,17 +7,25 @@ using Arcomage.Domain.Entities;
 
 namespace Arcomage.Domain.Cards
 {
+    /// <summary>
+    /// Игровая карта "Раздоры"
+    /// </summary>
     [Serializable]
-    public class DiscordCard : GemsCard
+    public class DiscordCard : Card
     {
-        public override int ResourcePrice { get; set; } = 5;
+        /// <inheritdoc/>
+        public override int Price { get; } = 5;
 
+        /// <inheritdoc/>
+        public override ResourceKind Kind { get; } = ResourceKind.Gems;
+
+        /// <inheritdoc/>
         public override void Activate(Game game)
         {
-            game.FirstPlayer.Resources.Magic -= 1;
-            game.SecondPlayer.Resources.Magic -= 1;
-            game.FirstPlayer.Buildings.Tower -= 7;
-            game.SecondPlayer.Buildings.Tower -= 7;
+            game.Players.FirstPlayer.Resources.Magic -= 1;
+            game.Players.SecondPlayer.Resources.Magic -= 1;
+            game.Players.FirstPlayer.Buildings.Tower -= 7;
+            game.Players.SecondPlayer.Buildings.Tower -= 7;
         }
     }
 }

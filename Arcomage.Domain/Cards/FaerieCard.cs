@@ -4,18 +4,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Arcomage.Domain.Entities;
-using Arcomage.Domain.Internal;
 
 namespace Arcomage.Domain.Cards
 {
+    /// <summary>
+    /// Игровая карта "Фея"
+    /// </summary>
     [Serializable]
-    public class FaerieCard : RecruitsCard
+    public class FaerieCard : Card
     {
-        public override int ResourcePrice { get; set; } = 1;
+        /// <inheritdoc/>
+        public override int Price { get; } = 1;
 
+        /// <inheritdoc/>
+        public override ResourceKind Kind { get; } = ResourceKind.Recruits;
+
+        /// <inheritdoc/>
         public override void Activate(Game game)
         {
-            game.AdversaryPlayer.Buildings.Damage(2);
+            game.Players.AdversaryPlayer.Buildings.Full -= 2;
             game.PlayAgain += 1;
         }
     }

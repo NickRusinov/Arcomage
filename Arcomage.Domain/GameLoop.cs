@@ -5,62 +5,86 @@ using System.Text;
 using System.Threading.Tasks;
 using Arcomage.Domain.Actions;
 using Arcomage.Domain.Entities;
-using Arcomage.Domain.Internal;
 
 namespace Arcomage.Domain
 {
+    /// <summary>
+    /// Игровой цикл игры
+    /// </summary>
     public class GameLoop
     {
-        private readonly IPlayAction playAction;
+        /// <summary>
+        /// Действия, выполняемые до получения хода игроком
+        /// </summary>
+        private readonly IBeforePlayAction beforePlayAction;
 
-        private readonly ICardAction cardAction;
+        /// <summary>
+        /// Действия, выполянемые после совершения хода игроком
+        /// </summary>
+        private readonly IAfterPlayAction afterPlayAction;
 
         private Task<PlayResult> playResultTask;
 
-        public GameLoop(IPlayAction playAction, ICardAction cardAction)
+        /// <summary>
+        /// Инициализирует экземпляр класса <see cref="GameLoop"/>
+        /// </summary>
+        /// <param name="beforePlayAction">Действия, выполняемые до получения хода игроком</param>
+        /// <param name="afterPlayAction">Действия, выполянемые после совершения хода игроком</param>
+        public GameLoop(IBeforePlayAction beforePlayAction, IAfterPlayAction afterPlayAction)
         {
-            this.playAction = playAction;
-            this.cardAction = cardAction;
+            this.beforePlayAction = beforePlayAction;
+            this.afterPlayAction = afterPlayAction;
         }
 
+        /// <summary>
+        /// Выполянет одну итерацию игрового цикла
+        /// </summary>
+        /// <param name="game">Контекст игры</param>
+        /// <returns>Результат игры</returns>
         public GameResult Update(Game game)
         {
-            if (playResultTask == null && !game.Result)
+            var gameResult = game.Rule.IsWin(game);
+            if (playResultTask == null && !gameResult)
             {
-                playAction.Execute(game, game.CurrentPlayer);
+                beforePlayAction.Play(game);
             }
 
-            if (playResultTask == null && !game.Result)
+            gameResult = game.Rule.IsWin(game);
+            if (playResultTask == null && !gameResult)
             { 
-                playResultTask = game.CurrentPlayer.Play(game);
+                playResultTask = game.Players.CurrentPlayer.Play(game);
             }
 
-            if (playResultTask?.IsCompleted == true && !game.Result)
+            gameResult = game.Rule.IsWin(game);
+            if (playResultTask?.IsCompleted == true && !gameResult)
             {
-                if (playResultTask.Result.IsPlay)
-                    cardAction.PlayExecute(game, game.CurrentPlayer, playResultTask.Result.Card);
-
-                if (playResultTask.Result.IsDiscard)
-                    cardAction.DiscardExecute(game, game.CurrentPlayer, playResultTask.Result.Card);
-
+                afterPlayAction.Play(game, playResultTask.Result);
                 playResultTask = null;
             }
 
-            return game.Result;
+            gameResult = game.Rule.IsWin(game);
+            return gameResult;
         }
 
-        public GameResult Update(Game game, PlayResult playResult)
+        /// <summary>
+        /// Выполняет одну предварительную операцию игрвого цикла. Используется алгоритмами ИИ для предпросмотра 
+        /// возможного хода
+        /// </summary>
+        /// <param name="game">Контекст игры</param>
+        /// <param name="playResult">Ход игрока</param>
+        /// <returns>Результат игры</returns>
+        internal GameResult Update(Game game, PlayResult playResult)
         {
-            if (!game.Result && playResult.IsPlay)
-                cardAction.PlayExecute(game, game.CurrentPlayer, playResult.Card);
+            var gameResult = game.Rule.IsWin(game);
+            if (!gameResult)
+                afterPlayAction.Play(game, playResult);
 
-            if (!game.Result && playResult.IsDiscard)
-                cardAction.DiscardExecute(game, game.CurrentPlayer, playResult.Card);
+            gameResult = game.Rule.IsWin(game);
+            if (!gameResult)
+                beforePlayAction.Play(game);
 
-            if (!game.Result)
-                playAction.Execute(game, game.CurrentPlayer);
-
-            return game.Result;
+            gameResult = game.Rule.IsWin(game);
+            return gameResult;
         }
     }
 }

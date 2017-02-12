@@ -7,19 +7,22 @@ using Arcomage.Domain.Entities;
 
 namespace Arcomage.Domain.Actions
 {
-    public class ActivateCardAction : ICardAction
+    /// <summary>
+    /// Выполняет действия, связанные с активацией или сбросом карты
+    /// </summary>
+    public class ActivateCardAction : IAfterPlayAction
     {
-        public void PlayExecute(Game game, Player player, int cardIndex)
+        /// <inheritdoc/>
+        public void Play(Game game, PlayResult playResult)
         {
-            var card = player.Hand.Cards[cardIndex];
+            var card = game.Players.CurrentPlayer.Hand.Cards[playResult.Card];
+            var resource = game.Players.CurrentPlayer.Resources[card.Kind];
             
-            card.Activate(game);
-            card.PaymentResources(player.Resources);
-        }
-
-        public void DiscardExecute(Game game, Player player, int cardIndex)
-        {
+            resource.Value -= resource.Increase;
             game.DiscardOnly--;
+
+            if (playResult.IsPlay)
+                card.Activate(game);
         }
     }
 }

@@ -4,21 +4,28 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Arcomage.Domain.Entities;
-using Arcomage.Domain.Internal;
 
 namespace Arcomage.Domain.Cards
 {
+    /// <summary>
+    /// Игровая карта "Копейщик"
+    /// </summary>
     [Serializable]
-    public class SpearmanCard : RecruitsCard
+    public class SpearmanCard : Card
     {
-        public override int ResourcePrice { get; set; } = 2;
+        /// <inheritdoc/>
+        public override int Price { get; } = 2;
 
+        /// <inheritdoc/>
+        public override ResourceKind Kind { get; } = ResourceKind.Recruits;
+
+        /// <inheritdoc/>
         public override void Activate(Game game)
         {
-            if (game.CurrentPlayer.Buildings.Wall > game.AdversaryPlayer.Buildings.Wall)
-                game.AdversaryPlayer.Buildings.Damage(3);
+            if (game.Players.CurrentPlayer.Buildings.Wall > game.Players.AdversaryPlayer.Buildings.Wall)
+                game.Players.AdversaryPlayer.Buildings.Full -= 3;
             else
-                game.AdversaryPlayer.Buildings.Damage(2);
+                game.Players.AdversaryPlayer.Buildings.Full -= 2;
         }
     }
 }

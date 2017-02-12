@@ -4,19 +4,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Arcomage.Domain.Entities;
-using Arcomage.Domain.Internal;
 
 namespace Arcomage.Domain.Cards
 {
+    /// <summary>
+    /// Игровая карта "Гномы"
+    /// </summary>
     [Serializable]
-    public class DwarvesCard : RecruitsCard
+    public class DwarvesCard : Card
     {
-        public override int ResourcePrice { get; set; } = 5;
+        /// <inheritdoc/>
+        public override int Price { get; } = 5;
 
+        /// <inheritdoc/>
+        public override ResourceKind Kind { get; } = ResourceKind.Recruits;
+
+        /// <inheritdoc/>
         public override void Activate(Game game)
         {
-            game.AdversaryPlayer.Buildings.Damage(4);
-            game.CurrentPlayer.Buildings.Wall += 3;
+            game.Players.AdversaryPlayer.Buildings.Full -= 4;
+            game.Players.CurrentPlayer.Buildings.Wall += 3;
         }
     }
 }

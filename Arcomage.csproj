@@ -107,6 +107,7 @@
     <Compile Include="Assets\Shared\Scripts\BindingExtensions.cs" />
     <Compile Include="Assets\Shared\Scripts\CollectionBinding.cs" />
     <Compile Include="Assets\Shared\Scripts\Command.cs" />
+    <Compile Include="Assets\Shared\Scripts\ConstBinding.cs" />
     <Compile Include="Assets\Shared\Scripts\DropdownView.cs" />
     <Compile Include="Assets\Shared\Scripts\FrameworkExtensions.cs" />
     <Compile Include="Assets\Shared\Scripts\LocalizationScript.cs" />

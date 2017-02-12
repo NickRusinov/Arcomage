@@ -4,18 +4,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Arcomage.Domain.Entities;
-using Arcomage.Domain.Internal;
 
 namespace Arcomage.Domain.Cards
 {
+    /// <summary>
+    /// Игровая карта "Крушитель"
+    /// </summary>
     [Serializable]
-    public class SlasherCard : RecruitsCard
+    public class SlasherCard : Card
     {
-        public override int ResourcePrice { get; set; } = 5;
+        /// <inheritdoc/>
+        public override int Price { get; } = 5;
 
+        /// <inheritdoc/>
+        public override ResourceKind Kind { get; } = ResourceKind.Recruits;
+
+        /// <inheritdoc/>
         public override void Activate(Game game)
         {
-            game.AdversaryPlayer.Buildings.Damage(6);
+            game.Players.AdversaryPlayer.Buildings.Full -= 6;
         }
     }
 }

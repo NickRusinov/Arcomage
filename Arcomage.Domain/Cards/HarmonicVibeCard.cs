@@ -4,20 +4,27 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Arcomage.Domain.Entities;
-using Arcomage.Domain.Internal;
 
 namespace Arcomage.Domain.Cards
 {
+    /// <summary>
+    /// Игровая карта "Гармония"
+    /// </summary>
     [Serializable]
-    public class HarmonicVibeCard : GemsCard
+    public class HarmonicVibeCard : Card
     {
-        public override int ResourcePrice { get; set; } = 7;
+        /// <inheritdoc/>
+        public override int Price { get; } = 7;
 
+        /// <inheritdoc/>
+        public override ResourceKind Kind { get; } = ResourceKind.Gems;
+
+        /// <inheritdoc/>
         public override void Activate(Game game)
         {
-            game.CurrentPlayer.Resources.Magic += 1;
-            game.CurrentPlayer.Buildings.Tower += 3;
-            game.CurrentPlayer.Buildings.Wall += 3;
+            game.Players.CurrentPlayer.Resources.Magic += 1;
+            game.Players.CurrentPlayer.Buildings.Tower += 3;
+            game.Players.CurrentPlayer.Buildings.Wall += 3;
         }
     }
 }

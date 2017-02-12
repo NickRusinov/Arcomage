@@ -7,9 +7,13 @@ using Arcomage.Domain.Entities;
 
 namespace Arcomage.Domain.Services
 {
+    /// <summary>
+    /// Критерий возможности сброса карты
+    /// </summary>
     [Serializable]
     public class DiscardCardCriteria : IDiscardCardCriteria
     {
+        /// <inheritdoc/>
         public bool CanDiscardCard(Game game, Player player, int cardIndex)
         {
             return true;

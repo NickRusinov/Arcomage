@@ -4,20 +4,27 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Arcomage.Domain.Entities;
-using Arcomage.Domain.Internal;
 
 namespace Arcomage.Domain.Cards
 {
+    /// <summary>
+    /// Игровая карта "Вступление"
+    /// </summary>
     [Serializable]
-    public class ApprenticeCard : GemsCard
+    public class ApprenticeCard : Card
     {
-        public override int ResourcePrice { get; set; } = 5;
+        /// <inheritdoc/>
+        public override int Price { get; } = 5;
 
+        /// <inheritdoc/>
+        public override ResourceKind Kind { get; } = ResourceKind.Gems;
+
+        /// <inheritdoc/>
         public override void Activate(Game game)
         {
-            game.CurrentPlayer.Buildings.Tower += 4;
-            game.CurrentPlayer.Resources.Recruits -= 3;
-            game.AdversaryPlayer.Buildings.Tower -= 2;
+            game.Players.CurrentPlayer.Buildings.Tower += 4;
+            game.Players.CurrentPlayer.Resources.Recruits -= 3;
+            game.Players.AdversaryPlayer.Buildings.Tower -= 2;
         }
     }
 }

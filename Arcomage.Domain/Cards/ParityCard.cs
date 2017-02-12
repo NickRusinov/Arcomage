@@ -4,22 +4,29 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Arcomage.Domain.Entities;
-using Arcomage.Domain.Internal;
 using static System.Math;
 
 namespace Arcomage.Domain.Cards
 {
+    /// <summary>
+    /// Игровая карта "Паритет"
+    /// </summary>
     [Serializable]
-    public class ParityCard : GemsCard
+    public class ParityCard : Card
     {
-        public override int ResourcePrice { get; set; } = 7;
+        /// <inheritdoc/>
+        public override int Price { get; } = 7;
 
+        /// <inheritdoc/>
+        public override ResourceKind Kind { get; } = ResourceKind.Gems;
+
+        /// <inheritdoc/>
         public override void Activate(Game game)
         {
-            var maxMagic = Max(game.CurrentPlayer.Resources.Magic, game.AdversaryPlayer.Resources.Magic);
+            var maxMagic = Max(game.Players.CurrentPlayer.Resources.Magic, game.Players.AdversaryPlayer.Resources.Magic);
 
-            game.CurrentPlayer.Resources.Magic = maxMagic;
-            game.AdversaryPlayer.Resources.Magic = maxMagic;
+            game.Players.CurrentPlayer.Resources.Magic = maxMagic;
+            game.Players.AdversaryPlayer.Resources.Magic = maxMagic;
         }
     }
 }

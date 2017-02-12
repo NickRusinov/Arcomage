@@ -4,19 +4,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Arcomage.Domain.Entities;
-using Arcomage.Domain.Internal;
 
 namespace Arcomage.Domain.Cards
 {
+    /// <summary>
+    /// Игровая карта "Гоблины лучники"
+    /// </summary>
     [Serializable]
-    public class GoblinArchersCard : RecruitsCard
+    public class GoblinArchersCard : Card
     {
-        public override int ResourcePrice { get; set; } = 4;
+        /// <inheritdoc/>
+        public override int Price { get; } = 4;
 
+        /// <inheritdoc/>
+        public override ResourceKind Kind { get; } = ResourceKind.Recruits;
+
+        /// <inheritdoc/>
         public override void Activate(Game game)
         {
-            game.AdversaryPlayer.Buildings.Tower -= 3;
-            game.CurrentPlayer.Buildings.Damage(1);
+            game.Players.AdversaryPlayer.Buildings.Tower -= 3;
+            game.Players.CurrentPlayer.Buildings.Full -= 1;
         }
     }
 }

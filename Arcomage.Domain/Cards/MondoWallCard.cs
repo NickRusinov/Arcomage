@@ -4,18 +4,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Arcomage.Domain.Entities;
-using Arcomage.Domain.Internal;
 
 namespace Arcomage.Domain.Cards
 {
+    /// <summary>
+    /// Игровая карта "Бастион"
+    /// </summary>
     [Serializable]
-    public class MondoWallCard : BricksCard
+    public class MondoWallCard : Card
     {
-        public override int ResourcePrice { get; set; } = 13;
+        /// <inheritdoc/>
+        public override int Price { get; } = 13;
 
+        /// <inheritdoc/>
+        public override ResourceKind Kind { get; } = ResourceKind.Bricks;
+
+        /// <inheritdoc/>
         public override void Activate(Game game)
         {
-            game.CurrentPlayer.Buildings.Wall += 12;
+            game.Players.CurrentPlayer.Buildings.Wall += 12;
         }
     }
 }

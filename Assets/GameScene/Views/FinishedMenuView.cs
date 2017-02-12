@@ -21,12 +21,12 @@ namespace Arcomage.Unity.GameScene.Views
 
         public void Initialize(Game game)
         {
-            Bind(game, g => g.Result.GetIdentifier())
+            Bind(game, g => g.Rule.IsWin(g).GetIdentifier())
                 .OnChangedAndInit(i => CauseText.identifier = "GameFinished" + i + "Text");
 
-            Bind(game, g => g.Result.Player)
+            Bind(game, g => g.Rule.IsWin(g).Player)
                 .OnChangedAndInit(p => WinnerText.identifier = "GameFinishedWinnerText")
-                .OnChangedAndInit(p => WinnerText.arguments = new[] { p.Identifier });
+                .OnChangedAndInit(p => WinnerText.arguments = new[] { p.GetName() });
         }
 
         public void OnBackClickHandler()

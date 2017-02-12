@@ -35,17 +35,15 @@ namespace Arcomage.Unity.GameScene.Views
 
         public void Initialize(HistoryCard historyCard)
         {
-            historyCard.Card.Identifier = historyCard.Card.GetIdentifier();
+            Bind(historyCard.Card.GetIdentifier())
+                .OnInit(i => ForegroundImage.sprite = UnityEngine.Resources.Load<Sprite>("Card" + i + "Image"))
+                .OnInit(i => NameText.text = LanguageManager.Instance.GetTextValue("Card" + i + "Name"))
+                .OnInit(i => DescriptionText.text = LanguageManager.Instance.GetTextValue("Card" + i + "Description"));
 
-            Bind(historyCard, c => c.Card.Identifier)
-                .OnChangedAndInit(i => ForegroundImage.sprite = UnityEngine.Resources.Load<Sprite>("Card" + i + "Image"))
-                .OnChangedAndInit(i => NameText.text = LanguageManager.Instance.GetTextValue("Card" + i + "Name"))
-                .OnChangedAndInit(i => DescriptionText.text = LanguageManager.Instance.GetTextValue("Card" + i + "Description"));
-
-            Bind(historyCard, c => c.Card.GetResources())
+            Bind(historyCard, c => c.Card.Kind)
                 .OnChangedAndInit(r => BackgroundImage.sprite = UnityEngine.Resources.Load<Sprite>("Card" + r + "Image"));
 
-            Bind(historyCard, c => c.Card.ResourcePrice)
+            Bind(historyCard, c => c.Card.Price)
                 .OnChangedAndInit(p => PriceText.text = p.ToString());
 
             Bind(historyCard, c => c.IsPlayed)

@@ -4,18 +4,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Arcomage.Domain.Entities;
-using Arcomage.Domain.Internal;
 
 namespace Arcomage.Domain.Cards
 {
+    /// <summary>
+    /// Игровая карта "Эмеральд"
+    /// </summary>
     [Serializable]
-    public class EmeraldCard : GemsCard
+    public class EmeraldCard : Card
     {
-        public override int ResourcePrice { get; set; } = 6;
+        /// <inheritdoc/>
+        public override int Price { get; } = 6;
 
+        /// <inheritdoc/>
+        public override ResourceKind Kind { get; } = ResourceKind.Gems;
+
+        /// <inheritdoc/>
         public override void Activate(Game game)
         {
-            game.CurrentPlayer.Buildings.Tower += 8;
+            game.Players.CurrentPlayer.Buildings.Tower += 8;
         }
     }
 }

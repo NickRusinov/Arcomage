@@ -7,6 +7,13 @@ namespace Arcomage.Unity.Shared.Scripts
 {
     public static class BindingExtensions
     {
+        public static ConstBinding<TValue> OnInit<TValue>(this ConstBinding<TValue> binding, Action<TValue> action)
+        {
+            binding.Init += action;
+
+            return binding;
+        }
+
         public static ValueBinding<TSource, TValue> OnChangedAndInit<TSource, TValue>(this ValueBinding<TSource, TValue> binding, Action<TValue> action)
         {
             binding.Changed += (oldValue, newValue) => action(newValue);
@@ -26,6 +33,27 @@ namespace Arcomage.Unity.Shared.Scripts
         public static ValueBinding<TSource, TValue> OnChanged<TSource, TValue>(this ValueBinding<TSource, TValue> binding, Action<TValue> action)
         {
             binding.Changed += (oldValue, newValue) => action(newValue);
+
+            return binding;
+        }
+
+        public static ValueBinding<TSource, TValue> OnChanged<TSource, TValue>(this ValueBinding<TSource, TValue> binding, Predicate<TValue> predicate, Action<TValue> action)
+        {
+            binding.Changed += (oldValue, newValue) => predicate(newValue).IfTrue(() => action(newValue));
+
+            return binding;
+        }
+
+        public static ValueBinding<TSource, TValue> OnChanged<TSource, TValue>(this ValueBinding<TSource, TValue> binding, Action<TValue, TValue> action)
+        {
+            binding.Changed += action;
+
+            return binding;
+        }
+
+        public static ValueBinding<TSource, TValue> OnChanged<TSource, TValue>(this ValueBinding<TSource, TValue> binding, Predicate<TValue> predicate, Action<TValue, TValue> action)
+        {
+            binding.Changed += (oldValue, newValue) => predicate(newValue).IfTrue(() => action(oldValue, newValue));
 
             return binding;
         }

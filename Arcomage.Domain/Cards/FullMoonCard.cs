@@ -4,20 +4,27 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Arcomage.Domain.Entities;
-using Arcomage.Domain.Internal;
 
 namespace Arcomage.Domain.Cards
 {
+    /// <summary>
+    /// Игровая карта "Полнолуние"
+    /// </summary>
     [Serializable]
-    public class FullMoonCard : RecruitsCard
+    public class FullMoonCard : Card
     {
-        public override int ResourcePrice { get; set; } = 0;
+        /// <inheritdoc/>
+        public override int Price { get; } = 0;
 
+        /// <inheritdoc/>
+        public override ResourceKind Kind { get; } = ResourceKind.Recruits;
+
+        /// <inheritdoc/>
         public override void Activate(Game game)
         {
-            game.FirstPlayer.Resources.Dungeons += 1;
-            game.SecondPlayer.Resources.Dungeons += 1;
-            game.CurrentPlayer.Resources.Recruits += 3;
+            game.Players.FirstPlayer.Resources.Dungeons += 1;
+            game.Players.SecondPlayer.Resources.Dungeons += 1;
+            game.Players.CurrentPlayer.Resources.Recruits += 3;
         }
     }
 }

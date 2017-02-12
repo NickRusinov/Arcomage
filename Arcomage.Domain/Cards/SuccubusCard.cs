@@ -4,19 +4,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Arcomage.Domain.Entities;
-using Arcomage.Domain.Internal;
 
 namespace Arcomage.Domain.Cards
 {
+    /// <summary>
+    /// Игровая карта "Суккубы"
+    /// </summary>
     [Serializable]
-    public class SuccubusCard : RecruitsCard
+    public class SuccubusCard : Card
     {
-        public override int ResourcePrice { get; set; } = 14;
+        /// <inheritdoc/>
+        public override int Price { get; } = 14;
 
+        /// <inheritdoc/>
+        public override ResourceKind Kind { get; } = ResourceKind.Recruits;
+
+        /// <inheritdoc/>
         public override void Activate(Game game)
         {
-            game.AdversaryPlayer.Buildings.Tower -= 5;
-            game.AdversaryPlayer.Resources.Recruits -= 8;
+            game.Players.AdversaryPlayer.Buildings.Tower -= 5;
+            game.Players.AdversaryPlayer.Resources.Recruits -= 8;
         }
     }
 }

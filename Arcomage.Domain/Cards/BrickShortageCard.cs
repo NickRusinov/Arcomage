@@ -7,15 +7,23 @@ using Arcomage.Domain.Entities;
 
 namespace Arcomage.Domain.Cards
 {
+    /// <summary>
+    /// Игровая карта "Бракованная руда"
+    /// </summary>
     [Serializable]
-    public class BrickShortageCard : BricksCard
+    public class BrickShortageCard : Card
     {
-        public override int ResourcePrice { get; set; } = 0;
+        /// <inheritdoc/>
+        public override int Price { get; } = 0;
 
+        /// <inheritdoc/>
+        public override ResourceKind Kind { get; } = ResourceKind.Bricks;
+
+        /// <inheritdoc/>
         public override void Activate(Game game)
         {
-            game.FirstPlayer.Resources.Bricks -= 8;
-            game.SecondPlayer.Resources.Bricks -= 8;
+            game.Players.FirstPlayer.Resources.Bricks -= 8;
+            game.Players.SecondPlayer.Resources.Bricks -= 8;
         }
     }
 }

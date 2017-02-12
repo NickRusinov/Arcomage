@@ -4,18 +4,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Arcomage.Domain.Entities;
-using Arcomage.Domain.Internal;
 
 namespace Arcomage.Domain.Cards
 {
+    /// <summary>
+    /// Игровая карта "Усиленная стена"
+    /// </summary>
     [Serializable]
-    public class BigWallCard : BricksCard
+    public class BigWallCard : Card
     {
-        public override int ResourcePrice { get; set; } = 5;
+        /// <inheritdoc/>
+        public override int Price { get; } = 5;
 
+        /// <inheritdoc/>
+        public override ResourceKind Kind { get; } = ResourceKind.Bricks;
+
+        /// <inheritdoc/>
         public override void Activate(Game game)
         {
-            game.CurrentPlayer.Buildings.Wall += 6;
+            game.Players.CurrentPlayer.Buildings.Wall += 6;
         }
     }
 }

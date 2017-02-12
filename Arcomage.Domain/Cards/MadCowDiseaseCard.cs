@@ -7,15 +7,23 @@ using Arcomage.Domain.Entities;
 
 namespace Arcomage.Domain.Cards
 {
+    /// <summary>
+    /// Игровая карта "Короыье бешенство"
+    /// </summary>
     [Serializable]
-    public class MadCowDiseaseCard : RecruitsCard
+    public class MadCowDiseaseCard : Card
     {
-        public override int ResourcePrice { get; set; } = 0;
+        /// <inheritdoc/>
+        public override int Price { get; } = 0;
 
+        /// <inheritdoc/>
+        public override ResourceKind Kind { get; } = ResourceKind.Recruits;
+
+        /// <inheritdoc/>
         public override void Activate(Game game)
         {
-            game.FirstPlayer.Resources.Recruits -= 6;
-            game.SecondPlayer.Resources.Recruits -= 6;
+            game.Players.FirstPlayer.Resources.Recruits -= 6;
+            game.Players.SecondPlayer.Resources.Recruits -= 6;
         }
     }
 }

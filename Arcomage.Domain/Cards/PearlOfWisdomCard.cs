@@ -4,19 +4,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Arcomage.Domain.Entities;
-using Arcomage.Domain.Internal;
 
 namespace Arcomage.Domain.Cards
 {
+    /// <summary>
+    /// Игровая карта "Жемчуг мудрости"
+    /// </summary>
     [Serializable]
-    public class PearlOfWisdomCard : GemsCard
+    public class PearlOfWisdomCard : Card
     {
-        public override int ResourcePrice { get; set; } = 9;
+        /// <inheritdoc/>
+        public override int Price { get; } = 9;
 
+        /// <inheritdoc/>
+        public override ResourceKind Kind { get; } = ResourceKind.Gems;
+
+        /// <inheritdoc/>
         public override void Activate(Game game)
         {
-            game.CurrentPlayer.Buildings.Tower += 5;
-            game.CurrentPlayer.Resources.Magic += 1;
+            game.Players.CurrentPlayer.Buildings.Tower += 5;
+            game.Players.CurrentPlayer.Resources.Magic += 1;
         }
     }
 }

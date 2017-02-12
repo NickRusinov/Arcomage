@@ -4,20 +4,27 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Arcomage.Domain.Entities;
-using Arcomage.Domain.Internal;
 
 namespace Arcomage.Domain.Cards
 {
+    /// <summary>
+    /// Игровая карта "Радуга"
+    /// </summary>
     [Serializable]
-    public class RainbowCard : GemsCard
+    public class RainbowCard : Card
     {
-        public override int ResourcePrice { get; set; } = 0;
+        /// <inheritdoc/>
+        public override int Price { get; } = 0;
 
+        /// <inheritdoc/>
+        public override ResourceKind Kind { get; } = ResourceKind.Gems;
+
+        /// <inheritdoc/>
         public override void Activate(Game game)
         {
-            game.FirstPlayer.Buildings.Tower += 1;
-            game.SecondPlayer.Buildings.Tower += 1;
-            game.CurrentPlayer.Resources.Gems += 3;
+            game.Players.FirstPlayer.Buildings.Tower += 1;
+            game.Players.SecondPlayer.Buildings.Tower += 1;
+            game.Players.CurrentPlayer.Resources.Gems += 3;
         }
     }
 }

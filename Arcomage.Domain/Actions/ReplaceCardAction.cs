@@ -7,16 +7,20 @@ using Arcomage.Domain.Entities;
 
 namespace Arcomage.Domain.Actions
 {
-    public class ReplaceCardAction : UniformCardAction
+    /// <summary>
+    /// Выполянет замену активированной или сброшенной карты на новую из игровой колоды
+    /// </summary>
+    public class ReplaceCardAction : IAfterPlayAction
     {
-        protected override void Execute(Game game, Player player, int cardIndex)
+        /// <inheritdoc/>
+        public void Play(Game game, PlayResult playResult)
         {
-            var oldCard = player.Hand.Cards[cardIndex];
+            var oldCard = game.Players.CurrentPlayer.Hand.Cards[playResult.Card];
 
             game.Deck.PushCard(game, oldCard);
             var newCard = game.Deck.PopCard(game);
 
-            player.Hand.Cards[cardIndex] = newCard;
+            game.Players.CurrentPlayer.Hand.Cards[playResult.Card] = newCard;
         }
     }
 }

@@ -4,21 +4,28 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Arcomage.Domain.Entities;
-using Arcomage.Domain.Internal;
 
 namespace Arcomage.Domain.Cards
 {
+    /// <summary>
+    /// Игровая карта "Большая жила"
+    /// </summary>
     [Serializable]
-    public class MotherLodeCard : BricksCard
+    public class MotherLodeCard : Card
     {
-        public override int ResourcePrice { get; set; } = 4;
+        /// <inheritdoc/>
+        public override int Price { get; } = 4;
 
+        /// <inheritdoc/>
+        public override ResourceKind Kind { get; } = ResourceKind.Bricks;
+
+        /// <inheritdoc/>
         public override void Activate(Game game)
         {
-            if (game.CurrentPlayer.Resources.Quarry < game.AdversaryPlayer.Resources.Quarry)
-                game.CurrentPlayer.Resources.Quarry += 2;
+            if (game.Players.CurrentPlayer.Resources.Quarry < game.Players.AdversaryPlayer.Resources.Quarry)
+                game.Players.CurrentPlayer.Resources.Quarry += 2;
             else
-                game.CurrentPlayer.Resources.Quarry += 1;
+                game.Players.CurrentPlayer.Resources.Quarry += 1;
         }
     }
 }

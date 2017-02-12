@@ -4,26 +4,33 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Arcomage.Domain.Entities;
-using Arcomage.Domain.Internal;
 
 namespace Arcomage.Domain.Cards
 {
+    /// <summary>
+    /// Игровая карта "Грунтвые воды"
+    /// </summary>
     [Serializable]
-    public class FloodWaterCard : BricksCard
+    public class FloodWaterCard : Card
     {
-        public override int ResourcePrice { get; set; } = 6;
+        /// <inheritdoc/>
+        public override int Price { get; } = 6;
 
+        /// <inheritdoc/>
+        public override ResourceKind Kind { get; } = ResourceKind.Bricks;
+
+        /// <inheritdoc/>
         public override void Activate(Game game)
         {
-            if (game.CurrentPlayer.Buildings.Wall < game.AdversaryPlayer.Buildings.Wall)
+            if (game.Players.CurrentPlayer.Buildings.Wall < game.Players.AdversaryPlayer.Buildings.Wall)
             {
-                game.CurrentPlayer.Buildings.Tower -= 2;
-                game.CurrentPlayer.Resources.Dungeons -= 1;
+                game.Players.CurrentPlayer.Buildings.Tower -= 2;
+                game.Players.CurrentPlayer.Resources.Dungeons -= 1;
             }
-            if (game.CurrentPlayer.Buildings.Wall > game.AdversaryPlayer.Buildings.Wall)
+            if (game.Players.CurrentPlayer.Buildings.Wall > game.Players.AdversaryPlayer.Buildings.Wall)
             {
-                game.AdversaryPlayer.Buildings.Tower -= 2;
-                game.AdversaryPlayer.Resources.Dungeons -= 1;
+                game.Players.AdversaryPlayer.Buildings.Tower -= 2;
+                game.Players.AdversaryPlayer.Resources.Dungeons -= 1;
             }
         }
     }

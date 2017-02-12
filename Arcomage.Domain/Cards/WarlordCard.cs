@@ -4,19 +4,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Arcomage.Domain.Entities;
-using Arcomage.Domain.Internal;
 
 namespace Arcomage.Domain.Cards
 {
+    /// <summary>
+    /// Игровая карта "Воитель"
+    /// </summary>
     [Serializable]
-    public class WarlordCard : RecruitsCard
+    public class WarlordCard : Card
     {
-        public override int ResourcePrice { get; set; } = 13;
+        /// <inheritdoc/>
+        public override int Price { get; } = 13;
 
+        /// <inheritdoc/>
+        public override ResourceKind Kind { get; } = ResourceKind.Recruits;
+
+        /// <inheritdoc/>
         public override void Activate(Game game)
         {
-            game.AdversaryPlayer.Buildings.Damage(13);
-            game.CurrentPlayer.Resources.Gems -= 3;
+            game.Players.AdversaryPlayer.Buildings.Full -= 13;
+            game.Players.CurrentPlayer.Resources.Gems -= 3;
         }
     }
 }

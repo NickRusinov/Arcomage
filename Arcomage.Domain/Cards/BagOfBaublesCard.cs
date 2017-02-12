@@ -4,21 +4,28 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Arcomage.Domain.Entities;
-using Arcomage.Domain.Internal;
 
 namespace Arcomage.Domain.Cards
 {
+    /// <summary>
+    /// Игровая карта "Бижутерия"
+    /// </summary>
     [Serializable]
-    public class BagOfBaublesCard : GemsCard
+    public class BagOfBaublesCard : Card
     {
-        public override int ResourcePrice { get; set; } = 0;
+        /// <inheritdoc/>
+        public override int Price { get; } = 0;
 
+        /// <inheritdoc/>
+        public override ResourceKind Kind { get; } = ResourceKind.Gems;
+
+        /// <inheritdoc/>
         public override void Activate(Game game)
         {
-            if (game.CurrentPlayer.Buildings.Tower < game.AdversaryPlayer.Buildings.Tower)
-                game.CurrentPlayer.Buildings.Tower += 2;
+            if (game.Players.CurrentPlayer.Buildings.Tower < game.Players.AdversaryPlayer.Buildings.Tower)
+                game.Players.CurrentPlayer.Buildings.Tower += 2;
             else
-                game.CurrentPlayer.Buildings.Tower += 1;
+                game.Players.CurrentPlayer.Buildings.Tower += 1;
         }
     }
 }

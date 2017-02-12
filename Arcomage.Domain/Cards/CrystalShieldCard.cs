@@ -4,19 +4,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Arcomage.Domain.Entities;
-using Arcomage.Domain.Internal;
 
 namespace Arcomage.Domain.Cards
 {
+    /// <summary>
+    /// Игровая карта "Кристальный щит"
+    /// </summary>
     [Serializable]
-    public class CrystalShieldCard : GemsCard
+    public class CrystalShieldCard : Card
     {
-        public override int ResourcePrice { get; set; } = 12;
+        /// <inheritdoc/>
+        public override int Price { get; } = 12;
 
+        /// <inheritdoc/>
+        public override ResourceKind Kind { get; } = ResourceKind.Gems;
+
+        /// <inheritdoc/>
         public override void Activate(Game game)
         {
-            game.CurrentPlayer.Buildings.Tower += 8;
-            game.CurrentPlayer.Buildings.Wall += 3;
+            game.Players.CurrentPlayer.Buildings.Tower += 8;
+            game.Players.CurrentPlayer.Buildings.Wall += 3;
         }
     }
 }

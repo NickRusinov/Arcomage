@@ -38,17 +38,15 @@ namespace Arcomage.Unity.GameScene.Views
 
         public void Initialize(Card card, Command playCommand)
         {
-            card.Identifier = card.GetIdentifier();
+            Bind(card.GetIdentifier())
+                .OnInit(i => ForegroundImage.sprite = UnityEngine.Resources.Load<Sprite>("Card" + i + "Image"))
+                .OnInit(i => NameText.text = LanguageManager.Instance.GetTextValue("Card" + i + "Name"))
+                .OnInit(i => DescriptionText.text = LanguageManager.Instance.GetTextValue("Card" + i + "Description"));
 
-            Bind(card, c => c.Identifier)
-                .OnChangedAndInit(i => ForegroundImage.sprite = UnityEngine.Resources.Load<Sprite>("Card" + i + "Image"))
-                .OnChangedAndInit(i => NameText.text = LanguageManager.Instance.GetTextValue("Card" + i + "Name"))
-                .OnChangedAndInit(i => DescriptionText.text = LanguageManager.Instance.GetTextValue("Card" + i + "Description"));
-
-            Bind(card, c => c.GetResources())
+            Bind(card, c => c.Kind)
                 .OnChangedAndInit(r => BackgroundImage.sprite = UnityEngine.Resources.Load<Sprite>("Card" + r + "Image"));
 
-            Bind(card, c => c.ResourcePrice)
+            Bind(card, c => c.Price)
                 .OnChangedAndInit(p => PriceText.text = p.ToString());
 
             Bind(playCommand, c => c.CanExecute(Index))

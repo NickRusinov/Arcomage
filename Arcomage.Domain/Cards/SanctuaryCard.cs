@@ -4,20 +4,27 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Arcomage.Domain.Entities;
-using Arcomage.Domain.Internal;
 
 namespace Arcomage.Domain.Cards
 {
+    /// <summary>
+    /// Игровая карта "Монастырь"
+    /// </summary>
     [Serializable]
-    public class SanctuaryCard : GemsCard
+    public class SanctuaryCard : Card
     {
-        public override int ResourcePrice { get; set; } = 15;
+        /// <inheritdoc/>
+        public override int Price { get; } = 15;
 
+        /// <inheritdoc/>
+        public override ResourceKind Kind { get; } = ResourceKind.Gems;
+
+        /// <inheritdoc/>
         public override void Activate(Game game)
         {
-            game.CurrentPlayer.Buildings.Tower += 10;
-            game.CurrentPlayer.Buildings.Wall += 5;
-            game.CurrentPlayer.Resources.Recruits += 5;
+            game.Players.CurrentPlayer.Buildings.Tower += 10;
+            game.Players.CurrentPlayer.Buildings.Wall += 5;
+            game.Players.CurrentPlayer.Resources.Recruits += 5;
         }
     }
 }

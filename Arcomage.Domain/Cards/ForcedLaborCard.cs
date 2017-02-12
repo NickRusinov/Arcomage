@@ -4,19 +4,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Arcomage.Domain.Entities;
-using Arcomage.Domain.Internal;
 
 namespace Arcomage.Domain.Cards
 {
+    /// <summary>
+    /// Игровая карта "Рабский труд"
+    /// </summary>
     [Serializable]
-    public class ForcedLaborCard : BricksCard
+    public class ForcedLaborCard : Card
     {
-        public override int ResourcePrice { get; set; } = 7;
+        /// <inheritdoc/>
+        public override int Price { get; } = 7;
 
+        /// <inheritdoc/>
+        public override ResourceKind Kind { get; } = ResourceKind.Bricks;
+
+        /// <inheritdoc/>
         public override void Activate(Game game)
         {
-            game.CurrentPlayer.Buildings.Wall += 9;
-            game.CurrentPlayer.Resources.Recruits -= 5;
+            game.Players.CurrentPlayer.Buildings.Wall += 9;
+            game.Players.CurrentPlayer.Resources.Recruits -= 5;
         }
     }
 }

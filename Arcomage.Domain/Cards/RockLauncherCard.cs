@@ -4,19 +4,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Arcomage.Domain.Entities;
-using Arcomage.Domain.Internal;
 
 namespace Arcomage.Domain.Cards
 {
+    /// <summary>
+    /// Игровая карта "Скаломет"
+    /// </summary>
     [Serializable]
-    public class RockLauncherCard : BricksCard
+    public class RockLauncherCard : Card
     {
-        public override int ResourcePrice { get; set; } = 18;
+        /// <inheritdoc/>
+        public override int Price { get; } = 18;
 
+        /// <inheritdoc/>
+        public override ResourceKind Kind { get; } = ResourceKind.Bricks;
+
+        /// <inheritdoc/>
         public override void Activate(Game game)
         {
-            game.CurrentPlayer.Buildings.Wall += 6;
-            game.AdversaryPlayer.Buildings.Damage(10);
+            game.Players.CurrentPlayer.Buildings.Wall += 6;
+            game.Players.AdversaryPlayer.Buildings.Full -= 10;
         }
     }
 }

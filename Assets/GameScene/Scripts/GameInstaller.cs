@@ -15,8 +15,14 @@ using Zenject;
 
 namespace Arcomage.Unity.GameScene.Scripts
 {
+    /// <summary>
+    /// Модуль контейнера, настраивающий привязки для классов логики игры
+    /// </summary>
     public class GameInstaller : Installer<GameInstaller>
     {
+        /// <summary>
+        /// Настраивает привязки для классоа логики игры
+        /// </summary>
         public override void InstallBindings()
         {
             Container.Bind<IArtificialIntelligence>()
@@ -28,20 +34,18 @@ namespace Arcomage.Unity.GameScene.Scripts
                     .FromAssemblyContaining<Game>())
                 .AsSingle(0);
 
-            Container.Bind<IPlayAction>()
+            Container.Bind<IBeforePlayAction>()
                 .FromMethod(c => new WhenReplacedPlayerAction(
-                    new CompositePlayAction(
+                    new CompositeBeforePlayAction(
                         new ClearHistoryAction(),
-                        new UpdateResourcesAction(),
-                        new UpdateFinishedAction(c.Container.Resolve<Rule>()))))
+                        new IncreaseResourcesAction())))
                 .AsSingle(0);
 
-            Container.Bind<ICardAction>()
-                .FromMethod(c => new CompositeCardAction(
+            Container.Bind<IAfterPlayAction>()
+                .FromMethod(c => new CompositeAfterPlayAction(
                     new ActivateCardAction(),
-                    new UpdateHistoryAction(),
+                    new AddHistoryAction(),
                     new ReplaceCardAction(),
-                    new UpdateFinishedAction(c.Container.Resolve<Rule>()),
                     new ReplacePlayerAction()))
                 .AsSingle(0);
 
@@ -58,22 +62,26 @@ namespace Arcomage.Unity.GameScene.Scripts
                 .AsSingle(0);
 
             Container.Bind<Game>()
-                .FromMethod(c => new Game(
-                    c.Container.Resolve<Deck>(),
-                    c.Container.Resolve<History>(),
+                .ToSelf()
+                .AsSingle(0);
+
+            Container.Bind<Players>()
+                .FromMethod(c => new Players(
+                    c.Container.Resolve<PlayerKind>(),
                     c.Container.Resolve<Player>("FirstPlayer"),
                     c.Container.Resolve<Player>("SecondPlayer")))
-                .AsSingle();
+                .AsSingle(0);
+
+            Container.Bind<PlayerKind>()
+                .FromMethod(c => new Random().Next(100) < 50 ? PlayerKind.First : PlayerKind.Second)
+                .AsSingle(0);
 
             Container.Bind<Player>()
                 .WithId("FirstPlayer")
                 .FromMethod(c => new HumanPlayer(
                     c.Container.Resolve<Rule>().CreateBuildings(),
                     c.Container.Resolve<Rule>().CreateResources(),
-                    c.Container.Resolve<Hand>("FirstPlayer"))
-                {
-                    Identifier = Settings.Instance.FirstPlayer
-                })
+                    c.Container.Resolve<Hand>("FirstPlayer")))
                 .AsSingle(0);
 
             Container.Bind<Player>()
@@ -82,10 +90,7 @@ namespace Arcomage.Unity.GameScene.Scripts
                     c.Container.Resolve<IArtificialIntelligence>(),
                     c.Container.Resolve<Rule>().CreateBuildings(),
                     c.Container.Resolve<Rule>().CreateResources(),
-                    c.Container.Resolve<Hand>("SecondPlayer"))
-                {
-                    Identifier = Settings.Instance.SecondPlayer
-                })
+                    c.Container.Resolve<Hand>("SecondPlayer")))
                 .AsSingle(1);
 
             Container.Bind<History>()

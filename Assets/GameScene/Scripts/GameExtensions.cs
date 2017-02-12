@@ -4,21 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Arcomage.Domain.Entities;
+using Arcomage.Unity.Shared.Scripts;
 
 namespace Arcomage.Unity.GameScene.Scripts
 {
     public static class GameExtensions
     {
-        public static string GetResources(this Card card)
-        {
-            var baseName = card.GetType().BaseType.Name;
-
-            if (baseName.EndsWith("Card"))
-                return baseName.Substring(0, baseName.Length - 4);
-
-            return baseName;
-        }
-
         public static string GetIdentifier(this Card card)
         {
             var name = card.GetType().Name;
@@ -39,6 +30,17 @@ namespace Arcomage.Unity.GameScene.Scripts
 
             if (gameResult.IsResourcesAccumulate)
                 return "ResourcesAccumulate";
+
+            return "";
+        }
+
+        public static string GetName(this PlayerKind playerKind)
+        {
+            if (playerKind == PlayerKind.First)
+                return Settings.Instance.FirstPlayer;
+
+            if (playerKind == PlayerKind.Second)
+                return Settings.Instance.SecondPlayer;
 
             return "";
         }

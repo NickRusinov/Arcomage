@@ -4,20 +4,27 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Arcomage.Domain.Entities;
-using Arcomage.Domain.Internal;
 
 namespace Arcomage.Domain.Cards
 {
+    /// <summary>
+    /// Игровая карта "Гремлин в башне"
+    /// </summary>
     [Serializable]
-    public class TowerGremlinCard : RecruitsCard
+    public class TowerGremlinCard : Card
     {
-        public override int ResourcePrice { get; set; } = 8;
+        /// <inheritdoc/>
+        public override int Price { get; } = 8;
 
+        /// <inheritdoc/>
+        public override ResourceKind Kind { get; } = ResourceKind.Recruits;
+
+        /// <inheritdoc/>
         public override void Activate(Game game)
         {
-            game.AdversaryPlayer.Buildings.Damage(2);
-            game.CurrentPlayer.Buildings.Wall += 4;
-            game.CurrentPlayer.Buildings.Tower += 2;
+            game.Players.AdversaryPlayer.Buildings.Full -= 2;
+            game.Players.CurrentPlayer.Buildings.Wall += 4;
+            game.Players.CurrentPlayer.Buildings.Tower += 2;
         }
     }
 }

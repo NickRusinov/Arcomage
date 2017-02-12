@@ -10,6 +10,14 @@ namespace Arcomage.Unity.Shared.Scripts
     {
         private readonly List<Binding> bindingCollection = new List<Binding>();
         
+        protected ConstBinding<TValue> Bind<TValue>(TValue value)
+        {
+            var binding = new ConstBinding<TValue>(value);
+            bindingCollection.Add(binding);
+
+            return binding;
+        }
+
         protected ValueBinding<TSource, TValue> Bind<TSource, TValue>(TSource source, Func<TSource, TValue> func)
         {
             var binding = new ValueBinding<TSource, TValue>(source, func);

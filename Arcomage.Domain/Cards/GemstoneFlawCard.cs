@@ -4,18 +4,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Arcomage.Domain.Entities;
-using Arcomage.Domain.Internal;
 
 namespace Arcomage.Domain.Cards
 {
+    /// <summary>
+    /// Игровая карта "Трещина"
+    /// </summary>
     [Serializable]
-    public class GemstoneFlawCard : GemsCard
+    public class GemstoneFlawCard : Card
     {
-        public override int ResourcePrice { get; set; } = 2;
+        /// <inheritdoc/>
+        public override int Price { get; } = 2;
 
+        /// <inheritdoc/>
+        public override ResourceKind Kind { get; } = ResourceKind.Gems;
+
+        /// <inheritdoc/>
         public override void Activate(Game game)
         {
-            game.AdversaryPlayer.Buildings.Tower -= 3;
+            game.Players.AdversaryPlayer.Buildings.Tower -= 3;
         }
     }
 }

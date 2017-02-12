@@ -4,20 +4,27 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Arcomage.Domain.Entities;
-using Arcomage.Domain.Internal;
 
 namespace Arcomage.Domain.Cards
 {
+    /// <summary>
+    /// Игровая карта "Сад камней"
+    /// </summary>
     [Serializable]
-    public class RockGardenCard : BricksCard
+    public class RockGardenCard : Card
     {
-        public override int ResourcePrice { get; set; } = 1;
+        /// <inheritdoc/>
+        public override int Price { get; } = 1;
 
+        /// <inheritdoc/>
+        public override ResourceKind Kind { get; } = ResourceKind.Bricks;
+
+        /// <inheritdoc/>
         public override void Activate(Game game)
         {
-            game.CurrentPlayer.Buildings.Wall += 1;
-            game.CurrentPlayer.Buildings.Tower += 1;
-            game.CurrentPlayer.Resources.Recruits += 2;
+            game.Players.CurrentPlayer.Buildings.Wall += 1;
+            game.Players.CurrentPlayer.Buildings.Tower += 1;
+            game.Players.CurrentPlayer.Resources.Recruits += 2;
         }
     }
 }

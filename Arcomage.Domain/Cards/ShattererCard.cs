@@ -4,19 +4,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Arcomage.Domain.Entities;
-using Arcomage.Domain.Internal;
 
 namespace Arcomage.Domain.Cards
 {
+    /// <summary>
+    /// Игровая карта "Дробление"
+    /// </summary>
     [Serializable]
-    public class ShattererCard : GemsCard
+    public class ShattererCard : Card
     {
-        public override int ResourcePrice { get; set; } = 8;
+        /// <inheritdoc/>
+        public override int Price { get; } = 8;
 
+        /// <inheritdoc/>
+        public override ResourceKind Kind { get; } = ResourceKind.Gems;
+
+        /// <inheritdoc/>
         public override void Activate(Game game)
         {
-            game.CurrentPlayer.Resources.Magic -= 1;
-            game.AdversaryPlayer.Buildings.Tower -= 9;
+            game.Players.CurrentPlayer.Resources.Magic -= 1;
+            game.Players.AdversaryPlayer.Buildings.Tower -= 9;
         }
     }
 }

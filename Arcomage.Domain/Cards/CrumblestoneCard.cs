@@ -4,19 +4,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Arcomage.Domain.Entities;
-using Arcomage.Domain.Internal;
 
 namespace Arcomage.Domain.Cards
 {
+    /// <summary>
+    /// Игровая карта "Мягкий камень"
+    /// </summary>
     [Serializable]
-    public class CrumblestoneCard : GemsCard
+    public class CrumblestoneCard : Card
     {
-        public override int ResourcePrice { get; set; } = 7;
+        /// <inheritdoc/>
+        public override int Price { get; } = 7;
 
+        /// <inheritdoc/>
+        public override ResourceKind Kind { get; } = ResourceKind.Gems;
+
+        /// <inheritdoc/>
         public override void Activate(Game game)
         {
-            game.CurrentPlayer.Buildings.Tower += 5;
-            game.AdversaryPlayer.Resources.Bricks -= 6;
+            game.Players.CurrentPlayer.Buildings.Tower += 5;
+            game.Players.AdversaryPlayer.Resources.Bricks -= 6;
         }
     }
 }

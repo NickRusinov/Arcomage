@@ -7,9 +7,13 @@ using Arcomage.Domain.Entities;
 
 namespace Arcomage.Domain.Actions
 {
-    public class ClearHistoryAction : IPlayAction
+    /// <summary>
+    /// Очищает историю хода предыдущего игрока
+    /// </summary>
+    public class ClearHistoryAction : IBeforePlayAction
     {
-        public void Execute(Game game, Player player)
+        /// <inheritdoc/>
+        public void Play(Game game)
         {
             game.History.Cards.Clear();
         }

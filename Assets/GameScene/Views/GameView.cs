@@ -44,17 +44,17 @@ namespace Arcomage.Unity.GameScene.Views
                 .OnChangedAndInit(gr => gr, gr => FinishedEvent.Invoke());
 
             Bind(game, g => g.DiscardOnly)
-                .OnChangedAndInit(@do => DiscardOnlyText.gameObject.SetActive(@do > 0 && game.FirstPlayer == game.CurrentPlayer))
+                .OnChangedAndInit(@do => DiscardOnlyText.gameObject.SetActive(@do > 0 && game.Players.FirstPlayer == game.Players.CurrentPlayer))
                 .OnChangedAndInit(@do => DiscardOnlyText.text = LanguageManager.Instance.GetTextValue("GameDiscardText"));
 
-            LeftResources.Initialize(game.FirstPlayer, game.FirstPlayer.Resources);
-            RightResources.Initialize(game.SecondPlayer, game.SecondPlayer.Resources);
+            LeftResources.Initialize(PlayerKind.First, game.Players.FirstPlayer.Resources);
+            RightResources.Initialize(PlayerKind.Second, game.Players.SecondPlayer.Resources);
 
-            LeftBuildings.Initialize(game.FirstPlayer.Buildings, ruleInfo);
-            RightBuildings.Initialize(game.SecondPlayer.Buildings, ruleInfo);
+            LeftBuildings.Initialize(game.Players.FirstPlayer.Buildings, ruleInfo);
+            RightBuildings.Initialize(game.Players.SecondPlayer.Buildings, ruleInfo);
 
             History.Initialize(game.History);
-            Hand.Initialize(game.FirstPlayer.Hand);
+            Hand.Initialize(game.Players.FirstPlayer.Hand);
         }
     }
 }

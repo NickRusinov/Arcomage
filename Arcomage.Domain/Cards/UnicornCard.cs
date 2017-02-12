@@ -4,21 +4,28 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Arcomage.Domain.Entities;
-using Arcomage.Domain.Internal;
 
 namespace Arcomage.Domain.Cards
 {
+    /// <summary>
+    /// Игровая карта "Единорог"
+    /// </summary>
     [Serializable]
-    public class UnicornCard : RecruitsCard
+    public class UnicornCard : Card
     {
-        public override int ResourcePrice { get; set; } = 9;
+        /// <inheritdoc/>
+        public override int Price { get; } = 9;
 
+        /// <inheritdoc/>
+        public override ResourceKind Kind { get; } = ResourceKind.Recruits;
+
+        /// <inheritdoc/>
         public override void Activate(Game game)
         {
-            if (game.CurrentPlayer.Resources.Magic > game.AdversaryPlayer.Resources.Magic)
-                game.AdversaryPlayer.Buildings.Damage(12);
+            if (game.Players.CurrentPlayer.Resources.Magic > game.Players.AdversaryPlayer.Resources.Magic)
+                game.Players.AdversaryPlayer.Buildings.Full -= 12;
             else
-                game.AdversaryPlayer.Buildings.Damage(8);
+                game.Players.AdversaryPlayer.Buildings.Full -= 8;
         }
     }
 }

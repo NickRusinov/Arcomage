@@ -7,11 +7,19 @@ using Arcomage.Domain.Entities;
 
 namespace Arcomage.Domain.Cards
 {
+    /// <summary>
+    /// Игровая карта "Эльфы-скауты"
+    /// </summary>
     [Serializable]
-    public class ElvenScoutCard : RecruitsCard
+    public class ElvenScoutCard : Card
     {
-        public override int ResourcePrice { get; set; } = 2;
+        /// <inheritdoc/>
+        public override int Price { get; } = 2;
 
+        /// <inheritdoc/>
+        public override ResourceKind Kind { get; } = ResourceKind.Recruits;
+
+        /// <inheritdoc/>
         public override void Activate(Game game)
         {
             game.DiscardOnly += 1;

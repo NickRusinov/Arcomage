@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,22 +8,40 @@ using Arcomage.Domain.Entities;
 
 namespace Arcomage.Domain.Decks
 {
+    /// <summary>
+    /// Классическая колода карт
+    /// </summary>
     [Serializable]
     public class ClassicDeck : Deck
     {
-        private readonly Random random;
+        /// <summary>
+        /// Описание классической колоды карт
+        /// </summary>
+        private readonly ClassicDeckInfo deckInfo;
 
+        /// <summary>
+        /// Список всех карт, включенных в колоду на текущий момент
+        /// </summary>
         private readonly List<Card> cardCollection;
 
+        /// <summary>
+        /// Инициализирует экземпляр класса <see cref="ClassicDeck"/>
+        /// </summary>
+        /// <param name="deckInfo">Описание классической колоды карт</param>
+        /// <param name="cardCollection">Список всех карт, включенных в колоду на текущий момент</param>
         public ClassicDeck(ClassicDeckInfo deckInfo, ICollection<Card> cardCollection)
         {
-            this.random = deckInfo.Random;
-            this.cardCollection = new List<Card>(cardCollection);
+            Contract.Requires(deckInfo != null);
+            Contract.Requires(cardCollection != null);
+
+            this.deckInfo = deckInfo;
+            this.cardCollection = cardCollection.ToList();
         }
 
+        /// <inheritdoc/>
         public override Card PopCard(Game game)
         {
-            var randomCardIndex = random.Next(cardCollection.Count / 2);
+            var randomCardIndex = deckInfo.Random.Next(cardCollection.Count / 2);
 
             var card = cardCollection[randomCardIndex];
             cardCollection.RemoveAt(randomCardIndex);
@@ -30,6 +49,7 @@ namespace Arcomage.Domain.Decks
             return card;
         }
 
+        /// <inheritdoc/>
         public override void PushCard(Game game, Card card)
         {
             cardCollection.Add(card);

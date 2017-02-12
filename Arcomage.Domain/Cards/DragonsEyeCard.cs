@@ -4,18 +4,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Arcomage.Domain.Entities;
-using Arcomage.Domain.Internal;
 
 namespace Arcomage.Domain.Cards
 {
+    /// <summary>
+    /// Игровая карта "Глаз дракона"
+    /// </summary>
     [Serializable]
-    public class DragonsEyeCard : GemsCard
+    public class DragonsEyeCard : Card
     {
-        public override int ResourcePrice { get; set; } = 21;
+        /// <inheritdoc/>
+        public override int Price { get; } = 21;
 
+        /// <inheritdoc/>
+        public override ResourceKind Kind { get; } = ResourceKind.Gems;
+
+        /// <inheritdoc/>
         public override void Activate(Game game)
         {
-            game.CurrentPlayer.Buildings.Tower += 20;
+            game.Players.CurrentPlayer.Buildings.Tower += 20;
         }
     }
 }
