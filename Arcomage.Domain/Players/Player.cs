@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
+using Arcomage.Domain.Buildings;
+using Arcomage.Domain.Hands;
+using Arcomage.Domain.Resources;
 
-namespace Arcomage.Domain.Entities
+namespace Arcomage.Domain.Players
 {
     /// <summary>
     /// Класс, описывающий одного из игроков
@@ -15,12 +17,12 @@ namespace Arcomage.Domain.Entities
         /// <summary>
         /// Строения игрока
         /// </summary>
-        public abstract Buildings Buildings { get; }
+        public abstract BuildingSet Buildings { get; }
 
         /// <summary>
         /// Ресурсы игрока
         /// </summary>
-        public abstract Resources Resources { get; }
+        public abstract ResourceSet Resources { get; }
 
         /// <summary>
         /// Карты в руке игрока

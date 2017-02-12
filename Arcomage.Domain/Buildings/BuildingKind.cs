@@ -3,21 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Arcomage.Domain.Entities
+namespace Arcomage.Domain.Buildings
 {
     /// <summary>
-    /// Номер игрока
+    /// Перечисление разновидностей строений
     /// </summary>
-    public enum PlayerKind
+    public enum BuildingKind
     {
         /// <summary>
-        /// Первый игрок
+        /// Стена
         /// </summary>
-        First,
+        Wall,
 
         /// <summary>
-        /// Второй игрок
+        /// Башня
         /// </summary>
-        Second,
+        Tower,
     }
 }

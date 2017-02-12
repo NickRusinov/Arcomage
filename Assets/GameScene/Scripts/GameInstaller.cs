@@ -5,8 +5,10 @@ using System.Threading.Tasks;
 using Arcomage.Domain;
 using Arcomage.Domain.Actions;
 using Arcomage.Domain.ArtificialIntelligence;
+using Arcomage.Domain.Cards;
 using Arcomage.Domain.Decks;
-using Arcomage.Domain.Entities;
+using Arcomage.Domain.Hands;
+using Arcomage.Domain.Histories;
 using Arcomage.Domain.Players;
 using Arcomage.Domain.Rules;
 using Arcomage.Domain.Services;
@@ -65,8 +67,8 @@ namespace Arcomage.Unity.GameScene.Scripts
                 .ToSelf()
                 .AsSingle(0);
 
-            Container.Bind<Players>()
-                .FromMethod(c => new Players(
+            Container.Bind<PlayerSet>()
+                .FromMethod(c => new PlayerSet(
                     c.Container.Resolve<PlayerKind>(),
                     c.Container.Resolve<Player>("FirstPlayer"),
                     c.Container.Resolve<Player>("SecondPlayer")))

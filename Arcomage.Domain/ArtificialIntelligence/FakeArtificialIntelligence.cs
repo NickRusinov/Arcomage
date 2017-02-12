@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Arcomage.Domain.Entities;
 using Arcomage.Domain.Internal;
+using Arcomage.Domain.Players;
 using Arcomage.Domain.Services;
 
 namespace Arcomage.Domain.ArtificialIntelligence

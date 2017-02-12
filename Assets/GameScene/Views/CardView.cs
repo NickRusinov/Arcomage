@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Arcomage.Domain.Entities;
+using Arcomage.Domain.Cards;
 using Arcomage.Unity.GameScene.Scripts;
 using Arcomage.Unity.Shared.Scripts;
 using SmartLocalization;

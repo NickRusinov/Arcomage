@@ -4,7 +4,9 @@ using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Arcomage.Domain.Entities;
+using Arcomage.Domain.Buildings;
+using Arcomage.Domain.Hands;
+using Arcomage.Domain.Resources;
 
 namespace Arcomage.Domain.Players
 {
@@ -26,7 +28,7 @@ namespace Arcomage.Domain.Players
         /// <param name="buildings">Строения игрока</param>
         /// <param name="resources">Ресурсы игрока</param>
         /// <param name="hand">Карты в руке игрока</param>
-        public HumanPlayer(Buildings buildings, Resources resources, Hand hand)
+        public HumanPlayer(BuildingSet buildings, ResourceSet resources, Hand hand)
         {
             Contract.Requires(buildings != null);
             Contract.Requires(resources != null);
@@ -38,10 +40,10 @@ namespace Arcomage.Domain.Players
         }
 
         /// <inheritdoc/>
-        public override Buildings Buildings { get; }
+        public override BuildingSet Buildings { get; }
 
         /// <inheritdoc/>
-        public override Resources Resources { get; }
+        public override ResourceSet Resources { get; }
 
         /// <inheritdoc/>
         public override Hand Hand { get; }

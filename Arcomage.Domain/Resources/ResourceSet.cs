@@ -2,19 +2,18 @@
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
-namespace Arcomage.Domain.Entities
+namespace Arcomage.Domain.Resources
 {
     /// <summary>
     /// Класс, описывающий игровые ресурсы игрока
     /// </summary>
     [Serializable]
-    public class Resources
+    public class ResourceSet
     {
         /// <summary>
-        /// Инициализирует экземпляр класса <see cref="Resources"/> 
+        /// Инициализирует экземпляр класса <see cref="ResourceSet"/> 
         /// </summary>
         /// <param name="quarry">Количество шахт</param>
         /// <param name="bricks">Количество руды</param>
@@ -22,7 +21,7 @@ namespace Arcomage.Domain.Entities
         /// <param name="gems">Количество маны</param>
         /// <param name="dungeons">Количество казарм</param>
         /// <param name="recruits">Количество отрядов</param>
-        public Resources(int quarry, int bricks, int magic, int gems, int dungeons, int recruits)
+        public ResourceSet(int quarry, int bricks, int magic, int gems, int dungeons, int recruits)
             : this(new Resource(quarry, bricks), new Resource(magic, gems), new Resource(dungeons, recruits))
         {
             Contract.Requires(quarry >= 0);
@@ -34,12 +33,12 @@ namespace Arcomage.Domain.Entities
         }
 
         /// <summary>
-        /// Инициализирует экземпляр класса <see cref="Resources"/>
+        /// Инициализирует экземпляр класса <see cref="ResourceSet"/>
         /// </summary>
         /// <param name="bricksResource">Игровой ресурс "Руда"</param>
         /// <param name="gemsResource">Игровой ресурс "Мана"</param>
         /// <param name="recruitsResource">Игровой ресурс "Отряды"</param>
-        public Resources(Resource bricksResource, Resource gemsResource, Resource recruitsResource)
+        public ResourceSet(Resource bricksResource, Resource gemsResource, Resource recruitsResource)
         {
             Contract.Requires(bricksResource != null);
             Contract.Requires(gemsResource != null);

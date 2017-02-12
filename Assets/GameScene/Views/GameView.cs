@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Arcomage.Domain;
-using Arcomage.Domain.Entities;
+using Arcomage.Domain.Players;
 using Arcomage.Domain.Rules;
 using Arcomage.Unity.Shared.Scripts;
 using SmartLocalization;

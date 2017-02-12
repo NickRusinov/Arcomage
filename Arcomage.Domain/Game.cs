@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using static System.Math;
+using Arcomage.Domain.Decks;
+using Arcomage.Domain.Histories;
+using Arcomage.Domain.Players;
+using Arcomage.Domain.Rules;
 
-namespace Arcomage.Domain.Entities
+namespace Arcomage.Domain
 {
     /// <summary>
     /// Контекст игровой сессии
@@ -31,7 +33,7 @@ namespace Arcomage.Domain.Entities
         /// <param name="deck">Игровая колода</param>
         /// <param name="history">История сделанных ходов</param>
         /// <param name="players">Игроки</param>
-        public Game(Rule rule, Deck deck, History history, Players players)
+        public Game(Rule rule, Deck deck, History history, PlayerSet players)
         {
             Contract.Requires(rule != null);
             Contract.Requires(deck != null);
@@ -62,7 +64,7 @@ namespace Arcomage.Domain.Entities
         /// <summary>
         /// Игроки
         /// </summary>
-        public Players Players { get; }
+        public PlayerSet Players { get; }
         
         /// <summary>
         /// Игрок, совершивший предыдущий ход
@@ -75,7 +77,7 @@ namespace Arcomage.Domain.Entities
         public int PlayAgain
         {
             get { return playAgain; }
-            set { playAgain = Max(value, 0); }
+            set { playAgain = Math.Max(value, 0); }
         }
 
         /// <summary>
@@ -84,7 +86,7 @@ namespace Arcomage.Domain.Entities
         public int DiscardOnly
         {
             get { return discardOnly; }
-            set { discardOnly = Max(value, 0); }
+            set { discardOnly = Math.Max(value, 0); }
         }
     }
 }

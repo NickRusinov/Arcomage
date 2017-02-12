@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Arcomage.Domain.Entities;
+using Arcomage.Domain.Buildings;
 using Arcomage.Domain.Rules;
 using Arcomage.Unity.Shared.Scripts;
 using UnityEngine;
@@ -29,7 +29,7 @@ namespace Arcomage.Unity.GameScene.Views
         [Tooltip("Спрайт стены")]
         public SpriteRenderer WallImage;
 
-        public void Initialize(Buildings buildings, ClassicRuleInfo ruleInfo)
+        public void Initialize(BuildingSet buildings, ClassicRuleInfo ruleInfo)
         {
             Bind(buildings, b => b.Tower)
                 .OnChanged(t => TowerParticle.Play())

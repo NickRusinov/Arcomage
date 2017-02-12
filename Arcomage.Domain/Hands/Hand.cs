@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
+using Arcomage.Domain.Cards;
 
-namespace Arcomage.Domain.Entities
+namespace Arcomage.Domain.Hands
 {
     /// <summary>
     /// Описание карт в руке одного из игроков

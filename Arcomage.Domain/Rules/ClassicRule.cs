@@ -4,8 +4,10 @@ using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Arcomage.Domain.Entities;
-using static Arcomage.Domain.Entities.Players;
+using Arcomage.Domain.Buildings;
+using Arcomage.Domain.Players;
+using Arcomage.Domain.Resources;
+using static Arcomage.Domain.Players.PlayerSet;
 
 namespace Arcomage.Domain.Rules
 {
@@ -32,15 +34,15 @@ namespace Arcomage.Domain.Rules
         }
 
         /// <inheritdoc/>
-        public override Buildings CreateBuildings()
+        public override BuildingSet CreateBuildings()
         {
-            return new Buildings(ruleInfo.Wall, ruleInfo.Tower);
+            return new BuildingSet(ruleInfo.Wall, ruleInfo.Tower);
         }
 
         /// <inheritdoc/>
-        public override Resources CreateResources()
+        public override ResourceSet CreateResources()
         {
-            return new Resources(ruleInfo.Quarry, ruleInfo.Bricks, ruleInfo.Magic, ruleInfo.Gems, ruleInfo.Dungeons, ruleInfo.Recruits);
+            return new ResourceSet(ruleInfo.Quarry, ruleInfo.Bricks, ruleInfo.Magic, ruleInfo.Gems, ruleInfo.Dungeons, ruleInfo.Recruits);
         }
 
         /// <inheritdoc/>

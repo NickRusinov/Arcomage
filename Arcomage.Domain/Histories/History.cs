@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
-namespace Arcomage.Domain.Entities
+namespace Arcomage.Domain.Histories
 {
     /// <summary>
     /// Описание истории карт в течении одного хода игрока

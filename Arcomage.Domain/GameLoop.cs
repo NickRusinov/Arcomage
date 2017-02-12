@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Arcomage.Domain.Actions;
-using Arcomage.Domain.Entities;
 
 namespace Arcomage.Domain
 {

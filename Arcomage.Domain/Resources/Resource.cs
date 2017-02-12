@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Linq;
-using System.Text;
-using static System.Math;
+using System.Threading.Tasks;
 
-namespace Arcomage.Domain.Entities
+namespace Arcomage.Domain.Resources
 {
     /// <summary>
     /// Класс, описывающий значения одного из игровых ресурсов игрока
@@ -43,7 +42,7 @@ namespace Arcomage.Domain.Entities
         public int Increase
         {
             get { return increase; }
-            set { increase = Max(value, 0); }
+            set { increase = Math.Max(value, 0); }
         }
 
         /// <summary>
@@ -52,7 +51,7 @@ namespace Arcomage.Domain.Entities
         public int Value
         {
             get { return value; }
-            set { this.value = Max(value, 0); }
+            set { this.value = Math.Max(value, 0); }
         }
     }
 }

@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Arcomage.Domain.Entities;
+using Arcomage.Domain;
+using Arcomage.Domain.Cards;
+using Arcomage.Domain.Players;
 using Arcomage.Unity.Shared.Scripts;
 
 namespace Arcomage.Unity.GameScene.Scripts

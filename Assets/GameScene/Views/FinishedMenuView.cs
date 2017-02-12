@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Arcomage.Domain.Entities;
+using Arcomage.Domain;
 using Arcomage.Unity.GameScene.Scripts;
 using Arcomage.Unity.Shared.Scripts;
 using UnityEngine;

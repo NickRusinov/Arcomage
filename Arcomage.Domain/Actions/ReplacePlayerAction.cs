@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Arcomage.Domain.Entities;
-using static Arcomage.Domain.Entities.Players;
+using static Arcomage.Domain.Players.PlayerSet;
 
 namespace Arcomage.Domain.Actions
 {

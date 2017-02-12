@@ -2,23 +2,23 @@
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Linq;
-using System.Text;
+using System.Threading.Tasks;
 
-namespace Arcomage.Domain.Entities
+namespace Arcomage.Domain.Players
 {
     /// <summary>
     /// Класс, описывающий двух игроков
     /// </summary>
     [Serializable]
-    public class Players
+    public class PlayerSet
     {
         /// <summary>
-        /// Инициализирует экземпляр класса <see cref="Players"/>
+        /// Инициализирует экземпляр класса <see cref="PlayerSet"/>
         /// </summary>
         /// <param name="kind">Номер текущего игрока</param>
         /// <param name="firstPlayer">Первый игрок</param>
         /// <param name="secondPlayer">Второй игрок</param>
-        public Players(PlayerKind kind, Player firstPlayer, Player secondPlayer)
+        public PlayerSet(PlayerKind kind, Player firstPlayer, Player secondPlayer)
         {
             Contract.Requires(Enum.IsDefined(typeof(PlayerKind), kind));
             Contract.Requires(firstPlayer != null);

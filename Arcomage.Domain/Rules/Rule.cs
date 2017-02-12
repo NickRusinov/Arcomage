@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
+using Arcomage.Domain.Buildings;
+using Arcomage.Domain.Resources;
 
-namespace Arcomage.Domain.Entities
+namespace Arcomage.Domain.Rules
 {
     /// <summary>
     /// Класс, описывающий правила игры
@@ -16,13 +17,13 @@ namespace Arcomage.Domain.Entities
         /// Создает начальные значения строений игрока
         /// </summary>
         /// <returns>Строения игрока в начале игры</returns>
-        public abstract Buildings CreateBuildings();
+        public abstract BuildingSet CreateBuildings();
 
         /// <summary>
         /// Создает начальные значения ресурсов игрока
         /// </summary>
         /// <returns>Ресурсы игрока в начале игры</returns>
-        public abstract Resources CreateResources();
+        public abstract ResourceSet CreateResources();
 
         /// <summary>
         /// Определяет окончание и победителя игры, если она завершена
