@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Arcomage.Domain.Entities;
+using Arcomage.Domain.Players;
 using Arcomage.Domain.Rules;
+using Ploeh.AutoFixture.Xunit2;
 using Xunit;
 
 namespace Arcomage.Domain.Tests.Rules
@@ -13,115 +14,117 @@ namespace Arcomage.Domain.Tests.Rules
     {
         [Theory, AutoFixture]
         public void CreateBuildingsTest(
+            [Frozen] ClassicRuleInfo ruleInfo,
             ClassicRule sut)
         {
             var buildings = sut.CreateBuildings();
 
-            Assert.Equal(sut.Buildings.Wall, buildings.Wall);
-            Assert.Equal(sut.Buildings.Tower, buildings.Tower);
+            Assert.Equal(ruleInfo.Wall, buildings.Wall);
+            Assert.Equal(ruleInfo.Tower, buildings.Tower);
         }
 
         [Theory, AutoFixture]
         public void CreateResourcesTest(
+            [Frozen] ClassicRuleInfo ruleInfo,
             ClassicRule sut)
         {
             var resources = sut.CreateResources();
 
-            Assert.Equal(sut.Resources.Quarry, resources.Quarry);
-            Assert.Equal(sut.Resources.Bricks, resources.Bricks);
-            Assert.Equal(sut.Resources.Magic, resources.Magic);
-            Assert.Equal(sut.Resources.Gems, resources.Gems);
-            Assert.Equal(sut.Resources.Dungeons, resources.Dungeons);
-            Assert.Equal(sut.Resources.Recruits, resources.Recruits);
+            Assert.Equal(ruleInfo.Quarry, resources.Quarry);
+            Assert.Equal(ruleInfo.Bricks, resources.Bricks);
+            Assert.Equal(ruleInfo.Magic, resources.Magic);
+            Assert.Equal(ruleInfo.Gems, resources.Gems);
+            Assert.Equal(ruleInfo.Dungeons, resources.Dungeons);
+            Assert.Equal(ruleInfo.Recruits, resources.Recruits);
         }
 
         [Theory, AutoFixture]
-        public void IsWinWhenBuildTowerTest(Game game,
+        public void IsWinWhenBuildTowerTest(
+            [Frozen] Game game,
             ClassicRule sut)
         {
-            sut.MaxTower = 15;
+            game.Players.FirstPlayer.Buildings.Tower = 55;
 
             var gameResult = sut.IsWin(game);
 
             Assert.True(gameResult.IsTowerBuild);
-            Assert.Equal(game.FirstPlayer, gameResult.Player);
+            Assert.Equal(PlayerKind.First, gameResult.Player);
         }
 
         [Theory, AutoFixture]
-        public void IsWinWhenDestroyTowerTest(Game game,
+        public void IsWinWhenDestroyTowerTest(
+            [Frozen] Game game,
             ClassicRule sut)
         {
-            sut.MaxTower = 25;
-            game.SecondPlayer.Buildings.Tower = 0;
+            game.Players.SecondPlayer.Buildings.Tower = 0;
 
             var gameResult = sut.IsWin(game);
 
             Assert.True(gameResult.IsTowerDestroy);
-            Assert.Equal(game.FirstPlayer, gameResult.Player);
+            Assert.Equal(PlayerKind.First, gameResult.Player);
         }
 
         [Theory, AutoFixture]
-        public void IsWinWhenAccumulateResourcesTest(Game game,
+        public void IsWinWhenAccumulateResourcesTest(
+            [Frozen] Game game,
             ClassicRule sut)
         {
-            sut.MaxResources = 3;
-            sut.MaxTower = 25;
+            game.Players.FirstPlayer.Resources.Bricks = 160;
+            game.Players.FirstPlayer.Resources.Gems = 160;
+            game.Players.FirstPlayer.Resources.Recruits = 160;
 
             var gameResult = sut.IsWin(game);
 
             Assert.True(gameResult.IsResourcesAccumulate);
-            Assert.Equal(game.FirstPlayer, gameResult.Player);
+            Assert.Equal(PlayerKind.First, gameResult.Player);
         }
 
         [Theory, AutoFixture]
-        public void IsWinWhenBuildTowerAdversaryTest(Game game,
+        public void IsWinWhenBuildTowerAdversaryTest(
+            [Frozen] Game game,
             ClassicRule sut)
         {
-            sut.MaxResources = 20;
-            sut.MaxTower = 15;
-            game.FirstPlayer.Buildings.Tower = 10;
+            game.Players.SecondPlayer.Buildings.Tower = 55;
 
             var gameResult = sut.IsWin(game);
 
             Assert.True(gameResult.IsTowerBuild);
-            Assert.Equal(game.SecondPlayer, gameResult.Player);
+            Assert.Equal(PlayerKind.Second, gameResult.Player);
         }
 
         [Theory, AutoFixture]
-        public void IsWinWhenDestroyTowerAdversaryTest(Game game,
+        public void IsWinWhenDestroyTowerAdversaryTest(
+            [Frozen] Game game,
             ClassicRule sut)
         {
-            sut.MaxResources = 20;
-            sut.MaxTower = 25;
-            game.FirstPlayer.Buildings.Tower = 0;
+            game.Players.FirstPlayer.Buildings.Tower = 0;
 
             var gameResult = sut.IsWin(game);
 
             Assert.True(gameResult.IsTowerDestroy);
-            Assert.Equal(game.SecondPlayer, gameResult.Player);
+            Assert.Equal(PlayerKind.Second, gameResult.Player);
         }
 
         [Theory, AutoFixture]
-        public void IsWinWhenAccumulateResourcesAdversaryTest(Game game,
+        public void IsWinWhenAccumulateResourcesAdversaryTest(
+            [Frozen] Game game,
             ClassicRule sut)
         {
-            sut.MaxResources = 3;
-            sut.MaxTower = 25;
-            game.FirstPlayer.Resources.Bricks = 0;
+            game.Players.SecondPlayer.Resources.Bricks = 160;
+            game.Players.SecondPlayer.Resources.Gems = 160;
+            game.Players.SecondPlayer.Resources.Recruits = 160;
 
             var gameResult = sut.IsWin(game);
 
             Assert.True(gameResult.IsResourcesAccumulate);
-            Assert.Equal(game.SecondPlayer, gameResult.Player);
+            Assert.Equal(PlayerKind.Second, gameResult.Player);
         }
 
         [Theory, AutoFixture]
-        public void IsWinNoWinTest(Game game,
+        public void IsWinNoWinTest(
+            [Frozen] Game game,
             ClassicRule sut)
         {
-            sut.MaxResources = 20;
-            sut.MaxTower = 25;
-
             var gameResult = sut.IsWin(game);
 
             Assert.Equal(GameResult.None, gameResult);

@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Arcomage.Domain.Cards;
-using Arcomage.Domain.Entities;
 using Xunit;
 
 namespace Arcomage.Domain.Tests.Cards
@@ -15,11 +14,11 @@ namespace Arcomage.Domain.Tests.Cards
         public void ActivateWhenWallZeroTest(Game game,
             SpizzerCard sut)
         {
-            game.SecondPlayer.Buildings.Wall = 0;
+            game.Players.SecondPlayer.Buildings.Wall = 0;
 
             sut.Activate(game);
 
-            Assert.Equal(10, game.SecondPlayer.Buildings.Tower);
+            Assert.Equal(10, game.Players.SecondPlayer.Buildings.Tower);
         }
 
         [Theory, AutoFixture]
@@ -28,8 +27,8 @@ namespace Arcomage.Domain.Tests.Cards
         {
             sut.Activate(game);
 
-            Assert.Equal(0, game.SecondPlayer.Buildings.Wall);
-            Assert.Equal(19, game.SecondPlayer.Buildings.Tower);
+            Assert.Equal(0, game.Players.SecondPlayer.Buildings.Wall);
+            Assert.Equal(19, game.Players.SecondPlayer.Buildings.Tower);
         }
     }
 }

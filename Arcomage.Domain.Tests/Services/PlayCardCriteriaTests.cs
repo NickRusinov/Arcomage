@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Arcomage.Domain.Entities;
+using Arcomage.Domain.Cards;
+using Arcomage.Domain.Resources;
 using Arcomage.Domain.Services;
 using Moq;
 using Ploeh.AutoFixture.Xunit2;
@@ -19,9 +20,9 @@ namespace Arcomage.Domain.Tests.Services
             [Frozen] Game game,
             PlayCardCriteria sut)
         {
-            cardMock.Setup(c => c.IsEnoughResources(It.IsAny<Resources>())).Returns(true);
+            game.Players.FirstPlayer.Resources[cardMock.Object.Kind].Value = cardMock.Object.Price + 1;
 
-            var canPlayCard = sut.CanPlayCard(game, 1);
+            var canPlayCard = sut.CanPlayCard(game, game.Players.FirstPlayer, 1);
 
             Assert.True(canPlayCard);
         }
@@ -32,9 +33,9 @@ namespace Arcomage.Domain.Tests.Services
             [Frozen] Game game,
             PlayCardCriteria sut)
         {
-            cardMock.Setup(c => c.IsEnoughResources(It.IsAny<Resources>())).Returns(false);
+            game.Players.FirstPlayer.Resources[cardMock.Object.Kind].Value = cardMock.Object.Price - 1;
 
-            var canPlayCard = sut.CanPlayCard(game, 1);
+            var canPlayCard = sut.CanPlayCard(game, game.Players.FirstPlayer, 1);
 
             Assert.False(canPlayCard);
         }

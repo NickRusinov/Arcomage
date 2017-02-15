@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Arcomage.Domain.Cards;
 using Arcomage.Domain.Decks;
-using Arcomage.Domain.Entities;
 using Arcomage.Domain.Tests.Internal;
 using Ploeh.AutoFixture.Xunit2;
 using Xunit;
@@ -15,11 +15,11 @@ namespace Arcomage.Domain.Tests.Decks
     {
         [Theory, AutoFixture]
         public void ClassicDeckTest(Game game,
-            [Frozen] Random random,
-            [Frozen] IReadOnlyCollection<Card> cardCollection,
+            [Frozen] ClassicDeckInfo deckInfo,
+            [Frozen] ICollection<Card> cardCollection,
             ClassicDeck sut)
         {
-            var fakeRandom = (FakeRandom)random;
+            var fakeRandom = (FakeRandom)deckInfo.Random;
 
             sut.PushCard(game, cardCollection.ElementAt(2));
             sut.PushCard(game, cardCollection.ElementAt(1));

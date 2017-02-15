@@ -4,22 +4,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Arcomage.Domain.Actions;
-using Arcomage.Domain.Entities;
 using Ploeh.AutoFixture.Xunit2;
 using Xunit;
 
 namespace Arcomage.Domain.Tests.Actions
 {
-    public class UpdateHistoryActionTests
+    public class AddHistoryActionTests
     {
         [Theory, AutoFixture]
         public void HistoryAddedTest(
             [Frozen] Game game,
-            UpdateHistoryAction sut)
+            AddHistoryAction sut)
         {
-            sut.PlayExecute(game, game.FirstPlayer, 1);
+            sut.Play(game, new PlayResult(1, true));
 
-            Assert.Equal(game.FirstPlayer.Hand.Cards[1], game.History.Cards.Last());
+            Assert.Equal(game.Players.FirstPlayer.Hand.Cards[1], game.History.Cards.Last().Card);
         }
     }
 }

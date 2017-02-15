@@ -99,9 +99,8 @@
     <Compile Include="Actions\ClearHistoryActionTests.cs" />
     <Compile Include="Actions\ReplaceCardActionTests.cs" />
     <Compile Include="Actions\ReplacePlayerActionTests.cs" />
-    <Compile Include="Actions\UpdateFinishedActionTests.cs" />
-    <Compile Include="Actions\UpdateHistoryActionTests.cs" />
-    <Compile Include="Actions\UpdateResourcesActionTests.cs" />
+    <Compile Include="Actions\AddHistoryActionTests.cs" />
+    <Compile Include="Actions\IncreaseResourcesActionTests.cs" />
     <Compile Include="Actions\WhenReplacedPlayerActionTests.cs" />
     <Compile Include="AutoFixtureAttribute.cs" />
     <Compile Include="Cards\AmethystCardTests.cs" />

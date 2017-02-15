@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Arcomage.Domain.Cards;
-using Arcomage.Domain.Entities;
 using Xunit;
 
 namespace Arcomage.Domain.Tests.Cards
@@ -15,12 +14,12 @@ namespace Arcomage.Domain.Tests.Cards
         public void ActivateWhenMoreMagicTest(Game game,
             UnicornCard sut)
         {
-            game.FirstPlayer.Resources.Magic = 3;
+            game.Players.FirstPlayer.Resources.Magic = 3;
 
             sut.Activate(game);
 
-            Assert.Equal(0, game.SecondPlayer.Buildings.Wall);
-            Assert.Equal(13, game.SecondPlayer.Buildings.Tower);
+            Assert.Equal(0, game.Players.SecondPlayer.Buildings.Wall);
+            Assert.Equal(13, game.Players.SecondPlayer.Buildings.Tower);
         }
 
         [Theory, AutoFixture]
@@ -29,8 +28,8 @@ namespace Arcomage.Domain.Tests.Cards
         {
             sut.Activate(game);
 
-            Assert.Equal(0, game.SecondPlayer.Buildings.Wall);
-            Assert.Equal(17, game.SecondPlayer.Buildings.Tower);
+            Assert.Equal(0, game.Players.SecondPlayer.Buildings.Wall);
+            Assert.Equal(17, game.Players.SecondPlayer.Buildings.Tower);
         }
     }
 }

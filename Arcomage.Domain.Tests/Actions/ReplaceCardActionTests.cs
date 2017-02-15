@@ -4,7 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Arcomage.Domain.Actions;
-using Arcomage.Domain.Entities;
+using Arcomage.Domain.Cards;
+using Arcomage.Domain.Decks;
 using Moq;
 using Ploeh.AutoFixture.Xunit2;
 using Xunit;
@@ -19,15 +20,15 @@ namespace Arcomage.Domain.Tests.Actions
             [Frozen] Game game,
             ReplaceCardAction sut)
         {
-            var oldCard = game.FirstPlayer.Hand.Cards[1];
+            var oldCard = game.Players.FirstPlayer.Hand.Cards[1];
             var newCard = Mock.Of<Card>();
             deckMock.Setup(cd => cd.PopCard(It.IsAny<Game>())).Returns(newCard);
 
-            sut.PlayExecute(game, game.FirstPlayer, 1);
+            sut.Play(game, new PlayResult(1, true));
 
             deckMock.Verify(cd => cd.PopCard(It.IsAny<Game>()), Times.Once);
             deckMock.Verify(cd => cd.PushCard(It.IsAny<Game>(), oldCard), Times.Once);
-            Assert.Equal(newCard, game.FirstPlayer.Hand.Cards[1]);
+            Assert.Equal(newCard, game.Players.FirstPlayer.Hand.Cards[1]);
         }
     }
 }

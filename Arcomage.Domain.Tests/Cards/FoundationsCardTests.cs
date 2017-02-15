@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Arcomage.Domain.Cards;
-using Arcomage.Domain.Entities;
 using Xunit;
 
 namespace Arcomage.Domain.Tests.Cards
@@ -17,18 +16,18 @@ namespace Arcomage.Domain.Tests.Cards
         {
             sut.Activate(game);
 
-            Assert.Equal(8, game.FirstPlayer.Buildings.Wall);
+            Assert.Equal(8, game.Players.FirstPlayer.Buildings.Wall);
         }
 
         [Theory, AutoFixture]
         public void ActivateWhenWallZeroTest(Game game,
             FoundationsCard sut)
         {
-            game.FirstPlayer.Buildings.Wall = 0;
+            game.Players.FirstPlayer.Buildings.Wall = 0;
 
             sut.Activate(game);
 
-            Assert.Equal(6, game.FirstPlayer.Buildings.Wall);
+            Assert.Equal(6, game.Players.FirstPlayer.Buildings.Wall);
         }
     }
 }

@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Arcomage.Domain.Cards;
-using Arcomage.Domain.Entities;
 using Xunit;
 
 namespace Arcomage.Domain.Tests.Cards
@@ -17,20 +16,20 @@ namespace Arcomage.Domain.Tests.Cards
         {
             sut.Activate(game);
 
-            Assert.Equal(2, game.FirstPlayer.Resources.Quarry);
-            Assert.Equal(2, game.SecondPlayer.Resources.Quarry);
+            Assert.Equal(2, game.Players.FirstPlayer.Resources.Quarry);
+            Assert.Equal(2, game.Players.SecondPlayer.Resources.Quarry);
         }
 
         [Theory, AutoFixture]
         public void ActivateWhenLessQuarryTest(Game game,
             CoppingTheTechCard sut)
         {
-            game.FirstPlayer.Resources.Quarry = 1;
+            game.Players.FirstPlayer.Resources.Quarry = 1;
 
             sut.Activate(game);
 
-            Assert.Equal(2, game.FirstPlayer.Resources.Quarry);
-            Assert.Equal(2, game.SecondPlayer.Resources.Quarry);
+            Assert.Equal(2, game.Players.FirstPlayer.Resources.Quarry);
+            Assert.Equal(2, game.Players.SecondPlayer.Resources.Quarry);
         }
     }
 }

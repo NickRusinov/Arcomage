@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Arcomage.Domain.Actions;
-using Arcomage.Domain.Entities;
+using Arcomage.Domain.Players;
 using Ploeh.AutoFixture.Xunit2;
 using Xunit;
 
@@ -19,9 +19,9 @@ namespace Arcomage.Domain.Tests.Actions
         {
             game.PlayAgain = 0;
 
-            sut.PlayExecute(game, game.FirstPlayer, 1);
+            sut.Play(game, new PlayResult(1, true));
             
-            Assert.Equal(PlayerMode.SecondPlayer, game.PlayerMode);
+            Assert.Equal(PlayerKind.Second, game.Players.Kind);
         }
 
         [Theory, AutoFixture]
@@ -31,9 +31,9 @@ namespace Arcomage.Domain.Tests.Actions
         {
             game.PlayAgain = 1;
 
-            sut.PlayExecute(game, game.FirstPlayer, 1);
+            sut.Play(game, new PlayResult(1, true));
             
-            Assert.Equal(PlayerMode.FirstPlayer, game.PlayerMode);
+            Assert.Equal(PlayerKind.First, game.Players.Kind);
         }
     }
 }

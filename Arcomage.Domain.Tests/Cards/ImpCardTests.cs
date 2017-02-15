@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Arcomage.Domain.Cards;
-using Arcomage.Domain.Entities;
 using Xunit;
 
 namespace Arcomage.Domain.Tests.Cards
@@ -17,14 +16,14 @@ namespace Arcomage.Domain.Tests.Cards
         {
             sut.Activate(game);
 
-            Assert.Equal(0, game.SecondPlayer.Buildings.Wall);
-            Assert.Equal(19, game.SecondPlayer.Buildings.Tower);
-            Assert.Equal(0, game.FirstPlayer.Resources.Bricks);
-            Assert.Equal(0, game.FirstPlayer.Resources.Gems);
-            Assert.Equal(0, game.FirstPlayer.Resources.Recruits);
-            Assert.Equal(0, game.SecondPlayer.Resources.Bricks);
-            Assert.Equal(0, game.SecondPlayer.Resources.Gems);
-            Assert.Equal(0, game.SecondPlayer.Resources.Recruits);
+            Assert.Equal(0, game.Players.SecondPlayer.Buildings.Wall);
+            Assert.Equal(19, game.Players.SecondPlayer.Buildings.Tower);
+            Assert.Equal(0, game.Players.FirstPlayer.Resources.Bricks);
+            Assert.Equal(0, game.Players.FirstPlayer.Resources.Gems);
+            Assert.Equal(0, game.Players.FirstPlayer.Resources.Recruits);
+            Assert.Equal(0, game.Players.SecondPlayer.Resources.Bricks);
+            Assert.Equal(0, game.Players.SecondPlayer.Resources.Gems);
+            Assert.Equal(0, game.Players.SecondPlayer.Resources.Recruits);
         }
     }
 }

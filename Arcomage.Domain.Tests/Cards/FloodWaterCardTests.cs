@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Arcomage.Domain.Cards;
-using Arcomage.Domain.Entities;
 using Xunit;
 
 namespace Arcomage.Domain.Tests.Cards
@@ -17,38 +16,38 @@ namespace Arcomage.Domain.Tests.Cards
         {
             sut.Activate(game);
 
-            Assert.Equal(2, game.FirstPlayer.Resources.Dungeons);
-            Assert.Equal(20, game.FirstPlayer.Buildings.Tower);
-            Assert.Equal(2, game.SecondPlayer.Resources.Dungeons);
-            Assert.Equal(20, game.SecondPlayer.Buildings.Tower);
+            Assert.Equal(2, game.Players.FirstPlayer.Resources.Dungeons);
+            Assert.Equal(20, game.Players.FirstPlayer.Buildings.Tower);
+            Assert.Equal(2, game.Players.SecondPlayer.Resources.Dungeons);
+            Assert.Equal(20, game.Players.SecondPlayer.Buildings.Tower);
         }
 
         [Theory, AutoFixture]
         public void ActivateWhenNoLessWallTest(Game game,
             FloodWaterCard sut)
         {
-            game.FirstPlayer.Buildings.Wall = 7;
+            game.Players.FirstPlayer.Buildings.Wall = 7;
 
             sut.Activate(game);
 
-            Assert.Equal(2, game.FirstPlayer.Resources.Dungeons);
-            Assert.Equal(20, game.FirstPlayer.Buildings.Tower);
-            Assert.Equal(1, game.SecondPlayer.Resources.Dungeons);
-            Assert.Equal(18, game.SecondPlayer.Buildings.Tower);
+            Assert.Equal(2, game.Players.FirstPlayer.Resources.Dungeons);
+            Assert.Equal(20, game.Players.FirstPlayer.Buildings.Tower);
+            Assert.Equal(1, game.Players.SecondPlayer.Resources.Dungeons);
+            Assert.Equal(18, game.Players.SecondPlayer.Buildings.Tower);
         }
 
         [Theory, AutoFixture]
         public void ActivateWhenLessWallTest(Game game,
             FloodWaterCard sut)
         {
-            game.SecondPlayer.Buildings.Wall = 7;
+            game.Players.SecondPlayer.Buildings.Wall = 7;
 
             sut.Activate(game);
 
-            Assert.Equal(1, game.FirstPlayer.Resources.Dungeons);
-            Assert.Equal(18, game.FirstPlayer.Buildings.Tower);
-            Assert.Equal(2, game.SecondPlayer.Resources.Dungeons);
-            Assert.Equal(20, game.SecondPlayer.Buildings.Tower);
+            Assert.Equal(1, game.Players.FirstPlayer.Resources.Dungeons);
+            Assert.Equal(18, game.Players.FirstPlayer.Buildings.Tower);
+            Assert.Equal(2, game.Players.SecondPlayer.Resources.Dungeons);
+            Assert.Equal(20, game.Players.SecondPlayer.Buildings.Tower);
         }
     }
 }

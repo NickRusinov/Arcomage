@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Arcomage.Domain.ArtificialIntelligence;
-using Arcomage.Domain.Entities;
 using Arcomage.Domain.Players;
 using Moq;
 using Ploeh.AutoFixture.Xunit2;
