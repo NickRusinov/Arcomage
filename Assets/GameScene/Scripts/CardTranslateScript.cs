@@ -7,6 +7,9 @@ using UnityEngine.Events;
 
 namespace Arcomage.Unity.GameScene.Scripts
 {
+    /// <summary>
+    /// Скрипт, позволяющий воспроизвести анимацию перемещения карты в установленное положение
+    /// </summary>
     public class CardTranslateScript : MonoBehaviour
     {
         [Tooltip("Событие завершения перемещения")]
@@ -15,8 +18,15 @@ namespace Arcomage.Unity.GameScene.Scripts
         [Tooltip("Скрость анимации перемещения")]
         public float Speed = 1000f;
 
+        /// <summary>
+        /// Цель перемещения карты
+        /// </summary>
         private Vector3 position;
 
+        /// <summary>
+        /// Инициализация скрипта
+        /// </summary>
+        /// <param name="position">Цель перемещения карты</param>
         public void Initialize(Vector3 position)
         {
             this.position = position;

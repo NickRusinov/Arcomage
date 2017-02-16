@@ -11,8 +11,14 @@ using Zenject;
 
 namespace Arcomage.Unity.GameScene.Scripts
 {
+    /// <summary>
+    /// Корневой скрипт сцены
+    /// </summary>
     public class GameSceneScript : SceneScript
     {
+        /// <summary>
+        /// Игра поставлена на паузу
+        /// </summary>
         public static bool Pause;
 
         [Tooltip("Корневой компонент игры")]
@@ -27,6 +33,9 @@ namespace Arcomage.Unity.GameScene.Scripts
         [Tooltip("Компонент сообщения о победе")]
         public FinishedMenuView FinishedScript;
 
+        /// <summary>
+        /// Контейнер внедрения зависимостей для текущий сцены
+        /// </summary>
         private DiContainer container;
 
         public override void Awake()

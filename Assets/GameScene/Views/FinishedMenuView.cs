@@ -11,6 +11,9 @@ using UnityEngine.SceneManagement;
 
 namespace Arcomage.Unity.GameScene.Views
 {
+    /// <summary>
+    /// Представление компонента меню завершения игры
+    /// </summary>
     public class FinishedMenuView : View
     {
         [Tooltip("Текст для вывода причины завершения игры")]
@@ -19,6 +22,10 @@ namespace Arcomage.Unity.GameScene.Views
         [Tooltip("Текст для вывода имени игрока победителя")]
         public LocalizationScript WinnerText;
 
+        /// <summary>
+        /// Инициализация компонента
+        /// </summary>
+        /// <param name="game">Контекст игры</param>
         public void Initialize(Game game)
         {
             Bind(game, g => g.Rule.IsWin(g).GetIdentifier())
@@ -29,16 +36,25 @@ namespace Arcomage.Unity.GameScene.Views
                 .OnChangedAndInit(p => WinnerText.arguments = new[] { p.GetName() });
         }
 
+        /// <summary>
+        /// Обработчик нажатия на кнопку "Назад"
+        /// </summary>
         public void OnBackClickHandler()
         {
             SceneManager.LoadScene("MenuScene");
         }
 
+        /// <summary>
+        /// Обработчик нажатия на кнопку "Заново"
+        /// </summary>
         public void OnPlayClickHandler()
         {
             SceneManager.LoadScene("GameScene");
         }
 
+        /// <summary>
+        /// Обработчик на появление меню на экране
+        /// </summary>
         public void OnShowHandler()
         {
             GameSceneScript.Pause = true;

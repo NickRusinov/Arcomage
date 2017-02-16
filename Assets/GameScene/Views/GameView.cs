@@ -12,6 +12,9 @@ using UnityEngine.Events;
 
 namespace Arcomage.Unity.GameScene.Views
 {
+    /// <summary>
+    /// Представление компонента игры
+    /// </summary>
     public class GameView : View
     {
         [Tooltip("Событие: Игра завершена")]
@@ -38,6 +41,12 @@ namespace Arcomage.Unity.GameScene.Views
         [Tooltip("Текст для вывода информации для сброса карты")]
         public TextMesh DiscardOnlyText;
         
+        /// <summary>
+        /// Инициализация компонента
+        /// </summary>
+        /// <param name="game">Контекст игры</param>
+        /// <param name="gameLoop">Игровой цикл</param>
+        /// <param name="ruleInfo">Правила игры</param>
         public void Initialize(Game game, GameLoop gameLoop, ClassicRuleInfo ruleInfo)
         {
             Bind(gameLoop, gl => gl.Update(game))

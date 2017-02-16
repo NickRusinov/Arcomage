@@ -64,6 +64,12 @@
     <Reference Include="Arcomage.Domain">
       <HintPath>Assets\Packages\Arcomage.Domain.dll</HintPath>
     </Reference>
+    <Reference Include="CsvHelper">
+      <HintPath>Assets\Packages\SmartLocalization\CsvHelper.dll</HintPath>
+    </Reference>
+    <Reference Include="SmartLocalization_Editor">
+      <HintPath>Assets\Packages\SmartLocalization\SmartLocalization_Editor.dll</HintPath>
+    </Reference>
     <Reference Include="SmartLocalization_Runtime">
       <HintPath>Assets\Packages\SmartLocalization\SmartLocalization_Runtime.dll</HintPath>
     </Reference>
@@ -72,12 +78,6 @@
     </Reference>
     <Reference Include="Zenject">
       <HintPath>Assets\Packages\Zenject\Zenject.dll</HintPath>
-    </Reference>
-    <Reference Include="SmartLocalization_Editor">
-      <HintPath>Assets\Packages\SmartLocalization\SmartLocalization_Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="CsvHelper">
-      <HintPath>Assets\Packages\SmartLocalization\CsvHelper.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

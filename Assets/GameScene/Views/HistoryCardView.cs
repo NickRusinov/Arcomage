@@ -10,6 +10,9 @@ using UnityEngine;
 
 namespace Arcomage.Unity.GameScene.Views
 {
+    /// <summary>
+    /// Представление компонента игровой карты в истории хода
+    /// </summary>
     public class HistoryCardView : View
     {
         [Tooltip("Текст для вывода названия карты")]
@@ -30,9 +33,16 @@ namespace Arcomage.Unity.GameScene.Views
         [Tooltip("Спрайт изображения карты")]
         public SpriteRenderer ForegroundImage;
 
+        /// <summary>
+        /// Порядковый номер карты в истории хода
+        /// </summary>
         [NonSerialized]
         public int Index;
 
+        /// <summary>
+        /// Инициализация компонента
+        /// </summary>
+        /// <param name="historyCard">Карта в истории хода</param>
         public void Initialize(HistoryCard historyCard)
         {
             Bind(historyCard.Card.GetIdentifier())

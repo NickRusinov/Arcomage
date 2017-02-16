@@ -24,16 +24,20 @@ namespace Arcomage.Unity.Shared.Scripts
             return boolean;
         }
 
-        public static T Try<T>(Func<T> func, T def = default(T))
+        public static TSource Do<TSource>(this TSource source, Action<TSource> action)
         {
-            try
-            {
-                return func();
-            }
-            catch
-            {
-                return def;
-            }
+            if (source != null)
+                action.Invoke(source);
+
+            return default(TSource);
+        }
+
+        public static TResult Do<TSource, TResult>(this TSource source, Func<TSource, TResult> func)
+        {
+            if (source != null)
+                return func.Invoke(source);
+
+            return default(TResult);
         }
 
         public static ICollection<T> ForEach<T>(this ICollection<T> collection, Action<T> action)
@@ -55,7 +59,14 @@ namespace Arcomage.Unity.Shared.Scripts
 
         public static string TryFormat(this string str, params string[] args)
         {
-            return Try(() => string.Format(str, args), str);
+            try
+            {
+                return string.Format(str, args ?? new object[0]);
+            }
+            catch (FormatException)
+            {
+                return str;
+            }
         }
     }
 }

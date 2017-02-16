@@ -10,8 +10,14 @@ using Zenject;
 
 namespace Arcomage.Unity.GameScene.Scripts
 {
+    /// <summary>
+    /// Модуль, устанавливающий зависимости игровой сцены
+    /// </summary>
     public class SceneInstaller : Installer<SceneInstaller>
     {
+        /// <summary>
+        /// Настройка привязок контейнера внедрения зависимостей
+        /// </summary>
         public override void InstallBindings()
         {
             Container.Bind<Command>()

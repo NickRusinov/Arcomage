@@ -9,6 +9,9 @@ using UnityEngine;
 
 namespace Arcomage.Unity.GameScene.Views
 {
+    /// <summary>
+    /// Представление компонента строений игрока
+    /// </summary>
     public class BuildingsView : View
     {
         [Tooltip("Текст для вывода высоты башни")]
@@ -29,6 +32,11 @@ namespace Arcomage.Unity.GameScene.Views
         [Tooltip("Спрайт стены")]
         public SpriteRenderer WallImage;
 
+        /// <summary>
+        /// Инициализация компонента
+        /// </summary>
+        /// <param name="buildings">Строения игрока</param>
+        /// <param name="ruleInfo">Классические правила игры</param>
         public void Initialize(BuildingSet buildings, ClassicRuleInfo ruleInfo)
         {
             Bind(buildings, b => b.Tower)

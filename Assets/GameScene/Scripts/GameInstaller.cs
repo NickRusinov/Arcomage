@@ -18,12 +18,12 @@ using Zenject;
 namespace Arcomage.Unity.GameScene.Scripts
 {
     /// <summary>
-    /// Модуль контейнера, настраивающий привязки для классов логики игры
+    /// Модуль, устанавливающий зависимости игровой логики
     /// </summary>
     public class GameInstaller : Installer<GameInstaller>
     {
         /// <summary>
-        /// Настраивает привязки для классоа логики игры
+        /// Настройка привязок контейнера внедрения зависимостей
         /// </summary>
         public override void InstallBindings()
         {

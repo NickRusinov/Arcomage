@@ -10,6 +10,9 @@ using UnityEngine;
 
 namespace Arcomage.Unity.GameScene.Views
 {
+    /// <summary>
+    /// Представление компонента ресурсов игрока
+    /// </summary>
     public class ResourcesView : View
     {
         [Tooltip("Текст для вывода имени игрока")]
@@ -51,6 +54,11 @@ namespace Arcomage.Unity.GameScene.Views
         [Tooltip("Система частиц, запускаемая при изменении количества отрядов")]
         public ParticleSystem RecruitsParticle;
 
+        /// <summary>
+        /// Инициализация компонента
+        /// </summary>
+        /// <param name="playerKind">Номер игрока, которому принадлежат ресурсы</param>
+        /// <param name="resources">Ресурсы игрока</param>
         public void Initialize(PlayerKind playerKind, ResourceSet resources)
         {
             Bind(playerKind, p => p.GetName())
