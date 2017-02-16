@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Arcomage.Domain.Cards;
 using Arcomage.Domain.Hands;
+using Arcomage.Unity.GameScene.Factories;
 using Arcomage.Unity.GameScene.Scripts;
 using Arcomage.Unity.Shared.Scripts;
 using UnityEngine;

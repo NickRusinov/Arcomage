@@ -81,16 +81,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\GameScene\Commands\DiscardCardCommand.cs" />
+    <Compile Include="Assets\GameScene\Commands\PlayCardCommand.cs" />
+    <Compile Include="Assets\GameScene\Factories\CardFactory.cs" />
+    <Compile Include="Assets\GameScene\Factories\HistoryCardFactory.cs" />
     <Compile Include="Assets\GameScene\Scripts\CardDragDropScript.cs" />
-    <Compile Include="Assets\GameScene\Scripts\CardFactory.cs" />
     <Compile Include="Assets\GameScene\Scripts\CardTranslateScript.cs" />
-    <Compile Include="Assets\GameScene\Scripts\DiscardCardCommand.cs" />
     <Compile Include="Assets\GameScene\Scripts\GameExtensions.cs" />
     <Compile Include="Assets\GameScene\Scripts\GameInstaller.cs" />
     <Compile Include="Assets\GameScene\Scripts\GameSceneScript.cs" />
-    <Compile Include="Assets\GameScene\Scripts\HistoryCardFactory.cs" />
-    <Compile Include="Assets\GameScene\Scripts\PlayCardCommand.cs" />
-    <Compile Include="Assets\GameScene\Scripts\SceneInstaller.cs" />
     <Compile Include="Assets\GameScene\Views\BuildingsView.cs" />
     <Compile Include="Assets\GameScene\Views\CardView.cs" />
     <Compile Include="Assets\GameScene\Views\FinishedMenuView.cs" />
@@ -100,8 +99,8 @@
     <Compile Include="Assets\GameScene\Views\HistoryView.cs" />
     <Compile Include="Assets\GameScene\Views\ResourcesView.cs" />
     <Compile Include="Assets\MenuScene\Scripts\MenuSceneScript.cs" />
-    <Compile Include="Assets\SettingsScene\Scripts\DeckFactory.cs" />
-    <Compile Include="Assets\SettingsScene\Scripts\RuleFactory.cs" />
+    <Compile Include="Assets\SettingsScene\Factories\DeckFactory.cs" />
+    <Compile Include="Assets\SettingsScene\Factories\RuleFactory.cs" />
     <Compile Include="Assets\SettingsScene\Scripts\SettingsSceneScript.cs" />
     <Compile Include="Assets\SettingsScene\Views\DeckListView.cs" />
     <Compile Include="Assets\SettingsScene\Views\DeckView.cs" />

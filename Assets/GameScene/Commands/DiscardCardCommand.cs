@@ -5,19 +5,22 @@ using System.Threading.Tasks;
 using Arcomage.Domain;
 using Arcomage.Domain.Players;
 using Arcomage.Domain.Services;
+using Arcomage.Unity.GameScene.Views;
 using Arcomage.Unity.Shared.Scripts;
+using UnityEngine;
 
-namespace Arcomage.Unity.GameScene.Scripts
+namespace Arcomage.Unity.GameScene.Commands
 {
+    [RequireComponent(typeof(CardView))]
     public class DiscardCardCommand : Command
     {
-        private readonly Game game;
+        private Game game;
 
-        private readonly HumanPlayer player;
+        private HumanPlayer player;
 
-        private readonly IDiscardCardCriteria discardCardCriteria;
+        private IDiscardCardCriteria discardCardCriteria;
 
-        public DiscardCardCommand(Game game, HumanPlayer player, IDiscardCardCriteria discardCardCriteria)
+        public void Initialize(Game game, HumanPlayer player, IDiscardCardCriteria discardCardCriteria)
         {
             this.game = game;
             this.player = player;

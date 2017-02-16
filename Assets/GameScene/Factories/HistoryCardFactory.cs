@@ -6,7 +6,7 @@ using Arcomage.Domain.Histories;
 using Arcomage.Unity.GameScene.Views;
 using UnityEngine;
 
-namespace Arcomage.Unity.GameScene.Scripts
+namespace Arcomage.Unity.GameScene.Factories
 {
     /// <summary>
     /// Фабрика, создающая игровые объекты карт в истории хода

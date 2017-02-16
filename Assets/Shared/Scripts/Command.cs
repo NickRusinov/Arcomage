@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace Arcomage.Unity.Shared.Scripts
 {
-    public class Command
+    public class Command : MonoBehaviour
     {
         public virtual void Execute(object parameter)
         {

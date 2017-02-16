@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Arcomage.Domain;
+using Arcomage.Domain.Players;
 using Arcomage.Domain.Rules;
+using Arcomage.Domain.Services;
+using Arcomage.Unity.GameScene.Factories;
 using Arcomage.Unity.GameScene.Views;
 using Arcomage.Unity.Shared.Scripts;
 using UnityEngine;
@@ -46,18 +49,18 @@ namespace Arcomage.Unity.GameScene.Scripts
             container = new DiContainer();
             container.Bind<Settings>().ToSelf().AsSingle(0);
             GameInstaller.Install(container);
-            SceneInstaller.Install(container);
         }
 
         public void Start()
         {
             var game = container.Resolve<Game>();
             var gameLoop = container.Resolve<GameLoop>();
-            var playCardCommand = container.Resolve<Command>("PlayCardCommand");
-            var discardCardCommand = container.Resolve<Command>("DiscardCardCommand");
+            var humanPlayer = (HumanPlayer)container.Resolve<Player>("FirstPlayer");
+            var playCardCriteria = container.Resolve<IPlayCardCriteria>();
+            var discardCardCriteria = container.Resolve<IDiscardCardCriteria>();
             
             GameScript.Initialize(game, gameLoop, (ClassicRuleInfo)Settings.Instance.Rule);
-            CardFactory.Initialize(playCardCommand, discardCardCommand);
+            CardFactory.Initialize(game, humanPlayer, playCardCriteria, discardCardCriteria);
             FinishedScript.Initialize(game);
         }
 

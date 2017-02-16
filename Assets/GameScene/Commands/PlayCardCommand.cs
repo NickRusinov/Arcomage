@@ -5,19 +5,22 @@ using System.Threading.Tasks;
 using Arcomage.Domain;
 using Arcomage.Domain.Players;
 using Arcomage.Domain.Services;
+using Arcomage.Unity.GameScene.Views;
 using Arcomage.Unity.Shared.Scripts;
+using UnityEngine;
 
-namespace Arcomage.Unity.GameScene.Scripts
+namespace Arcomage.Unity.GameScene.Commands
 {
+    [RequireComponent(typeof(CardView))]
     public class PlayCardCommand : Command
     {
-        private readonly Game game;
+        private Game game;
 
-        private readonly HumanPlayer player;
+        private HumanPlayer player;
 
-        private readonly IPlayCardCriteria playCardCriteria;
+        private IPlayCardCriteria playCardCriteria;
 
-        public PlayCardCommand(Game game, HumanPlayer player, IPlayCardCriteria playCardCriteria)
+        public void Initialize(Game game, HumanPlayer player, IPlayCardCriteria playCardCriteria)
         {
             this.game = game;
             this.player = player;

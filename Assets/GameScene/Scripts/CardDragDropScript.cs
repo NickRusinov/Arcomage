@@ -3,8 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Arcomage.Unity.GameScene.Commands;
 using Arcomage.Unity.GameScene.Views;
-using Arcomage.Unity.Shared.Scripts;
 using UnityEngine;
 
 namespace Arcomage.Unity.GameScene.Scripts
@@ -12,7 +12,7 @@ namespace Arcomage.Unity.GameScene.Scripts
     /// <summary>
     /// Скрипт, позволяющий карте быть перемещаемой игроком
     /// </summary>
-    [RequireComponent(typeof(CardView))]
+    [RequireComponent(typeof(CardView), typeof(PlayCardCommand), typeof(DiscardCardCommand))]
     public class CardDragDropScript : MonoBehaviour
     {
         /// <summary>
@@ -26,16 +26,6 @@ namespace Arcomage.Unity.GameScene.Scripts
         private bool draggingItem;
 
         /// <summary>
-        /// Команда, вызываемая при активации карты игроком
-        /// </summary>
-        private Command playCommand;
-
-        /// <summary>
-        /// Команда, вызываемая при сбросе карты игроком
-        /// </summary>
-        private Command discardCommand;
-
-        /// <summary>
         /// Смещение карты относительно ее исходного положения
         /// </summary>
         private Vector2 touchOffset;
@@ -44,17 +34,6 @@ namespace Arcomage.Unity.GameScene.Scripts
         /// Начальное положение карты до ее перемещения
         /// </summary>
         private Vector3 initialPosition;
-
-        /// <summary>
-        /// Инициализация скрипта
-        /// </summary>
-        /// <param name="playCommand">Команда, вызываемая при активации карты игроком</param>
-        /// <param name="discardCommand">Команда, вызываемая при сбросе карты игроком</param>
-        public void Initialize(Command playCommand, Command discardCommand)
-        {
-            this.playCommand = playCommand;
-            this.discardCommand = discardCommand;
-        }
         
         public void Update()
         {
@@ -87,11 +66,13 @@ namespace Arcomage.Unity.GameScene.Scripts
             {
                 draggingItem = globalDraggingItem = false;
                 var index = GetComponent<CardView>().Index;
-            
+
+                var playCommand = GetComponent<PlayCardCommand>();
                 if (transform.position.y - initialPosition.y >= + 25f)
                     if (playCommand.CanExecute(index))
                         playCommand.Execute(index);
-            
+
+                var discardCommand = GetComponent<DiscardCardCommand>();
                 if (transform.position.y - initialPosition.y <= - 25f)
                     if (discardCommand.CanExecute(index))
                         discardCommand.Execute(index);

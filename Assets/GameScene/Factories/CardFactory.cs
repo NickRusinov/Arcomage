@@ -2,12 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Arcomage.Domain;
 using Arcomage.Domain.Cards;
+using Arcomage.Domain.Players;
+using Arcomage.Domain.Services;
+using Arcomage.Unity.GameScene.Commands;
+using Arcomage.Unity.GameScene.Scripts;
 using Arcomage.Unity.GameScene.Views;
-using Arcomage.Unity.Shared.Scripts;
 using UnityEngine;
 
-namespace Arcomage.Unity.GameScene.Scripts
+namespace Arcomage.Unity.GameScene.Factories
 {
     /// <summary>
     /// Фабрика, создающая игровые объекты карты из префаба
@@ -17,25 +21,23 @@ namespace Arcomage.Unity.GameScene.Scripts
         [Tooltip("Префаб карты")]
         public GameObject Prefab;
 
-        /// <summary>
-        /// Команда, вызываемая при активации карты игроком
-        /// </summary>
-        private Command playCommand;
+        private Game game;
 
-        /// <summary>
-        /// Команда, вызываемая при сбросе карты игроком
-        /// </summary>
-        private Command discardCommand;
+        private HumanPlayer player;
+
+        private IPlayCardCriteria playCardCriteria;
+
+        private IDiscardCardCriteria discardCardCriteria;
 
         /// <summary>
         /// Инициализация фабрики
         /// </summary>
-        /// <param name="playCommand">Команда, вызываемая при активации карты игроком</param>
-        /// <param name="discardCommand">Команда, вызываемая при сбросе карты игроком</param>
-        public void Initialize(Command playCommand, Command discardCommand)
+        public void Initialize(Game game, HumanPlayer player, IPlayCardCriteria playCardCriteria, IDiscardCardCriteria discardCardCriteria)
         {
-            this.playCommand = playCommand;
-            this.discardCommand = discardCommand;
+            this.game = game;
+            this.player = player;
+            this.playCardCriteria = playCardCriteria;
+            this.discardCardCriteria = discardCardCriteria;
         }
 
         /// <summary>
@@ -51,8 +53,10 @@ namespace Arcomage.Unity.GameScene.Scripts
             cardObject.GetComponent<CardView>().Index = index;
             cardObject.name = "Card" + index;
 
-            cardObject.GetComponent<CardView>().Initialize(card, playCommand);
-            cardObject.GetComponent<CardDragDropScript>().Initialize(playCommand, discardCommand);
+            cardObject.GetComponent<CardView>().Initialize(card);
+            cardObject.GetComponent<CardDragDropScript>();
+            cardObject.GetComponent<PlayCardCommand>().Initialize(game, player, playCardCriteria);
+            cardObject.GetComponent<DiscardCardCommand>().Initialize(game, player, discardCardCriteria);
 
             return cardObject;
         }
