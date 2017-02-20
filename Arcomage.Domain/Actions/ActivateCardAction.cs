@@ -17,7 +17,7 @@ namespace Arcomage.Domain.Actions
             var card = game.Players.CurrentPlayer.Hand.Cards[playResult.Card];
             var resource = game.Players.CurrentPlayer.Resources[card.Kind];
             
-            resource.Value -= resource.Increase;
+            resource.Value -= card.Price;
             game.DiscardOnly--;
 
             if (playResult.IsPlay)

@@ -34,5 +34,18 @@ namespace Arcomage.Domain.Tests.Actions
 
             cardMock.Verify(c => c.Activate(game), Times.Never);
         }
+
+        [Theory, AutoFixture]
+        public void ResourcePriceDecreaseTest(
+            [Frozen] Mock<Card> cardMock,
+            [Frozen] Game game,
+            ActivateCardAction sut)
+        {
+            cardMock.SetupGet(c => c.Price).Returns(4);
+
+            sut.Play(game, new PlayResult(1, true));
+
+            Assert.Equal(1, game.Players.FirstPlayer.Resources.Bricks);
+        }
     }
 }
