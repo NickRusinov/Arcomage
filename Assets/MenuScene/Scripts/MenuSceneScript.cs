@@ -20,11 +20,19 @@ namespace Arcomage.Unity.MenuScene.Scripts
         }
 
         /// <summary>
-        /// Click handler for play button of menu
+        /// Click handler for single play button of menu
         /// </summary>
-        public void OnPlayClickHanlder()
+        public void OnSinglePlayClickHanlder()
         {
             SceneManager.LoadScene("SettingsScene");
+        }
+
+        /// <summary>
+        /// Click handler for network play button of menu
+        /// </summary>
+        public void OnNetworkPlayClickHandler()
+        {
+            SceneManager.LoadScene("NetworkScene");
         }
 
         /// <summary>

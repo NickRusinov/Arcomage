@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using SmartLocalization;
 
 namespace Arcomage.Unity.Shared.Scripts
 {
@@ -67,6 +68,11 @@ namespace Arcomage.Unity.Shared.Scripts
             {
                 return str;
             }
+        }
+
+        public static string TryGetTextValue(this LanguageManager manager, string key)
+        {
+            return manager.GetTextValue(key) ?? key;
         }
     }
 }

@@ -23,13 +23,13 @@ namespace Arcomage.Unity.Shared.Scripts
             var text = GetComponent<Text>();
             
             Bind(this, t => t.identifier)
-                .OnChangedAndInit(i => text.text = LanguageManager.Instance.GetTextValue(i).TryFormat(arguments));
+                .OnChangedAndInit(i => text.text = LanguageManager.Instance.TryGetTextValue(i).TryFormat(arguments));
 
             Bind(this, t => t.arguments)
-                .OnChangedAndInit(a => text.text = LanguageManager.Instance.GetTextValue(identifier).TryFormat(a));
+                .OnChangedAndInit(a => text.text = LanguageManager.Instance.TryGetTextValue(identifier).TryFormat(a));
 
             LanguageManager.Instance.OnChangeLanguage +=
-                _ => text.text = LanguageManager.Instance.GetTextValue(identifier).TryFormat(arguments);
+                _ => text.text = LanguageManager.Instance.TryGetTextValue(identifier).TryFormat(arguments);
         }
 
 #if UNITY_EDITOR

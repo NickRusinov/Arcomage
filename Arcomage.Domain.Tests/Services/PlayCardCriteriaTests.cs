@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Arcomage.Domain.Cards;
-using Arcomage.Domain.Resources;
 using Arcomage.Domain.Services;
 using Moq;
 using Ploeh.AutoFixture.Xunit2;
