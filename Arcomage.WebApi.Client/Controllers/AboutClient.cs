@@ -9,8 +9,8 @@ namespace Arcomage.WebApi.Client.Controllers
 {
     public class AboutClient : ControllerClient
     {
-        public AboutClient(string baseUrl, string authenticate)
-            : base(baseUrl, authenticate)
+        public AboutClient(IHttpClient httpClient)
+            : base(httpClient)
         {
             
         }

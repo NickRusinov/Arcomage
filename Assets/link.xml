@@ -1,7 +1,14 @@
 <?xml version="1.0" ?>
 
 <linker>
-  <assembly fullname="Arcomage.Domain" preserve="all">
-    <type fullname="Arcomage.Domain.*" preserve="all" />
+  <assembly fullname="Arcomage.Domain">
+    <type fullname="Arcomage.Domain.*" preserve="all"/>
+  </assembly>
+  <assembly fullname="Arcomage.WebApi.Client">
+    <type fullname="Arcomage.WebApi.Client.*" preserve="all"/>
+  </assembly>
+
+  <assembly fullname="Newtonsoft.Json">
+    <type fullname="*" preserve="all"/>
   </assembly>
 </linker>

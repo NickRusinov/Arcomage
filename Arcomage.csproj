@@ -13,7 +13,8 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Full v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile></CompilerResponseFile>
+    <CompilerResponseFile>
+    </CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>Android:13</UnityBuildTarget>
     <UnityVersion>5.4.2f2</UnityVersion>
@@ -70,6 +71,9 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>Assets\Packages\Newtonsoft.Json\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="Nivot.SignalR.Client.Net35">
+      <HintPath>Assets\Packages\SignalR.Client\Nivot.SignalR.Client.Net35.dll</HintPath>
+    </Reference>
     <Reference Include="CsvHelper">
       <HintPath>Assets\Packages\SmartLocalization\CsvHelper.dll</HintPath>
     </Reference>
@@ -84,12 +88,6 @@
     </Reference>
     <Reference Include="Zenject">
       <HintPath>Assets\Packages\Zenject\Zenject.dll</HintPath>
-    </Reference>
-    <Reference Include="Nivot.SignalR.Client.Net35">
-      <HintPath>Assets\Packages\SignalR.Client\Nivot.SignalR.Client.Net35.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json 1">
-      <HintPath>Assets\Packages\Newtonsoft.Json\Newtonsoft.Json 1.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -111,6 +109,9 @@
     <Compile Include="Assets\GameScene\Views\HistoryView.cs" />
     <Compile Include="Assets\GameScene\Views\ResourcesView.cs" />
     <Compile Include="Assets\MenuScene\Scripts\MenuSceneScript.cs" />
+    <Compile Include="Assets\NetworkScene\NetworkSceneInstaller.cs" />
+    <Compile Include="Assets\NetworkScene\NetworkSceneScript.cs" />
+    <Compile Include="Assets\NetworkScene\Views\ConnectPanelView.cs" />
     <Compile Include="Assets\SettingsScene\Factories\DeckFactory.cs" />
     <Compile Include="Assets\SettingsScene\Factories\RuleFactory.cs" />
     <Compile Include="Assets\SettingsScene\Scripts\SettingsSceneScript.cs" />
@@ -133,6 +134,7 @@
     <Compile Include="Assets\Shared\Scripts\TextOutlineScript.cs" />
     <Compile Include="Assets\Shared\Scripts\TextWrapScript.cs" />
     <Compile Include="Assets\Shared\Scripts\UnityExtensions.cs" />
+    <Compile Include="Assets\Shared\Scripts\UnityHttpClient.cs" />
     <Compile Include="Assets\Shared\Scripts\ValueBinding.cs" />
     <Compile Include="Assets\Shared\Scripts\View.cs" />
   </ItemGroup>

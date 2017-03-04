@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="Controllers\AboutClient.cs" />
     <Compile Include="Controllers\ControllerClient.cs" />
+    <Compile Include="IHttpClient.cs" />
     <Compile Include="Models\About\VersionModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -33,7 +33,7 @@ namespace Arcomage.Unity.GameScene.Scripts
 
             Container.Bind<Card>()
                 .To(b => b.AllNonAbstractClasses()
-                    .FromAssemblyContaining<Game>())
+                    .FromAssemblyContaining<Card>())
                 .AsSingle(0);
 
             Container.Bind<IBeforePlayAction>()
