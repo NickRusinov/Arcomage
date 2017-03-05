@@ -771,8 +771,17 @@
   <data name="MenuExitButtonText" xml:space="preserve">
 		<value>Exit</value>
 	</data>
+  <data name="MenuNetworkPlayButtonText" xml:space="preserve">
+		<value>Network</value>
+	</data>
   <data name="MenuSinglePlayButtonText" xml:space="preserve">
 		<value>Play</value>
+	</data>
+  <data name="NetworkBackButtonText" xml:space="preserve">
+		<value>Back</value>
+	</data>
+  <data name="NetworkConnectText" xml:space="preserve">
+		<value>Connecting to server...</value>
 	</data>
   <data name="RuleEastRiverDescription" xml:space="preserve">
 		<value>To win, build a tower height of {0}, {1} accumuate each resource or destroy the opponent's tower</value>
@@ -822,7 +831,10 @@
   <data name="SettingsSecondPlayerText" xml:space="preserve">
 		<value>Player's name #2</value>
 	</data>
-  <data name="MenuNetworkPlayButtonText" xml:space="preserve">
-    <value>Network</value>
+  <data name="NetworkFailureConnectText" xml:space="preserve">
+    <value>Cannot connect to server =(</value>
+  </data>
+  <data name="NetworkFailureVersionText" xml:space="preserve">
+    <value>Need upgrade application =(</value>
   </data>
 </root>

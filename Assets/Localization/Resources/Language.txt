@@ -771,6 +771,9 @@
   <data name="MenuExitButtonText" xml:space="preserve">
 		<value>Exit</value>
 	</data>
+  <data name="MenuNetworkPlayButtonText" xml:space="preserve">
+		<value>Network</value>
+	</data>
   <data name="MenuSinglePlayButtonText" xml:space="preserve">
 		<value>Play</value>
 	</data>
@@ -822,7 +825,16 @@
   <data name="SettingsSecondPlayerText" xml:space="preserve">
 		<value>Player's name #2</value>
 	</data>
-  <data name="MenuNetworkPlayButtonText" xml:space="preserve">
-    <value>Network</value>
+  <data name="NetworkBackButtonText" xml:space="preserve">
+		<value>Back</value>
+	</data>
+  <data name="NetworkConnectText" xml:space="preserve">
+		<value>Connecting to server...</value>
+	</data>
+  <data name="NetworkFailureConnectText" xml:space="preserve">
+    <value>Cannot connect to server =(</value>
+  </data>
+  <data name="NetworkFailureVersionText" xml:space="preserve">
+    <value>Need upgrade application =(</value>
   </data>
 </root>

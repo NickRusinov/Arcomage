@@ -8,7 +8,7 @@ using Arcomage.Unity.Shared.Scripts;
 using Arcomage.WebApi.Client.Controllers;
 using Arcomage.WebApi.Client.Models.About;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 namespace Arcomage.Unity.NetworkScene.Views
 {
@@ -18,7 +18,10 @@ namespace Arcomage.Unity.NetworkScene.Views
         public GameObject SuccessObject;
 
         [Tooltip("Объект, активирующийся при неудачном соединении с игровым веб-сервером")]
-        public GameObject FailureObject;
+        public GameObject FailureConnectObject;
+
+        [Tooltip("Объект, активирующийся при несоответствующей версии клиента и игрового веб-сервера")]
+        public GameObject FailureVersionObject;
 
         public void Initialize(AboutClient aboutClient)
         {
@@ -27,19 +30,22 @@ namespace Arcomage.Unity.NetworkScene.Views
             StartCoroutine(GetVersionCoroutine(getVersionTask));
         }
 
+        public void OnBackButtonClickHandler()
+        {
+            SceneManager.LoadScene("MenuScene");
+        }
+
         private IEnumerator GetVersionCoroutine(Task<VersionModel> task)
         {
             while (!task.IsCompleted)
                 yield return null;
 
-            if (task.Status == TaskStatus.RanToCompletion)
-                SuccessObject.SetActive(true);
+            gameObject.SetActive(false);
+            
+            SuccessObject.SetActive(task.Status == TaskStatus.RanToCompletion && task.Result.Version == 0);
 
-            if (task.Status == TaskStatus.Faulted)
-            {
-                FailureObject.SetActive(true);
-                FailureObject.GetComponent<Text>().text = task.Exception.InnerExceptions[0].ToString();
-            }
+            FailureConnectObject.SetActive(task.Status == TaskStatus.Faulted);
+            FailureVersionObject.SetActive(task.Status == TaskStatus.RanToCompletion && task.Result.Version != 0);
         }
     }
 }

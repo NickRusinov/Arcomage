@@ -771,6 +771,9 @@
   <data name="MenuExitButtonText" xml:space="preserve">
 		<value>Выход</value>
 	</data>
+  <data name="MenuNetworkPlayButtonText" xml:space="preserve">
+		<value>Сетевая игра</value>
+	</data>
   <data name="MenuSinglePlayButtonText" xml:space="preserve">
 		<value>Одиночная игра</value>
 	</data>
@@ -822,7 +825,16 @@
   <data name="SettingsSecondPlayerText" xml:space="preserve">
 		<value>Имя игрока #2</value>
 	</data>
-  <data name="MenuNetworkPlayButtonText" xml:space="preserve">
-    <value>Сетевая игра</value>
+  <data name="NetworkBackButtonText" xml:space="preserve">
+		<value>Назад</value>
+	</data>
+  <data name="NetworkConnectText" xml:space="preserve">
+		<value>Идет соединение с сервером...</value>
+	</data>
+  <data name="NetworkFailureConnectText" xml:space="preserve">
+    <value>Ошибка соединения с сервером =(</value>
+  </data>
+  <data name="NetworkFailureVersionText" xml:space="preserve">
+    <value>Требуется обновление приложения =(</value>
   </data>
 </root>
