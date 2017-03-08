@@ -205,6 +205,6 @@
   <Target Name="BeforeBuild">
   </Target>
   <Target Name="AfterBuild">
-    <Copy SourceFiles="$(TargetPath)" DestinationFiles="$(ProjectDir)..\Assets\Plugins\$(TargetFileName)" />
+    <Copy SourceFiles="$(TargetPath)" DestinationFiles="$(ProjectDir)..\Arcomage.Unity\Assets\Plugins\$(TargetFileName)" />
   </Target>
 </Project>
