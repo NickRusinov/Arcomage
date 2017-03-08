@@ -13,8 +13,7 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Full v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile>
-    </CompilerResponseFile>
+    <CompilerResponseFile></CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>Android:13</UnityBuildTarget>
     <UnityVersion>5.4.2f2</UnityVersion>
@@ -62,32 +61,32 @@
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
     </Reference>
-    <Reference Include="Arcomage.Domain">
-      <HintPath>Assets\Packages\Arcomage.Domain.dll</HintPath>
-    </Reference>
-    <Reference Include="Arcomage.WebApi.Client">
-      <HintPath>Assets\Packages\Arcomage.WebApi.Client.dll</HintPath>
-    </Reference>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>Assets\Packages\Newtonsoft.Json\Newtonsoft.Json.dll</HintPath>
+      <HintPath>Assets\Plugins\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Nivot.SignalR.Client.Net35">
-      <HintPath>Assets\Packages\SignalR.Client\Nivot.SignalR.Client.Net35.dll</HintPath>
-    </Reference>
-    <Reference Include="CsvHelper">
-      <HintPath>Assets\Packages\SmartLocalization\CsvHelper.dll</HintPath>
-    </Reference>
-    <Reference Include="SmartLocalization_Editor">
-      <HintPath>Assets\Packages\SmartLocalization\SmartLocalization_Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="SmartLocalization_Runtime">
-      <HintPath>Assets\Packages\SmartLocalization\SmartLocalization_Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Threading">
-      <HintPath>Assets\Packages\TaskParallelLibrary\System.Threading.dll</HintPath>
+      <HintPath>Assets\Plugins\Nivot.SignalR.Client.Net35.dll</HintPath>
     </Reference>
     <Reference Include="Zenject">
-      <HintPath>Assets\Packages\Zenject\Zenject.dll</HintPath>
+      <HintPath>Assets\Plugins\Zenject.dll</HintPath>
+    </Reference>
+    <Reference Include="CsvHelper">
+      <HintPath>Assets\Plugins\CsvHelper.dll</HintPath>
+    </Reference>
+    <Reference Include="SmartLocalization_Runtime">
+      <HintPath>Assets\Plugins\SmartLocalization_Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="SmartLocalization_Editor">
+      <HintPath>Assets\Plugins\SmartLocalization_Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Arcomage.WebApi.Client">
+      <HintPath>Assets\Plugins\Arcomage.WebApi.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Arcomage.Domain">
+      <HintPath>Assets\Plugins\Arcomage.Domain.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading">
+      <HintPath>Assets\Plugins\System.Threading.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
