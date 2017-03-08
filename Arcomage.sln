@@ -1,8 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2015
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Arcomage", "Arcomage.csproj", "{CA029F01-9C28-4AA2-94AF-66B11863D69B}"
-EndProject
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Arcomage.Domain", "Arcomage.Domain\Arcomage.Domain.csproj", "{C8270B38-0B3C-4D16-8F05-D96F26E4D995}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Arcomage.Domain.Tests", "Arcomage.Domain.Tests\Arcomage.Domain.Tests.csproj", "{AEE3DABD-4C1C-4B8F-AD4D-3C5C406D965D}"
@@ -17,10 +17,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{CA029F01-9C28-4AA2-94AF-66B11863D69B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CA029F01-9C28-4AA2-94AF-66B11863D69B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CA029F01-9C28-4AA2-94AF-66B11863D69B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CA029F01-9C28-4AA2-94AF-66B11863D69B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C8270B38-0B3C-4D16-8F05-D96F26E4D995}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C8270B38-0B3C-4D16-8F05-D96F26E4D995}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C8270B38-0B3C-4D16-8F05-D96F26E4D995}.Release|Any CPU.ActiveCfg = Release|Any CPU
