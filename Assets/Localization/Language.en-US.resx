@@ -837,4 +837,7 @@
   <data name="NetworkFailureVersionText" xml:space="preserve">
     <value>Need upgrade application =(</value>
   </data>
+  <data name="NetworkPrepareText" xml:space="preserve">
+    <value>Search for players...</value>
+  </data>
 </root>

@@ -112,13 +112,13 @@
     <Compile Include="App_Start\SignalRConfiguration.cs" />
     <Compile Include="App_Start\WebApiConfiguration.cs" />
     <Compile Include="Controllers\AboutController.cs" />
+    <Compile Include="Hubs\INetworkGameClient.cs" />
+    <Compile Include="Hubs\NetworkGameHub.cs" />
     <Compile Include="Models\About\VersionModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Hubs\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

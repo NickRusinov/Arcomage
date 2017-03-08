@@ -112,6 +112,7 @@
     <Compile Include="Assets\NetworkScene\NetworkSceneInstaller.cs" />
     <Compile Include="Assets\NetworkScene\NetworkSceneScript.cs" />
     <Compile Include="Assets\NetworkScene\Views\ConnectPanelView.cs" />
+    <Compile Include="Assets\NetworkScene\Views\PreparePanelView.cs" />
     <Compile Include="Assets\SettingsScene\Factories\DeckFactory.cs" />
     <Compile Include="Assets\SettingsScene\Factories\RuleFactory.cs" />
     <Compile Include="Assets\SettingsScene\Scripts\SettingsSceneScript.cs" />
@@ -135,6 +136,8 @@
     <Compile Include="Assets\Shared\Scripts\TextWrapScript.cs" />
     <Compile Include="Assets\Shared\Scripts\UnityExtensions.cs" />
     <Compile Include="Assets\Shared\Scripts\UnityHttpClient.cs" />
+    <Compile Include="Assets\Shared\Scripts\UnityLogTextWriter.cs" />
+    <Compile Include="Assets\Shared\Scripts\UnitySignalRClient.cs" />
     <Compile Include="Assets\Shared\Scripts\ValueBinding.cs" />
     <Compile Include="Assets\Shared\Scripts\View.cs" />
   </ItemGroup>

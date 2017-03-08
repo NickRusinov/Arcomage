@@ -837,4 +837,7 @@
   <data name="NetworkFailureVersionText" xml:space="preserve">
     <value>Требуется обновление приложения =(</value>
   </data>
+  <data name="NetworkPrepareText" xml:space="preserve">
+    <value>Поиск игроков...</value>
+  </data>
 </root>
