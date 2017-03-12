@@ -10,8 +10,11 @@ namespace Arcomage.WebApi
     {
         public void Configuration(IAppBuilder app)
         {
-            new WebApiConfiguration().Configure(app);
-            new SignalRConfiguration().Configure(app);
+            var container = new AutofacConfiguration().Configure(app);
+
+            new AuthorizationConfiguration().Configure(app, container);
+            new WebApiConfiguration().Configure(app, container);
+            new SignalRConfiguration().Configure(app, container);
         }
     }
 }

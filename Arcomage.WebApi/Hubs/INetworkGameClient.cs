@@ -8,6 +8,6 @@ namespace Arcomage.WebApi.Hubs
 {
     public interface INetworkGameClient
     {
-
+        void StartGame(Guid gameId);
     }
 }

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Text;
 using Arcomage.Unity.Shared.Scripts;
 using Arcomage.WebApi.Client.Hubs;
+using Microsoft.AspNet.SignalR.Client;
 
 namespace Arcomage.Unity.NetworkScene.Views
 {
@@ -19,6 +20,7 @@ namespace Arcomage.Unity.NetworkScene.Views
 
         public void OnEnable()
         {
+			networkGameClient.HubProxy.On("StartGame", (Guid id) => {});
             networkGameClient.Start();
         }
 
