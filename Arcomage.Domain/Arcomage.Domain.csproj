@@ -3,10 +3,6 @@
   <PropertyGroup>
     <TargetFrameworks>net35;net46</TargetFrameworks>
   </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-  </ItemGroup>
   <ItemGroup Condition=" '$(TargetFramework)' == 'net35' ">
     <Reference Include="Microsoft.Contracts">
       <HintPath>..\Tools\CodeContracts\PublicAssemblies\v3.5\Microsoft.Contracts.dll</HintPath>
