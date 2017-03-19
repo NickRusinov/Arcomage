@@ -6,7 +6,7 @@ using Microsoft.AspNet.SignalR;
 
 namespace Arcomage.WebApi.Hubs
 {
-    public class ApplicationHub<T> : Hub<T>
+    public abstract class ApplicationHub<T> : Hub<T>
         where T : class
     {
         protected ApplicationPrincipal Principal => (ApplicationPrincipal)Context.User;

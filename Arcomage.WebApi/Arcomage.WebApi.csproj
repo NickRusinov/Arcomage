@@ -126,12 +126,15 @@
     <Compile Include="App_Start\WebApiConfiguration.cs" />
     <Compile Include="App_Start\WebApiModule.cs" />
     <Compile Include="Controllers\AboutController.cs" />
+    <Compile Include="Controllers\ApplicationApiController.cs" />
+    <Compile Include="Controllers\GameApiController.cs" />
     <Compile Include="Hubs\ApplicationHub.cs" />
     <Compile Include="Hubs\INetworkGameClient.cs" />
     <Compile Include="Hubs\IPlayGameClient.cs" />
     <Compile Include="Hubs\NetworkGameHub.cs" />
     <Compile Include="Hubs\PlayGameHub.cs" />
     <Compile Include="Models\About\VersionModel.cs" />
+    <Compile Include="Models\Game\GameModel.cs" />
     <Compile Include="NetworkGameService.cs" />
     <Compile Include="PlayGameService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

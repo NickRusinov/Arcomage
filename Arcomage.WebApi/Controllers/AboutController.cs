@@ -8,7 +8,7 @@ using Arcomage.WebApi.Models.About;
 
 namespace Arcomage.WebApi.Controllers
 {
-    public class AboutController : ApiController
+    public class AboutController : ApplicationApiController
     {
         [HttpGet, Route("~/api/version")]
         public VersionModel GetVersion()
