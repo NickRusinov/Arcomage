@@ -116,6 +116,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationIdentity.cs" />
+    <Compile Include="ApplicationPrincipal.cs" />
     <Compile Include="ApplicationUserIdProvider.cs" />
     <Compile Include="App_Start\AuthorizationConfiguration.cs" />
     <Compile Include="App_Start\AuthorizationMiddleware.cs" />
@@ -125,10 +126,14 @@
     <Compile Include="App_Start\WebApiConfiguration.cs" />
     <Compile Include="App_Start\WebApiModule.cs" />
     <Compile Include="Controllers\AboutController.cs" />
+    <Compile Include="Hubs\ApplicationHub.cs" />
     <Compile Include="Hubs\INetworkGameClient.cs" />
+    <Compile Include="Hubs\IPlayGameClient.cs" />
     <Compile Include="Hubs\NetworkGameHub.cs" />
+    <Compile Include="Hubs\PlayGameHub.cs" />
     <Compile Include="Models\About\VersionModel.cs" />
     <Compile Include="NetworkGameService.cs" />
+    <Compile Include="PlayGameService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>

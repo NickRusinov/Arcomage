@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.Owin;
 
@@ -21,7 +20,7 @@ namespace Arcomage.WebApi
             var owinContext = new OwinContext(environment);
             
             var identity = new ApplicationIdentity(Guid.Parse("EB3AB862-E0D0-413B-B732-6BDD86B3A1A2"), "Debug User", "Debug Email");
-            owinContext.Authentication.User = new ClaimsPrincipal(identity);
+            owinContext.Authentication.User = new ApplicationPrincipal(identity);
 
             await nextMiddleware.Invoke(environment);
         }

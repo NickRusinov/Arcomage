@@ -1,12 +1,15 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net35</TargetFramework>
+    <TargetFrameworks>net35;net46</TargetFrameworks>
   </PropertyGroup>
-  <ItemGroup>
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net35' ">
     <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
     <PackageReference Include="Nivot.SignalR.Client.Net35" Version="2.0.0" />
     <PackageReference Include="TaskParallelLibrary" Version="1.0.2856" />
+  </ItemGroup>
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net46' ">
+    <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
+    <PackageReference Include="Microsoft.AspNet.SignalR.Client" Version="2.2.1" />
   </ItemGroup>
   <Target Name="Unity" AfterTargets="Build" Condition=" '$(TargetFramework)' == 'net35' ">
     <Copy SourceFiles="$(TargetPath)" DestinationFiles="$(SolutionDir)Arcomage.Unity\Assets\Plugins\$(TargetFileName)" />

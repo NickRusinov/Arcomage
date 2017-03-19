@@ -23,9 +23,9 @@ namespace Arcomage.Unity.NetworkScene.Views
         [Tooltip("Объект, активирующийся при несоответствующей версии клиента и игрового веб-сервера")]
         public GameObject FailureVersionObject;
 
-        public void Initialize(AboutClient aboutClient)
+        public void Initialize(AboutControllerClient aboutControllerClient)
         {
-            var getVersionTask = aboutClient.GetVersion();
+            var getVersionTask = aboutControllerClient.GetVersion();
 
             StartCoroutine(GetVersionCoroutine(getVersionTask));
         }

@@ -35,7 +35,7 @@ namespace Arcomage.WebApi
 
             // fake search game ...
 
-            networkGameHubContext.Clients.User(userId.ToString()).StartGame(Guid.NewGuid());
+            networkGameHubContext.Clients.All.StartGame(Guid.NewGuid());
         }
     }
 }

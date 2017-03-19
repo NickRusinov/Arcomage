@@ -1,7 +1,7 @@
-﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2015
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Arcomage.Unity", "Arcomage.Unity.csproj", "{4A9A9EC0-861A-5733-DCFD-382EE7F33CC9}"
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2008
+
+Project("{AE3DF3AF-05C2-2A26-D600-A961B51B0E60}") = "Arcomage.Unity", "Assembly-CSharp.csproj", "{BD263997-62E0-1F50-A272-3934BA6CFEAD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,12 +9,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{4A9A9EC0-861A-5733-DCFD-382EE7F33CC9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4A9A9EC0-861A-5733-DCFD-382EE7F33CC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4A9A9EC0-861A-5733-DCFD-382EE7F33CC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4A9A9EC0-861A-5733-DCFD-382EE7F33CC9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD263997-62E0-1F50-A272-3934BA6CFEAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD263997-62E0-1F50-A272-3934BA6CFEAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD263997-62E0-1F50-A272-3934BA6CFEAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD263997-62E0-1F50-A272-3934BA6CFEAD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
 	EndGlobalSection
 EndGlobal

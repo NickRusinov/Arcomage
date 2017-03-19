@@ -12,11 +12,15 @@ namespace Arcomage.Unity.NetworkScene
     {
         public override void InstallBindings()
         {
-            Container.Bind<AboutClient>()
+            Container.Bind<AboutControllerClient>()
                 .ToSelf()
                 .AsSingle(0);
 
-            Container.Bind<NetworkGameClient>()
+            Container.Bind<NetworkGameHubClient>()
+                .ToSelf()
+                .AsSingle(0);
+
+            Container.Bind<PlayGameHubClient>()
                 .ToSelf()
                 .AsSingle(0);
         }

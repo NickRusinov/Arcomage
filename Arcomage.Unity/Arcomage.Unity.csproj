@@ -13,7 +13,8 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Full v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile></CompilerResponseFile>
+    <CompilerResponseFile>
+    </CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>Android:13</UnityBuildTarget>
     <UnityVersion>5.4.2f2</UnityVersion>
@@ -135,8 +136,9 @@
     <Compile Include="Assets\Shared\Scripts\TextWrapScript.cs" />
     <Compile Include="Assets\Shared\Scripts\UnityExtensions.cs" />
     <Compile Include="Assets\Shared\Scripts\UnityHttpClient.cs" />
+    <Compile Include="Assets\Shared\Scripts\UnityHttpClientFactory.cs" />
     <Compile Include="Assets\Shared\Scripts\UnityLogTextWriter.cs" />
-    <Compile Include="Assets\Shared\Scripts\UnitySignalRClient.cs" />
+    <Compile Include="Assets\Shared\Scripts\UnityHubConnectionFactory.cs" />
     <Compile Include="Assets\Shared\Scripts\ValueBinding.cs" />
     <Compile Include="Assets\Shared\Scripts\View.cs" />
   </ItemGroup>

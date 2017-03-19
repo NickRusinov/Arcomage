@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,7 +6,8 @@ using Microsoft.AspNet.SignalR;
 
 namespace Arcomage.WebApi.Hubs
 {
-    public class NetworkGameHub : Hub<INetworkGameClient>
+    [Authorize]
+    public class NetworkGameHub : ApplicationHub<INetworkGameClient>
     {
         private readonly NetworkGameService networkGameService;
 
@@ -16,20 +16,10 @@ namespace Arcomage.WebApi.Hubs
             this.networkGameService = networkGameService;
         }
 
-        public override Task OnConnected()
+        public void Connect()
         {
-            var userId = ((ApplicationIdentity)Context.User.Identity).Id;
-            networkGameService.ConnectUser(userId);
-
-            return base.OnConnected();
-        }
-
-        public override Task OnDisconnected(bool stopCalled)
-        {
-            var userId = ((ApplicationIdentity)Context.User.Identity).Id;
-            networkGameService.DisconnectUser(userId);
-
-            return base.OnDisconnected(stopCalled);
+            //networkGameService.ConnectUser(Identity.Id);
+            Clients.User(Identity.Id.ToString()).StartGame(Guid.NewGuid());
         }
     }
 }

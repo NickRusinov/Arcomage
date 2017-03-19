@@ -15,8 +15,8 @@ namespace Arcomage.Unity.NetworkScene
     /// <summary>
     /// Корневой скрипт сцены настроек сетевой игры
     /// </summary>
-    [RequireComponent(typeof(UnityHttpClient))]
-    [RequireComponent(typeof(UnitySignalRClient))]
+    [RequireComponent(typeof(UnityHttpClientFactory))]
+    [RequireComponent(typeof(UnityHubConnectionFactory))]
     public class NetworkSceneScript : SceneScript
     {
         [Tooltip("Панель, информирующая о соединении с игровым веб-сервером")]
@@ -35,18 +35,18 @@ namespace Arcomage.Unity.NetworkScene
             base.Awake();
 
             container = new DiContainer();
-            container.Bind<IHttpClient>().FromInstance(GetComponent<UnityHttpClient>());
-            container.Bind<ISignalRClient>().FromInstance(GetComponent<UnitySignalRClient>());
+            container.Bind<IHttpClientFactory>().FromInstance(GetComponent<UnityHttpClientFactory>());
+            container.Bind<IHubConnectionFactory>().FromInstance(GetComponent<UnityHubConnectionFactory>());
             NetworkSceneInstaller.Install(container);
         }
 
         public void Start()
         {
-            var aboutClient = container.Resolve<AboutClient>();
-            var networkGameClient = container.Resolve<NetworkGameClient>();
+            var aboutControllerClient = container.Resolve<AboutControllerClient>();
+            var networkGameHubClient = container.Resolve<NetworkGameHubClient>();
 
-            ConnectPanel.Initialize(aboutClient);
-            PreparePanel.Initialize(networkGameClient);
+            ConnectPanel.Initialize(aboutControllerClient);
+            PreparePanel.Initialize(networkGameHubClient);
         }
 
         public void Update()

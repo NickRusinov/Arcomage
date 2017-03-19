@@ -7,47 +7,95 @@ using Microsoft.AspNet.SignalR.Client;
 
 namespace Arcomage.WebApi.Client.Hubs
 {
+    /// <summary>
+    /// Базовый класс для реализации клиентов хабов SignalR
+    /// </summary>
     public abstract class HubClient
     {
-        private readonly ISignalRClient signalRClient;
+        /// <summary>
+        /// Хранит список подключенных событий хаба
+        /// </summary>
+        private readonly Dictionary<Delegate, IDisposable> hubSubscriptions = new Dictionary<Delegate, IDisposable>();
+        
+        /// <summary>
+        /// Фабрика для создания подключению к хабу
+        /// </summary>
+        private readonly IHubConnectionFactory hubConnectionFactory;
 
+        /// <summary>
+        /// Имя хаба для подключения
+        /// </summary>
         private readonly string hubName;
 
+        /// <summary>
+        /// Подключение к хабу
+        /// </summary>
         private HubConnection hubConnection;
 
+        /// <summary>
+        /// Прокси серверного хаба
+        /// </summary>
         private IHubProxy hubProxy;
 
-        protected HubClient(ISignalRClient signalRClient, string hubName)
+        /// <summary>
+        /// Инициализирует экземпляр класса <see cref="HubClient"/>
+        /// </summary>
+        /// <param name="hubConnectionFactory">Фабрика для создания подключению к хабу</param>
+        /// <param name="hubName">Имя хаба для подключения</param>
+        protected HubClient(IHubConnectionFactory hubConnectionFactory, string hubName)
         {
-            this.signalRClient = signalRClient;
+            this.hubConnectionFactory = hubConnectionFactory;
             this.hubName = hubName;
         }
 
-        public HubConnection HubConnection => hubConnection = hubConnection ?? signalRClient.Open();
+        /// <summary>
+        /// Подключение к хабу
+        /// </summary>
+        protected HubConnection HubConnection => hubConnection = hubConnection ?? hubConnectionFactory.Open();
 
-        public IHubProxy HubProxy => hubProxy = hubProxy ?? HubConnection.CreateHubProxy(hubName);
+        /// <summary>
+        /// Прокси серверного хаба
+        /// </summary>
+        protected IHubProxy HubProxy => hubProxy = hubProxy ?? HubConnection.CreateHubProxy(hubName);
         
+        /// <summary>
+        /// Устанавливает соединение с серверным хабом
+        /// </summary>
+        /// <returns>Операция соединения с серверным хабом</returns>
         public virtual Task Start()
         {
             return HubConnection.Start();
         }
 
+        /// <summary>
+        /// Завершает соединение с серверным хабом
+        /// </summary>
         public virtual void Stop()
         {
             hubConnection?.Stop();
-
-            hubConnection = null;
-            hubProxy = null;
         }
 
-        protected virtual Task Invoke(string methodName, params object[] args)
+        /// <summary>
+        /// Добавление подписки на событие в отслеживаемый список подписок
+        /// </summary>
+        /// <param name="delegate">Добавленное событие хаба</param>
+        /// <param name="subscription">Подписка на добавленное событие хаба</param>
+        protected virtual void AddSubscription(Delegate @delegate, IDisposable subscription)
         {
-            return HubProxy.Invoke(methodName, args);
+            hubSubscriptions.Add(@delegate, subscription);
         }
 
-        protected virtual Task<T> Invoke<T>(string methodName, params object[] args)
+        /// <summary>
+        /// Удаление подписки на событие из отслеживаемого списка подписок
+        /// </summary>
+        /// <param name="delegate">Удаленное событие хаба</param>
+        protected virtual void RemoveSubscription(Delegate @delegate)
         {
-            return HubProxy.Invoke<T>(methodName, args);
+            if (hubSubscriptions.TryGetValue(@delegate, out var subscription))
+            {
+                hubSubscriptions.Remove(@delegate);
+                subscription.Dispose();
+            }
         }
     }
 }

@@ -5,28 +5,28 @@ using System.Threading.Tasks;
 using System.Text;
 using Arcomage.Unity.Shared.Scripts;
 using Arcomage.WebApi.Client.Hubs;
-using Microsoft.AspNet.SignalR.Client;
+using UnityEngine;
 
 namespace Arcomage.Unity.NetworkScene.Views
 {
     public class PreparePanelView : View
     {
-        private NetworkGameClient networkGameClient;
+        private NetworkGameHubClient networkGameHubClient;
 
-        public void Initialize(NetworkGameClient networkGameClient)
+        public void Initialize(NetworkGameHubClient networkGameHubClient)
         {
-            this.networkGameClient = networkGameClient;
+            this.networkGameHubClient = networkGameHubClient;
         }
 
         public void OnEnable()
         {
-			networkGameClient.HubProxy.On("StartGame", (Guid id) => {});
-            networkGameClient.Start();
+			networkGameHubClient.OnStartGame += id => Debug.Log(id);
+            networkGameHubClient.Start().ContinueWith(t => networkGameHubClient.Connect());
         }
 
         public void OnDisable()
         {
-            networkGameClient.Stop();
+            networkGameHubClient.Stop();
         }
     }
 }
