@@ -44,7 +44,7 @@ namespace Arcomage.Unity.Shared.Scripts
 
             for (var i = 0; i < newValueList.Count; i++)
             {
-                if (ValueList.Count > i && !ReferenceEquals(ValueList[i], newValueList[i]))
+                if (ValueList.Count > i && !Equals(ValueList[i], newValueList[i]))
                 {
                     var oldValue = ValueList[i];
                     var newValue = newValueList[i];

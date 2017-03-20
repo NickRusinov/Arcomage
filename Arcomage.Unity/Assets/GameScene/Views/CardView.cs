@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Arcomage.Domain.Cards;
 using Arcomage.Unity.GameScene.Commands;
-using Arcomage.Unity.GameScene.Scripts;
+using Arcomage.Unity.GameScene.ViewModels;
 using Arcomage.Unity.Shared.Scripts;
 using SmartLocalization;
 using UnityEngine;
@@ -44,18 +43,18 @@ namespace Arcomage.Unity.GameScene.Views
         /// <summary>
         /// Инициализация компонента
         /// </summary>
-        /// <param name="card">Игровая карта</param>
-        public void Initialize(Card card)
+        /// <param name="cardViewModel">Модель представления игровой карты</param>
+        public void Initialize(CardViewModel cardViewModel)
         {
-            Bind(card.GetIdentifier())
+            Bind(cardViewModel.Identifier)
                 .OnInit(i => ForegroundImage.sprite = Resources.Load<Sprite>("Card" + i + "Image"))
                 .OnInit(i => NameText.text = LanguageManager.Instance.GetTextValue("Card" + i + "Name"))
                 .OnInit(i => DescriptionText.text = LanguageManager.Instance.GetTextValue("Card" + i + "Description"));
 
-            Bind(card, c => c.Kind)
+            Bind(cardViewModel, c => c.Kind)
                 .OnChangedAndInit(r => BackgroundImage.sprite = Resources.Load<Sprite>("Card" + r + "Image"));
 
-            Bind(card, c => c.Price)
+            Bind(cardViewModel, c => c.Price)
                 .OnChangedAndInit(p => PriceText.text = p.ToString());
 
             Bind(GetComponent<PlayCardCommand>(), c => c.CanExecute(Index))

@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Arcomage.Domain;
 using Arcomage.Unity.GameScene.Scripts;
+using Arcomage.Unity.GameScene.ViewModels;
 using Arcomage.Unity.Shared.Scripts;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -25,15 +25,15 @@ namespace Arcomage.Unity.GameScene.Views
         /// <summary>
         /// Инициализация компонента
         /// </summary>
-        /// <param name="game">Контекст игры</param>
-        public void Initialize(Game game)
+        /// <param name="finishedMenuViewModel">Модель представления результата игры</param>
+        public void Initialize(FinishedMenuViewModel finishedMenuViewModel)
         {
-            Bind(game, g => g.Rule.IsWin(g).GetIdentifier())
+            Bind(finishedMenuViewModel, f => f.Identifier)
                 .OnChangedAndInit(i => CauseText.identifier = "GameFinished" + i + "Text");
 
-            Bind(game, g => g.Rule.IsWin(g).Player)
+            Bind(finishedMenuViewModel, f => f.Name)
                 .OnChangedAndInit(p => WinnerText.identifier = "GameFinishedWinnerText")
-                .OnChangedAndInit(p => WinnerText.arguments = new[] { p.GetName() });
+                .OnChangedAndInit(p => WinnerText.arguments = new[] { p });
         }
 
         /// <summary>

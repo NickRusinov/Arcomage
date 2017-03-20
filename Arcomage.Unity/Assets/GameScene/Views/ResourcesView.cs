@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Arcomage.Domain.Players;
-using Arcomage.Domain.Resources;
-using Arcomage.Unity.GameScene.Scripts;
+using Arcomage.Unity.GameScene.ViewModels;
 using Arcomage.Unity.Shared.Scripts;
 using UnityEngine;
 
@@ -57,34 +55,33 @@ namespace Arcomage.Unity.GameScene.Views
         /// <summary>
         /// Инициализация компонента
         /// </summary>
-        /// <param name="playerKind">Номер игрока, которому принадлежат ресурсы</param>
-        /// <param name="resources">Ресурсы игрока</param>
-        public void Initialize(PlayerKind playerKind, ResourceSet resources)
+        /// <param name="resourcesViewModel">Модель представления ресурсов игрока</param>
+        public void Initialize(ResourcesViewModel resourcesViewModel)
         {
-            Bind(playerKind, p => p.GetName())
+            Bind(resourcesViewModel, r => r.Name)
                 .OnChangedAndInit(i => PlayerText.text = i);
 
-            Bind(resources, r => r.Quarry)
+            Bind(resourcesViewModel, r => r.Quarry)
                 .OnChanged(q => QuarryParticle.Play())
                 .OnChangedAndInit(q => QuarryText.text = "+" + q);
 
-            Bind(resources, r => r.Bricks)
+            Bind(resourcesViewModel, r => r.Bricks)
                 .OnChanged(q => BricksParticle.Play())
                 .OnChangedAndInit(b => BricksText.text = b.ToString());
 
-            Bind(resources, r => r.Magic)
+            Bind(resourcesViewModel, r => r.Magic)
                 .OnChanged(m => MagicParticle.Play())
                 .OnChangedAndInit(m => MagicText.text = "+" + m);
 
-            Bind(resources, r => r.Gems)
+            Bind(resourcesViewModel, r => r.Gems)
                 .OnChanged(g => GemsParticle.Play())
                 .OnChangedAndInit(g => GemsText.text = g.ToString());
 
-            Bind(resources, r => r.Dungeons)
+            Bind(resourcesViewModel, r => r.Dungeons)
                 .OnChanged(d => DungeonsParticle.Play())
                 .OnChangedAndInit(d => DungeonsText.text = "+" + d);
 
-            Bind(resources, r => r.Recruits)
+            Bind(resourcesViewModel, r => r.Recruits)
                 .OnChanged(r => RecruitsParticle.Play())
                 .OnChangedAndInit(r => RecruitsText.text = r.ToString());
         }

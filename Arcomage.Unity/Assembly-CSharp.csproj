@@ -47,6 +47,7 @@
   <ItemGroup>
      <Compile Include="Assets\GameScene\Commands\DiscardCardCommand.cs" />
      <Compile Include="Assets\GameScene\Commands\PlayCardCommand.cs" />
+     <Compile Include="Assets\GameScene\Commands\UpdateCommand.cs" />
      <Compile Include="Assets\GameScene\Factories\CardFactory.cs" />
      <Compile Include="Assets\GameScene\Factories\HistoryCardFactory.cs" />
      <Compile Include="Assets\GameScene\Scripts\CardDragDropScript.cs" />
@@ -54,6 +55,15 @@
      <Compile Include="Assets\GameScene\Scripts\GameExtensions.cs" />
      <Compile Include="Assets\GameScene\Scripts\GameInstaller.cs" />
      <Compile Include="Assets\GameScene\Scripts\GameSceneScript.cs" />
+     <Compile Include="Assets\GameScene\Scripts\UpdateViewModelsAction.cs" />
+     <Compile Include="Assets\GameScene\ViewModels\BuildingsViewModel.cs" />
+     <Compile Include="Assets\GameScene\ViewModels\CardViewModel.cs" />
+     <Compile Include="Assets\GameScene\ViewModels\FinishedMenuViewModel.cs" />
+     <Compile Include="Assets\GameScene\ViewModels\GameViewModel.cs" />
+     <Compile Include="Assets\GameScene\ViewModels\HandViewModel.cs" />
+     <Compile Include="Assets\GameScene\ViewModels\HistoryCardViewModel.cs" />
+     <Compile Include="Assets\GameScene\ViewModels\HistoryViewModel.cs" />
+     <Compile Include="Assets\GameScene\ViewModels\ResourcesViewModel.cs" />
      <Compile Include="Assets\GameScene\Views\BuildingsView.cs" />
      <Compile Include="Assets\GameScene\Views\CardView.cs" />
      <Compile Include="Assets\GameScene\Views\FinishedMenuView.cs" />

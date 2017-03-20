@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Arcomage.Domain.Buildings;
-using Arcomage.Domain.Rules;
+using Arcomage.Unity.GameScene.ViewModels;
 using Arcomage.Unity.Shared.Scripts;
 using UnityEngine;
 
@@ -35,21 +34,20 @@ namespace Arcomage.Unity.GameScene.Views
         /// <summary>
         /// Инициализация компонента
         /// </summary>
-        /// <param name="buildings">Строения игрока</param>
-        /// <param name="ruleInfo">Классические правила игры</param>
-        public void Initialize(BuildingSet buildings, ClassicRuleInfo ruleInfo)
+        /// <param name="buildingsViewModel">Модель представления строений игрока</param>
+        public void Initialize(BuildingsViewModel buildingsViewModel)
         {
-            Bind(buildings, b => b.Tower)
+            Bind(buildingsViewModel, b => b.Tower)
                 .OnChanged(t => TowerParticle.Play())
                 .OnChangedAndInit(t => TowerText.text = t.ToString())
-                .OnChangedAndInit(t => TowerImage.transform.SetLocalPosition(y : -330f + Math.Min(180f, 180f * t / ruleInfo.MaxTower)))
-                .OnChangedAndInit(t => TowerImage.material.SetFloat("_Length", 1f - (150f + Math.Min(180f, 180f * t / ruleInfo.MaxTower)) / TowerImage.sprite.texture.height));
+                .OnChangedAndInit(t => TowerImage.transform.SetLocalPosition(y: -330f + Math.Min(180f, 180f * t / buildingsViewModel.MaxTower)))
+                .OnChangedAndInit(t => TowerImage.material.SetFloat("_Length", 1f - (150f + Math.Min(180f, 180f * t / buildingsViewModel.MaxTower)) / TowerImage.sprite.texture.height));
 
-            Bind(buildings, b => b.Wall)
+            Bind(buildingsViewModel, b => b.Wall)
                 .OnChanged(w => WallParticle.Play())
                 .OnChangedAndInit(w => WallText.text = w.ToString())
-                .OnChangedAndInit(w => WallImage.transform.SetLocalPosition(y: -460f + Math.Min(280f, 280f * w / ruleInfo.MaxTower)))
-                .OnChangedAndInit(w => WallImage.material.SetFloat("_Length", 1f - (20f + Math.Min(280f, 280f * w / ruleInfo.MaxTower)) / WallImage.sprite.texture.height));
+                .OnChangedAndInit(w => WallImage.transform.SetLocalPosition(y: -460f + Math.Min(280f, 280f * w / buildingsViewModel.MaxWall)))
+                .OnChangedAndInit(w => WallImage.material.SetFloat("_Length", 1f - (20f + Math.Min(280f, 280f * w / buildingsViewModel.MaxWall)) / WallImage.sprite.texture.height));
         }
     }
 }

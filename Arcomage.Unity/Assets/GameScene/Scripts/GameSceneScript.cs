@@ -7,6 +7,7 @@ using Arcomage.Domain.Players;
 using Arcomage.Domain.Rules;
 using Arcomage.Domain.Services;
 using Arcomage.Unity.GameScene.Factories;
+using Arcomage.Unity.GameScene.ViewModels;
 using Arcomage.Unity.GameScene.Views;
 using Arcomage.Unity.Shared.Scripts;
 using UnityEngine;
@@ -58,10 +59,13 @@ namespace Arcomage.Unity.GameScene.Scripts
             var humanPlayer = (HumanPlayer)container.Resolve<Player>("FirstPlayer");
             var playCardCriteria = container.Resolve<IPlayCardCriteria>();
             var discardCardCriteria = container.Resolve<IDiscardCardCriteria>();
+
+            var gameViewModel = container.Resolve<GameViewModel>();
+            UpdateViewModelsAction.Update(gameViewModel, game, (ClassicRuleInfo)Settings.Instance.Rule);
             
-            GameScript.Initialize(game, gameLoop, (ClassicRuleInfo)Settings.Instance.Rule);
+            GameScript.Initialize(gameViewModel, game, gameLoop);
             CardFactory.Initialize(game, humanPlayer, playCardCriteria, discardCardCriteria);
-            FinishedScript.Initialize(game);
+            FinishedScript.Initialize(gameViewModel.FinishedMenu);
         }
 
         public void Update()

@@ -12,6 +12,7 @@ using Arcomage.Domain.Histories;
 using Arcomage.Domain.Players;
 using Arcomage.Domain.Rules;
 using Arcomage.Domain.Services;
+using Arcomage.Unity.GameScene.ViewModels;
 using Arcomage.Unity.Shared.Scripts;
 using Zenject;
 
@@ -37,10 +38,12 @@ namespace Arcomage.Unity.GameScene.Scripts
                 .AsSingle(0);
 
             Container.Bind<IBeforePlayAction>()
-                .FromMethod(c => new WhenReplacedPlayerAction(
-                    new CompositeBeforePlayAction(
-                        new ClearHistoryAction(),
-                        new IncreaseResourcesAction())))
+                .FromMethod(c => new CompositeBeforePlayAction(
+                    new WhenReplacedPlayerAction(
+                        new CompositeBeforePlayAction(
+                            new ClearHistoryAction(),
+                            new IncreaseResourcesAction())),
+                    new UpdateViewModelsAction(c.Container.Resolve<GameViewModel>(), (ClassicRuleInfo)Settings.Instance.Rule)))
                 .AsSingle(0);
 
             Container.Bind<IAfterPlayAction>()
@@ -48,7 +51,8 @@ namespace Arcomage.Unity.GameScene.Scripts
                     new ActivateCardAction(),
                     new AddHistoryAction(),
                     new ReplaceCardAction(),
-                    new ReplacePlayerAction()))
+                    new ReplacePlayerAction(),
+                    new UpdateViewModelsAction(c.Container.Resolve<GameViewModel>(), (ClassicRuleInfo)Settings.Instance.Rule)))
                 .AsSingle(0);
 
             Container.Bind<IPlayCardCriteria>()
@@ -127,6 +131,10 @@ namespace Arcomage.Unity.GameScene.Scripts
 
             Container.Bind<Rule>()
                 .FromMethod(c => new ClassicRule((ClassicRuleInfo)Settings.Instance.Rule))
+                .AsSingle(0);
+
+            Container.Bind<GameViewModel>()
+                .ToSelf()
                 .AsSingle(0);
         }
     }

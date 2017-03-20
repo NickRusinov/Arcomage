@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Arcomage.Domain.Histories;
+using Arcomage.Unity.GameScene.ViewModels;
 using Arcomage.Unity.GameScene.Views;
 using UnityEngine;
 
@@ -20,16 +20,16 @@ namespace Arcomage.Unity.GameScene.Factories
         /// Создает игровой объект карты в истории хода
         /// </summary>
         /// <param name="transform">Положение карты в истории хода</param>
-        /// <param name="card">Карта в истории хода</param>
+        /// <param name="cardViewModel">Модель представления карты в истории хода</param>
         /// <param name="index">Номер карты в истории хода</param>
         /// <returns>Игровой объект карты в истории хода</returns>
-        public GameObject CreateCard(Transform transform, HistoryCard card, int index)
+        public GameObject CreateCard(Transform transform, HistoryCardViewModel cardViewModel, int index)
         {
             var cardObject = (GameObject)Instantiate(Prefab, transform);
             cardObject.GetComponent<HistoryCardView>().Index = index;
             cardObject.name = "Card" + index;
 
-            cardObject.GetComponent<HistoryCardView>().Initialize(card);
+            cardObject.GetComponent<HistoryCardView>().Initialize(cardViewModel);
 
             return cardObject;
         }

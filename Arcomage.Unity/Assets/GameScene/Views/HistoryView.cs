@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Arcomage.Domain.Cards;
-using Arcomage.Domain.Histories;
 using Arcomage.Unity.GameScene.Factories;
 using Arcomage.Unity.GameScene.Scripts;
+using Arcomage.Unity.GameScene.ViewModels;
 using Arcomage.Unity.Shared.Scripts;
 using UnityEngine;
 
@@ -33,9 +32,9 @@ namespace Arcomage.Unity.GameScene.Views
         private bool cleared;
 
         /// <summary>
-        /// Карта, добавляемая в историю из руки игрока
+        /// Модель представления карты, добавляемой в историю из руки игрока
         /// </summary>
-        private Card pushedCard;
+        private CardViewModel pushedCardViewModel;
 
         /// <summary>
         /// Игровой объект карты, добавляемой в историю из руки игрока
@@ -46,14 +45,14 @@ namespace Arcomage.Unity.GameScene.Views
         /// Задача ожидания завершения анимации перемещения карты в истрорию
         /// </summary>
         private TaskCompletionSource<bool> pushedCardTaskSource = new TaskCompletionSource<bool>();
-        
+
         /// <summary>
         /// Инициализация компонента
         /// </summary>
-        /// <param name="history">История хода</param>
-        public void Initialize(History history)
+        /// <param name="historyViewModel">Модель представления истории хода</param>
+        public void Initialize(HistoryViewModel historyViewModel)
         {
-            Bind(history, h => h.Cards)
+            Bind(historyViewModel, h => h.Cards)
                 .OnAdded(OnAddedCard)
                 .OnCleared(OnClearedCard);
         }
@@ -61,12 +60,12 @@ namespace Arcomage.Unity.GameScene.Views
         /// <summary>
         /// Помещает карту из рук игрока в колоду для воспроизведения анимации перемещения сыгранной карты в историю
         /// </summary>
-        /// <param name="card">Сыгранная карта</param>
+        /// <param name="cardViewModel">Модель представления сыгранной карты</param>
         /// <param name="cardObject">Игровой объект сыгранной карты</param>
         /// <returns>Задача ожидания завершения анимации перемещения карты в историю</returns>
-        public Task Push(Card card, GameObject cardObject)
+        public Task Push(CardViewModel cardViewModel, GameObject cardObject)
         {
-            pushedCard = card;
+            pushedCardViewModel = cardViewModel;
             pushedCardObject = cardObject;
             pushedCardTaskSource = new TaskCompletionSource<bool>();
 
@@ -77,9 +76,9 @@ namespace Arcomage.Unity.GameScene.Views
         /// Добавление карты в историю. В случае добавления первой карты в историю, предыдущая история очищается.
         /// Воспроизводится анимация перемещения карты
         /// </summary>
-        /// <param name="card">Карта, добавляемая в историю</param>
+        /// <param name="cardViewModel">Модель представления карты, добавляемой в историю</param>
         /// <param name="index">Номер добавляемой карты</param>
-        private void OnAddedCard(HistoryCard card, int index)
+        private void OnAddedCard(HistoryCardViewModel cardViewModel, int index)
         {
             if (cleared)
             {
@@ -93,11 +92,11 @@ namespace Arcomage.Unity.GameScene.Views
                         localCardScript.Do(s => Destroy(s.gameObject)));
                 }
             }
-
-            if (Equals(pushedCard, card.Card))
+            
+            if (Equals(pushedCardViewModel, cardViewModel))
             {
                 var cardTemplate = СardTemplates[index % СardTemplates.Length];
-                var cardObject = HistoryСardFactory.CreateCard(transform, card, index);
+                var cardObject = HistoryСardFactory.CreateCard(transform, cardViewModel, index);
                 cardObject.transform.CopyFrom(cardTemplate.transform);
                 cardObject.transform.position = pushedCardObject.transform.position;
                 
@@ -109,7 +108,7 @@ namespace Arcomage.Unity.GameScene.Views
             else
             {
                 var cardTemplate = СardTemplates[index % СardTemplates.Length];
-                var cardObject = HistoryСardFactory.CreateCard(transform, card, index);
+                var cardObject = HistoryСardFactory.CreateCard(transform, cardViewModel, index);
                 cardObject.transform.CopyFrom(cardTemplate.transform);
                 cardObject.transform.position = СardInitTemplate.transform.position;
 
@@ -119,7 +118,7 @@ namespace Arcomage.Unity.GameScene.Views
             }
 
             cleared = false;
-            pushedCard = null;
+            pushedCardViewModel = null;
             pushedCardObject = null;
         }
 
@@ -130,7 +129,7 @@ namespace Arcomage.Unity.GameScene.Views
         private void OnClearedCard()
         {
             cleared = true;
-            pushedCard = null;
+            pushedCardViewModel = null;
             pushedCardObject = null;
         }
     }

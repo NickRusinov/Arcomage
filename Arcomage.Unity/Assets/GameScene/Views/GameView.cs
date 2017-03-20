@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Arcomage.Domain;
 using Arcomage.Domain.Players;
-using Arcomage.Domain.Rules;
+using Arcomage.Unity.GameScene.ViewModels;
 using Arcomage.Unity.Shared.Scripts;
 using SmartLocalization;
 using UnityEngine;
@@ -40,30 +40,30 @@ namespace Arcomage.Unity.GameScene.Views
 
         [Tooltip("Текст для вывода информации для сброса карты")]
         public TextMesh DiscardOnlyText;
-        
+
         /// <summary>
         /// Инициализация компонента
         /// </summary>
+        /// <param name="gameViewModel">Модель представления контекста игры</param>
         /// <param name="game">Контекст игры</param>
         /// <param name="gameLoop">Игровой цикл</param>
-        /// <param name="ruleInfo">Правила игры</param>
-        public void Initialize(Game game, GameLoop gameLoop, ClassicRuleInfo ruleInfo)
+        public void Initialize(GameViewModel gameViewModel, Game game, GameLoop gameLoop)
         {
             Bind(gameLoop, gl => gl.Update(game))
                 .OnChangedAndInit(gr => gr, gr => FinishedEvent.Invoke());
 
-            Bind(game, g => g.DiscardOnly)
-                .OnChangedAndInit(@do => DiscardOnlyText.gameObject.SetActive(@do > 0 && game.Players.FirstPlayer == game.Players.CurrentPlayer))
+            Bind(gameViewModel, g => g.DiscardOnly)
+                .OnChangedAndInit(@do => DiscardOnlyText.gameObject.SetActive(@do > 0 && gameViewModel.PlayerKind == PlayerKind.First))
                 .OnChangedAndInit(@do => DiscardOnlyText.text = LanguageManager.Instance.GetTextValue("GameDiscardText"));
 
-            LeftResources.Initialize(PlayerKind.First, game.Players.FirstPlayer.Resources);
-            RightResources.Initialize(PlayerKind.Second, game.Players.SecondPlayer.Resources);
+            LeftResources.Initialize(gameViewModel.LeftResources);
+            RightResources.Initialize(gameViewModel.RightResources);
 
-            LeftBuildings.Initialize(game.Players.FirstPlayer.Buildings, ruleInfo);
-            RightBuildings.Initialize(game.Players.SecondPlayer.Buildings, ruleInfo);
+            LeftBuildings.Initialize(gameViewModel.LeftBuildings);
+            RightBuildings.Initialize(gameViewModel.RightBuildings);
 
-            History.Initialize(game.History);
-            Hand.Initialize(game.Players.FirstPlayer.Hand);
+            History.Initialize(gameViewModel.History);
+            Hand.Initialize(gameViewModel.Hand);
         }
     }
 }

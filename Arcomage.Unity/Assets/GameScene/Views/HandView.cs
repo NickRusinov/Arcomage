@@ -3,10 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Arcomage.Domain.Cards;
-using Arcomage.Domain.Hands;
 using Arcomage.Unity.GameScene.Factories;
 using Arcomage.Unity.GameScene.Scripts;
+using Arcomage.Unity.GameScene.ViewModels;
 using Arcomage.Unity.Shared.Scripts;
 using UnityEngine;
 
@@ -32,10 +31,10 @@ namespace Arcomage.Unity.GameScene.Views
         /// <summary>
         /// Инициализация компонента
         /// </summary>
-        /// <param name="hand">Карты в руке игрока</param>
-        public void Initialize(Hand hand)
+        /// <param name="hand">Модель представления карт в руке игрока</param>
+        public void Initialize(HandViewModel handViewModel)
         {
-            Bind(hand, h => h.Cards)
+            Bind(handViewModel, h => h.Cards)
                 .OnInit(OnInitializeCard)
                 .OnReplaced(OnReplacedCard);
         }
@@ -43,33 +42,33 @@ namespace Arcomage.Unity.GameScene.Views
         /// <summary>
         /// Инициализация карты в начале игры
         /// </summary>
-        /// <param name="card">Карта</param>
+        /// <param name="card">Модель представления карты</param>
         /// <param name="index">Номер карты в руке</param>
-        private void OnInitializeCard(Card card, int index)
+        private void OnInitializeCard(CardViewModel cardViewModel, int index)
         {
             var cardTemplate = CardTemplates[index % CardTemplates.Length];
-            var cardObject = CardFactory.CreateCard(transform, card, index);
+            var cardObject = CardFactory.CreateCard(transform, cardViewModel, index);
             cardObject.transform.CopyFrom(cardTemplate.transform);
         }
 
         /// <summary>
         /// Замена сыгранной карты на карту из колоды
         /// </summary>
-        /// <param name="oldCard">Сыгранная карта</param>
-        /// <param name="newCard">Новая карта из колоды</param>
+        /// <param name="oldCard">Модель представления сыгранной карты</param>
+        /// <param name="newCard">Модель представления новой карты из колоды</param>
         /// <param name="index">Номер карты</param>
-        private void OnReplacedCard(Card oldCard, Card newCard, int index)
+        private void OnReplacedCard(CardViewModel oldCardViewModel, CardViewModel newCardViewModel, int index)
         {
             var oldCardObject = transform.Find("Card" + index).gameObject;
             oldCardObject.SetActive(false);
 
             var cardTemplate = CardTemplates[index % CardTemplates.Length];
-            var cardObject = CardFactory.CreateCard(transform, newCard, index);
+            var cardObject = CardFactory.CreateCard(transform, newCardViewModel, index);
             cardObject.transform.CopyFrom(cardTemplate.transform);
             cardObject.transform.position = CardInitTemplate.transform.position;
             cardObject.SetActive(false);
 
-            var pushTask = History.Push(oldCard, oldCardObject);
+            var pushTask = History.Push(oldCardViewModel, oldCardObject);
 
             StartCoroutine(OldCardDestroy(pushTask, oldCardObject));
             StartCoroutine(NewCardTranslate(pushTask, cardObject, cardTemplate.transform.position));
