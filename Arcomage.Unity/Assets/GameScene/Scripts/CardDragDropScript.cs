@@ -12,7 +12,7 @@ namespace Arcomage.Unity.GameScene.Scripts
     /// <summary>
     /// Скрипт, позволяющий карте быть перемещаемой игроком
     /// </summary>
-    [RequireComponent(typeof(CardView), typeof(PlayCardCommand), typeof(DiscardCardCommand))]
+    [RequireComponent(typeof(CardView))]
     public class CardDragDropScript : MonoBehaviour
     {
         /// <summary>
@@ -67,15 +67,13 @@ namespace Arcomage.Unity.GameScene.Scripts
                 draggingItem = globalDraggingItem = false;
                 var index = GetComponent<CardView>().Index;
 
-                var playCommand = GetComponent<PlayCardCommand>();
-                if (transform.position.y - initialPosition.y >= + 25f)
-                    if (playCommand.CanExecute(index))
-                        playCommand.Execute(index);
+                var playCommand = new PlayCardCommand { Index = index };
+                if (transform.position.y - initialPosition.y >= +25f)
+                    GameSceneScript.Dispatcher.Execute(playCommand);
 
-                var discardCommand = GetComponent<DiscardCardCommand>();
-                if (transform.position.y - initialPosition.y <= - 25f)
-                    if (discardCommand.CanExecute(index))
-                        discardCommand.Execute(index);
+                var discardCommand = new DiscardCardCommand { Index = index };
+                if (transform.position.y - initialPosition.y <= -25f)
+                    GameSceneScript.Dispatcher.Execute(discardCommand);
 
                 StartCoroutine(CardTranslate(gameObject, initialPosition));
             }

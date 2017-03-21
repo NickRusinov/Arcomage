@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Arcomage.Domain;
 using Arcomage.Domain.Players;
+using Arcomage.Unity.GameScene.Commands;
+using Arcomage.Unity.GameScene.Scripts;
 using Arcomage.Unity.GameScene.ViewModels;
 using Arcomage.Unity.Shared.Scripts;
 using SmartLocalization;
@@ -45,12 +46,12 @@ namespace Arcomage.Unity.GameScene.Views
         /// Инициализация компонента
         /// </summary>
         /// <param name="gameViewModel">Модель представления контекста игры</param>
-        /// <param name="game">Контекст игры</param>
-        /// <param name="gameLoop">Игровой цикл</param>
-        public void Initialize(GameViewModel gameViewModel, Game game, GameLoop gameLoop)
+        public void Initialize(GameViewModel gameViewModel)
         {
-            Bind(gameLoop, gl => gl.Update(game))
-                .OnChangedAndInit(gr => gr, gr => FinishedEvent.Invoke());
+            Bind(GameSceneScript.Dispatcher, d => d.Execute(new UpdateCommand()));
+
+            Bind(gameViewModel.FinishedMenu, f => f.Identifier)
+                .OnChangedAndInit(id => !string.IsNullOrEmpty(id), id => FinishedEvent.Invoke());
 
             Bind(gameViewModel, g => g.DiscardOnly)
                 .OnChangedAndInit(@do => DiscardOnlyText.gameObject.SetActive(@do > 0 && gameViewModel.PlayerKind == PlayerKind.First))

@@ -14,6 +14,14 @@ namespace Arcomage.Unity.Shared.Scripts
             return binding;
         }
 
+        public static ActionBinding<TSource> OnChangedAndInit<TSource>(this ActionBinding<TSource> binding, Action action)
+        {
+            binding.Init += action;
+            binding.Changed += action;
+
+            return binding;
+        }
+
         public static ValueBinding<TSource, TValue> OnChangedAndInit<TSource, TValue>(this ValueBinding<TSource, TValue> binding, Action<TValue> action)
         {
             binding.Changed += (oldValue, newValue) => action(newValue);

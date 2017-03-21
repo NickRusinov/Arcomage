@@ -12,6 +12,7 @@ using Arcomage.Domain.Histories;
 using Arcomage.Domain.Players;
 using Arcomage.Domain.Rules;
 using Arcomage.Domain.Services;
+using Arcomage.Unity.GameScene.Commands;
 using Arcomage.Unity.GameScene.ViewModels;
 using Arcomage.Unity.Shared.Scripts;
 using Zenject;
@@ -43,7 +44,7 @@ namespace Arcomage.Unity.GameScene.Scripts
                         new CompositeBeforePlayAction(
                             new ClearHistoryAction(),
                             new IncreaseResourcesAction())),
-                    new UpdateViewModelsAction(c.Container.Resolve<GameViewModel>(), (ClassicRuleInfo)Settings.Instance.Rule)))
+                    c.Container.Resolve<UpdateViewModelsAction>()))
                 .AsSingle(0);
 
             Container.Bind<IAfterPlayAction>()
@@ -52,7 +53,12 @@ namespace Arcomage.Unity.GameScene.Scripts
                     new AddHistoryAction(),
                     new ReplaceCardAction(),
                     new ReplacePlayerAction(),
-                    new UpdateViewModelsAction(c.Container.Resolve<GameViewModel>(), (ClassicRuleInfo)Settings.Instance.Rule)))
+                    c.Container.Resolve<UpdateViewModelsAction>()))
+                .AsSingle(0);
+
+            Container.Bind<UpdateViewModelsAction>()
+                .FromMethod(c => new UpdateViewModelsAction(
+                    (ClassicRuleInfo)Settings.Instance.Rule))
                 .AsSingle(0);
 
             Container.Bind<IPlayCardCriteria>()
@@ -121,21 +127,63 @@ namespace Arcomage.Unity.GameScene.Scripts
 
             Container.Bind<Deck>()
                 .WithId("Classic")
-                .FromMethod(c => new ClassicDeck((ClassicDeckInfo)Settings.Instance.Deck, c.Container.ResolveAll<Card>()))
+                .FromMethod(c => new ClassicDeck(
+                    (ClassicDeckInfo)Settings.Instance.Deck, 
+                    c.Container.ResolveAll<Card>()))
                 .AsSingle(1);
 
             Container.Bind<Deck>()
                 .WithId("Infinity")
-                .FromMethod(c => new InfinityDeck((InfinityDeckInfo)Settings.Instance.Deck, c.Container.ResolveAll<Card>()))
+                .FromMethod(c => new InfinityDeck(
+                    (InfinityDeckInfo)Settings.Instance.Deck, 
+                    c.Container.ResolveAll<Card>()))
                 .AsSingle(2);
 
             Container.Bind<Rule>()
                 .FromMethod(c => new ClassicRule((ClassicRuleInfo)Settings.Instance.Rule))
                 .AsSingle(0);
 
-            Container.Bind<GameViewModel>()
-                .ToSelf()
+            Container.Bind(typeof(ICommandExecutor<PlayCardCommand>), typeof(ICommandCanExecutor<PlayCardCommand>))
+                .FromMethod(c => new SinglePlayCardCommandExecutor(
+                    c.Container.Resolve<Game>(),
+                    (HumanPlayer)c.Container.Resolve<Player>("FirstPlayer"),
+                    c.Container.Resolve<IPlayCardCriteria>()))
                 .AsSingle(0);
+
+            Container.Bind(typeof(ICommandExecutor<DiscardCardCommand>), typeof(ICommandCanExecutor<DiscardCardCommand>))
+                .FromMethod(c => new SingleDiscardCardCommandExecutor(
+                    c.Container.Resolve<Game>(),
+                    (HumanPlayer)c.Container.Resolve<Player>("FirstPlayer"),
+                    c.Container.Resolve<IDiscardCardCriteria>()))
+                .AsSingle(0);
+
+            Container.Bind(typeof(ICommandExecutor<UpdateCommand>))
+                .To<SingleUpdateCommandExecutor>()
+                .AsSingle(0);
+
+            Container.Bind<GameViewModel>()
+                .FromMethod(c => c.Container.Resolve<UpdateViewModelsAction>()
+                    .Update(c.Container.Resolve<Game>()))
+                .AsSingle(0);
+
+            Container.Bind<CommandDispatcher>()
+                .FromMethod(c => CreateDispatcher(c.Container))
+                .AsSingle(0);
+        }
+
+        private CommandDispatcher CreateDispatcher(DiContainer container)
+        {
+            var dispatcher = new CommandDispatcher();
+
+            dispatcher.RegisterExecutor(container.Resolve<ICommandExecutor<PlayCardCommand>>());
+            dispatcher.RegisterCanExecutor(container.Resolve<ICommandCanExecutor<PlayCardCommand>>());
+
+            dispatcher.RegisterExecutor(container.Resolve<ICommandExecutor<DiscardCardCommand>>());
+            dispatcher.RegisterCanExecutor(container.Resolve<ICommandCanExecutor<DiscardCardCommand>>());
+
+            dispatcher.RegisterExecutor(container.Resolve<ICommandExecutor<UpdateCommand>>());
+
+            return dispatcher;
         }
     }
 }

@@ -32,6 +32,22 @@ namespace Arcomage.Unity.Shared.Scripts
         }
 
         /// <summary>
+        /// Создает привязку к методу объекта. Вызов метода выполняется каждый цикл и вызывается зарегистрированный 
+        /// на эту привязку обработчик
+        /// </summary>
+        /// <typeparam name="TSource">Тип объекта, относительно которого выполяняется привязка</typeparam>
+        /// <param name="source">Объект, относительно которого выполняется привязка</param>
+        /// <param name="action">Делегат, предоставляющий вызов метода</param>
+        /// <returns>Привзяка</returns>
+        protected ActionBinding<TSource> Bind<TSource>(TSource source, Action<TSource> action)
+        {
+            var binding = new ActionBinding<TSource>(source, action);
+            bindingCollection.Add(binding);
+
+            return binding;
+        }
+
+        /// <summary>
         /// Создает привязку к свойству или методу объекта. Проверка изменения значения выполняется каждый цикл и в 
         /// случае изменения значения вызывается зарегистрированный на эту привязку обработчик
         /// </summary>

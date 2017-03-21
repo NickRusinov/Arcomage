@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Arcomage.Unity.GameScene.Commands;
+using Arcomage.Unity.GameScene.Scripts;
 using Arcomage.Unity.GameScene.ViewModels;
 using Arcomage.Unity.Shared.Scripts;
 using SmartLocalization;
@@ -13,7 +14,6 @@ namespace Arcomage.Unity.GameScene.Views
     /// <summary>
     /// Представление компонента игровой карты
     /// </summary>
-    [RequireComponent(typeof(PlayCardCommand))]
     public class CardView : View
     {
         [Tooltip("Текст для вывода названия карты")]
@@ -57,7 +57,7 @@ namespace Arcomage.Unity.GameScene.Views
             Bind(cardViewModel, c => c.Price)
                 .OnChangedAndInit(p => PriceText.text = p.ToString());
 
-            Bind(GetComponent<PlayCardCommand>(), c => c.CanExecute(Index))
+            Bind(new PlayCardCommand { Index = Index }, c => GameSceneScript.Dispatcher.CanExecute(c))
                 .OnChangedAndInit(can => can, can => BackgroundImage.material = BackgroundCanPlayMaterial)
                 .OnChangedAndInit(can => !can, can => BackgroundImage.material = BackgroundCannotPlayMaterial);
         }

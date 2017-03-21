@@ -47,6 +47,9 @@
   <ItemGroup>
      <Compile Include="Assets\GameScene\Commands\DiscardCardCommand.cs" />
      <Compile Include="Assets\GameScene\Commands\PlayCardCommand.cs" />
+     <Compile Include="Assets\GameScene\Commands\SingleDiscardCardCommandExecutor.cs" />
+     <Compile Include="Assets\GameScene\Commands\SinglePlayCardCommandExecutor.cs" />
+     <Compile Include="Assets\GameScene\Commands\SingleUpdateCommandExecutor.cs" />
      <Compile Include="Assets\GameScene\Commands\UpdateCommand.cs" />
      <Compile Include="Assets\GameScene\Factories\CardFactory.cs" />
      <Compile Include="Assets\GameScene\Factories\HistoryCardFactory.cs" />
@@ -85,13 +88,16 @@
      <Compile Include="Assets\SettingsScene\Views\RuleListView.cs" />
      <Compile Include="Assets\SettingsScene\Views\RuleView.cs" />
      <Compile Include="Assets\SettingsScene\Views\SettingsView.cs" />
+     <Compile Include="Assets\Shared\Scripts\ActionBinding.cs" />
      <Compile Include="Assets\Shared\Scripts\Binding.cs" />
      <Compile Include="Assets\Shared\Scripts\BindingExtensions.cs" />
      <Compile Include="Assets\Shared\Scripts\CollectionBinding.cs" />
-     <Compile Include="Assets\Shared\Scripts\Command.cs" />
+     <Compile Include="Assets\Shared\Scripts\CommandDispatcher.cs" />
      <Compile Include="Assets\Shared\Scripts\ConstBinding.cs" />
      <Compile Include="Assets\Shared\Scripts\DropdownView.cs" />
      <Compile Include="Assets\Shared\Scripts\FrameworkExtensions.cs" />
+     <Compile Include="Assets\Shared\Scripts\ICommandCanExecutor.cs" />
+     <Compile Include="Assets\Shared\Scripts\ICommandExecutor.cs" />
      <Compile Include="Assets\Shared\Scripts\LocalizationScript.cs" />
      <Compile Include="Assets\Shared\Scripts\ScaleScript.cs" />
      <Compile Include="Assets\Shared\Scripts\SceneScript.cs" />

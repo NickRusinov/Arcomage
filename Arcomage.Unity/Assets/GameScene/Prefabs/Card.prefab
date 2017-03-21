@@ -39,8 +39,6 @@ GameObject:
   - 61: {fileID: 61000013782298868}
   - 114: {fileID: 114000010428778470}
   - 114: {fileID: 114000010138164378}
-  - 114: {fileID: 114000012505677854}
-  - 114: {fileID: 114000014166906694}
   m_Layer: 0
   m_Name: Card
   m_TagString: Untagged
@@ -424,17 +422,6 @@ MonoBehaviour:
     type: 0}
   BackgroundCannotPlayMaterial: {fileID: 2100000, guid: 26f9b8b88c8ff0644bc9a082d7dc8539,
     type: 2}
---- !u!114 &114000012505677854
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010304636280}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72e4c09031018a24ba51543ab9ad309c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114000012881663988
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -459,17 +446,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSymbols: 10
---- !u!114 &114000014166906694
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010304636280}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7689a15e9eb925546b3ee5227f4dddb9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &212000011107651760
 SpriteRenderer:
   m_ObjectHideFlags: 1

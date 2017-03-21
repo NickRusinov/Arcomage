@@ -17,31 +17,29 @@ namespace Arcomage.Unity.GameScene.Scripts
 {
     public class UpdateViewModelsAction : IAfterPlayAction, IBeforePlayAction
     {
-        private readonly GameViewModel viewModel;
+        private readonly GameViewModel viewModel = new GameViewModel();
 
         private readonly ClassicRuleInfo ruleInfo;
 
-        public UpdateViewModelsAction(GameViewModel viewModel, ClassicRuleInfo ruleInfo)
+        public UpdateViewModelsAction(ClassicRuleInfo ruleInfo)
         {
-            this.viewModel = viewModel;
             this.ruleInfo = ruleInfo;
         }
 
         public void Play(Game game, PlayResult playResult)
         {
             if (Equals(viewModel.game, game))
-                Update(viewModel, game, ruleInfo);
+                Update(game);
         }
 
         public void Play(Game game)
         {
             if (Equals(viewModel.game, game))
-                Update(viewModel, game, ruleInfo);
+                Update(game);
         }
 
-        public static GameViewModel Update(GameViewModel viewModel, Game game, ClassicRuleInfo ruleInfo)
+        public GameViewModel Update(Game game)
         {
-            viewModel = viewModel ?? new GameViewModel();
             viewModel.game = game;
             viewModel.LeftBuildings = Update(viewModel.LeftBuildings, game.Players.FirstPlayer.Buildings, ruleInfo);
             viewModel.LeftResources = Update(viewModel.LeftResources, game.Players.FirstPlayer.Resources, PlayerKind.First);
