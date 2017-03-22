@@ -99,10 +99,11 @@ namespace Arcomage.Unity.GameScene.Scripts
 
         private static CardViewModel Update(CardViewModel viewModel, Card card)
         {
-            if (!Equals(viewModel, new CardViewModel(card)))
-                viewModel = new CardViewModel(card);
+            if (viewModel != null && viewModel.Index != card.Index)
+                viewModel = new CardViewModel();
 
-            viewModel = viewModel ?? new CardViewModel(card);
+            viewModel = viewModel ?? new CardViewModel();
+            viewModel.Index = card.Index;
             viewModel.Identifier = card.GetIdentifier();
             viewModel.Kind = card.Kind;
             viewModel.Price = card.Price;
@@ -112,10 +113,11 @@ namespace Arcomage.Unity.GameScene.Scripts
 
         private static HistoryCardViewModel Update(HistoryCardViewModel viewModel, HistoryCard historyCard)
         {
-            if (!Equals(viewModel, new HistoryCardViewModel(historyCard.Card)))
-                viewModel = new HistoryCardViewModel(historyCard.Card);
+            if (viewModel != null && viewModel.Index != historyCard.Card.Index)
+                viewModel = new HistoryCardViewModel();
 
-            viewModel = viewModel ?? new HistoryCardViewModel(historyCard.Card);
+            viewModel = viewModel ?? new HistoryCardViewModel();
+            viewModel.Index = historyCard.Card.Index;
             viewModel.Identifier = historyCard.Card.GetIdentifier();
             viewModel.Kind = historyCard.Card.Kind;
             viewModel.Price = historyCard.Card.Price;

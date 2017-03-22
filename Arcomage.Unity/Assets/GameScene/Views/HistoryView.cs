@@ -93,7 +93,7 @@ namespace Arcomage.Unity.GameScene.Views
                 }
             }
             
-            if (Equals(pushedCardViewModel, cardViewModel))
+            if (pushedCardViewModel != null && pushedCardViewModel.Index == cardViewModel.Index)
             {
                 var cardTemplate = СardTemplates[index % СardTemplates.Length];
                 var cardObject = HistoryСardFactory.CreateCard(transform, cardViewModel, index);

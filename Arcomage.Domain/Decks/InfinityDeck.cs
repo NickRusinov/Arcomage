@@ -15,6 +15,11 @@ namespace Arcomage.Domain.Decks
     public class InfinityDeck : Deck
     {
         /// <summary>
+        /// Порядковый номер последней извлеченной из колоды карты
+        /// </summary>
+        private int index;
+
+        /// <summary>
         /// Описание бесконечной колоды карт
         /// </summary>
         private readonly InfinityDeckInfo deckInfo;
@@ -43,7 +48,7 @@ namespace Arcomage.Domain.Decks
         {
             var randomCardIndex = deckInfo.Random.Next(cardCollection.Count);
 
-            return cardCollection[randomCardIndex];
+            return cardCollection[randomCardIndex].WithIndex(++index);
         }
 
         /// <inheritdoc/>

@@ -13,8 +13,7 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Full v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile>
-    </CompilerResponseFile>
+    <CompilerResponseFile></CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>Android:13</UnityBuildTarget>
     <UnityVersion>5.4.2f2</UnityVersion>
@@ -93,6 +92,10 @@
   <ItemGroup>
     <Compile Include="Assets\GameScene\Commands\DiscardCardCommand.cs" />
     <Compile Include="Assets\GameScene\Commands\PlayCardCommand.cs" />
+    <Compile Include="Assets\GameScene\Commands\SingleDiscardCardCommandExecutor.cs" />
+    <Compile Include="Assets\GameScene\Commands\SinglePlayCardCommandExecutor.cs" />
+    <Compile Include="Assets\GameScene\Commands\SingleUpdateCommandExecutor.cs" />
+    <Compile Include="Assets\GameScene\Commands\UpdateCommand.cs" />
     <Compile Include="Assets\GameScene\Factories\CardFactory.cs" />
     <Compile Include="Assets\GameScene\Factories\HistoryCardFactory.cs" />
     <Compile Include="Assets\GameScene\Scripts\CardDragDropScript.cs" />
@@ -100,6 +103,15 @@
     <Compile Include="Assets\GameScene\Scripts\GameExtensions.cs" />
     <Compile Include="Assets\GameScene\Scripts\GameInstaller.cs" />
     <Compile Include="Assets\GameScene\Scripts\GameSceneScript.cs" />
+    <Compile Include="Assets\GameScene\Scripts\UpdateViewModelsAction.cs" />
+    <Compile Include="Assets\GameScene\ViewModels\BuildingsViewModel.cs" />
+    <Compile Include="Assets\GameScene\ViewModels\CardViewModel.cs" />
+    <Compile Include="Assets\GameScene\ViewModels\FinishedMenuViewModel.cs" />
+    <Compile Include="Assets\GameScene\ViewModels\GameViewModel.cs" />
+    <Compile Include="Assets\GameScene\ViewModels\HandViewModel.cs" />
+    <Compile Include="Assets\GameScene\ViewModels\HistoryCardViewModel.cs" />
+    <Compile Include="Assets\GameScene\ViewModels\HistoryViewModel.cs" />
+    <Compile Include="Assets\GameScene\ViewModels\ResourcesViewModel.cs" />
     <Compile Include="Assets\GameScene\Views\BuildingsView.cs" />
     <Compile Include="Assets\GameScene\Views\CardView.cs" />
     <Compile Include="Assets\GameScene\Views\FinishedMenuView.cs" />
@@ -121,13 +133,16 @@
     <Compile Include="Assets\SettingsScene\Views\RuleListView.cs" />
     <Compile Include="Assets\SettingsScene\Views\RuleView.cs" />
     <Compile Include="Assets\SettingsScene\Views\SettingsView.cs" />
+    <Compile Include="Assets\Shared\Scripts\ActionBinding.cs" />
     <Compile Include="Assets\Shared\Scripts\Binding.cs" />
     <Compile Include="Assets\Shared\Scripts\BindingExtensions.cs" />
     <Compile Include="Assets\Shared\Scripts\CollectionBinding.cs" />
-    <Compile Include="Assets\Shared\Scripts\Command.cs" />
+    <Compile Include="Assets\Shared\Scripts\CommandDispatcher.cs" />
     <Compile Include="Assets\Shared\Scripts\ConstBinding.cs" />
     <Compile Include="Assets\Shared\Scripts\DropdownView.cs" />
     <Compile Include="Assets\Shared\Scripts\FrameworkExtensions.cs" />
+    <Compile Include="Assets\Shared\Scripts\ICommandCanExecutor.cs" />
+    <Compile Include="Assets\Shared\Scripts\ICommandExecutor.cs" />
     <Compile Include="Assets\Shared\Scripts\LocalizationScript.cs" />
     <Compile Include="Assets\Shared\Scripts\ScaleScript.cs" />
     <Compile Include="Assets\Shared\Scripts\SceneScript.cs" />
@@ -137,8 +152,8 @@
     <Compile Include="Assets\Shared\Scripts\UnityExtensions.cs" />
     <Compile Include="Assets\Shared\Scripts\UnityHttpClient.cs" />
     <Compile Include="Assets\Shared\Scripts\UnityHttpClientFactory.cs" />
-    <Compile Include="Assets\Shared\Scripts\UnityLogTextWriter.cs" />
     <Compile Include="Assets\Shared\Scripts\UnityHubConnectionFactory.cs" />
+    <Compile Include="Assets\Shared\Scripts\UnityLogTextWriter.cs" />
     <Compile Include="Assets\Shared\Scripts\ValueBinding.cs" />
     <Compile Include="Assets\Shared\Scripts\View.cs" />
   </ItemGroup>

@@ -15,6 +15,11 @@ namespace Arcomage.Domain.Decks
     public class ClassicDeck : Deck
     {
         /// <summary>
+        /// Порядковый номер последней извлеченной из колоды карты
+        /// </summary>
+        private int index;
+
+        /// <summary>
         /// Описание классической колоды карт
         /// </summary>
         private readonly ClassicDeckInfo deckInfo;
@@ -43,7 +48,7 @@ namespace Arcomage.Domain.Decks
         {
             var randomCardIndex = deckInfo.Random.Next(cardCollection.Count / 2);
 
-            var card = cardCollection[randomCardIndex];
+            var card = cardCollection[randomCardIndex].WithIndex(++index);
             cardCollection.RemoveAt(randomCardIndex);
 
             return card;

@@ -28,6 +28,7 @@ namespace Arcomage.Domain.Tests
 
             Fixture.Freeze<Mock<Card>>().SetupGet(c => c.Price).Returns(10);
             Fixture.Freeze<Mock<Card>>().SetupGet(c => c.Kind).Returns(ResourceKind.Bricks);
+            Fixture.Freeze<Mock<Card>>().Setup(c => c.WithIndex(It.IsAny<int>())).ReturnsUsingFixture(Fixture);
             
             Fixture.Register((IFixture f) => PlayerKind.First);
             Fixture.Register((IFixture f) => ResourceKind.Bricks);
