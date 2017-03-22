@@ -17,11 +17,13 @@ namespace Arcomage.Domain.Actions
             var card = game.Players.CurrentPlayer.Hand.Cards[playResult.Card];
             var resource = game.Players.CurrentPlayer.Resources[card.Kind];
             
-            resource.Value -= card.Price;
             game.DiscardOnly--;
 
             if (playResult.IsPlay)
+            {
+                resource.Value -= card.Price;
                 card.Activate(game);
+            }
         }
     }
 }

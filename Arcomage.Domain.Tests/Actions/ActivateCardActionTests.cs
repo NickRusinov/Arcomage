@@ -36,7 +36,7 @@ namespace Arcomage.Domain.Tests.Actions
         }
 
         [Theory, AutoFixture]
-        public void ResourcePriceDecreaseTest(
+        public void ResourcePriceDecreaseCalledTest(
             [Frozen] Mock<Card> cardMock,
             [Frozen] Game game,
             ActivateCardAction sut)
@@ -46,6 +46,17 @@ namespace Arcomage.Domain.Tests.Actions
             sut.Play(game, new PlayResult(1, true));
 
             Assert.Equal(1, game.Players.FirstPlayer.Resources.Bricks);
+        }
+
+        [Theory, AutoFixture]
+        public void ResourcePriceNotDescreaseTest(
+            [Frozen] Mock<Card> cardMock,
+            [Frozen] Game game,
+            ActivateCardAction sut)
+        {
+            sut.Play(game, new PlayResult(1, false));
+
+            Assert.Equal(5, game.Players.FirstPlayer.Resources.Bricks);
         }
     }
 }
