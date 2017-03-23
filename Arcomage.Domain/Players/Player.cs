@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Arcomage.Domain.Buildings;
 using Arcomage.Domain.Hands;
@@ -34,7 +35,8 @@ namespace Arcomage.Domain.Players
         /// игрока и получения результата хода
         /// </summary>
         /// <param name="game">Контекст игры</param>
+        /// <param name="token">Токен завершения хода по таймауту</param>
         /// <returns>Результат хода игрока</returns>
-        public abstract Task<PlayResult> Play(Game game);
+        public abstract Task<PlayResult> Play(Game game, CancellationToken token);
     }
 }

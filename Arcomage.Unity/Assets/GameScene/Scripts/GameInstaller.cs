@@ -12,6 +12,7 @@ using Arcomage.Domain.Histories;
 using Arcomage.Domain.Players;
 using Arcomage.Domain.Rules;
 using Arcomage.Domain.Services;
+using Arcomage.Domain.Timers;
 using Arcomage.Unity.GameScene.Commands;
 using Arcomage.Unity.GameScene.ViewModels;
 using Arcomage.Unity.Shared.Scripts;
@@ -141,6 +142,10 @@ namespace Arcomage.Unity.GameScene.Scripts
 
             Container.Bind<Rule>()
                 .FromMethod(c => new ClassicRule((ClassicRuleInfo)Settings.Instance.Rule))
+                .AsSingle(0);
+
+            Container.Bind<Timer>()
+                .FromMethod(c => new InfinityTimer())
                 .AsSingle(0);
 
             Container.Bind(typeof(ICommandExecutor<PlayCardCommand>), typeof(ICommandCanExecutor<PlayCardCommand>))

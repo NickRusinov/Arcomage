@@ -7,6 +7,7 @@ using Arcomage.Domain.Decks;
 using Arcomage.Domain.Histories;
 using Arcomage.Domain.Players;
 using Arcomage.Domain.Rules;
+using Arcomage.Domain.Timers;
 
 namespace Arcomage.Domain
 {
@@ -33,17 +34,20 @@ namespace Arcomage.Domain
         /// <param name="deck">Игровая колода</param>
         /// <param name="history">История сделанных ходов</param>
         /// <param name="players">Игроки</param>
-        public Game(Rule rule, Deck deck, History history, PlayerSet players)
+        /// <param name="timer">Таймер</param>
+        public Game(Rule rule, Deck deck, History history, PlayerSet players, Timer timer)
         {
             Contract.Requires(rule != null);
             Contract.Requires(deck != null);
             Contract.Requires(history != null);
             Contract.Requires(players != null);
+            Contract.Requires(timer != null);
 
             Rule = rule;
             Deck = deck;
             History = history;
             Players = players;
+            Timer = timer;
         }
 
         /// <summary>
@@ -65,6 +69,11 @@ namespace Arcomage.Domain
         /// Игроки
         /// </summary>
         public PlayerSet Players { get; }
+
+        /// <summary>
+        /// Таймер
+        /// </summary>
+        public Timer Timer { get; }
         
         /// <summary>
         /// Игрок, совершивший предыдущий ход

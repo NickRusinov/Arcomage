@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Arcomage.Domain.Actions;
+using Arcomage.Domain.Internal;
 
 namespace Arcomage.Domain
 {
@@ -50,8 +52,14 @@ namespace Arcomage.Domain
 
             gameResult = game.Rule.IsWin(game);
             if (playResultTask == null && !gameResult)
-            { 
-                playResultTask = game.Players.CurrentPlayer.Play(game);
+            {
+                var cts = new CancellationTokenSource();
+
+                var playTask = game.Players.CurrentPlayer.Play(game, cts.Token);
+                var timerTask = game.Timer.Start(cts.Token);
+                cts.CancelWhenAny(playTask, timerTask);
+
+                playResultTask = playTask.DefaultIfCancel(new PlayResult(0, false));
             }
 
             gameResult = game.Rule.IsWin(game);

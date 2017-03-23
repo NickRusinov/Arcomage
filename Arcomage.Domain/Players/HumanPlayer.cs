@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Arcomage.Domain.Buildings;
 using Arcomage.Domain.Hands;
@@ -49,9 +50,10 @@ namespace Arcomage.Domain.Players
         public override Hand Hand { get; }
 
         /// <inheritdoc/>
-        public override Task<PlayResult> Play(Game game)
+        public override Task<PlayResult> Play(Game game, CancellationToken token)
         {
             playResultSource = new TaskCompletionSource<PlayResult>();
+            token.Register(() => playResultSource.TrySetCanceled());
 
             return playResultSource.Task;
         }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Arcomage.Domain.ArtificialIntelligence;
 using Arcomage.Domain.Buildings;
@@ -53,7 +54,7 @@ namespace Arcomage.Domain.Players
         public override Hand Hand { get; }
         
         /// <inheritdoc/>
-        public override Task<PlayResult> Play(Game game)
+        public override Task<PlayResult> Play(Game game, CancellationToken token)
         {
             return artificialIntelligence.Execute(game, this);
         }
