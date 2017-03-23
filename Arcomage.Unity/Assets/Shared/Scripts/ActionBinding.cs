@@ -47,8 +47,10 @@ namespace Arcomage.Unity.Shared.Scripts
                 Init.Invoke();
         }
 
+#pragma warning disable 67
         public event Action Changed;
-
+        
         public event Action Init;
+#pragma warning restore 67
     }
 }

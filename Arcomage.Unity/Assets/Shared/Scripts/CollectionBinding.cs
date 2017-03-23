@@ -87,6 +87,7 @@ namespace Arcomage.Unity.Shared.Scripts
                 Init(newValueList);
         }
 
+#pragma warning disable 67
         public event Action<TValue, TValue, int> Replaced;
 
         public event Action<TValue, int> Added;
@@ -94,5 +95,6 @@ namespace Arcomage.Unity.Shared.Scripts
         public event Action Cleared;
 
         public event Action<IList<TValue>> Init;
+#pragma warning restore 67
     }
 }
