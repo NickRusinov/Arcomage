@@ -50,11 +50,11 @@ namespace Arcomage.Unity.GameScene.Scripts
         {
             Dispatcher = container.Resolve<CommandDispatcher>();
             var gameViewModel = container.Resolve<GameViewModel>();
-            var gameCoroutine = container.Resolve<SingleGameCoroutine>();
-            
+            var gameExecutor = container.Resolve<SingleGameExecutor>();
+
+            StartCoroutine(gameExecutor.Execute());
             GameScript.Initialize(gameViewModel);
             FinishedScript.Initialize(gameViewModel.FinishedMenu);
-            StartCoroutine(gameCoroutine.GameCoroutine());
         }
 
         public void Update()

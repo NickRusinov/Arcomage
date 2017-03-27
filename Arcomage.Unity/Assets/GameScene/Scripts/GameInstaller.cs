@@ -129,7 +129,7 @@ namespace Arcomage.Unity.GameScene.Scripts
                 .FromMethod(c => new InfinityTimer())
                 .AsSingle(0);
 
-            Container.Bind<SingleGameCoroutine>()
+            Container.Bind<SingleGameExecutor>()
                 .ToSelf()
                 .AsSingle(0);
 
@@ -148,9 +148,12 @@ namespace Arcomage.Unity.GameScene.Scripts
                 .AsSingle(0);
 
             Container.Bind<GameViewModel>()
-                .FromMethod(c => UpdateViewModelsAction.Update(
-                    new GameViewModel(),
-                    c.Container.Resolve<Game>(),
+                .ToSelf()
+                .AsSingle(0);
+
+            Container.Bind<SingleViewModelUpdater>()
+                .FromMethod(c => new SingleViewModelUpdater(
+                    c.Container.Resolve<GameViewModel>(),
                     (ClassicRuleInfo)Settings.Instance.Rule))
                 .AsSingle(0);
 
@@ -161,23 +164,19 @@ namespace Arcomage.Unity.GameScene.Scripts
 
         private IPlayAction CreatePlayAction(DiContainer container)
         {
-            var viewModel = container.Resolve<GameViewModel>();
-            var ruleInfo = (ClassicRuleInfo)Settings.Instance.Rule;
-
             var terminatePlayCardAction = new TerminatePlayCardAction();
             var replaceCardAction = new ReplaceCardAction(terminatePlayCardAction);
             var addHistoryAction = new AddHistoryAction(replaceCardAction);
             var activateCardAction = new ActivateCardAction(addHistoryAction);
 
-            var finishAfterPlayPlayerAction = new FinishGameAction();
-            var updateAfterViewModelsAction = new UpdateViewModelsAction(finishAfterPlayPlayerAction, viewModel, ruleInfo);
-            var playPlayerAction = new PlayPlayerAction(updateAfterViewModelsAction, activateCardAction);
+            var terminatePlayAction = new TerminatePlayAction();
+            var finishAfterPlayPlayerAction = new FinishGameAction(terminatePlayAction);
+            var playPlayerAction = new PlayPlayerAction(finishAfterPlayPlayerAction, activateCardAction);
             var finishBeforePlayPlayerAction = new FinishGameAction(playPlayerAction);
-            var updateBeforeViewModelsAction = new UpdateViewModelsAction(finishBeforePlayPlayerAction, viewModel, ruleInfo);
 
-            var increaseResourcesAction = new IncreaseResourcesAction(updateBeforeViewModelsAction);
+            var increaseResourcesAction = new IncreaseResourcesAction(finishBeforePlayPlayerAction);
             var clearHistoryAction = new ClearHistoryAction(increaseResourcesAction);
-            var replacePlayerAction = new ReplacePlayerAction(clearHistoryAction, updateBeforeViewModelsAction);
+            var replacePlayerAction = new ReplacePlayerAction(clearHistoryAction, finishBeforePlayPlayerAction);
             var playAction = new FinishGameAction(replacePlayerAction);
 
             return playAction;
@@ -185,10 +184,11 @@ namespace Arcomage.Unity.GameScene.Scripts
 
         private IPlayCardAction CreatePlayCardAction(DiContainer container)
         {
-            var terminatePlayAction = new FinishGameAction();
-            var increaseResourcesAction = new IncreaseResourcesAction(terminatePlayAction);
+            var terminatePlayAction = new TerminatePlayAction();
+            var finishGameAction = new FinishGameAction(terminatePlayAction);
+            var increaseResourcesAction = new IncreaseResourcesAction(finishGameAction);
             var clearHistoryAction = new ClearHistoryAction(increaseResourcesAction);
-            var replacePlayerAction = new ReplacePlayerAction(clearHistoryAction, terminatePlayAction);
+            var replacePlayerAction = new ReplacePlayerAction(clearHistoryAction, finishGameAction);
 
             var terminatePlayCardAction = new TerminatePlayCardAction();
             var adapterPlayCardAction = new AdapterPlayCardAction(terminatePlayCardAction, replacePlayerAction);

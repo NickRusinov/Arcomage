@@ -22,6 +22,8 @@ namespace Arcomage.WebApi.Controllers
                     {
                         Wall = 15,
                         Tower = 43,
+                        MaxWall = 50,
+                        MaxTower = 50,
                     },
                     Resources = new GameModel.ResourcesModel
                     {
@@ -40,6 +42,8 @@ namespace Arcomage.WebApi.Controllers
                     {
                         Wall = 20,
                         Tower = 32,
+                        MaxWall = 50,
+                        MaxTower = 50,
                     },
                     Resources = new GameModel.ResourcesModel
                     {
@@ -58,36 +62,42 @@ namespace Arcomage.WebApi.Controllers
                         new GameModel.CardModel
                         {
                             Identifier = "Apprentice",
+                            Index = 3,
                             ResourceKind = 1,
                             ResourcePrice = 2,
                         },
                         new GameModel.CardModel
                         {
                             Identifier = "Apprentice",
+                            Index = 4,
                             ResourceKind = 1,
                             ResourcePrice = 2,
                         },
                         new GameModel.CardModel
                         {
                             Identifier = "Apprentice",
+                            Index = 5,
                             ResourceKind = 1,
                             ResourcePrice = 2,
                         },
                         new GameModel.CardModel
                         {
                             Identifier = "Apprentice",
+                            Index = 6,
                             ResourceKind = 1,
                             ResourcePrice = 2,
                         },
                         new GameModel.CardModel
                         {
                             Identifier = "Apprentice",
+                            Index = 7,
                             ResourceKind = 1,
                             ResourcePrice = 2,
                         },
                         new GameModel.CardModel
                         {
                             Identifier = "Apprentice",
+                            Index = 8,
                             ResourceKind = 1,
                             ResourcePrice = 2,
                         },
@@ -97,11 +107,13 @@ namespace Arcomage.WebApi.Controllers
                 {
                     Cards = new[]
                     {
-                        new GameModel.CardModel
+                        new GameModel.HistoryCardModel
                         {
                             Identifier = "Apprentice",
+                            Index = 2,
                             ResourceKind = 1,
                             ResourcePrice = 2,
+                            IsPlayed = true,
                         },
                     }
                 },

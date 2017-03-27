@@ -31,6 +31,10 @@ namespace Arcomage.WebApi.Client.Models.Game
             public int Wall { get; set; }
 
             public int Tower { get; set; }
+
+            public int MaxWall { get; set; }
+
+            public int MaxTower { get; set; }
         }
 
         public class ResourcesModel
@@ -55,23 +59,30 @@ namespace Arcomage.WebApi.Client.Models.Game
 
         public class HistoryModel
         {
-            public CardModel[] Cards { get; set; }
+            public HistoryCardModel[] Cards { get; set; }
         }
 
         public class CardModel
         {
             public string Identifier { get; set; }
 
+            public int Index { get; set; }
+
             public int ResourceKind { get; set; }
 
             public int ResourcePrice { get; set; }
+        }
+
+        public class HistoryCardModel : CardModel
+        {
+            public bool IsPlayed { get; set; }
         }
 
         public class ResultModel
         {
             public string Identifier { get; set; }
 
-            public int WinPlayer { get; set; }
+            public string WinPlayer { get; set; }
         }
     }
 }

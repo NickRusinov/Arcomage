@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using Arcomage.Domain;
-using Arcomage.Domain.Actions;
 using Arcomage.Domain.Buildings;
 using Arcomage.Domain.Cards;
 using Arcomage.Domain.Hands;
@@ -16,32 +14,26 @@ using Arcomage.Unity.GameScene.ViewModels;
 
 namespace Arcomage.Unity.GameScene.Scripts
 {
-    public class UpdateViewModelsAction : IPlayAction
+    public class SingleViewModelUpdater
     {
-        private readonly IPlayAction nextAction;
-
         private readonly GameViewModel viewModel;
-        
+
         private readonly ClassicRuleInfo ruleInfo;
 
-        public UpdateViewModelsAction(IPlayAction nextAction, GameViewModel viewModel, ClassicRuleInfo ruleInfo)
+        public SingleViewModelUpdater(GameViewModel viewModel, ClassicRuleInfo ruleInfo)
         {
-            this.nextAction = nextAction;
             this.viewModel = viewModel;
             this.ruleInfo = ruleInfo;
         }
 
-        public Task<GameResult> Play(Game game)
+        public GameViewModel Update(Game game)
         {
-            Update(viewModel, game, ruleInfo);
-
-            return nextAction.Play(game);
+            return Update(viewModel, game, ruleInfo);
         }
 
-        public static GameViewModel Update(GameViewModel viewModel, Game game, ClassicRuleInfo ruleInfo)
+        private static GameViewModel Update(GameViewModel viewModel, Game game, ClassicRuleInfo ruleInfo)
         {
             viewModel = viewModel ?? new GameViewModel();
-            viewModel.game = game;
             viewModel.LeftBuildings = Update(viewModel.LeftBuildings, game.Players.FirstPlayer.Buildings, ruleInfo);
             viewModel.LeftResources = Update(viewModel.LeftResources, game.Players.FirstPlayer.Resources, PlayerKind.First);
             viewModel.RightBuildings = Update(viewModel.RightBuildings, game.Players.SecondPlayer.Buildings, ruleInfo);
