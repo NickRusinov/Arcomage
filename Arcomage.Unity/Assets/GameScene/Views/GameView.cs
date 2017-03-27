@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Arcomage.Domain.Players;
-using Arcomage.Unity.GameScene.Commands;
-using Arcomage.Unity.GameScene.Scripts;
 using Arcomage.Unity.GameScene.ViewModels;
 using Arcomage.Unity.Shared.Scripts;
 using SmartLocalization;
@@ -48,8 +46,6 @@ namespace Arcomage.Unity.GameScene.Views
         /// <param name="gameViewModel">Модель представления контекста игры</param>
         public void Initialize(GameViewModel gameViewModel)
         {
-            Bind(GameSceneScript.Dispatcher, d => d.Execute(new UpdateCommand()));
-
             Bind(gameViewModel.FinishedMenu, f => f.Identifier)
                 .OnChangedAndInit(id => !string.IsNullOrEmpty(id), id => FinishedEvent.Invoke());
 

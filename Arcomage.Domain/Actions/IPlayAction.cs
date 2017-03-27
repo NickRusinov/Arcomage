@@ -2,18 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Arcomage.Domain.Actions
 {
     /// <summary>
-    /// Игровая логика, выполняемая до получения хода игроком
+    /// Игровая логика, представляющая игровой цикл
     /// </summary>
-    public interface IBeforePlayAction
+    public interface IPlayAction
     {
         /// <summary>
-        /// Выполняет действия до получения хода игроком
+        /// Выполняет действия игрового цикла
         /// </summary>
         /// <param name="game">Контекст игры</param>
-        void Play(Game game);
+        Task<GameResult> Play(Game game);
     }
 }

@@ -4,6 +4,7 @@ using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Arcomage.Domain.Actions;
 using Arcomage.Domain.Internal;
 using Arcomage.Domain.Players;
 using Arcomage.Domain.Services;
@@ -16,10 +17,7 @@ namespace Arcomage.Domain.ArtificialIntelligence
     [Serializable]
     public class ArtificialIntelligence : IArtificialIntelligence
     {
-        /// <summary>
-        /// Игровой цикл
-        /// </summary>
-        private readonly GameLoop gameLoop;
+        private readonly IPlayCardAction playCardAction;
 
         /// <summary>
         /// Критерий возможности активации карты
@@ -34,16 +32,15 @@ namespace Arcomage.Domain.ArtificialIntelligence
         /// <summary>
         /// Инициализирует экземпляр класса <see cref="ArtificialIntelligence"/>
         /// </summary>
-        /// <param name="gameLoop">Игровой цикл</param>
         /// <param name="playCardCriteria">Критерий возможности активации карты</param>
         /// <param name="discardCardCriteria">Критерий возможности сброса карты</param>
-        public ArtificialIntelligence(GameLoop gameLoop, IPlayCardCriteria playCardCriteria, IDiscardCardCriteria discardCardCriteria)
+        public ArtificialIntelligence(IPlayCardAction playCardAction, IPlayCardCriteria playCardCriteria, IDiscardCardCriteria discardCardCriteria)
         {
-            Contract.Requires(gameLoop != null);
+            Contract.Requires(playCardAction != null);
             Contract.Requires(playCardCriteria != null);
             Contract.Requires(discardCardCriteria != null);
 
-            this.gameLoop = gameLoop;
+            this.playCardAction = playCardAction;
             this.playCardCriteria = playCardCriteria;
             this.discardCardCriteria = discardCardCriteria;
         }
@@ -77,7 +74,7 @@ namespace Arcomage.Domain.ArtificialIntelligence
 
                 if (playCardCriteria.CanPlayCard(cloneGame, cloneGame.Players.CurrentPlayer, i))
                 {
-                    gameLoop.Update(cloneGame, playResult);
+                    playCardAction.Play(cloneGame, playResult);
 
                     yield return new KeyValuePair<Game, PlayResult>(cloneGame, playResult);
                 }
@@ -90,7 +87,7 @@ namespace Arcomage.Domain.ArtificialIntelligence
 
                 if (discardCardCriteria.CanDiscardCard(cloneGame, cloneGame.Players.CurrentPlayer, i))
                 {
-                    gameLoop.Update(cloneGame, playResult);
+                    playCardAction.Play(cloneGame, playResult);
 
                     yield return new KeyValuePair<Game, PlayResult>(cloneGame, playResult);
                 }

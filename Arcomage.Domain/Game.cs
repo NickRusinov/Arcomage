@@ -74,11 +74,6 @@ namespace Arcomage.Domain
         /// Таймер
         /// </summary>
         public Timer Timer { get; }
-        
-        /// <summary>
-        /// Игрок, совершивший предыдущий ход
-        /// </summary>
-        public Player PreviousPlayer { get; set; }
 
         /// <summary>
         /// Количество ходов, в течении которых ход не передается другому игроку

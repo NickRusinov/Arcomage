@@ -10,13 +10,27 @@ namespace Arcomage.Domain.Actions
     /// <summary>
     /// Выполняет передачу хода другому игроку, в случае окончания хода текущего
     /// </summary>
-    public class ReplacePlayerAction : IAfterPlayAction
+    public class ReplacePlayerAction : IPlayAction
     {
-        /// <inheritdoc/>
-        public void Play(Game game, PlayResult playResult)
+        private readonly IPlayAction nextWhenReplacedPlayerAction;
+
+        private readonly IPlayAction nextWhenNotReplacedPlayerAction;
+
+        public ReplacePlayerAction(IPlayAction nextWhenReplacedPlayerAction, IPlayAction nextWhenNotReplacedPlayerAction)
         {
-            if (game.PlayAgain-- == 0)
-                game.Players.Kind = NextPlayerKind(game.Players.Kind);
+            this.nextWhenReplacedPlayerAction = nextWhenReplacedPlayerAction;
+            this.nextWhenNotReplacedPlayerAction = nextWhenNotReplacedPlayerAction;
+        }
+
+        /// <inheritdoc/>
+        public Task<GameResult> Play(Game game)
+        {
+            if (game.PlayAgain-- != 0)
+                return nextWhenNotReplacedPlayerAction.Play(game);
+            
+            game.Players.Kind = NextPlayerKind(game.Players.Kind);
+
+            return nextWhenReplacedPlayerAction.Play(game);
         }
     }
 }

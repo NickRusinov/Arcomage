@@ -10,14 +10,22 @@ namespace Arcomage.Domain.Actions
     /// <summary>
     /// Добавляет карту в историю хода текущего игрока
     /// </summary>
-    public class AddHistoryAction : IAfterPlayAction
+    public class AddHistoryAction : IPlayCardAction
     {
-        /// <inheritdoc/>
-        public void Play(Game game, PlayResult playResult)
-        {
-            var historyCard = new HistoryCard(game.Players.CurrentPlayer.Hand.Cards[playResult.Card], playResult.IsPlay);
+        private readonly IPlayCardAction nextAction;
 
+        public AddHistoryAction(IPlayCardAction nextAction)
+        {
+            this.nextAction = nextAction;
+        }
+
+        /// <inheritdoc/>
+        public Task Play(Game game, PlayResult playResult)
+        {
+            var historyCard = new HistoryCard(game.Players.CurrentPlayer.Hand[playResult.Card], playResult.IsPlay);
             game.History.Cards.Add(historyCard);
+
+            return nextAction.Play(game, playResult);
         }
     }
 }

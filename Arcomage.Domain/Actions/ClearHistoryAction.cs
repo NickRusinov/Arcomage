@@ -9,12 +9,21 @@ namespace Arcomage.Domain.Actions
     /// <summary>
     /// Очищает историю хода предыдущего игрока
     /// </summary>
-    public class ClearHistoryAction : IBeforePlayAction
+    public class ClearHistoryAction : IPlayAction
     {
+        private readonly IPlayAction nextAction;
+
+        public ClearHistoryAction(IPlayAction nextAction)
+        {
+            this.nextAction = nextAction;
+        }
+
         /// <inheritdoc/>
-        public void Play(Game game)
+        public Task<GameResult> Play(Game game)
         {
             game.History.Cards.Clear();
+
+            return nextAction.Play(game);
         }
     }
 }

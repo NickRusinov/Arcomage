@@ -28,5 +28,11 @@ namespace Arcomage.Domain.Hands
         /// Список карт на руках игрока
         /// </summary>
         public IList<Card> Cards { get; }
+
+        public Card this[int index]
+        {
+            get => Cards[index];
+            set => Cards[index] = value;
+        }
     }
 }

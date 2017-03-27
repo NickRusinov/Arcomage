@@ -23,6 +23,18 @@ namespace Arcomage.Domain.Internal
 #endif
         }
 
+        public static Task<T> FromResult<T>(T result)
+        {
+#if NET35
+            var tcs = new TaskCompletionSource<T>();
+            tcs.SetResult(result);
+
+            return tcs.Task;
+#else
+            return Task.FromResult(result);
+#endif
+        }
+
         public static Task Delay(TimeSpan period, CancellationToken token = default(CancellationToken))
         {
 #if NET35

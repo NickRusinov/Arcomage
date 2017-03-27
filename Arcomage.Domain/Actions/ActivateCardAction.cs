@@ -9,12 +9,19 @@ namespace Arcomage.Domain.Actions
     /// <summary>
     /// Выполняет действия, связанные с активацией или сбросом карты
     /// </summary>
-    public class ActivateCardAction : IAfterPlayAction
+    public class ActivateCardAction : IPlayCardAction
     {
-        /// <inheritdoc/>
-        public void Play(Game game, PlayResult playResult)
+        private readonly IPlayCardAction nextAction;
+        
+        public ActivateCardAction(IPlayCardAction nextAction)
         {
-            var card = game.Players.CurrentPlayer.Hand.Cards[playResult.Card];
+            this.nextAction = nextAction;
+        }
+
+        /// <inheritdoc/>
+        public Task Play(Game game, PlayResult playResult)
+        {
+            var card = game.Players.CurrentPlayer.Hand[playResult.Card];
             var resource = game.Players.CurrentPlayer.Resources[card.Kind];
             
             game.DiscardOnly--;
@@ -24,6 +31,8 @@ namespace Arcomage.Domain.Actions
                 resource.Value -= card.Price;
                 card.Activate(game);
             }
+
+            return nextAction.Play(game, playResult);
         }
     }
 }

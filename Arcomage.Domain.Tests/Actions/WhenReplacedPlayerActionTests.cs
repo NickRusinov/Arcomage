@@ -16,7 +16,7 @@ namespace Arcomage.Domain.Tests.Actions
         [Theory, AutoFixture]
         public void PlayActionCalledWhenReplacedPlayerTest(
             [Frozen] Game game,
-            [Frozen] Mock<IBeforePlayAction> playActionMock,
+            [Frozen] Mock<IPlayAction> playActionMock,
             WhenReplacedPlayerAction sut)
         {
             sut.Play(game);
@@ -28,7 +28,7 @@ namespace Arcomage.Domain.Tests.Actions
         [Theory, AutoFixture]
         public void PlayActionCalledWhenNotReplacedPlayerTest(
             [Frozen] Game game,
-            [Frozen] Mock<IBeforePlayAction> playActionMock,
+            [Frozen] Mock<IPlayAction> playActionMock,
             WhenReplacedPlayerAction sut)
         {
             sut.Play(game);

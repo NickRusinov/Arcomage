@@ -39,27 +39,12 @@ namespace Arcomage.Unity.GameScene.Scripts
                     .FromAssemblyContaining<Card>())
                 .AsSingle(0);
 
-            Container.Bind<IBeforePlayAction>()
-                .FromMethod(c => new CompositeBeforePlayAction(
-                    new WhenReplacedPlayerAction(
-                        new CompositeBeforePlayAction(
-                            new ClearHistoryAction(),
-                            new IncreaseResourcesAction())),
-                    c.Container.Resolve<UpdateViewModelsAction>()))
+            Container.Bind<IPlayCardAction>()
+                .FromMethod(c => CreatePlayCardAction(c.Container))
                 .AsSingle(0);
 
-            Container.Bind<IAfterPlayAction>()
-                .FromMethod(c => new CompositeAfterPlayAction(
-                    new ActivateCardAction(),
-                    new AddHistoryAction(),
-                    new ReplaceCardAction(),
-                    new ReplacePlayerAction(),
-                    c.Container.Resolve<UpdateViewModelsAction>()))
-                .AsSingle(0);
-
-            Container.Bind<UpdateViewModelsAction>()
-                .FromMethod(c => new UpdateViewModelsAction(
-                    (ClassicRuleInfo)Settings.Instance.Rule))
+            Container.Bind<IPlayAction>()
+                .FromMethod(c => CreatePlayAction(c.Container))
                 .AsSingle(0);
 
             Container.Bind<IPlayCardCriteria>()
@@ -68,10 +53,6 @@ namespace Arcomage.Unity.GameScene.Scripts
 
             Container.Bind<IDiscardCardCriteria>()
                 .To<DiscardCardCriteria>()
-                .AsSingle(0);
-
-            Container.Bind<GameLoop>()
-                .ToSelf()
                 .AsSingle(0);
 
             Container.Bind<Game>()
@@ -148,6 +129,10 @@ namespace Arcomage.Unity.GameScene.Scripts
                 .FromMethod(c => new InfinityTimer())
                 .AsSingle(0);
 
+            Container.Bind<SingleGameCoroutine>()
+                .ToSelf()
+                .AsSingle(0);
+
             Container.Bind(typeof(ICommandExecutor<PlayCardCommand>), typeof(ICommandCanExecutor<PlayCardCommand>))
                 .FromMethod(c => new SinglePlayCardCommandExecutor(
                     c.Container.Resolve<Game>(),
@@ -162,18 +147,56 @@ namespace Arcomage.Unity.GameScene.Scripts
                     c.Container.Resolve<IDiscardCardCriteria>()))
                 .AsSingle(0);
 
-            Container.Bind(typeof(ICommandExecutor<UpdateCommand>))
-                .To<SingleUpdateCommandExecutor>()
-                .AsSingle(0);
-
             Container.Bind<GameViewModel>()
-                .FromMethod(c => c.Container.Resolve<UpdateViewModelsAction>()
-                    .Update(c.Container.Resolve<Game>()))
+                .FromMethod(c => UpdateViewModelsAction.Update(
+                    new GameViewModel(),
+                    c.Container.Resolve<Game>(),
+                    (ClassicRuleInfo)Settings.Instance.Rule))
                 .AsSingle(0);
 
             Container.Bind<CommandDispatcher>()
                 .FromMethod(c => CreateDispatcher(c.Container))
                 .AsSingle(0);
+        }
+
+        private IPlayAction CreatePlayAction(DiContainer container)
+        {
+            var viewModel = container.Resolve<GameViewModel>();
+            var ruleInfo = (ClassicRuleInfo)Settings.Instance.Rule;
+
+            var terminatePlayCardAction = new TerminatePlayCardAction();
+            var replaceCardAction = new ReplaceCardAction(terminatePlayCardAction);
+            var addHistoryAction = new AddHistoryAction(replaceCardAction);
+            var activateCardAction = new ActivateCardAction(addHistoryAction);
+
+            var finishAfterPlayPlayerAction = new FinishGameAction();
+            var updateAfterViewModelsAction = new UpdateViewModelsAction(finishAfterPlayPlayerAction, viewModel, ruleInfo);
+            var playPlayerAction = new PlayPlayerAction(updateAfterViewModelsAction, activateCardAction);
+            var finishBeforePlayPlayerAction = new FinishGameAction(playPlayerAction);
+            var updateBeforeViewModelsAction = new UpdateViewModelsAction(finishBeforePlayPlayerAction, viewModel, ruleInfo);
+
+            var increaseResourcesAction = new IncreaseResourcesAction(updateBeforeViewModelsAction);
+            var clearHistoryAction = new ClearHistoryAction(increaseResourcesAction);
+            var replacePlayerAction = new ReplacePlayerAction(clearHistoryAction, updateBeforeViewModelsAction);
+            var playAction = new FinishGameAction(replacePlayerAction);
+
+            return playAction;
+        }
+
+        private IPlayCardAction CreatePlayCardAction(DiContainer container)
+        {
+            var terminatePlayAction = new FinishGameAction();
+            var increaseResourcesAction = new IncreaseResourcesAction(terminatePlayAction);
+            var clearHistoryAction = new ClearHistoryAction(increaseResourcesAction);
+            var replacePlayerAction = new ReplacePlayerAction(clearHistoryAction, terminatePlayAction);
+
+            var terminatePlayCardAction = new TerminatePlayCardAction();
+            var adapterPlayCardAction = new AdapterPlayCardAction(terminatePlayCardAction, replacePlayerAction);
+            var replaceCardAction = new ReplaceCardAction(adapterPlayCardAction);
+            var addHistoryAction = new AddHistoryAction(replaceCardAction);
+            var playCardAction = new ActivateCardAction(addHistoryAction);
+
+            return playCardAction;
         }
 
         private CommandDispatcher CreateDispatcher(DiContainer container)
@@ -185,8 +208,6 @@ namespace Arcomage.Unity.GameScene.Scripts
 
             dispatcher.RegisterExecutor(container.Resolve<ICommandExecutor<DiscardCardCommand>>());
             dispatcher.RegisterCanExecutor(container.Resolve<ICommandCanExecutor<DiscardCardCommand>>());
-
-            dispatcher.RegisterExecutor(container.Resolve<ICommandExecutor<UpdateCommand>>());
 
             return dispatcher;
         }

@@ -27,5 +27,11 @@ namespace Arcomage.Domain.Histories
         /// Коллекция карт, используемых в течении хода игрока
         /// </summary>
         public IList<HistoryCard> Cards { get; }
+
+        public HistoryCard this[int index]
+        {
+            get => Cards[index];
+            set => Cards[index] = value;
+        }
     }
 }

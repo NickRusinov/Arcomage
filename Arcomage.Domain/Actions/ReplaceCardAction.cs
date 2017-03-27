@@ -9,17 +9,26 @@ namespace Arcomage.Domain.Actions
     /// <summary>
     /// Выполянет замену активированной или сброшенной карты на новую из игровой колоды
     /// </summary>
-    public class ReplaceCardAction : IAfterPlayAction
+    public class ReplaceCardAction : IPlayCardAction
     {
-        /// <inheritdoc/>
-        public void Play(Game game, PlayResult playResult)
+        private readonly IPlayCardAction nextAction;
+
+        public ReplaceCardAction(IPlayCardAction nextAction)
         {
-            var oldCard = game.Players.CurrentPlayer.Hand.Cards[playResult.Card];
+            this.nextAction = nextAction;
+        }
+
+        /// <inheritdoc/>
+        public Task Play(Game game, PlayResult playResult)
+        {
+            var oldCard = game.Players.CurrentPlayer.Hand[playResult.Card];
 
             game.Deck.PushCard(game, oldCard);
             var newCard = game.Deck.PopCard(game);
 
-            game.Players.CurrentPlayer.Hand.Cards[playResult.Card] = newCard;
+            game.Players.CurrentPlayer.Hand[playResult.Card] = newCard;
+
+            return nextAction.Play(game, playResult);
         }
     }
 }
