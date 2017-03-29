@@ -4,29 +4,20 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Text;
 using Arcomage.Unity.Shared.Scripts;
-using Arcomage.WebApi.Client.Hubs;
-using UnityEngine;
+using Arcomage.Unity.NetworkScene.ViewModels;
 
 namespace Arcomage.Unity.NetworkScene.Views
 {
-    public class PreparePanelView : View
+    public class PreparePanelView : View<PrepareViewModel>
     {
-        private NetworkGameHubClient networkGameHubClient;
-
-        public void Initialize(NetworkGameHubClient networkGameHubClient)
-        {
-            this.networkGameHubClient = networkGameHubClient;
-        }
-
         public void OnEnable()
         {
-			networkGameHubClient.OnStartGame += id => Debug.Log(id);
-            networkGameHubClient.Start().ContinueWith(t => networkGameHubClient.Connect());
+            Bind(ViewModel.ConnectCommand.Execute(ViewModel));
         }
 
         public void OnDisable()
         {
-            networkGameHubClient.Stop();
+            Bind(ViewModel.DisconnectCommand.Execute(ViewModel));
         }
     }
 }

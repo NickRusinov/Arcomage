@@ -68,7 +68,9 @@ namespace Arcomage.Unity.GameScene.Scripts
         {
             viewModel = viewModel ?? new HandViewModel();
             viewModel.Cards = viewModel.Cards ?? new List<CardViewModel>();
-            viewModel.Cards = model.Cards.Select((c, i) => Update(viewModel.Cards.ElementAtOrDefault(i), c)).ToArray();
+            viewModel.Cards = model.Cards
+                .Select((c, i) => Update(viewModel.Cards.ElementAtOrDefault(i), c))
+                .ToArray();
 
             return viewModel;
         }
@@ -77,7 +79,9 @@ namespace Arcomage.Unity.GameScene.Scripts
         {
             viewModel = viewModel ?? new HistoryViewModel();
             viewModel.Cards = viewModel.Cards ?? new List<HistoryCardViewModel>();
-            viewModel.Cards = model.Cards.Select((c, i) => Update(viewModel.Cards.ElementAtOrDefault(i), c)).ToArray();
+            viewModel.Cards = model.Cards
+                .Select((c, i) => Update(viewModel.Cards.ElementAtOrDefault(i), c))
+                .ToArray();
 
             return viewModel;
         }
@@ -92,6 +96,7 @@ namespace Arcomage.Unity.GameScene.Scripts
             viewModel.Identifier = model.Identifier;
             viewModel.Kind = (ResourceKind)model.ResourceKind;
             viewModel.Price = model.ResourcePrice;
+            viewModel.IsPlay = true; // TODO
 
             return viewModel;
         }

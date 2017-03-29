@@ -13,17 +13,12 @@ namespace Arcomage.Unity.GameScene.Scripts
     /// <summary>
     /// Корневой скрипт сцены
     /// </summary>
-    public class GameSceneScript : SceneScript
+    public class GameSceneScript : Scene
     {
         /// <summary>
         /// Игра поставлена на паузу
         /// </summary>
         public static bool Pause;
-
-        /// <summary>
-        /// Диспетчер выполнения команд
-        /// </summary>
-        public static CommandDispatcher Dispatcher;
 
         [Tooltip("Корневой компонент игры")]
         public GameView GameScript;
@@ -48,13 +43,12 @@ namespace Arcomage.Unity.GameScene.Scripts
 
         public void Start()
         {
-            Dispatcher = container.Resolve<CommandDispatcher>();
             var gameViewModel = container.Resolve<GameViewModel>();
             var gameExecutor = container.Resolve<SingleGameExecutor>();
 
             StartCoroutine(gameExecutor.Execute());
-            GameScript.Initialize(gameViewModel);
-            FinishedScript.Initialize(gameViewModel.FinishedMenu);
+            GameScript.ViewModel = gameViewModel;
+            FinishedScript.ViewModel = gameViewModel.FinishedMenu;
         }
 
         public void Update()

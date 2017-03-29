@@ -12,7 +12,7 @@ namespace Arcomage.Unity.GameScene.Views
     /// <summary>
     /// Представление компонента игровой карты в истории хода
     /// </summary>
-    public class HistoryCardView : View
+    public class HistoryCardView : View<HistoryCardViewModel>
     {
         [Tooltip("Текст для вывода названия карты")]
         public TextMesh NameText;
@@ -32,30 +32,20 @@ namespace Arcomage.Unity.GameScene.Views
         [Tooltip("Спрайт изображения карты")]
         public SpriteRenderer ForegroundImage;
 
-        /// <summary>
-        /// Порядковый номер карты в истории хода
-        /// </summary>
-        [NonSerialized]
-        public int Index;
-
-        /// <summary>
-        /// Инициализация компонента
-        /// </summary>
-        /// <param name="historyCard">Модель представления карты в истории хода</param>
-        public void Initialize(HistoryCardViewModel historyCardViewModel)
+        protected override void OnViewModel(HistoryCardViewModel viewModel)
         {
-            Bind(historyCardViewModel.Identifier)
+            Bind(viewModel.Identifier)
                 .OnInit(i => ForegroundImage.sprite = Resources.Load<Sprite>("Card" + i + "Image"))
                 .OnInit(i => NameText.text = LanguageManager.Instance.GetTextValue("Card" + i + "Name"))
                 .OnInit(i => DescriptionText.text = LanguageManager.Instance.GetTextValue("Card" + i + "Description"));
 
-            Bind(historyCardViewModel, c => c.Kind)
+            Bind(viewModel, c => c.Kind)
                 .OnChangedAndInit(r => BackgroundImage.sprite = Resources.Load<Sprite>("Card" + r + "Image"));
 
-            Bind(historyCardViewModel, c => c.Price)
+            Bind(viewModel, c => c.Price)
                 .OnChangedAndInit(p => PriceText.text = p.ToString());
 
-            Bind(historyCardViewModel, c => c.IsPlayed)
+            Bind(viewModel, c => c.IsPlayed)
                 .OnChangedAndInit(b => DiscardText.gameObject.SetActive(!b))
                 .OnChangedAndInit(b => DiscardText.text = LanguageManager.Instance.GetTextValue("CardDiscardText"));
         }

@@ -8,6 +8,8 @@ namespace Arcomage.Unity.GameScene.ViewModels
 {
     public class HistoryCardViewModel
     {
+        public int Id { get; set; }
+
         public int Index { get; set; }
 
         public string Identifier { get; set; }
@@ -20,12 +22,12 @@ namespace Arcomage.Unity.GameScene.ViewModels
         
         public override int GetHashCode()
         {
-            return Index.GetHashCode();
+            return Id.GetHashCode();
         }
         
         public override bool Equals(object obj)
         {
-            return Index == ((HistoryCardViewModel)obj).Index;
+            return Id == ((HistoryCardViewModel)obj).Id;
         }
     }
 }

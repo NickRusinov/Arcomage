@@ -30,6 +30,12 @@ namespace Arcomage.Unity.GameScene.Scripts
         /// </summary>
         public override void InstallBindings()
         {
+            Container.Bind<ClassicRuleInfo>()
+                .FromMethod(c => (ClassicRuleInfo)Settings.Instance.Rule);
+
+            Container.Bind<DeckInfo>()
+                .FromMethod(c => Settings.Instance.Deck);
+
             Container.Bind<IArtificialIntelligence>()
                 .To<ArtificialIntelligence>()
                 .AsSingle(0);
@@ -87,6 +93,10 @@ namespace Arcomage.Unity.GameScene.Scripts
                     c.Container.Resolve<Hand>("SecondPlayer")))
                 .AsSingle(1);
 
+            Container.Bind<HumanPlayer>()
+                .FromMethod(c => (HumanPlayer)c.Container.Resolve<Player>("FirstPlayer"))
+                .AsSingle(0);
+
             Container.Bind<History>()
                 .FromMethod(c => new History(Enumerable.Empty<HistoryCard>().ToList()))
                 .AsSingle(0);
@@ -122,7 +132,8 @@ namespace Arcomage.Unity.GameScene.Scripts
                 .AsSingle(2);
 
             Container.Bind<Rule>()
-                .FromMethod(c => new ClassicRule((ClassicRuleInfo)Settings.Instance.Rule))
+                .FromMethod(c => new ClassicRule(
+                    (ClassicRuleInfo)Settings.Instance.Rule))
                 .AsSingle(0);
 
             Container.Bind<Timer>()
@@ -133,32 +144,20 @@ namespace Arcomage.Unity.GameScene.Scripts
                 .ToSelf()
                 .AsSingle(0);
 
-            Container.Bind(typeof(ICommandExecutor<PlayCardCommand>), typeof(ICommandCanExecutor<PlayCardCommand>))
-                .FromMethod(c => new SinglePlayCardCommandExecutor(
-                    c.Container.Resolve<Game>(),
-                    (HumanPlayer)c.Container.Resolve<Player>("FirstPlayer"),
-                    c.Container.Resolve<IPlayCardCriteria>()))
+            Container.Bind<SingleViewModelUpdater>()
+                .ToSelf()
                 .AsSingle(0);
 
-            Container.Bind(typeof(ICommandExecutor<DiscardCardCommand>), typeof(ICommandCanExecutor<DiscardCardCommand>))
-                .FromMethod(c => new SingleDiscardCardCommandExecutor(
-                    c.Container.Resolve<Game>(),
-                    (HumanPlayer)c.Container.Resolve<Player>("FirstPlayer"),
-                    c.Container.Resolve<IDiscardCardCriteria>()))
+            Container.Bind<SinglePlayCardCommand>()
+                .ToSelf()
+                .AsSingle(0);
+
+            Container.Bind<SingleDiscardCardCommand>()
+                .ToSelf()
                 .AsSingle(0);
 
             Container.Bind<GameViewModel>()
                 .ToSelf()
-                .AsSingle(0);
-
-            Container.Bind<SingleViewModelUpdater>()
-                .FromMethod(c => new SingleViewModelUpdater(
-                    c.Container.Resolve<GameViewModel>(),
-                    (ClassicRuleInfo)Settings.Instance.Rule))
-                .AsSingle(0);
-
-            Container.Bind<CommandDispatcher>()
-                .FromMethod(c => CreateDispatcher(c.Container))
                 .AsSingle(0);
         }
 
@@ -197,19 +196,6 @@ namespace Arcomage.Unity.GameScene.Scripts
             var playCardAction = new ActivateCardAction(addHistoryAction);
 
             return playCardAction;
-        }
-
-        private CommandDispatcher CreateDispatcher(DiContainer container)
-        {
-            var dispatcher = new CommandDispatcher();
-
-            dispatcher.RegisterExecutor(container.Resolve<ICommandExecutor<PlayCardCommand>>());
-            dispatcher.RegisterCanExecutor(container.Resolve<ICommandCanExecutor<PlayCardCommand>>());
-
-            dispatcher.RegisterExecutor(container.Resolve<ICommandExecutor<DiscardCardCommand>>());
-            dispatcher.RegisterCanExecutor(container.Resolve<ICommandCanExecutor<DiscardCardCommand>>());
-
-            return dispatcher;
         }
     }
 }

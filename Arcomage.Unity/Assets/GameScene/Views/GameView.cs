@@ -14,7 +14,7 @@ namespace Arcomage.Unity.GameScene.Views
     /// <summary>
     /// Представление компонента игры
     /// </summary>
-    public class GameView : View
+    public class GameView : View<GameViewModel>
     {
         [Tooltip("Событие: Игра завершена")]
         public UnityEvent FinishedEvent;
@@ -40,27 +40,23 @@ namespace Arcomage.Unity.GameScene.Views
         [Tooltip("Текст для вывода информации для сброса карты")]
         public TextMesh DiscardOnlyText;
 
-        /// <summary>
-        /// Инициализация компонента
-        /// </summary>
-        /// <param name="gameViewModel">Модель представления контекста игры</param>
-        public void Initialize(GameViewModel gameViewModel)
+        protected override void OnViewModel(GameViewModel viewModel)
         {
-            Bind(gameViewModel.FinishedMenu, f => f.Identifier)
+            Bind(viewModel.FinishedMenu, f => f.Identifier)
                 .OnChangedAndInit(id => !string.IsNullOrEmpty(id), id => FinishedEvent.Invoke());
 
-            Bind(gameViewModel, g => g.DiscardOnly)
-                .OnChangedAndInit(@do => DiscardOnlyText.gameObject.SetActive(@do > 0 && gameViewModel.PlayerKind == PlayerKind.First))
+            Bind(viewModel, g => g.DiscardOnly)
+                .OnChangedAndInit(@do => DiscardOnlyText.gameObject.SetActive(@do > 0 && viewModel.PlayerKind == PlayerKind.First))
                 .OnChangedAndInit(@do => DiscardOnlyText.text = LanguageManager.Instance.GetTextValue("GameDiscardText"));
 
-            LeftResources.Initialize(gameViewModel.LeftResources);
-            RightResources.Initialize(gameViewModel.RightResources);
+            LeftResources.ViewModel = viewModel.LeftResources;
+            RightResources.ViewModel = viewModel.RightResources;
 
-            LeftBuildings.Initialize(gameViewModel.LeftBuildings);
-            RightBuildings.Initialize(gameViewModel.RightBuildings);
+            LeftBuildings.ViewModel = viewModel.LeftBuildings;
+            RightBuildings.ViewModel = viewModel.RightBuildings;
 
-            History.Initialize(gameViewModel.History);
-            Hand.Initialize(gameViewModel.Hand);
+            History.ViewModel = viewModel.History;
+            Hand.ViewModel = viewModel.Hand;
         }
     }
 }

@@ -68,6 +68,9 @@
     <Reference Include="Arcomage.WebApi.Client">
       <HintPath>Assets\Plugins\Arcomage.WebApi.Client.dll</HintPath>
     </Reference>
+    <Reference Include="AsyncBridge.Net35">
+      <HintPath>Assets\Plugins\AsyncBridge.Net35.dll</HintPath>
+    </Reference>
     <Reference Include="CsvHelper">
       <HintPath>Assets\Plugins\CsvHelper.dll</HintPath>
     </Reference>
@@ -91,10 +94,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\GameScene\Commands\DiscardCardCommand.cs" />
-    <Compile Include="Assets\GameScene\Commands\PlayCardCommand.cs" />
-    <Compile Include="Assets\GameScene\Commands\SingleDiscardCardCommandExecutor.cs" />
-    <Compile Include="Assets\GameScene\Commands\SinglePlayCardCommandExecutor.cs" />
+    <Compile Include="Assets\GameScene\Commands\SingleDiscardCardCommand.cs" />
+    <Compile Include="Assets\GameScene\Commands\SinglePlayCardCommand.cs" />
     <Compile Include="Assets\GameScene\Factories\CardFactory.cs" />
     <Compile Include="Assets\GameScene\Factories\HistoryCardFactory.cs" />
     <Compile Include="Assets\GameScene\Scripts\CardDragDropScript.cs" />
@@ -122,8 +123,13 @@
     <Compile Include="Assets\GameScene\Views\HistoryView.cs" />
     <Compile Include="Assets\GameScene\Views\ResourcesView.cs" />
     <Compile Include="Assets\MenuScene\Scripts\MenuSceneScript.cs" />
+    <Compile Include="Assets\NetworkScene\Commands\ConnectGameCommand.cs" />
+    <Compile Include="Assets\NetworkScene\Commands\DisconnectGameCommand.cs" />
+    <Compile Include="Assets\NetworkScene\Commands\GetVersionCommand.cs" />
     <Compile Include="Assets\NetworkScene\NetworkSceneInstaller.cs" />
     <Compile Include="Assets\NetworkScene\NetworkSceneScript.cs" />
+    <Compile Include="Assets\NetworkScene\ViewModels\ConnectViewModel.cs" />
+    <Compile Include="Assets\NetworkScene\ViewModels\PrepareViewModel.cs" />
     <Compile Include="Assets\NetworkScene\Views\ConnectPanelView.cs" />
     <Compile Include="Assets\NetworkScene\Views\PreparePanelView.cs" />
     <Compile Include="Assets\SettingsScene\Factories\DeckFactory.cs" />
@@ -138,16 +144,15 @@
     <Compile Include="Assets\Shared\Scripts\Binding.cs" />
     <Compile Include="Assets\Shared\Scripts\BindingExtensions.cs" />
     <Compile Include="Assets\Shared\Scripts\CollectionBinding.cs" />
-    <Compile Include="Assets\Shared\Scripts\CommandDispatcher.cs" />
+    <Compile Include="Assets\Shared\Scripts\Command.cs" />
     <Compile Include="Assets\Shared\Scripts\ConstBinding.cs" />
     <Compile Include="Assets\Shared\Scripts\DropdownView.cs" />
     <Compile Include="Assets\Shared\Scripts\FrameworkExtensions.cs" />
-    <Compile Include="Assets\Shared\Scripts\ICommandCanExecutor.cs" />
-    <Compile Include="Assets\Shared\Scripts\ICommandExecutor.cs" />
     <Compile Include="Assets\Shared\Scripts\LocalizationScript.cs" />
     <Compile Include="Assets\Shared\Scripts\ScaleScript.cs" />
-    <Compile Include="Assets\Shared\Scripts\SceneScript.cs" />
+    <Compile Include="Assets\Shared\Scripts\Scene.cs" />
     <Compile Include="Assets\Shared\Scripts\Settings.cs" />
+    <Compile Include="Assets\Shared\Scripts\TaskBinding.cs" />
     <Compile Include="Assets\Shared\Scripts\TaskYieldInstruction.cs" />
     <Compile Include="Assets\Shared\Scripts\TextOutlineScript.cs" />
     <Compile Include="Assets\Shared\Scripts\TextWrapScript.cs" />

@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Arcomage.Unity.GameScene.Commands;
 using Arcomage.Unity.GameScene.Views;
 using UnityEngine;
 
@@ -65,15 +64,13 @@ namespace Arcomage.Unity.GameScene.Scripts
             if (!Input.GetMouseButton(0) && draggingItem)
             {
                 draggingItem = globalDraggingItem = false;
-                var index = GetComponent<CardView>().Index;
+                var cardViewModel = GetComponent<CardView>().ViewModel;
 
-                var playCommand = new PlayCardCommand { Index = index };
-                if (transform.position.y - initialPosition.y >= +25f)
-                    GameSceneScript.Dispatcher.Execute(playCommand);
+                if (transform.position.y - initialPosition.y >= +25f && cardViewModel.IsPlay)
+                    cardViewModel.PlayCommand.Execute(cardViewModel);
 
-                var discardCommand = new DiscardCardCommand { Index = index };
-                if (transform.position.y - initialPosition.y <= -25f)
-                    GameSceneScript.Dispatcher.Execute(discardCommand);
+                if (transform.position.y - initialPosition.y <= -25f && cardViewModel.IsDiscard)
+                    cardViewModel.DiscardCommand.Execute(cardViewModel);
 
                 StartCoroutine(CardTranslate(gameObject, initialPosition));
             }

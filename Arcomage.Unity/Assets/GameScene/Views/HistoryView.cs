@@ -13,7 +13,7 @@ namespace Arcomage.Unity.GameScene.Views
     /// <summary>
     /// Представление компонента карт в истории хода
     /// </summary>
-    public class HistoryView : View
+    public class HistoryView : View<HistoryViewModel>
     {
         [Tooltip("Фабрика создания карт")]
         public HistoryCardFactory HistoryСardFactory;
@@ -46,13 +46,9 @@ namespace Arcomage.Unity.GameScene.Views
         /// </summary>
         private TaskCompletionSource<bool> pushedCardTaskSource = new TaskCompletionSource<bool>();
 
-        /// <summary>
-        /// Инициализация компонента
-        /// </summary>
-        /// <param name="historyViewModel">Модель представления истории хода</param>
-        public void Initialize(HistoryViewModel historyViewModel)
+        protected override void OnViewModel(HistoryViewModel viewModel)
         {
-            Bind(historyViewModel, h => h.Cards)
+            Bind(viewModel, h => h.Cards)
                 .OnAdded(OnAddedCard)
                 .OnCleared(OnClearedCard);
         }
@@ -93,10 +89,10 @@ namespace Arcomage.Unity.GameScene.Views
                 }
             }
             
-            if (pushedCardViewModel != null && pushedCardViewModel.Index == cardViewModel.Index)
+            if (pushedCardViewModel != null && pushedCardViewModel.Id == cardViewModel.Id)
             {
                 var cardTemplate = СardTemplates[index % СardTemplates.Length];
-                var cardObject = HistoryСardFactory.CreateCard(transform, cardViewModel, index);
+                var cardObject = HistoryСardFactory.CreateCard(transform, cardViewModel);
                 cardObject.transform.CopyFrom(cardTemplate.transform);
                 cardObject.transform.position = pushedCardObject.transform.position;
                 
@@ -108,7 +104,7 @@ namespace Arcomage.Unity.GameScene.Views
             else
             {
                 var cardTemplate = СardTemplates[index % СardTemplates.Length];
-                var cardObject = HistoryСardFactory.CreateCard(transform, cardViewModel, index);
+                var cardObject = HistoryСardFactory.CreateCard(transform, cardViewModel);
                 cardObject.transform.CopyFrom(cardTemplate.transform);
                 cardObject.transform.position = СardInitTemplate.transform.position;
 

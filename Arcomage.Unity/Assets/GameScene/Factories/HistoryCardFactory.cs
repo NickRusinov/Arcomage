@@ -21,15 +21,13 @@ namespace Arcomage.Unity.GameScene.Factories
         /// </summary>
         /// <param name="transform">Положение карты в истории хода</param>
         /// <param name="cardViewModel">Модель представления карты в истории хода</param>
-        /// <param name="index">Номер карты в истории хода</param>
         /// <returns>Игровой объект карты в истории хода</returns>
-        public GameObject CreateCard(Transform transform, HistoryCardViewModel cardViewModel, int index)
+        public GameObject CreateCard(Transform transform, HistoryCardViewModel cardViewModel)
         {
             var cardObject = (GameObject)Instantiate(Prefab, transform);
-            cardObject.GetComponent<HistoryCardView>().Index = index;
-            cardObject.name = "Card" + index;
+            cardObject.name = "Card" + cardViewModel.Index;
 
-            cardObject.GetComponent<HistoryCardView>().Initialize(cardViewModel);
+            cardObject.GetComponent<HistoryCardView>().ViewModel = cardViewModel;
 
             return cardObject;
         }

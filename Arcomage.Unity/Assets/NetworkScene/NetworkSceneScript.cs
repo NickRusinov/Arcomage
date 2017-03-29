@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Arcomage.Unity.NetworkScene.ViewModels;
 using Arcomage.Unity.NetworkScene.Views;
 using Arcomage.Unity.Shared.Scripts;
 using Arcomage.WebApi.Client;
-using Arcomage.WebApi.Client.Controllers;
-using Arcomage.WebApi.Client.Hubs;
 using UnityEngine;
 using Zenject;
 
@@ -17,7 +16,7 @@ namespace Arcomage.Unity.NetworkScene
     /// </summary>
     [RequireComponent(typeof(UnityHttpClientFactory))]
     [RequireComponent(typeof(UnityHubConnectionFactory))]
-    public class NetworkSceneScript : SceneScript
+    public class NetworkSceneScript : Scene
     {
         [Tooltip("Панель, информирующая о соединении с игровым веб-сервером")]
         public ConnectPanelView ConnectPanel;
@@ -42,11 +41,11 @@ namespace Arcomage.Unity.NetworkScene
 
         public void Start()
         {
-            var aboutControllerClient = container.Resolve<AboutControllerClient>();
-            var networkGameHubClient = container.Resolve<NetworkGameHubClient>();
+            var connectViewModel = container.Resolve<ConnectViewModel>();
+            var prepareViewModel = container.Resolve<PrepareViewModel>();
 
-            ConnectPanel.Initialize(aboutControllerClient);
-            PreparePanel.Initialize(networkGameHubClient);
+            ConnectPanel.ViewModel = connectViewModel;
+            PreparePanel.ViewModel = prepareViewModel;
         }
 
         public void Update()

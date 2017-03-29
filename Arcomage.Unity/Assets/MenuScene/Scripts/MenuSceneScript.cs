@@ -11,7 +11,7 @@ namespace Arcomage.Unity.MenuScene.Scripts
     /// <summary>
     /// Root script for menu scene
     /// </summary>
-    public class MenuSceneScript : SceneScript
+    public class MenuSceneScript : Shared.Scripts.Scene
     {
         public void Update()
         {

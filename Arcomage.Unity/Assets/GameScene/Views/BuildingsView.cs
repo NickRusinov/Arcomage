@@ -11,7 +11,7 @@ namespace Arcomage.Unity.GameScene.Views
     /// <summary>
     /// Представление компонента строений игрока
     /// </summary>
-    public class BuildingsView : View
+    public class BuildingsView : View<BuildingsViewModel>
     {
         [Tooltip("Текст для вывода высоты башни")]
         public TextMesh TowerText;
@@ -31,23 +31,19 @@ namespace Arcomage.Unity.GameScene.Views
         [Tooltip("Спрайт стены")]
         public SpriteRenderer WallImage;
 
-        /// <summary>
-        /// Инициализация компонента
-        /// </summary>
-        /// <param name="buildingsViewModel">Модель представления строений игрока</param>
-        public void Initialize(BuildingsViewModel buildingsViewModel)
+        protected override void OnViewModel(BuildingsViewModel viewModel)
         {
-            Bind(buildingsViewModel, b => b.Tower)
+            Bind(viewModel, b => b.Tower)
                 .OnChanged(t => TowerParticle.Play())
                 .OnChangedAndInit(t => TowerText.text = t.ToString())
-                .OnChangedAndInit(t => TowerImage.transform.SetLocalPosition(y: -330f + Math.Min(180f, 180f * t / buildingsViewModel.MaxTower)))
-                .OnChangedAndInit(t => TowerImage.material.SetFloat("_Length", 1f - (150f + Math.Min(180f, 180f * t / buildingsViewModel.MaxTower)) / TowerImage.sprite.texture.height));
+                .OnChangedAndInit(t => TowerImage.transform.SetLocalPosition(y: -330f + Math.Min(180f, 180f * t / viewModel.MaxTower)))
+                .OnChangedAndInit(t => TowerImage.material.SetFloat("_Length", 1f - (150f + Math.Min(180f, 180f * t / viewModel.MaxTower)) / TowerImage.sprite.texture.height));
 
-            Bind(buildingsViewModel, b => b.Wall)
+            Bind(viewModel, b => b.Wall)
                 .OnChanged(w => WallParticle.Play())
                 .OnChangedAndInit(w => WallText.text = w.ToString())
-                .OnChangedAndInit(w => WallImage.transform.SetLocalPosition(y: -460f + Math.Min(280f, 280f * w / buildingsViewModel.MaxWall)))
-                .OnChangedAndInit(w => WallImage.material.SetFloat("_Length", 1f - (20f + Math.Min(280f, 280f * w / buildingsViewModel.MaxWall)) / WallImage.sprite.texture.height));
+                .OnChangedAndInit(w => WallImage.transform.SetLocalPosition(y: -460f + Math.Min(280f, 280f * w / viewModel.MaxWall)))
+                .OnChangedAndInit(w => WallImage.material.SetFloat("_Length", 1f - (20f + Math.Min(280f, 280f * w / viewModel.MaxWall)) / WallImage.sprite.texture.height));
         }
     }
 }

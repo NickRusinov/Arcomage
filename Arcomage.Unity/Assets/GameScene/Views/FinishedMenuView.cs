@@ -14,7 +14,7 @@ namespace Arcomage.Unity.GameScene.Views
     /// <summary>
     /// Представление компонента меню завершения игры
     /// </summary>
-    public class FinishedMenuView : View
+    public class FinishedMenuView : View<FinishedMenuViewModel>
     {
         [Tooltip("Текст для вывода причины завершения игры")]
         public LocalizationScript CauseText;
@@ -22,16 +22,12 @@ namespace Arcomage.Unity.GameScene.Views
         [Tooltip("Текст для вывода имени игрока победителя")]
         public LocalizationScript WinnerText;
 
-        /// <summary>
-        /// Инициализация компонента
-        /// </summary>
-        /// <param name="finishedMenuViewModel">Модель представления результата игры</param>
-        public void Initialize(FinishedMenuViewModel finishedMenuViewModel)
+        protected override void OnViewModel(FinishedMenuViewModel viewModel)
         {
-            Bind(finishedMenuViewModel, f => f.Identifier)
+            Bind(viewModel, f => f.Identifier)
                 .OnChangedAndInit(i => CauseText.identifier = "GameFinished" + i + "Text");
 
-            Bind(finishedMenuViewModel, f => f.Name)
+            Bind(viewModel, f => f.Name)
                 .OnChangedAndInit(p => WinnerText.identifier = "GameFinishedWinnerText")
                 .OnChangedAndInit(p => WinnerText.arguments = new[] { p });
         }

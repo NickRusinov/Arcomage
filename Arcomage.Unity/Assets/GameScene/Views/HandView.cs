@@ -14,7 +14,7 @@ namespace Arcomage.Unity.GameScene.Views
     /// <summary>
     /// Представление компонента карт на руках игрока
     /// </summary>
-    public class HandView : View
+    public class HandView : View<HandViewModel>
     {
         [Tooltip("Фабрика создания карт")]
         public CardFactory CardFactory;
@@ -28,13 +28,9 @@ namespace Arcomage.Unity.GameScene.Views
         [Tooltip("Коллекция объектов, определяющих положение, вращение и масштаб карт")]
         public GameObject[] CardTemplates;
 
-        /// <summary>
-        /// Инициализация компонента
-        /// </summary>
-        /// <param name="hand">Модель представления карт в руке игрока</param>
-        public void Initialize(HandViewModel handViewModel)
+        protected override void OnViewModel(HandViewModel viewModel)
         {
-            Bind(handViewModel, h => h.Cards)
+            Bind(viewModel, h => h.Cards)
                 .OnInit(OnInitializeCard)
                 .OnReplaced(OnReplacedCard);
         }
@@ -47,7 +43,7 @@ namespace Arcomage.Unity.GameScene.Views
         private void OnInitializeCard(CardViewModel cardViewModel, int index)
         {
             var cardTemplate = CardTemplates[index % CardTemplates.Length];
-            var cardObject = CardFactory.CreateCard(transform, cardViewModel, index);
+            var cardObject = CardFactory.CreateCard(transform, cardViewModel);
             cardObject.transform.CopyFrom(cardTemplate.transform);
         }
 
@@ -63,7 +59,7 @@ namespace Arcomage.Unity.GameScene.Views
             oldCardObject.SetActive(false);
 
             var cardTemplate = CardTemplates[index % CardTemplates.Length];
-            var cardObject = CardFactory.CreateCard(transform, newCardViewModel, index);
+            var cardObject = CardFactory.CreateCard(transform, newCardViewModel);
             cardObject.transform.CopyFrom(cardTemplate.transform);
             cardObject.transform.position = CardInitTemplate.transform.position;
             cardObject.SetActive(false);

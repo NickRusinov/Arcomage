@@ -22,15 +22,13 @@ namespace Arcomage.Unity.GameScene.Factories
         /// </summary>
         /// <param name="transform">Положение карты</param>
         /// <param name="cardViewModel">Модель представления игровой карты</param>
-        /// <param name="index">Номер карты в руке игрока</param>
         /// <returns>Игровой объект карты</returns>
-        public GameObject CreateCard(Transform transform, CardViewModel cardViewModel, int index)
+        public GameObject CreateCard(Transform transform, CardViewModel cardViewModel)
         {
             var cardObject = (GameObject)Instantiate(Prefab, transform);
-            cardObject.GetComponent<CardView>().Index = index;
-            cardObject.name = "Card" + index;
+            cardObject.name = "Card" + cardViewModel.Index;
 
-            cardObject.GetComponent<CardView>().Initialize(cardViewModel);
+            cardObject.GetComponent<CardView>().ViewModel = cardViewModel;
             cardObject.GetComponent<CardDragDropScript>();
 
             return cardObject;

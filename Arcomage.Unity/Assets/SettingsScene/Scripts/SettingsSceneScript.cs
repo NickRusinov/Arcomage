@@ -12,7 +12,7 @@ namespace Arcomage.Unity.SettingsScene.Scripts
     /// <summary>
     /// Root script for settings scene
     /// </summary>
-    public class SettingsSceneScript : SceneScript
+    public class SettingsSceneScript : Shared.Scripts.Scene
     {
         [Tooltip("Компонент настроек игры")]
         public SettingsView Settings;

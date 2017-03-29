@@ -7,13 +7,13 @@ using UnityEngine;
 
 namespace Arcomage.Unity.Shared.Scripts
 {
-    public partial class SceneScript : MonoBehaviour
+    public partial class Scene : MonoBehaviour
     {
         static partial void OnException(string message, string stackTrace);
 
         static partial void OnWarning(string message, string stackTrace);
 
-        static partial void OnLog(string message, string stackTrace); 
+        static partial void OnLog(string message, string stackTrace);
 
         public virtual void Awake()
         {

@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Arcomage.Unity.Shared.Scripts
@@ -15,7 +17,7 @@ namespace Arcomage.Unity.Shared.Scripts
         /// Коллекция привязок, зарегистрированных на этом представлении компонента
         /// </summary>
         private readonly List<Binding> bindingCollection = new List<Binding>();
-        
+
         /// <summary>
         /// Создает привзяку к заданному значению. Проверка изменения значения каждый цикл не производится, код 
         /// привязки выполняется только в первом цикле
@@ -91,5 +93,34 @@ namespace Arcomage.Unity.Shared.Scripts
         {
             bindingCollection.ForEach(b => b.Update());
         }
+
+        protected virtual TaskBinding<T> Bind<T>(Task<T> task)
+        {
+            var taskBinding = new TaskBinding<T>(task);
+            StartCoroutine(taskBinding.StartCoroutine());
+
+            return taskBinding;
+        }
+
+        protected virtual TaskBinding<object> Bind(Task task)
+        {
+            var taskBinding = new TaskBinding<object>(task.ContinueWith(t => default(object), TaskContinuationOptions.ExecuteSynchronously));
+            StartCoroutine(taskBinding.StartCoroutine());
+
+            return taskBinding;
+        }
+    }
+
+    public class View<TViewModel> : View
+    {
+        private TViewModel viewModel;
+
+        public TViewModel ViewModel
+        {
+            get { return viewModel; }
+            set { OnViewModel(viewModel = value); }
+        }
+
+        protected virtual void OnViewModel(TViewModel viewModel) { }
     }
 }
