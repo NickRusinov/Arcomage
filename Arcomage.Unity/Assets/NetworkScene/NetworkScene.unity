@@ -1615,6 +1615,7 @@ GameObject:
   - 114: {fileID: 1462564881}
   - 114: {fileID: 1462564883}
   - 114: {fileID: 1462564884}
+  - 114: {fileID: 1462564885}
   m_Layer: 0
   m_Name: NetworkScene
   m_TagString: Untagged
@@ -1672,6 +1673,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BaseUrl: http://192.168.137.1:55994/
+--- !u!114 &1462564885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1462564880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f43fc8ade0289bf4c85116ba1c9067a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1724903815
 GameObject:
   m_ObjectHideFlags: 0

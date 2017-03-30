@@ -156,6 +156,7 @@
     <Compile Include="Assets\Shared\Scripts\TaskYieldInstruction.cs" />
     <Compile Include="Assets\Shared\Scripts\TextOutlineScript.cs" />
     <Compile Include="Assets\Shared\Scripts\TextWrapScript.cs" />
+    <Compile Include="Assets\Shared\Scripts\UnityDispatcher.cs" />
     <Compile Include="Assets\Shared\Scripts\UnityExtensions.cs" />
     <Compile Include="Assets\Shared\Scripts\UnityHttpClient.cs" />
     <Compile Include="Assets\Shared\Scripts\UnityHttpClientFactory.cs" />

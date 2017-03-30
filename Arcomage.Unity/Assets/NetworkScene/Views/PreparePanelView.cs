@@ -17,7 +17,7 @@ namespace Arcomage.Unity.NetworkScene.Views
 
         public void OnDisable()
         {
-            Bind(ViewModel.DisconnectCommand.Execute(ViewModel));
+            ViewModel.DisconnectCommand.Execute(ViewModel);
         }
     }
 }

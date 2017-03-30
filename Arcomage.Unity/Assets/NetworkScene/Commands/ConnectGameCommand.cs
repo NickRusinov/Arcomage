@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Arcomage.Unity.Shared.Scripts;
 using Arcomage.WebApi.Client.Hubs;
+using UnityEngine.SceneManagement;
 
 namespace Arcomage.Unity.NetworkScene.Commands
 {
@@ -19,8 +20,15 @@ namespace Arcomage.Unity.NetworkScene.Commands
         
         public override Task Execute(object state)
         {
+            networkGameHubClient.OnStartGame += UnityDispatcher.Dispatch<Guid>(OnStartGame);
+
             return networkGameHubClient.Start()
                 .ContinueWith(t => networkGameHubClient.Connect());
+        }
+
+        private void OnStartGame(Guid gameId)
+        {
+            SceneManager.LoadSceneAsync("GameScene");
         }
     }
 }
