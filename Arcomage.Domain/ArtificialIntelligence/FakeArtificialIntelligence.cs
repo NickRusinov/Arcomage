@@ -30,17 +30,14 @@ namespace Arcomage.Domain.ArtificialIntelligence
         }
         
         /// <inheritdoc/>
-        public Task<PlayResult> Execute(Game game, Player player)
+        public async Task<PlayResult> Execute(Game game, Player player)
         {
-            return FrameworkExtensions.Delay(TimeSpan.FromSeconds(1))
-                .ContinueWith(t =>
-                {
-                    if (playCardCriteria.CanPlayCard(game, player, 0))
-                        return new PlayResult(0, true);
+            await FrameworkExtensions.Delay(TimeSpan.FromSeconds(1));
 
-                    return new PlayResult(0, false);
-                }, 
-                TaskContinuationOptions.ExecuteSynchronously);
+            if (playCardCriteria.CanPlayCard(game, player, 0))
+                return new PlayResult(0, true);
+
+            return new PlayResult(0, false);
         }
     }
 }

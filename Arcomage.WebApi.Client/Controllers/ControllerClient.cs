@@ -42,10 +42,11 @@ namespace Arcomage.WebApi.Client.Controllers
         /// <typeparam name="T">Тип возвращаемого значения метода</typeparam>
         /// <param name="url">Относительный путь запроса</param>
         /// <returns>Задача, представляющая вызов метода</returns>
-        protected virtual Task<T> Get<T>(string url)
+        protected virtual async Task<T> Get<T>(string url)
         {
-            return HttpClient.Get(url)
-                .ContinueWith(t => JsonConvert.DeserializeObject<T>(t.Result));
+            var response = await HttpClient.Get(url);
+
+            return JsonConvert.DeserializeObject<T>(response);
         }
 
         /// <summary>
@@ -55,10 +56,11 @@ namespace Arcomage.WebApi.Client.Controllers
         /// <param name="url">Относительный путь запроса</param>
         /// <param name="data">Данные, отправляемые в запросе</param>
         /// <returns>Задача, представляющая вызов метода</returns>
-        protected virtual Task<T> Post<T>(string url, IDictionary<string, string> data)
+        protected virtual async Task<T> Post<T>(string url, IDictionary<string, string> data)
         {
-            return HttpClient.Post(url, data)
-                .ContinueWith(t => JsonConvert.DeserializeObject<T>(t.Result));
+            var response = await HttpClient.Post(url, data);
+
+            return JsonConvert.DeserializeObject<T>(response);
         }
     }
 }

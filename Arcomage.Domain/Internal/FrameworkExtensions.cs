@@ -14,10 +14,7 @@ namespace Arcomage.Domain.Internal
         public static Task CompletedTask()
         {
 #if NET35
-            var tcs = new TaskCompletionSource<object>();
-            tcs.SetResult(null);
-
-            return tcs.Task;
+            return TaskEx.FromResult<object>(null);
 #else
             return Task.CompletedTask;
 #endif
@@ -26,10 +23,7 @@ namespace Arcomage.Domain.Internal
         public static Task<T> FromResult<T>(T result)
         {
 #if NET35
-            var tcs = new TaskCompletionSource<T>();
-            tcs.SetResult(result);
-
-            return tcs.Task;
+            return TaskEx.FromResult(result);
 #else
             return Task.FromResult(result);
 #endif
@@ -38,13 +32,7 @@ namespace Arcomage.Domain.Internal
         public static Task Delay(TimeSpan period, CancellationToken token = default(CancellationToken))
         {
 #if NET35
-            var tcs = new TaskCompletionSource<object>();
-            token.Register(() => tcs.TrySetCanceled());
-            
-            var timer = new Timer(s => tcs.TrySetResult(s), null, period, TimeSpan.FromMilliseconds(-1));
-
-            return tcs.Task.ContinueWith(t => timer.Dispose(), 
-                TaskContinuationOptions.ExecuteSynchronously);
+            return TaskEx.Delay(period, token);
 #else
             return Task.Delay(period, token);
 #endif

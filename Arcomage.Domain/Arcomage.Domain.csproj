@@ -8,6 +8,7 @@
       <HintPath>..\Tools\CodeContracts\PublicAssemblies\v3.5\Microsoft.Contracts.dll</HintPath>
     </Reference>
     <PackageReference Include="TaskParallelLibrary" Version="1.0.2856" />
+    <PackageReference Include="AsyncBridge.Net35" Version="0.2.0" />
   </ItemGroup>
   <Target Name="Unity" AfterTargets="Build" Condition=" '$(TargetFramework)' == 'net35' ">
     <Copy SourceFiles="$(TargetPath)" DestinationFiles="$(SolutionDir)Arcomage.Unity\Assets\Plugins\$(TargetFileName)" />

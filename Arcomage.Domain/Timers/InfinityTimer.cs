@@ -17,7 +17,7 @@ namespace Arcomage.Domain.Timers
         /// <inheritdoc/>
         public override Task Start(CancellationToken token)
         {
-            return FrameworkExtensions.Delay(TimeSpan.FromMilliseconds(-1));
+            return FrameworkExtensions.Delay(TimeSpan.FromMilliseconds(-1), token);
         }
     }
 }
