@@ -37,8 +37,10 @@ namespace Arcomage.Unity.GameScene.Scripts
 
             Pause = false;
             container = new DiContainer();
-            container.Bind<Settings>().ToSelf().AsSingle(0);
-            GameInstaller.Install(container);
+            container.Bind<SingleSettings>().FromMethod(c => Settings.Instance.Single);
+            container.Bind<NetworkSettings>().FromMethod(c => Settings.Instance.Network);
+            SingleGameSceneInstaller.Install(container);
+            NetworkGameSceneInstaller.Install(container);
         }
 
         public void Start()

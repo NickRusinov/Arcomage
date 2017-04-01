@@ -39,10 +39,10 @@ namespace Arcomage.Unity.GameScene.Scripts
         public static string GetName(this PlayerKind playerKind)
         {
             if (playerKind == PlayerKind.First)
-                return Settings.Instance.FirstPlayer;
+                return Settings.Instance.Single.FirstPlayer;
 
             if (playerKind == PlayerKind.Second)
-                return Settings.Instance.SecondPlayer;
+                return Settings.Instance.Single.SecondPlayer;
 
             return "";
         }

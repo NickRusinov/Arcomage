@@ -23,7 +23,7 @@ namespace Arcomage.Unity.GameScene.Scripts
     /// <summary>
     /// Модуль, устанавливающий зависимости игровой логики
     /// </summary>
-    public class GameInstaller : Installer<GameInstaller>
+    public class SingleGameSceneInstaller : Installer<SingleGameSceneInstaller>
     {
         /// <summary>
         /// Настройка привязок контейнера внедрения зависимостей
@@ -31,10 +31,13 @@ namespace Arcomage.Unity.GameScene.Scripts
         public override void InstallBindings()
         {
             Container.Bind<ClassicRuleInfo>()
-                .FromMethod(c => (ClassicRuleInfo)Settings.Instance.Rule);
+                .FromMethod(c => (ClassicRuleInfo)c.Container.Resolve<RuleInfo>());
+
+            Container.Bind<RuleInfo>()
+                .FromMethod(c => c.Container.Resolve<SingleSettings>().Rule);
 
             Container.Bind<DeckInfo>()
-                .FromMethod(c => Settings.Instance.Deck);
+                .FromMethod(c => c.Container.Resolve<SingleSettings>().Deck);
 
             Container.Bind<IArtificialIntelligence>()
                 .To<ArtificialIntelligence>()
@@ -114,26 +117,26 @@ namespace Arcomage.Unity.GameScene.Scripts
                 .AsSingle(1);
 
             Container.Bind<Deck>()
-                .FromMethod(c => c.Container.Resolve<Deck>(Settings.Instance.Deck.Identifier))
+                .FromMethod(c => c.Container.Resolve<Deck>(c.Container.Resolve<DeckInfo>().Identifier))
                 .AsSingle(0);
 
             Container.Bind<Deck>()
                 .WithId("Classic")
                 .FromMethod(c => new ClassicDeck(
-                    (ClassicDeckInfo)Settings.Instance.Deck, 
+                    (ClassicDeckInfo)c.Container.Resolve<DeckInfo>(), 
                     c.Container.ResolveAll<Card>()))
                 .AsSingle(1);
 
             Container.Bind<Deck>()
                 .WithId("Infinity")
                 .FromMethod(c => new InfinityDeck(
-                    (InfinityDeckInfo)Settings.Instance.Deck, 
+                    (InfinityDeckInfo)c.Container.Resolve<DeckInfo>(), 
                     c.Container.ResolveAll<Card>()))
                 .AsSingle(2);
 
             Container.Bind<Rule>()
                 .FromMethod(c => new ClassicRule(
-                    (ClassicRuleInfo)Settings.Instance.Rule))
+                    (ClassicRuleInfo)c.Container.Resolve<RuleInfo>()))
                 .AsSingle(0);
 
             Container.Bind<Timer>()

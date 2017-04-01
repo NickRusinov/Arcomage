@@ -2,22 +2,44 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Arcomage.Domain.Decks;
-using Arcomage.Domain.Rules;
-using SmartLocalization;
 
 namespace Arcomage.Unity.Shared.Scripts
 {
     public class Settings
     {
-        public static Settings Instance = new Settings();
+        public static readonly Settings Instance = new Settings();
 
-        public string FirstPlayer = LanguageManager.Instance.GetTextValue("SettingsFirstPlayerDefaultName");
+        public Settings()
+        {
+            IsSingle = true;
+            IsNetwork = false;
 
-        public string SecondPlayer = LanguageManager.Instance.GetTextValue("SettingsSecondPlayerDefaultName");
+            Single = new SingleSettings();
+            Network = new NetworkSettings();
+        }
 
-        public RuleInfo Rule = new ClassicRuleInfo("EmpireCapital", 2, 5, 2, 5, 2, 5, 5, 20, 50, 150);
+        public bool IsSingle { get; private set; }
 
-        public DeckInfo Deck = new ClassicDeckInfo("Classic", new Random());
+        public bool IsNetwork { get; private set; }
+
+        public SingleSettings Single { get; private set; }
+
+        public NetworkSettings Network { get; private set; }
+
+        public void UseSingle(SingleSettings settings)
+        {
+            IsSingle = true;
+            IsNetwork = false;
+            
+            Single = settings;
+        }
+
+        public void UseNetwork(NetworkSettings settings)
+        {
+            IsSingle = false;
+            IsNetwork = true;
+
+            Network = settings;
+        }
     }
 }

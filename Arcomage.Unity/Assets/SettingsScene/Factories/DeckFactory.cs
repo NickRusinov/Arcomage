@@ -29,7 +29,7 @@ namespace Arcomage.Unity.SettingsScene.Factories
             deckView.Initialize(deckInfo);
 
             var deckButton = deckObject.GetComponent<Button>();
-            deckButton.onClick.AddListener(() => Settings.Instance.Deck = deckInfo);
+            deckButton.onClick.AddListener(() => Settings.Instance.Single.Deck = deckInfo);
             deckButton.onClick.AddListener(() => Animator.Play("HideDeckAnimation"));
 
             return deckObject;

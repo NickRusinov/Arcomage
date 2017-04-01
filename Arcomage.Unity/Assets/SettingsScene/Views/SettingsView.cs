@@ -33,23 +33,23 @@ namespace Arcomage.Unity.SettingsScene.Views
             DeckListView.Initialize();
             RuleListView.Initialize();
 
-            Bind(Settings.Instance, s => s.FirstPlayer)
+            Bind(Settings.Instance.Single, s => s.FirstPlayer)
                 .OnChangedAndInit(s => FirstPlayerInput.text = s);
 
-            Bind(Settings.Instance, s => s.SecondPlayer)
+            Bind(Settings.Instance.Single, s => s.SecondPlayer)
                 .OnChangedAndInit(s => SecondPlayerInput.text = s);
 
-            Bind(Settings.Instance, s => s.Deck)
+            Bind(Settings.Instance.Single, s => s.Deck)
                 .OnChangedAndInit(d => DeckText.identifier = "Deck" + d.Identifier + "Name");
 
-            Bind(Settings.Instance, s => s.Rule)
+            Bind(Settings.Instance.Single, s => s.Rule)
                 .OnChangedAndInit(r => RuleText.identifier = "Rule" + r.Identifier + "Name");
 
             FirstPlayerInput.onEndEdit
-                .AddListener(s => Settings.Instance.FirstPlayer = s);
+                .AddListener(s => Settings.Instance.Single.FirstPlayer = s);
 
             SecondPlayerInput.onEndEdit
-                .AddListener(s => Settings.Instance.SecondPlayer = s);
+                .AddListener(s => Settings.Instance.Single.SecondPlayer = s);
         }
     }
 }

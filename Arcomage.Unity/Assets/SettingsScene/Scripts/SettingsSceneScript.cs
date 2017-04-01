@@ -17,6 +17,13 @@ namespace Arcomage.Unity.SettingsScene.Scripts
         [Tooltip("Компонент настроек игры")]
         public SettingsView Settings;
 
+        public override void Awake()
+        {
+            base.Awake();
+
+            Shared.Scripts.Settings.Instance.UseSingle(new SingleSettings());
+        }
+
         public void Start()
         {
             Settings.Initialize();

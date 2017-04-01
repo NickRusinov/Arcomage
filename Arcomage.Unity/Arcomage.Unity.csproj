@@ -94,6 +94,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\GameScene\Commands\NetworkDiscardCardCommand.cs" />
+    <Compile Include="Assets\GameScene\Commands\NetworkPlayCardCommand.cs" />
     <Compile Include="Assets\GameScene\Commands\SingleDiscardCardCommand.cs" />
     <Compile Include="Assets\GameScene\Commands\SinglePlayCardCommand.cs" />
     <Compile Include="Assets\GameScene\Factories\CardFactory.cs" />
@@ -101,7 +103,8 @@
     <Compile Include="Assets\GameScene\Scripts\CardDragDropScript.cs" />
     <Compile Include="Assets\GameScene\Scripts\CardTranslateScript.cs" />
     <Compile Include="Assets\GameScene\Scripts\GameExtensions.cs" />
-    <Compile Include="Assets\GameScene\Scripts\GameInstaller.cs" />
+    <Compile Include="Assets\GameScene\Scripts\NetworkGameSceneInstaller.cs" />
+    <Compile Include="Assets\GameScene\Scripts\SingleGameSceneInstaller.cs" />
     <Compile Include="Assets\GameScene\Scripts\GameSceneScript.cs" />
     <Compile Include="Assets\GameScene\Scripts\NetworkViewModelUpdater.cs" />
     <Compile Include="Assets\GameScene\Scripts\SingleGameExecutor.cs" />
@@ -149,9 +152,11 @@
     <Compile Include="Assets\Shared\Scripts\DropdownView.cs" />
     <Compile Include="Assets\Shared\Scripts\FrameworkExtensions.cs" />
     <Compile Include="Assets\Shared\Scripts\LocalizationScript.cs" />
+    <Compile Include="Assets\Shared\Scripts\NetworkSettings.cs" />
     <Compile Include="Assets\Shared\Scripts\ScaleScript.cs" />
     <Compile Include="Assets\Shared\Scripts\Scene.cs" />
     <Compile Include="Assets\Shared\Scripts\Settings.cs" />
+    <Compile Include="Assets\Shared\Scripts\SingleSettings.cs" />
     <Compile Include="Assets\Shared\Scripts\TaskBinding.cs" />
     <Compile Include="Assets\Shared\Scripts\TaskYieldInstruction.cs" />
     <Compile Include="Assets\Shared\Scripts\TextOutlineScript.cs" />

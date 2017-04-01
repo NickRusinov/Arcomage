@@ -29,7 +29,7 @@ namespace Arcomage.Unity.SettingsScene.Factories
             ruleView.Initialize(ruleInfo);
 
             var ruleButton = ruleObject.GetComponent<Button>();
-            ruleButton.onClick.AddListener(() => Settings.Instance.Rule = ruleInfo);
+            ruleButton.onClick.AddListener(() => Settings.Instance.Single.Rule = ruleInfo);
             ruleButton.onClick.AddListener(() => Animator.Play("HideRuleAnimation"));
 
             return ruleObject;
