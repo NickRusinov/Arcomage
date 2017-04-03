@@ -145,6 +145,10 @@
       <Project>{c8270b38-0b3c-4d16-8f05-d96f26e4d995}</Project>
       <Name>Arcomage.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Arcomage.Network\Arcomage.Network.csproj">
+      <Project>{8ae2ce86-baa5-4790-95cc-a23ff0837cce}</Project>
+      <Name>Arcomage.Network</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

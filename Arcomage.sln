@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Arcomage.WebApi.Client", "A
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Arcomage.Domain.Tests", "Arcomage.Domain.Tests\Arcomage.Domain.Tests.csproj", "{E1A70778-71EF-4F16-A390-A6FB3EF77553}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Arcomage.Network", "Arcomage.Network\Arcomage.Network.csproj", "{8AE2CE86-BAA5-4790-95CC-A23FF0837CCE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{E1A70778-71EF-4F16-A390-A6FB3EF77553}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E1A70778-71EF-4F16-A390-A6FB3EF77553}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E1A70778-71EF-4F16-A390-A6FB3EF77553}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8AE2CE86-BAA5-4790-95CC-A23FF0837CCE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8AE2CE86-BAA5-4790-95CC-A23FF0837CCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8AE2CE86-BAA5-4790-95CC-A23FF0837CCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8AE2CE86-BAA5-4790-95CC-A23FF0837CCE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
