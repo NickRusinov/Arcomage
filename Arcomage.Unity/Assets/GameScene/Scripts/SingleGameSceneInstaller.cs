@@ -4,15 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using Arcomage.Domain;
 using Arcomage.Domain.Actions;
-using Arcomage.Domain.ArtificialIntelligence;
-using Arcomage.Domain.Cards;
 using Arcomage.Domain.Decks;
-using Arcomage.Domain.Hands;
-using Arcomage.Domain.Histories;
 using Arcomage.Domain.Players;
 using Arcomage.Domain.Rules;
 using Arcomage.Domain.Services;
-using Arcomage.Domain.Timers;
 using Arcomage.Unity.GameScene.Commands;
 using Arcomage.Unity.GameScene.ViewModels;
 using Arcomage.Unity.Shared.Scripts;
@@ -31,116 +26,47 @@ namespace Arcomage.Unity.GameScene.Scripts
         public override void InstallBindings()
         {
             Container.Bind<ClassicRuleInfo>()
-                .FromMethod(c => (ClassicRuleInfo)c.Container.Resolve<RuleInfo>());
+                .FromMethod(c => (ClassicRuleInfo)Settings.Instance.Single.Rule);
 
-            Container.Bind<RuleInfo>()
-                .FromMethod(c => c.Container.Resolve<SingleSettings>().Rule);
-
-            Container.Bind<DeckInfo>()
-                .FromMethod(c => c.Container.Resolve<SingleSettings>().Deck);
-
-            Container.Bind<IArtificialIntelligence>()
-                .To<ArtificialIntelligence>()
+            Container.Bind<GameBuilder>()
+                .FromMethod(c => GameBuilderExtensions.GetDefault()
+                    .RegisterFirstHumanPlayer(null)
+                    .RegisterSecondComputerPlayer(null)
+                    .RegisterPlayerSet(null, () => new Random().Next(100) < 50 ? PlayerKind.First : PlayerKind.Second)
+                    .RegisterClassicRule(null, () => (ClassicRuleInfo)Settings.Instance.Single.Rule)
+                    .RegisterClassicDeck("ClassicDeck", () => (ClassicDeckInfo)Settings.Instance.Single.Deck)
+                    .RegisterInfinityDeck("InfinityDeck", () => (InfinityDeckInfo)Settings.Instance.Single.Deck)
+                    .With<Deck>(() => Settings.Instance.Single.Deck.Identifier + "Deck"))
                 .AsSingle(0);
 
-            Container.Bind<Card>()
-                .To(b => b.AllNonAbstractClasses()
-                    .FromAssemblyContaining<Card>())
-                .AsSingle(0);
-
-            Container.Bind<IPlayCardAction>()
-                .FromMethod(c => CreatePlayCardAction(c.Container))
-                .AsSingle(0);
-
-            Container.Bind<IPlayAction>()
-                .FromMethod(c => CreatePlayAction(c.Container))
-                .AsSingle(0);
-
-            Container.Bind<IPlayCardCriteria>()
-                .To<PlayCardCriteria>()
-                .AsSingle(0);
-
-            Container.Bind<IDiscardCardCriteria>()
-                .To<DiscardCardCriteria>()
+            Container.Bind<GameBuilderContext>()
+                .FromMethod(c => c.Container.Resolve<GameBuilder>().CreateContext())
                 .AsSingle(0);
 
             Container.Bind<Game>()
-                .ToSelf()
+                .FromMethod(c => c.Container.Resolve<GameBuilderContext>().Resolve<Game>())
                 .AsSingle(0);
 
-            Container.Bind<PlayerSet>()
-                .FromMethod(c => new PlayerSet(
-                    c.Container.Resolve<PlayerKind>(),
-                    c.Container.Resolve<Player>("FirstPlayer"),
-                    c.Container.Resolve<Player>("SecondPlayer")))
+            Container.Bind<IPlayAction>()
+                .FromMethod(c => c.Container.Resolve<GameBuilderContext>().Resolve<IPlayAction>())
                 .AsSingle(0);
 
-            Container.Bind<PlayerKind>()
-                .FromMethod(c => new Random().Next(100) < 50 ? PlayerKind.First : PlayerKind.Second)
+            Container.Bind<IPlayCardCriteria>()
+                .FromMethod(c => c.Container.Resolve<GameBuilderContext>().Resolve<IPlayCardCriteria>())
                 .AsSingle(0);
 
-            Container.Bind<Player>()
-                .WithId("FirstPlayer")
-                .FromMethod(c => new HumanPlayer(
-                    c.Container.Resolve<Rule>().CreateBuildings(),
-                    c.Container.Resolve<Rule>().CreateResources(),
-                    c.Container.Resolve<Hand>("FirstPlayer")))
+            Container.Bind<IDiscardCardCriteria>()
+                .FromMethod(c => c.Container.Resolve<GameBuilderContext>().Resolve<IDiscardCardCriteria>())
                 .AsSingle(0);
 
-            Container.Bind<Player>()
-                .WithId("SecondPlayer")
-                .FromMethod(c => new ComputerPlayer(
-                    c.Container.Resolve<IArtificialIntelligence>(),
-                    c.Container.Resolve<Rule>().CreateBuildings(),
-                    c.Container.Resolve<Rule>().CreateResources(),
-                    c.Container.Resolve<Hand>("SecondPlayer")))
-                .AsSingle(1);
-
-            Container.Bind<HumanPlayer>()
-                .FromMethod(c => (HumanPlayer)c.Container.Resolve<Player>("FirstPlayer"))
+            Container.Bind<SinglePlayCardCommand>()
+                .FromMethod(c => new SinglePlayCardCommand(
+                    (HumanPlayer)c.Container.Resolve<Game>().Players.FirstPlayer))
                 .AsSingle(0);
 
-            Container.Bind<History>()
-                .FromMethod(c => new History(Enumerable.Empty<HistoryCard>().ToList()))
-                .AsSingle(0);
-
-            Container.Bind<Hand>()
-                .WithId("FirstPlayer")
-                .FromMethod(c => new Hand(
-                    Enumerable.Repeat(c.Container.Resolve<Deck>(), 6).Select(d => d.PopCard(null)).ToList()))
-                .AsSingle(0);
-
-            Container.Bind<Hand>()
-                .WithId("SecondPlayer")
-                .FromMethod(c => new Hand(
-                    Enumerable.Repeat(c.Container.Resolve<Deck>(), 6).Select(d => d.PopCard(null)).ToList()))
-                .AsSingle(1);
-
-            Container.Bind<Deck>()
-                .FromMethod(c => c.Container.Resolve<Deck>(c.Container.Resolve<DeckInfo>().Identifier))
-                .AsSingle(0);
-
-            Container.Bind<Deck>()
-                .WithId("Classic")
-                .FromMethod(c => new ClassicDeck(
-                    (ClassicDeckInfo)c.Container.Resolve<DeckInfo>(), 
-                    c.Container.ResolveAll<Card>()))
-                .AsSingle(1);
-
-            Container.Bind<Deck>()
-                .WithId("Infinity")
-                .FromMethod(c => new InfinityDeck(
-                    (InfinityDeckInfo)c.Container.Resolve<DeckInfo>(), 
-                    c.Container.ResolveAll<Card>()))
-                .AsSingle(2);
-
-            Container.Bind<Rule>()
-                .FromMethod(c => new ClassicRule(
-                    (ClassicRuleInfo)c.Container.Resolve<RuleInfo>()))
-                .AsSingle(0);
-
-            Container.Bind<Timer>()
-                .FromMethod(c => new InfinityTimer())
+            Container.Bind<SingleDiscardCardCommand>()
+                .FromMethod(c => new SingleDiscardCardCommand(
+                    (HumanPlayer)c.Container.Resolve<Game>().Players.FirstPlayer))
                 .AsSingle(0);
 
             Container.Bind<SingleGameExecutor>()
@@ -151,54 +77,9 @@ namespace Arcomage.Unity.GameScene.Scripts
                 .ToSelf()
                 .AsSingle(0);
 
-            Container.Bind<SinglePlayCardCommand>()
-                .ToSelf()
-                .AsSingle(0);
-
-            Container.Bind<SingleDiscardCardCommand>()
-                .ToSelf()
-                .AsSingle(0);
-
             Container.Bind<GameViewModel>()
                 .ToSelf()
                 .AsSingle(0);
-        }
-
-        private IPlayAction CreatePlayAction(DiContainer container)
-        {
-            var terminatePlayCardAction = new TerminatePlayCardAction();
-            var replaceCardAction = new ReplaceCardAction(terminatePlayCardAction);
-            var addHistoryAction = new AddHistoryAction(replaceCardAction);
-            var activateCardAction = new ActivateCardAction(addHistoryAction);
-
-            var terminatePlayAction = new TerminatePlayAction();
-            var finishAfterPlayPlayerAction = new FinishGameAction(terminatePlayAction);
-            var playPlayerAction = new PlayPlayerAction(finishAfterPlayPlayerAction, activateCardAction);
-            var finishBeforePlayPlayerAction = new FinishGameAction(playPlayerAction);
-
-            var increaseResourcesAction = new IncreaseResourcesAction(finishBeforePlayPlayerAction);
-            var clearHistoryAction = new ClearHistoryAction(increaseResourcesAction);
-            var replacePlayerAction = new ReplacePlayerAction(clearHistoryAction, finishBeforePlayPlayerAction);
-            var playAction = new FinishGameAction(replacePlayerAction);
-
-            return playAction;
-        }
-
-        private IPlayCardAction CreatePlayCardAction(DiContainer container)
-        {
-            var terminatePlayAction = new TerminatePlayAction();
-            var finishGameAction = new FinishGameAction(terminatePlayAction);
-            var increaseResourcesAction = new IncreaseResourcesAction(finishGameAction);
-            var clearHistoryAction = new ClearHistoryAction(increaseResourcesAction);
-            var replacePlayerAction = new ReplacePlayerAction(clearHistoryAction, finishGameAction);
-
-            var terminatePlayCardAction = new TerminatePlayCardAction();
-            var adapterPlayCardAction = new AdapterPlayCardAction(terminatePlayCardAction, replacePlayerAction);
-            var replaceCardAction = new ReplaceCardAction(adapterPlayCardAction);
-            var addHistoryAction = new AddHistoryAction(replaceCardAction);
-            var playCardAction = new ActivateCardAction(addHistoryAction);
-
-            return playCardAction;
         }
     }
 }
