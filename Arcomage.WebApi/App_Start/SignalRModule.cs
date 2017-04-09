@@ -31,7 +31,7 @@ namespace Arcomage.WebApi
             builder.Register(c => GlobalHost.TraceManager)
                 .AsImplementedInterfaces();
             
-            builder.Register(c => c.Resolve<IConnectionManager>().GetHubContext<NetworkGameHub, INetworkGameClient>())
+            builder.Register(c => c.Resolve<IConnectionManager>().GetHubContext<ConnectGameHub, IConnectGameClient>())
                 .AsImplementedInterfaces()
                 .SingleInstance();
 

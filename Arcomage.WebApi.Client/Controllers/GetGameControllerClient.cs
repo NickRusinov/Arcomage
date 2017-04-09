@@ -7,17 +7,17 @@ using Arcomage.WebApi.Client.Models.Game;
 
 namespace Arcomage.WebApi.Client.Controllers
 {
-    public class GameControllerClient : ControllerClient
+    public class GetGameControllerClient : ApplicationControllerClient
     {
-        public GameControllerClient(IHttpClientFactory httpClientFactory) 
+        public GetGameControllerClient(IHttpClientFactory httpClientFactory) 
             : base(httpClientFactory)
         {
 
         }
 
-        public Task<GameModel> GetGame(Guid gameId)
+        public Task<GameModel> GetGame()
         {
-            return Get<GameModel>($"api/game/{gameId}");
+            return Get<GameModel>($"api/game");
         }
     }
 }

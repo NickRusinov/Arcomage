@@ -10,13 +10,13 @@ namespace Arcomage.WebApi.Client.Hubs
     /// <summary>
     /// Клиент хаба подключения к сетевой игре
     /// </summary>
-    public class NetworkGameHubClient : HubClient
+    public class ConnectGameHubClient : ApplicationHubClient
     {
         /// <summary>
-        /// Инициализирует экземпляр класса <see cref="NetworkGameHubClient"/>
+        /// Инициализирует экземпляр класса <see cref="ConnectkGameHubClient"/>
         /// </summary>
         /// <param name="hubConnectionFactory">Фабрика для создания подключению к хабу</param>
-        public NetworkGameHubClient(IHubConnectionFactory hubConnectionFactory)
+        public ConnectGameHubClient(IHubConnectionFactory hubConnectionFactory)
             : base(hubConnectionFactory, "NetworkGameHub")
         {
             
@@ -34,9 +34,9 @@ namespace Arcomage.WebApi.Client.Hubs
         /// <summary>
         /// Серверное событие хаба "Подключение к игре произведено"
         /// </summary>
-        public event Action<Guid> OnStartGame
+        public event Action<Guid> OnConnected
         {
-            add { AddSubscription(value, HubProxy.On("StartGame", value)); }
+            add { AddSubscription(value, HubProxy.On("Connected", value)); }
             remove { RemoveSubscription(value); }
         }
     }

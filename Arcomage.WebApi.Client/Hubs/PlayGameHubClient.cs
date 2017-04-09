@@ -10,7 +10,7 @@ namespace Arcomage.WebApi.Client.Hubs
     /// <summary>
     /// Клиент хаба сетевой игры
     /// </summary>
-    public class PlayGameHubClient : HubClient
+    public class PlayGameHubClient : ApplicationHubClient
     {
         /// <summary>
         /// Инициализирует экземпляр класса <see cref="PlayGameHubClient"/>

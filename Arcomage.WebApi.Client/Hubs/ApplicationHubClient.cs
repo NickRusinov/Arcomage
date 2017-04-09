@@ -10,7 +10,7 @@ namespace Arcomage.WebApi.Client.Hubs
     /// <summary>
     /// Базовый класс для реализации клиентов хабов SignalR
     /// </summary>
-    public abstract class HubClient
+    public abstract class ApplicationHubClient
     {
         /// <summary>
         /// Хранит список подключенных событий хаба
@@ -38,11 +38,11 @@ namespace Arcomage.WebApi.Client.Hubs
         private IHubProxy hubProxy;
 
         /// <summary>
-        /// Инициализирует экземпляр класса <see cref="HubClient"/>
+        /// Инициализирует экземпляр класса <see cref="ApplicationHubClient"/>
         /// </summary>
         /// <param name="hubConnectionFactory">Фабрика для создания подключению к хабу</param>
         /// <param name="hubName">Имя хаба для подключения</param>
-        protected HubClient(IHubConnectionFactory hubConnectionFactory, string hubName)
+        protected ApplicationHubClient(IHubConnectionFactory hubConnectionFactory, string hubName)
         {
             this.hubConnectionFactory = hubConnectionFactory;
             this.hubName = hubName;

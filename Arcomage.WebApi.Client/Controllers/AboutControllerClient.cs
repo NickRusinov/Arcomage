@@ -10,7 +10,7 @@ namespace Arcomage.WebApi.Client.Controllers
     /// <summary>
     /// Клиент контроллера, предоставляющего общую информацию о сервере
     /// </summary>
-    public class AboutControllerClient : ControllerClient
+    public class AboutControllerClient : ApplicationControllerClient
     {
         /// <summary>
         /// Инициализирует экземпляр класса <see cref="AboutControllerClient"/>

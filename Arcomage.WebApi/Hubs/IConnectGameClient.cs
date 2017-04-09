@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Arcomage.WebApi.Hubs
 {
-    public interface INetworkGameClient
+    public interface IConnectGameClient
     {
-        void StartGame(Guid gameId);
+        void Connected(Guid gameId);
     }
 }

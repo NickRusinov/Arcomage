@@ -9,13 +9,13 @@ using Microsoft.AspNet.SignalR;
 namespace Arcomage.WebApi.Hubs
 {
     [Authorize]
-    public class NetworkGameHub : ApplicationHub<INetworkGameClient>
+    public class ConnectGameHub : ApplicationHub<IConnectGameClient>
     {
         private readonly IGetUserByIdQuery getUserByIdQuery;
 
         private readonly ICreateGameCommand createGameService;
 
-        public NetworkGameHub(IGetUserByIdQuery getUserByIdQuery, ICreateGameCommand createGameService)
+        public ConnectGameHub(IGetUserByIdQuery getUserByIdQuery, ICreateGameCommand createGameService)
         {
             this.getUserByIdQuery = getUserByIdQuery;
             this.createGameService = createGameService;
@@ -28,7 +28,7 @@ namespace Arcomage.WebApi.Hubs
 
             var gameContext = await createGameService.Create(firstUserContext, secondUserContext);
 
-            Clients.User(Identity.Id.ToString()).StartGame(gameContext.Id);
+            Clients.User(Identity.Id.ToString()).Connected(gameContext.Id);
         }
     }
 }

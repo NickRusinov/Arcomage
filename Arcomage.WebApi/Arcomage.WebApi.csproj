@@ -138,12 +138,12 @@
     <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\ApplicationApiController.cs" />
     <Compile Include="Controllers\ConnectGameApiController.cs" />
-    <Compile Include="Controllers\GameApiController.cs" />
+    <Compile Include="Controllers\GetGameApiController.cs" />
     <Compile Include="Controllers\PlayGameApiController.cs" />
     <Compile Include="Hubs\ApplicationHub.cs" />
-    <Compile Include="Hubs\INetworkGameClient.cs" />
+    <Compile Include="Hubs\IConnectGameClient.cs" />
     <Compile Include="Hubs\IPlayGameClient.cs" />
-    <Compile Include="Hubs\NetworkGameHub.cs" />
+    <Compile Include="Hubs\ConnectGameHub.cs" />
     <Compile Include="Hubs\PlayGameHub.cs" />
     <Compile Include="Models\About\VersionModel.cs" />
     <Compile Include="Models\Game\GameModel.cs" />
