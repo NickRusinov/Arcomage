@@ -18,7 +18,8 @@ namespace Arcomage.WebApi
         public async Task Invoke(IDictionary<string, object> environment)
         {
             var owinContext = new OwinContext(environment);
-            
+
+#warning Hardcode user
             var identity = new ApplicationIdentity(Guid.Parse("EB3AB862-E0D0-413B-B732-6BDD86B3A1A2"), "Debug User", "Debug Email");
             owinContext.Authentication.User = new ApplicationPrincipal(identity);
 

@@ -51,6 +51,9 @@
       <HintPath>..\packages\Autofac.WebApi2.4.0.1\lib\net45\Autofac.Integration.WebApi.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="AutoMapper, Version=6.0.2.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.6.0.2\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.AspNet.SignalR.Core, Version=2.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.SignalR.Core.2.2.1\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
       <Private>True</Private>
@@ -98,6 +101,9 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.ValueTuple, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.3.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
       <Private>True</Private>
@@ -121,13 +127,19 @@
     <Compile Include="App_Start\AuthorizationConfiguration.cs" />
     <Compile Include="App_Start\AuthorizationMiddleware.cs" />
     <Compile Include="App_Start\AutofacConfiguration.cs" />
+    <Compile Include="App_Start\AutoMapperConfiguration.cs" />
+    <Compile Include="App_Start\DomainModule.cs" />
+    <Compile Include="App_Start\DomainProfile.cs" />
+    <Compile Include="App_Start\NetworkModule.cs" />
     <Compile Include="App_Start\SignalRConfiguration.cs" />
     <Compile Include="App_Start\SignalRModule.cs" />
     <Compile Include="App_Start\WebApiConfiguration.cs" />
     <Compile Include="App_Start\WebApiModule.cs" />
     <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\ApplicationApiController.cs" />
+    <Compile Include="Controllers\ConnectGameApiController.cs" />
     <Compile Include="Controllers\GameApiController.cs" />
+    <Compile Include="Controllers\PlayGameApiController.cs" />
     <Compile Include="Hubs\ApplicationHub.cs" />
     <Compile Include="Hubs\INetworkGameClient.cs" />
     <Compile Include="Hubs\IPlayGameClient.cs" />
@@ -135,8 +147,6 @@
     <Compile Include="Hubs\PlayGameHub.cs" />
     <Compile Include="Models\About\VersionModel.cs" />
     <Compile Include="Models\Game\GameModel.cs" />
-    <Compile Include="NetworkGameService.cs" />
-    <Compile Include="PlayGameService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>

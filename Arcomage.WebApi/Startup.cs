@@ -13,6 +13,7 @@ namespace Arcomage.WebApi
             var container = new AutofacConfiguration().Configure(app);
 
             new AuthorizationConfiguration().Configure(app, container);
+            new AutoMapperConfiguration().Configure(app, container);
             new WebApiConfiguration().Configure(app, container);
             new SignalRConfiguration().Configure(app, container);
         }

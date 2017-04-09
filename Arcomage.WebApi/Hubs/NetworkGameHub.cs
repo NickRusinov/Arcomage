@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Arcomage.Network.Games;
+using Arcomage.Network.Users;
 using Microsoft.AspNet.SignalR;
 
 namespace Arcomage.WebApi.Hubs
@@ -9,17 +11,24 @@ namespace Arcomage.WebApi.Hubs
     [Authorize]
     public class NetworkGameHub : ApplicationHub<INetworkGameClient>
     {
-        private readonly NetworkGameService networkGameService;
+        private readonly IGetUserByIdQuery getUserByIdQuery;
 
-        public NetworkGameHub(NetworkGameService networkGameService)
+        private readonly ICreateGameCommand createGameService;
+
+        public NetworkGameHub(IGetUserByIdQuery getUserByIdQuery, ICreateGameCommand createGameService)
         {
-            this.networkGameService = networkGameService;
+            this.getUserByIdQuery = getUserByIdQuery;
+            this.createGameService = createGameService;
         }
 
-        public void Connect()
+        public async Task Connect()
         {
-            //networkGameService.ConnectUser(Identity.Id);
-            Clients.User(Identity.Id.ToString()).StartGame(Guid.NewGuid());
+            var firstUserContext = await getUserByIdQuery.Get(Identity.Id);
+            var secondUserContext = await getUserByIdQuery.Get(Identity.Id);
+
+            var gameContext = await createGameService.Create(firstUserContext, secondUserContext);
+
+            Clients.User(Identity.Id.ToString()).StartGame(gameContext.Id);
         }
     }
 }

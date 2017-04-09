@@ -2,13 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using AutoMapper;
 
 namespace Arcomage.WebApi.Controllers
 {
     public abstract class ApplicationApiController : ApiController
     {
-        public ApplicationPrincipal Principal => (ApplicationPrincipal)User;
+        protected ApplicationPrincipal Principal => (ApplicationPrincipal)User;
 
-        public ApplicationIdentity Identity => (ApplicationIdentity)User.Identity;
+        protected ApplicationIdentity Identity => (ApplicationIdentity)User.Identity;
+
+        protected IMapper Mapper => AutoMapper.Mapper.Instance;
     }
 }
