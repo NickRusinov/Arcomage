@@ -24,14 +24,11 @@ namespace Arcomage.Unity.Shared.Scripts
             
             LanguageManager.Instance.defaultLanguage = GetLanguageCode(Application.systemLanguage);
             LanguageManager.Instance.ChangeLanguage(LanguageManager.Instance.defaultLanguage);
-        }
 
-        public virtual void OnEnable()
-        {
             lifetimeScope = GameApplication.Instance.Container.BeginLifetimeScope(b => b.RegisterInstance(this));
         }
 
-        public virtual void OnDisable()
+        public virtual void OnDestroy()
         {
             lifetimeScope.Dispose();
         }
