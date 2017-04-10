@@ -29,6 +29,8 @@ namespace Arcomage.Unity.Shared.Scripts
                 .AsSelf().AsImplementedInterfaces();
             builder.Register(c => c.Resolve<Scene>().GetComponent<UnityDispatcher>())
                 .AsSelf().AsImplementedInterfaces();
+            builder.Register(c => c.Resolve<Scene>().GetComponent<UnitySceneManager>())
+                .AsSelf().AsImplementedInterfaces();
 
             Container = builder.Build();
         }

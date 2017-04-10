@@ -13,6 +13,8 @@ namespace Arcomage.Unity.GameScene.Scripts
     /// <summary>
     /// Корневой скрипт сцены
     /// </summary>
+    [RequireComponent(typeof(UnityBackHandler))]
+    [RequireComponent(typeof(UnitySceneManager))]
     public class GameSceneScript : Scene
     {
         /// <summary>
@@ -41,12 +43,6 @@ namespace Arcomage.Unity.GameScene.Scripts
             StartCoroutine(gameExecutor.Execute());
             GameScript.ViewModel = gameViewModel;
             FinishedScript.ViewModel = gameViewModel.FinishedMenu;
-        }
-
-        public void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.Escape))
-                FinishedScript.OnBackClickHandler();
         }
     }
 }

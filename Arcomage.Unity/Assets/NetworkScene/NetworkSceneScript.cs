@@ -13,6 +13,9 @@ namespace Arcomage.Unity.NetworkScene
     /// <summary>
     /// Корневой скрипт сцены настроек сетевой игры
     /// </summary>
+    [RequireComponent(typeof(UnityDispatcher))]
+    [RequireComponent(typeof(UnityBackHandler))]
+    [RequireComponent(typeof(UnitySceneManager))]
     [RequireComponent(typeof(UnityHttpClientFactory))]
     [RequireComponent(typeof(UnityHubConnectionFactory))]
     public class NetworkSceneScript : Scene
@@ -33,11 +36,5 @@ namespace Arcomage.Unity.NetworkScene
             ConnectPanel.ViewModel = connectViewModel;
             PreparePanel.ViewModel = prepareViewModel;
         }
-
-        //public void Update()
-        //{
-            //if (Input.GetKeyDown(KeyCode.Escape))
-            //    OnBackClickHandler();
-        //}
     }
 }

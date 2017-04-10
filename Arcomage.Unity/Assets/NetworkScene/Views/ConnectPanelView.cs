@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using Arcomage.Unity.NetworkScene.ViewModels;
 using Arcomage.Unity.Shared.Scripts;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace Arcomage.Unity.NetworkScene.Views
 {
@@ -28,11 +27,6 @@ namespace Arcomage.Unity.NetworkScene.Views
                 .OnSuccess(t => SuccessObject.SetActive(t.Result.Version == 0))
                 .OnSuccess(t => FailureVersionObject.SetActive(t.Result.Version != 0))
                 .OnFailure(t => FailureConnectObject.SetActive(true));
-        }
-
-        public void OnBackButtonClickHandler()
-        {
-            SceneManager.LoadScene("MenuScene");
         }
     }
 }

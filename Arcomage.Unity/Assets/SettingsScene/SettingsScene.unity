@@ -644,8 +644,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 537403663}
-        m_MethodName: OnPlayClickHandler
+      - m_Target: {fileID: 537403667}
+        m_MethodName: LoadGameScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1465,8 +1465,10 @@ GameObject:
   m_Component:
   - 4: {fileID: 537403664}
   - 114: {fileID: 537403663}
+  - 114: {fileID: 537403667}
   - 114: {fileID: 537403665}
   - 114: {fileID: 537403666}
+  - 114: {fileID: 537403668}
   m_Layer: 0
   m_Name: SettingsScene
   m_TagString: Untagged
@@ -1525,6 +1527,44 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Prefab: {fileID: 1000012830278612, guid: 7607e0926c5b83a44b00ef87cf9311ae, type: 2}
   Animator: {fileID: 1363638934}
+--- !u!114 &537403667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 537403662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65e86bfc6fcf1ab489d233d045075dac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &537403668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 537403662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9159c5f136407c40bdb876836e8059f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BackHandler:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 537403667}
+        m_MethodName: LoadMenuScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!1 &627062277
 GameObject:
   m_ObjectHideFlags: 0
@@ -2684,8 +2724,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 537403663}
-        m_MethodName: OnBackClickHandler
+      - m_Target: {fileID: 537403667}
+        m_MethodName: LoadMenuScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -7,7 +7,6 @@ using Arcomage.Unity.GameScene.Scripts;
 using Arcomage.Unity.GameScene.ViewModels;
 using Arcomage.Unity.Shared.Scripts;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace Arcomage.Unity.GameScene.Views
 {
@@ -30,22 +29,6 @@ namespace Arcomage.Unity.GameScene.Views
             Bind(viewModel, f => f.Name)
                 .OnChangedAndInit(p => WinnerText.identifier = "GameFinishedWinnerText")
                 .OnChangedAndInit(p => WinnerText.arguments = new[] { p });
-        }
-
-        /// <summary>
-        /// Обработчик нажатия на кнопку "Назад"
-        /// </summary>
-        public void OnBackClickHandler()
-        {
-            SceneManager.LoadScene("MenuScene");
-        }
-
-        /// <summary>
-        /// Обработчик нажатия на кнопку "Заново"
-        /// </summary>
-        public void OnPlayClickHandler()
-        {
-            SceneManager.LoadScene("GameScene");
         }
 
         /// <summary>
