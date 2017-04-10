@@ -11,22 +11,25 @@ namespace Arcomage.Unity.NetworkScene.Commands
 {
     public class ConnectGameCommand : Command<object>
     {
-        private readonly NetworkGameHubClient networkGameHubClient;
+        private readonly UnityDispatcher unityDispatcher;
 
-        public ConnectGameCommand(NetworkGameHubClient networkGameHubClient)
+        private readonly ConnectGameHubClient connectGameHubClient;
+
+        public ConnectGameCommand(UnityDispatcher unityDispatcher, ConnectGameHubClient connectGameHubClient)
         {
-            this.networkGameHubClient = networkGameHubClient;
+            this.unityDispatcher = unityDispatcher;
+            this.connectGameHubClient = connectGameHubClient;
         }
         
         public override Task Execute(object state)
         {
-            networkGameHubClient.OnStartGame += UnityDispatcher.Dispatch<Guid>(OnStartGame);
+            connectGameHubClient.OnConnected += unityDispatcher.Invoke<Guid>(OnConnected);
 
-            return networkGameHubClient.Start()
-                .ContinueWith(t => networkGameHubClient.Connect());
+            return connectGameHubClient.Start()
+                .ContinueWith(t => connectGameHubClient.Connect());
         }
 
-        private void OnStartGame(Guid gameId)
+        private void OnConnected(Guid gameId)
         {
             SceneManager.LoadSceneAsync("GameScene");
         }

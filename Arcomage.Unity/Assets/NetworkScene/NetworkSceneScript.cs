@@ -5,9 +5,8 @@ using System.Text;
 using Arcomage.Unity.NetworkScene.ViewModels;
 using Arcomage.Unity.NetworkScene.Views;
 using Arcomage.Unity.Shared.Scripts;
-using Arcomage.WebApi.Client;
+using Autofac;
 using UnityEngine;
-using Zenject;
 
 namespace Arcomage.Unity.NetworkScene
 {
@@ -27,14 +26,9 @@ namespace Arcomage.Unity.NetworkScene
         public override void Awake()
         {
             base.Awake();
-
-            var container = new DiContainer();
-            container.Bind<IHttpClientFactory>().FromInstance(GetComponent<UnityHttpClientFactory>());
-            container.Bind<IHubConnectionFactory>().FromInstance(GetComponent<UnityHubConnectionFactory>());
-            NetworkSceneInstaller.Install(container);
-
-            var connectViewModel = container.Resolve<ConnectViewModel>();
-            var prepareViewModel = container.Resolve<PrepareViewModel>();
+            
+            var connectViewModel = lifetimeScope.Resolve<ConnectViewModel>();
+            var prepareViewModel = lifetimeScope.Resolve<PrepareViewModel>();
 
             ConnectPanel.ViewModel = connectViewModel;
             PreparePanel.ViewModel = prepareViewModel;

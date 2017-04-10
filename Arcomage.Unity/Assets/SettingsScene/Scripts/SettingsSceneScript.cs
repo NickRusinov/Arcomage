@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Arcomage.Unity.SettingsScene.Views;
 using Arcomage.Unity.Shared.Scripts;
+using Autofac;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -17,16 +18,12 @@ namespace Arcomage.Unity.SettingsScene.Scripts
         [Tooltip("Компонент настроек игры")]
         public SettingsView Settings;
 
-        public override void Awake()
-        {
-            base.Awake();
-
-            Shared.Scripts.Settings.Instance.UseSingle(new SingleSettings());
-        }
-
         public void Start()
         {
-            Settings.Initialize();
+            var settings = lifetimeScope.Resolve<Settings>();
+            settings.UseSingle();
+
+            Settings.Initialize(settings.Single);
         }
 
         public void Update()

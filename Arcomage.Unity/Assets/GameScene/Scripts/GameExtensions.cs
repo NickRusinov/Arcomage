@@ -36,13 +36,13 @@ namespace Arcomage.Unity.GameScene.Scripts
             return "";
         }
 
-        public static string GetName(this PlayerKind playerKind)
+        public static string GetName(this SingleSettings settings, PlayerKind playerKind)
         {
             if (playerKind == PlayerKind.First)
-                return Settings.Instance.Single.FirstPlayer;
+                return settings.FirstPlayer;
 
             if (playerKind == PlayerKind.Second)
-                return Settings.Instance.Single.SecondPlayer;
+                return settings.SecondPlayer;
 
             return "";
         }

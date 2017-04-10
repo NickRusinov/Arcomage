@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Autofac;
 using SmartLocalization;
 using UnityEngine;
 
@@ -15,12 +16,24 @@ namespace Arcomage.Unity.Shared.Scripts
 
         static partial void OnLog(string message, string stackTrace);
 
+        protected ILifetimeScope lifetimeScope;
+
         public virtual void Awake()
         {
             Application.logMessageReceived += OnLogMessageReceived;
             
             LanguageManager.Instance.defaultLanguage = GetLanguageCode(Application.systemLanguage);
             LanguageManager.Instance.ChangeLanguage(LanguageManager.Instance.defaultLanguage);
+        }
+
+        public virtual void OnEnable()
+        {
+            lifetimeScope = GameApplication.Instance.Container.BeginLifetimeScope(b => b.RegisterInstance(this));
+        }
+
+        public virtual void OnDisable()
+        {
+            lifetimeScope.Dispose();
         }
 
         private static void OnLogMessageReceived(string message, string stackTrace, LogType logType)

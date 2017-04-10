@@ -13,25 +13,29 @@ using Arcomage.Domain.Rules;
 using Arcomage.Domain.Services;
 using Arcomage.Unity.GameScene.Commands;
 using Arcomage.Unity.GameScene.ViewModels;
-using Zenject;
+using Arcomage.Unity.Shared.Scripts;
+using Autofac;
 
 namespace Arcomage.Unity.GameScene.Scripts
 {
     public class SingleViewModelUpdater
     {
+        private readonly ILifetimeScope lifetimeScope;
+
+        private readonly SingleSettings settings;
+
         private readonly GameViewModel viewModel;
 
-        private readonly DiContainer container;
-
-        public SingleViewModelUpdater(GameViewModel viewModel, DiContainer container)
+        public SingleViewModelUpdater(ILifetimeScope lifetimeScope, SingleSettings settings, GameViewModel viewModel)
         {
+            this.lifetimeScope = lifetimeScope;
+            this.settings = settings;
             this.viewModel = viewModel;
-            this.container = container;
         }
 
         public GameViewModel Update(Game game)
         {
-            return Update(viewModel, game, container.Resolve<ClassicRuleInfo>());
+            return Update(viewModel, game, (ClassicRuleInfo)settings.Rule);
         }
 
         private GameViewModel Update(GameViewModel viewModel, Game game, ClassicRuleInfo ruleInfo)
@@ -64,7 +68,7 @@ namespace Arcomage.Unity.GameScene.Scripts
         private ResourcesViewModel Update(ResourcesViewModel viewModel, ResourceSet resourceSet, PlayerKind playerKind)
         {
             viewModel = viewModel ?? new ResourcesViewModel();
-            viewModel.Name = playerKind.GetName();
+            viewModel.Name = settings.GetName(playerKind);
             viewModel.Quarry = resourceSet.Quarry;
             viewModel.Bricks = resourceSet.Bricks;
             viewModel.Magic = resourceSet.Magic;
@@ -99,8 +103,8 @@ namespace Arcomage.Unity.GameScene.Scripts
 
         private CardViewModel Update(CardViewModel viewModel, Game game, Player player, Card card, int index)
         {
-            var playCardCriteria = container.Resolve<IPlayCardCriteria>();
-            var discardCardCriteria = container.Resolve<IDiscardCardCriteria>();
+            var playCardCriteria = lifetimeScope.Resolve<IPlayCardCriteria>();
+            var discardCardCriteria = lifetimeScope.Resolve<IDiscardCardCriteria>();
 
             if (viewModel != null && viewModel.Id != card.Index)
                 viewModel = new CardViewModel();
@@ -108,8 +112,8 @@ namespace Arcomage.Unity.GameScene.Scripts
             viewModel = viewModel ?? new CardViewModel();
             viewModel.Id = card.Index;
             viewModel.Index = index;
-            viewModel.PlayCommand = viewModel.PlayCommand ?? container.Resolve<SinglePlayCardCommand>();
-            viewModel.DiscardCommand = viewModel.DiscardCommand ?? container.Resolve<SingleDiscardCardCommand>();
+            viewModel.PlayCommand = viewModel.PlayCommand ?? lifetimeScope.Resolve<SinglePlayCardCommand>();
+            viewModel.DiscardCommand = viewModel.DiscardCommand ?? lifetimeScope.Resolve<SingleDiscardCardCommand>();
             viewModel.Identifier = card.GetIdentifier();
             viewModel.Kind = card.Kind;
             viewModel.Price = card.Price;
@@ -139,7 +143,7 @@ namespace Arcomage.Unity.GameScene.Scripts
         {
             viewModel = viewModel ?? new FinishedMenuViewModel();
             viewModel.Identifier = game.Rule.IsWin(game).GetIdentifier();
-            viewModel.Name = game.Rule.IsWin(game).Player.GetName();
+            viewModel.Name = settings.GetName(game.Rule.IsWin(game).Player);
 
             return viewModel;
         }

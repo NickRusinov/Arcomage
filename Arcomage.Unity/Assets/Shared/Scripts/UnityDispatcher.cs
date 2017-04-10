@@ -9,15 +9,8 @@ namespace Arcomage.Unity.Shared.Scripts
 {
     public class UnityDispatcher : MonoBehaviour
     {
-        public static UnityDispatcher Instance { get; private set; }
-
         private readonly ConcurrentQueue<Action> executionQueue =
             new ConcurrentQueue<Action>();
-
-        public void Awake()
-        {
-            Instance = this;
-        }
 
         public void Update()
         {
@@ -26,19 +19,19 @@ namespace Arcomage.Unity.Shared.Scripts
                 action.Invoke();
         }
 
-        public static void Execute(Action action)
+        public void Invoke(Action action)
         {
-            Instance.executionQueue.Enqueue(action);
+            executionQueue.Enqueue(action);
         }
 
-        public static void Execute<T>(Action<T> action, T obj)
+        public void Invoke<T>(Action<T> action, T obj)
         {
-            Instance.executionQueue.Enqueue(() => action(obj));
+            executionQueue.Enqueue(() => action(obj));
         }
 
-        public static Action<T> Dispatch<T>(Action<T> action)
+        public Action<T> Invoke<T>(Action<T> action)
         {
-            return a => Instance.executionQueue.Enqueue(() => action(a));
+            return a => Invoke(action, a);
         }
     }
 }

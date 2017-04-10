@@ -19,7 +19,7 @@ namespace Arcomage.Unity.SettingsScene.Factories
         [Tooltip("Аниматор, анимирующие появление и скрытие списка выбора правил")]
         public Animator Animator;
         
-        public GameObject CreateRule(Transform transform, ClassicRuleInfo ruleInfo)
+        public GameObject CreateRule(Transform transform, SingleSettings singleSettings, ClassicRuleInfo ruleInfo)
         {
             var ruleObject = (GameObject)Instantiate(Prefab, transform);
             ruleObject.transform.localScale = Vector3.one;
@@ -29,7 +29,7 @@ namespace Arcomage.Unity.SettingsScene.Factories
             ruleView.Initialize(ruleInfo);
 
             var ruleButton = ruleObject.GetComponent<Button>();
-            ruleButton.onClick.AddListener(() => Settings.Instance.Single.Rule = ruleInfo);
+            ruleButton.onClick.AddListener(() => singleSettings.Rule = ruleInfo);
             ruleButton.onClick.AddListener(() => Animator.Play("HideRuleAnimation"));
 
             return ruleObject;

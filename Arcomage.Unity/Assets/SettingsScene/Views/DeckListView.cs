@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using Arcomage.Domain.Decks;
 using Arcomage.Unity.SettingsScene.Factories;
-using Arcomage.Unity.SettingsScene.Scripts;
 using Arcomage.Unity.Shared.Scripts;
 using UnityEngine;
 using Random = System.Random;
@@ -16,10 +15,10 @@ namespace Arcomage.Unity.SettingsScene.Views
         [Tooltip("Фабрика для создания объектов выбора колод карт")]
         public DeckFactory DeckFactory;
 
-        public void Initialize()
+        public void Initialize(SingleSettings singleSettings)
         {
-            DeckFactory.CreateDeck(transform, new ClassicDeckInfo("Classic", new Random()));
-            DeckFactory.CreateDeck(transform, new InfinityDeckInfo("Infinity", new Random()));
+            DeckFactory.CreateDeck(transform, singleSettings, new ClassicDeckInfo("Classic", new Random()));
+            DeckFactory.CreateDeck(transform, singleSettings, new InfinityDeckInfo("Infinity", new Random()));
         }
     }
 }

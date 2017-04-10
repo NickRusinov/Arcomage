@@ -10,16 +10,16 @@ namespace Arcomage.Unity.NetworkScene.Commands
 {
     public class DisconnectGameCommand : Command<object>
     {
-        private readonly NetworkGameHubClient networkGameHubClient;
+        private readonly ConnectGameHubClient connectGameHubClient;
 
-        public DisconnectGameCommand(NetworkGameHubClient networkGameHubClient)
+        public DisconnectGameCommand(ConnectGameHubClient connectGameHubClient)
         {
-            this.networkGameHubClient = networkGameHubClient;
+            this.connectGameHubClient = connectGameHubClient;
         }
 
         public override Task Execute(object state)
         {
-            networkGameHubClient.Stop();
+            connectGameHubClient.Stop();
 
             return base.Execute(state);
         }

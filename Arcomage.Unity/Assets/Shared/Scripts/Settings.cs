@@ -7,8 +7,6 @@ namespace Arcomage.Unity.Shared.Scripts
 {
     public class Settings
     {
-        public static readonly Settings Instance = new Settings();
-
         public Settings()
         {
             IsSingle = true;
@@ -26,20 +24,16 @@ namespace Arcomage.Unity.Shared.Scripts
 
         public NetworkSettings Network { get; private set; }
 
-        public void UseSingle(SingleSettings settings)
+        public void UseSingle()
         {
             IsSingle = true;
             IsNetwork = false;
-            
-            Single = settings;
         }
 
-        public void UseNetwork(NetworkSettings settings)
+        public void UseNetwork()
         {
             IsSingle = false;
             IsNetwork = true;
-
-            Network = settings;
         }
     }
 }

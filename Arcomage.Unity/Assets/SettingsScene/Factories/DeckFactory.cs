@@ -19,7 +19,7 @@ namespace Arcomage.Unity.SettingsScene.Factories
         [Tooltip("Аниматор, анимирующие появление и скрытие списка выбора колоды")]
         public Animator Animator;
 
-        public GameObject CreateDeck(Transform transform, DeckInfo deckInfo)
+        public GameObject CreateDeck(Transform transform, SingleSettings singleSettings, DeckInfo deckInfo)
         {
             var deckObject = (GameObject)Instantiate(Prefab, transform);
             deckObject.transform.localScale = Vector3.one;
@@ -29,7 +29,7 @@ namespace Arcomage.Unity.SettingsScene.Factories
             deckView.Initialize(deckInfo);
 
             var deckButton = deckObject.GetComponent<Button>();
-            deckButton.onClick.AddListener(() => Settings.Instance.Single.Deck = deckInfo);
+            deckButton.onClick.AddListener(() => singleSettings.Deck = deckInfo);
             deckButton.onClick.AddListener(() => Animator.Play("HideDeckAnimation"));
 
             return deckObject;

@@ -28,28 +28,28 @@ namespace Arcomage.Unity.SettingsScene.Views
         [Tooltip("Представление списка правил")]
         public RuleListView RuleListView;
 
-        public void Initialize()
+        public void Initialize(SingleSettings singleSettings)
         {
-            DeckListView.Initialize();
-            RuleListView.Initialize();
+            DeckListView.Initialize(singleSettings);
+            RuleListView.Initialize(singleSettings);
 
-            Bind(Settings.Instance.Single, s => s.FirstPlayer)
+            Bind(singleSettings, s => s.FirstPlayer)
                 .OnChangedAndInit(s => FirstPlayerInput.text = s);
 
-            Bind(Settings.Instance.Single, s => s.SecondPlayer)
+            Bind(singleSettings, s => s.SecondPlayer)
                 .OnChangedAndInit(s => SecondPlayerInput.text = s);
 
-            Bind(Settings.Instance.Single, s => s.Deck)
+            Bind(singleSettings, s => s.Deck)
                 .OnChangedAndInit(d => DeckText.identifier = "Deck" + d.Identifier + "Name");
 
-            Bind(Settings.Instance.Single, s => s.Rule)
+            Bind(singleSettings, s => s.Rule)
                 .OnChangedAndInit(r => RuleText.identifier = "Rule" + r.Identifier + "Name");
 
             FirstPlayerInput.onEndEdit
-                .AddListener(s => Settings.Instance.Single.FirstPlayer = s);
+                .AddListener(s => singleSettings.FirstPlayer = s);
 
             SecondPlayerInput.onEndEdit
-                .AddListener(s => Settings.Instance.Single.SecondPlayer = s);
+                .AddListener(s => singleSettings.SecondPlayer = s);
         }
     }
 }

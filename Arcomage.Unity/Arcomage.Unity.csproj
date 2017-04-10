@@ -71,6 +71,9 @@
     <Reference Include="AsyncBridge.Net35">
       <HintPath>Assets\Plugins\AsyncBridge.Net35.dll</HintPath>
     </Reference>
+    <Reference Include="Autofac">
+      <HintPath>Assets\Plugins\Autofac.dll</HintPath>
+    </Reference>
     <Reference Include="CsvHelper">
       <HintPath>Assets\Plugins\CsvHelper.dll</HintPath>
     </Reference>
@@ -89,9 +92,6 @@
     <Reference Include="System.Threading">
       <HintPath>Assets\Plugins\System.Threading.dll</HintPath>
     </Reference>
-    <Reference Include="Zenject">
-      <HintPath>Assets\Plugins\Zenject.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\GameScene\Commands\NetworkDiscardCardCommand.cs" />
@@ -103,12 +103,13 @@
     <Compile Include="Assets\GameScene\Scripts\CardDragDropScript.cs" />
     <Compile Include="Assets\GameScene\Scripts\CardTranslateScript.cs" />
     <Compile Include="Assets\GameScene\Scripts\GameExtensions.cs" />
-    <Compile Include="Assets\GameScene\Scripts\NetworkGameSceneInstaller.cs" />
-    <Compile Include="Assets\GameScene\Scripts\SingleGameSceneInstaller.cs" />
     <Compile Include="Assets\GameScene\Scripts\GameSceneScript.cs" />
+    <Compile Include="Assets\GameScene\Scripts\NetworkGameSceneModule.cs" />
     <Compile Include="Assets\GameScene\Scripts\NetworkViewModelUpdater.cs" />
     <Compile Include="Assets\GameScene\Scripts\SingleGameExecutor.cs" />
+    <Compile Include="Assets\GameScene\Scripts\SingleGameSceneModule.cs" />
     <Compile Include="Assets\GameScene\Scripts\SingleViewModelUpdater.cs" />
+    <Compile Include="Assets\GameScene\Scripts\GameSceneModule.cs" />
     <Compile Include="Assets\GameScene\ViewModels\BuildingsViewModel.cs" />
     <Compile Include="Assets\GameScene\ViewModels\CardViewModel.cs" />
     <Compile Include="Assets\GameScene\ViewModels\FinishedMenuViewModel.cs" />
@@ -129,7 +130,7 @@
     <Compile Include="Assets\NetworkScene\Commands\ConnectGameCommand.cs" />
     <Compile Include="Assets\NetworkScene\Commands\DisconnectGameCommand.cs" />
     <Compile Include="Assets\NetworkScene\Commands\GetVersionCommand.cs" />
-    <Compile Include="Assets\NetworkScene\NetworkSceneInstaller.cs" />
+    <Compile Include="Assets\NetworkScene\NetworkSceneModule.cs" />
     <Compile Include="Assets\NetworkScene\NetworkSceneScript.cs" />
     <Compile Include="Assets\NetworkScene\ViewModels\ConnectViewModel.cs" />
     <Compile Include="Assets\NetworkScene\ViewModels\PrepareViewModel.cs" />
@@ -151,6 +152,7 @@
     <Compile Include="Assets\Shared\Scripts\ConstBinding.cs" />
     <Compile Include="Assets\Shared\Scripts\DropdownView.cs" />
     <Compile Include="Assets\Shared\Scripts\FrameworkExtensions.cs" />
+    <Compile Include="Assets\Shared\Scripts\GameApplication.cs" />
     <Compile Include="Assets\Shared\Scripts\LocalizationScript.cs" />
     <Compile Include="Assets\Shared\Scripts\NetworkSettings.cs" />
     <Compile Include="Assets\Shared\Scripts\ScaleScript.cs" />
