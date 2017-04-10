@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Arcomage.Domain.Rules;
+using Arcomage.Unity.SettingsScene.ViewModels;
 using Arcomage.Unity.Shared.Scripts;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Arcomage.Unity.SettingsScene.Views
 {
-    public class RuleView : View
+    public class RuleView : View<RuleViewModel>
     {
         [Tooltip("Текст для вывода названия правил")]
         public LocalizationScript NameText;
@@ -41,21 +41,21 @@ namespace Arcomage.Unity.SettingsScene.Views
         [Tooltip("Текст для вывода начального значения высоты башни")]
         public Text TowerText;
 
-        public void Initialize(ClassicRuleInfo ruleInfo)
+        protected override void OnViewModel(RuleViewModel viewModel)
         {
-            NameText.identifier = "Rule" + ruleInfo.Identifier + "Name";
-            DescriptionText.identifier = "Rule" + ruleInfo.Identifier + "Description";
-            DescriptionText.arguments = new[] { ruleInfo.MaxTower.ToString(), ruleInfo.MaxResources.ToString() };
+            NameText.identifier = "Rule" + viewModel.RuleInfo.Identifier + "Name";
+            DescriptionText.identifier = "Rule" + viewModel.RuleInfo.Identifier + "Description";
+            DescriptionText.arguments = new[] { viewModel.RuleInfo.MaxTower.ToString(), viewModel.RuleInfo.MaxResources.ToString() };
 
-            QuarryText.text = "+" + ruleInfo.Quarry;
-            BricksText.text = ruleInfo.Bricks.ToString();
-            MagicText.text = "+" + ruleInfo.Magic;
-            GemsText.text = ruleInfo.Gems.ToString();
-            DungeonsText.text = "+" + ruleInfo.Dungeons;
-            RecruitsText.text = ruleInfo.Recruits.ToString();
+            QuarryText.text = "+" + viewModel.RuleInfo.Quarry;
+            BricksText.text = viewModel.RuleInfo.Bricks.ToString();
+            MagicText.text = "+" + viewModel.RuleInfo.Magic;
+            GemsText.text = viewModel.RuleInfo.Gems.ToString();
+            DungeonsText.text = "+" + viewModel.RuleInfo.Dungeons;
+            RecruitsText.text = viewModel.RuleInfo.Recruits.ToString();
 
-            WallText.text = ruleInfo.Wall.ToString();
-            TowerText.text = ruleInfo.Tower.ToString();
+            WallText.text = viewModel.RuleInfo.Wall.ToString();
+            TowerText.text = viewModel.RuleInfo.Tower.ToString();
         }
     }
 }

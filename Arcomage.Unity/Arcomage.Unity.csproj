@@ -13,8 +13,7 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Full v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile>
-    </CompilerResponseFile>
+    <CompilerResponseFile></CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>Android:13</UnityBuildTarget>
     <UnityVersion>5.4.2f2</UnityVersion>
@@ -103,13 +102,13 @@
     <Compile Include="Assets\GameScene\Scripts\CardDragDropScript.cs" />
     <Compile Include="Assets\GameScene\Scripts\CardTranslateScript.cs" />
     <Compile Include="Assets\GameScene\Scripts\GameExtensions.cs" />
+    <Compile Include="Assets\GameScene\Scripts\GameSceneModule.cs" />
     <Compile Include="Assets\GameScene\Scripts\GameSceneScript.cs" />
     <Compile Include="Assets\GameScene\Scripts\NetworkGameSceneModule.cs" />
     <Compile Include="Assets\GameScene\Scripts\NetworkViewModelUpdater.cs" />
     <Compile Include="Assets\GameScene\Scripts\SingleGameExecutor.cs" />
     <Compile Include="Assets\GameScene\Scripts\SingleGameSceneModule.cs" />
     <Compile Include="Assets\GameScene\Scripts\SingleViewModelUpdater.cs" />
-    <Compile Include="Assets\GameScene\Scripts\GameSceneModule.cs" />
     <Compile Include="Assets\GameScene\ViewModels\BuildingsViewModel.cs" />
     <Compile Include="Assets\GameScene\ViewModels\CardViewModel.cs" />
     <Compile Include="Assets\GameScene\ViewModels\FinishedMenuViewModel.cs" />
@@ -136,9 +135,15 @@
     <Compile Include="Assets\NetworkScene\ViewModels\PrepareViewModel.cs" />
     <Compile Include="Assets\NetworkScene\Views\ConnectPanelView.cs" />
     <Compile Include="Assets\NetworkScene\Views\PreparePanelView.cs" />
-    <Compile Include="Assets\SettingsScene\Factories\DeckFactory.cs" />
-    <Compile Include="Assets\SettingsScene\Factories\RuleFactory.cs" />
-    <Compile Include="Assets\SettingsScene\Scripts\SettingsSceneScript.cs" />
+    <Compile Include="Assets\SettingsScene\Scripts\DeckFactory.cs" />
+    <Compile Include="Assets\SettingsScene\Scripts\RuleFactory.cs" />
+    <Compile Include="Assets\SettingsScene\SettingsScene.cs" />
+    <Compile Include="Assets\SettingsScene\SettingsSceneModule.cs" />
+    <Compile Include="Assets\SettingsScene\ViewModels\DeckListViewModel.cs" />
+    <Compile Include="Assets\SettingsScene\ViewModels\DeckViewModel.cs" />
+    <Compile Include="Assets\SettingsScene\ViewModels\RuleListViewModel.cs" />
+    <Compile Include="Assets\SettingsScene\ViewModels\RuleViewModel.cs" />
+    <Compile Include="Assets\SettingsScene\ViewModels\SettingsViewModel.cs" />
     <Compile Include="Assets\SettingsScene\Views\DeckListView.cs" />
     <Compile Include="Assets\SettingsScene\Views\DeckView.cs" />
     <Compile Include="Assets\SettingsScene\Views\RuleListView.cs" />

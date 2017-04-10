@@ -2,18 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Arcomage.Unity.SettingsScene.ViewModels;
 using Arcomage.Unity.SettingsScene.Views;
 using Arcomage.Unity.Shared.Scripts;
 using Autofac;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Arcomage.Unity.SettingsScene.Scripts
+namespace Arcomage.Unity.SettingsScene
 {
     /// <summary>
     /// Root script for settings scene
     /// </summary>
-    public class SettingsSceneScript : Shared.Scripts.Scene
+    public class SettingsScene : Shared.Scripts.Scene
     {
         [Tooltip("Компонент настроек игры")]
         public SettingsView Settings;
@@ -21,9 +22,10 @@ namespace Arcomage.Unity.SettingsScene.Scripts
         public void Start()
         {
             var settings = lifetimeScope.Resolve<Settings>();
-            settings.UseSingle();
+            var settingsViewModel = lifetimeScope.Resolve<SettingsViewModel>();
 
-            Settings.Initialize(settings.Single);
+            settings.UseSingle();
+            Settings.ViewModel = settingsViewModel;
         }
 
         public void Update()

@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Arcomage.Unity.SettingsScene.ViewModels;
 using Arcomage.Unity.Shared.Scripts;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Arcomage.Unity.SettingsScene.Views
 {
-    public class SettingsView : View
+    public class SettingsView : View<SettingsViewModel>
     {
         [Tooltip("Поле ввода имени первого игрока")]
         public InputField FirstPlayerInput;
@@ -28,28 +29,28 @@ namespace Arcomage.Unity.SettingsScene.Views
         [Tooltip("Представление списка правил")]
         public RuleListView RuleListView;
 
-        public void Initialize(SingleSettings singleSettings)
+        protected override void OnViewModel(SettingsViewModel viewModel)
         {
-            DeckListView.Initialize(singleSettings);
-            RuleListView.Initialize(singleSettings);
+            DeckListView.ViewModel = viewModel.DeckList;
+            RuleListView.ViewModel = viewModel.RuleList;
 
-            Bind(singleSettings, s => s.FirstPlayer)
+            Bind(viewModel.Settings, s => s.FirstPlayer)
                 .OnChangedAndInit(s => FirstPlayerInput.text = s);
 
-            Bind(singleSettings, s => s.SecondPlayer)
+            Bind(viewModel.Settings, s => s.SecondPlayer)
                 .OnChangedAndInit(s => SecondPlayerInput.text = s);
 
-            Bind(singleSettings, s => s.Deck)
+            Bind(viewModel.Settings, s => s.Deck)
                 .OnChangedAndInit(d => DeckText.identifier = "Deck" + d.Identifier + "Name");
 
-            Bind(singleSettings, s => s.Rule)
+            Bind(viewModel.Settings, s => s.Rule)
                 .OnChangedAndInit(r => RuleText.identifier = "Rule" + r.Identifier + "Name");
 
             FirstPlayerInput.onEndEdit
-                .AddListener(s => singleSettings.FirstPlayer = s);
+                .AddListener(s => viewModel.Settings.FirstPlayer = s);
 
             SecondPlayerInput.onEndEdit
-                .AddListener(s => singleSettings.SecondPlayer = s);
+                .AddListener(s => viewModel.Settings.SecondPlayer = s);
         }
     }
 }

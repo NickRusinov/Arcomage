@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Arcomage.Domain.Rules;
+using Arcomage.Unity.SettingsScene.ViewModels;
 using Arcomage.Unity.SettingsScene.Views;
-using Arcomage.Unity.Shared.Scripts;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Arcomage.Unity.SettingsScene.Factories
+namespace Arcomage.Unity.SettingsScene.Scripts
 {
     public class RuleFactory : MonoBehaviour
     {
@@ -19,17 +18,17 @@ namespace Arcomage.Unity.SettingsScene.Factories
         [Tooltip("Аниматор, анимирующие появление и скрытие списка выбора правил")]
         public Animator Animator;
         
-        public GameObject CreateRule(Transform transform, SingleSettings singleSettings, ClassicRuleInfo ruleInfo)
+        public GameObject CreateRule(Transform transform, RuleViewModel viewModel)
         {
             var ruleObject = (GameObject)Instantiate(Prefab, transform);
             ruleObject.transform.localScale = Vector3.one;
-            ruleObject.name = "Rule" + ruleInfo.Identifier;
+            ruleObject.name = "Rule" + viewModel.RuleInfo.Identifier;
 
             var ruleView = ruleObject.GetComponent<RuleView>();
-            ruleView.Initialize(ruleInfo);
+            ruleView.ViewModel = viewModel;
 
             var ruleButton = ruleObject.GetComponent<Button>();
-            ruleButton.onClick.AddListener(() => singleSettings.Rule = ruleInfo);
+            ruleButton.onClick.AddListener(() => viewModel.Settings.Rule = viewModel.RuleInfo);
             ruleButton.onClick.AddListener(() => Animator.Play("HideRuleAnimation"));
 
             return ruleObject;

@@ -2,23 +2,22 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Arcomage.Domain.Rules;
-using Arcomage.Unity.SettingsScene.Factories;
+using Arcomage.Unity.SettingsScene.Scripts;
+using Arcomage.Unity.SettingsScene.ViewModels;
 using Arcomage.Unity.Shared.Scripts;
 using UnityEngine;
 
 namespace Arcomage.Unity.SettingsScene.Views
 {
-    public class RuleListView : View
+    public class RuleListView : View<RuleListViewModel>
     {
         [Tooltip("Фабрика для создания объектов выбора правил")]
         public RuleFactory RuleFactory;
 
-        public void Initialize(SingleSettings singleSettings)
+        protected override void OnViewModel(RuleListViewModel viewModel)
         {
-            RuleFactory.CreateRule(transform, singleSettings, new ClassicRuleInfo("EmpireCapital", 2, 5, 2, 5, 2, 5, 5, 20, 50, 150));
-            RuleFactory.CreateRule(transform, singleSettings, new ClassicRuleInfo("TigersLake", 5, 25, 5, 25, 5, 25, 10, 20, 150, 400));
-            RuleFactory.CreateRule(transform, singleSettings, new ClassicRuleInfo("EastRiver", 3, 5, 3, 5, 3, 5, 10, 20, 75, 200));
+            foreach (var ruleViewModel in viewModel.RuleCollection)
+                RuleFactory.CreateRule(transform, ruleViewModel);
         }
     }
 }
