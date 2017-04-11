@@ -3,18 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Arcomage.Domain.Players;
 
 namespace Arcomage.Domain.Actions
 {
     /// <summary>
-    /// Игровая логика, представляющая игровой цикл
+    /// Игровая логика, выполняемая после совершения хода игроком
     /// </summary>
     public interface IPlayAction
     {
         /// <summary>
-        /// Выполняет действия игрового цикла
+        /// Выполянет действия после совершения хода игроком
         /// </summary>
         /// <param name="game">Контекст игры</param>
-        Task<GameResult> Play(Game game);
+        /// <param name="playResult">Ход игрока</param>
+        Task<GameResult> Play(Game game, Player player, PlayResult playResult);
+
+        bool CanPlay(Game game, Player player, PlayResult playResult);
     }
 }

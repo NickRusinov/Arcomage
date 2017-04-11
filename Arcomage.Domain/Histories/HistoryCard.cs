@@ -4,6 +4,7 @@ using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Threading.Tasks;
 using Arcomage.Domain.Cards;
+using Arcomage.Domain.Players;
 
 namespace Arcomage.Domain.Histories
 {
@@ -18,11 +19,12 @@ namespace Arcomage.Domain.Histories
         /// </summary>
         /// <param name="card">Карта</param>
         /// <param name="isPlayed">true, если карта была активирована, и false, если сброшена</param>
-        public HistoryCard(Card card, bool isPlayed)
+        public HistoryCard(Card card, PlayerKind player, bool isPlayed)
         {
             Contract.Requires(card != null);
 
             Card = card;
+            Player = player;
             IsPlayed = isPlayed;
         }
 
@@ -30,6 +32,8 @@ namespace Arcomage.Domain.Histories
         /// Карта
         /// </summary>
         public Card Card { get; }
+
+        public PlayerKind Player { get; }
 
         /// <summary>
         /// Признак активации карты

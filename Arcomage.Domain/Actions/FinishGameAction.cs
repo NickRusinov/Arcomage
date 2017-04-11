@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Arcomage.Domain.Internal;
+using Arcomage.Domain.Players;
 
 namespace Arcomage.Domain.Actions
 {
@@ -14,20 +15,27 @@ namespace Arcomage.Domain.Actions
     {
         private readonly IPlayAction nextWhenNotFinishedGameAction;
 
-        public FinishGameAction(IPlayAction nextWhenNotFinishedGameAction = null)
+        public FinishGameAction(IPlayAction nextWhenNotFinishedGameAction)
         {
             this.nextWhenNotFinishedGameAction = nextWhenNotFinishedGameAction;
         }
 
-        /// <inheritdoc/>
-        public Task<GameResult> Play(Game game)
+        public Task<GameResult> Play(Game game, Player player, PlayResult playResult)
         {
             var gameResult = game.Rule.IsWin(game);
-
-            if (gameResult || nextWhenNotFinishedGameAction == null)
+            if (gameResult)
                 return FrameworkExtensions.FromResult(gameResult);
 
-            return nextWhenNotFinishedGameAction.Play(game);
+            return nextWhenNotFinishedGameAction.Play(game, player, playResult);
+        }
+
+        public bool CanPlay(Game game, Player player, PlayResult playResult)
+        {
+            var gameResult = game.Rule.IsWin(game);
+            if (gameResult)
+                return true;
+
+            return nextWhenNotFinishedGameAction.CanPlay(game, player, playResult);
         }
     }
 }

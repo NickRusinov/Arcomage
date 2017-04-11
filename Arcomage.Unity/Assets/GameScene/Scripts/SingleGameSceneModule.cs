@@ -7,7 +7,6 @@ using Arcomage.Domain.Actions;
 using Arcomage.Domain.Decks;
 using Arcomage.Domain.Players;
 using Arcomage.Domain.Rules;
-using Arcomage.Domain.Services;
 using Arcomage.Unity.Shared.Scripts;
 using Autofac;
 
@@ -41,12 +40,6 @@ namespace Arcomage.Unity.GameScene.Scripts
                 .InstancePerLifetimeScope();
 
             builder.Register(c => c.Resolve<GameBuilderContext>().Resolve<IPlayAction>())
-                .InstancePerLifetimeScope();
-
-            builder.Register(c => c.Resolve<GameBuilderContext>().Resolve<IPlayCardCriteria>())
-                .InstancePerLifetimeScope();
-
-            builder.Register(c => c.Resolve<GameBuilderContext>().Resolve<IDiscardCardCriteria>())
                 .InstancePerLifetimeScope();
 
             builder.Register(c => (HumanPlayer)c.Resolve<Game>().Players.FirstPlayer)

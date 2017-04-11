@@ -13,11 +13,11 @@ namespace Arcomage.Unity.GameScene.Scripts
     {
         private readonly Game game;
 
-        private readonly IPlayAction playAction;
+        private readonly RootPlayAction playAction;
 
         private readonly SingleViewModelUpdater updater;
 
-        public SingleGameExecutor(Game game, IPlayAction playAction, SingleViewModelUpdater updater)
+        public SingleGameExecutor(Game game, RootPlayAction playAction, SingleViewModelUpdater updater)
         {
             this.game = game;
             this.playAction = playAction;
@@ -28,11 +28,9 @@ namespace Arcomage.Unity.GameScene.Scripts
         {
             updater.Update(game);
 
-            yield return null;
-
             while (!game.Rule.IsWin(game))
             {
-                var task = playAction.Play(game);
+                var task = playAction.WaitPlay(game);
                 updater.Update(game);
 
                 yield return new TaskYieldInstruction(task);

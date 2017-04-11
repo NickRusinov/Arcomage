@@ -4,28 +4,38 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Arcomage.Domain.Histories;
+using Arcomage.Domain.Players;
 
 namespace Arcomage.Domain.Actions
 {
     /// <summary>
     /// Добавляет карту в историю хода текущего игрока
     /// </summary>
-    public class AddHistoryAction : IPlayCardAction
+    public class AddHistoryAction : IPlayAction
     {
-        private readonly IPlayCardAction nextAction;
+        private readonly IPlayAction nextAction;
 
-        public AddHistoryAction(IPlayCardAction nextAction)
+        public AddHistoryAction(IPlayAction nextAction)
         {
             this.nextAction = nextAction;
         }
 
         /// <inheritdoc/>
-        public Task Play(Game game, PlayResult playResult)
+        public Task<GameResult> Play(Game game, Player player, PlayResult playResult)
         {
-            var historyCard = new HistoryCard(game.Players.CurrentPlayer.Hand[playResult.Card], playResult.IsPlay);
+            if (game.History.Cards.LastOrDefault()?.Player != game.Players.Kind)
+                game.History.Cards.Clear();
+
+            var historyCard = new HistoryCard(player.Hand[playResult.Card], game.Players.Kind, playResult.IsPlay);
             game.History.Cards.Add(historyCard);
 
-            return nextAction.Play(game, playResult);
+            return nextAction.Play(game, player, playResult);
+        }
+
+        /// <inheritdoc/>
+        public bool CanPlay(Game game, Player player, PlayResult playResult)
+        {
+            return nextAction.CanPlay(game, player, playResult);
         }
     }
 }

@@ -10,7 +10,6 @@ using Arcomage.Domain.Hands;
 using Arcomage.Domain.Histories;
 using Arcomage.Domain.Players;
 using Arcomage.Domain.Rules;
-using Arcomage.Domain.Services;
 using Arcomage.Domain.Timers;
 
 namespace Arcomage.Domain
@@ -22,8 +21,6 @@ namespace Arcomage.Domain
             return new GameBuilder()
                 .RegisterGame(null)
                 .RegisterPlayAction(null)
-                .RegisterPlayCardCriteria(null)
-                .RegisterDiscardCardCriteria(null)
                 .RegisterAllCard(null)
                 .RegisterHistory(null)
                 .RegisterFirstHumanPlayer(null)
@@ -161,67 +158,31 @@ namespace Arcomage.Domain
         {
             return builder.Register<IArtificialIntelligence>(key, b =>
                 new ArtificialIntelligence.ArtificialIntelligence(
-                    CreateArtificialIntelligencePlayCardAction(b),
-                    b.Resolve<IPlayCardCriteria>(),
-                    b.Resolve<IDiscardCardCriteria>()));
-
-            IPlayCardAction CreateArtificialIntelligencePlayCardAction(GameBuilderContext context)
-            {
-                var terminatePlayAction = new TerminatePlayAction();
-                var finishGameAction = new FinishGameAction(terminatePlayAction);
-                var increaseResourcesAction = new IncreaseResourcesAction(finishGameAction);
-                var clearHistoryAction = new ClearHistoryAction(increaseResourcesAction);
-                var replacePlayerAction = new ReplacePlayerAction(clearHistoryAction, finishGameAction);
-
-                var terminatePlayCardAction = new TerminatePlayCardAction();
-                var adapterPlayCardAction = new AdapterPlayCardAction(terminatePlayCardAction, replacePlayerAction);
-                var replaceCardAction = new ReplaceCardAction(adapterPlayCardAction);
-                var addHistoryAction = new AddHistoryAction(replaceCardAction);
-                var playCardAction = new ActivateCardAction(addHistoryAction);
-
-                return playCardAction;
-            }
+                    b.Resolve<IPlayAction>()));
         }
 
         public static GameBuilder RegisterFakeAftificialIntelligence(this GameBuilder builder, string key)
         {
             return builder.Register<IArtificialIntelligence>(key, b =>
                 new FakeArtificialIntelligence(
-                    b.Resolve<IPlayCardCriteria>()));
-        }
-
-        public static GameBuilder RegisterPlayCardCriteria(this GameBuilder builder, string key)
-        {
-            return builder.Register<IPlayCardCriteria>(b =>
-                new PlayCardCriteria());
-        }
-
-        public static GameBuilder RegisterDiscardCardCriteria(this GameBuilder builder, string key)
-        {
-            return builder.Register<IDiscardCardCriteria>(b =>
-                new DiscardCardCriteria());
+                    b.Resolve<IPlayAction>()));
         }
 
         public static GameBuilder RegisterPlayAction(this GameBuilder builder, string key)
         {
-            return builder.Register<IPlayAction>(b =>
+            return builder.Register<IPlayAction>(key, b =>
             {
-                var terminatePlayCardAction = new TerminatePlayCardAction();
-                var replaceCardAction = new ReplaceCardAction(terminatePlayCardAction);
+                var terminatePlayAction = new TerminatePlayAction();
+                var increaseResourcesAction = new IncreaseResourcesAction(terminatePlayAction);
+                var replacePlayerAction = new ReplacePlayerAction(increaseResourcesAction, terminatePlayAction);
+                var finishBeforeReplacePlayerAction = new FinishGameAction(replacePlayerAction);
+                var replaceCardAction = new ReplaceCardAction(finishBeforeReplacePlayerAction);
                 var addHistoryAction = new AddHistoryAction(replaceCardAction);
                 var activateCardAction = new ActivateCardAction(addHistoryAction);
+                var finishedPlayAction = new FinishGameAction(activateCardAction);
+                var rootPlayAction = new RootPlayAction(finishedPlayAction);
 
-                var terminatePlayAction = new TerminatePlayAction();
-                var finishAfterPlayPlayerAction = new FinishGameAction(terminatePlayAction);
-                var playPlayerAction = new PlayPlayerAction(finishAfterPlayPlayerAction, activateCardAction);
-                var finishBeforePlayPlayerAction = new FinishGameAction(playPlayerAction);
-
-                var increaseResourcesAction = new IncreaseResourcesAction(finishBeforePlayPlayerAction);
-                var clearHistoryAction = new ClearHistoryAction(increaseResourcesAction);
-                var replacePlayerAction = new ReplacePlayerAction(clearHistoryAction, finishBeforePlayPlayerAction);
-                var playAction = new FinishGameAction(replacePlayerAction);
-
-                return playAction;
+                return rootPlayAction;
             });
         }
     }

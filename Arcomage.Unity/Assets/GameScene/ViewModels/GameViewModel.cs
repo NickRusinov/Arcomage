@@ -25,5 +25,7 @@ namespace Arcomage.Unity.GameScene.ViewModels
         public PlayerKind PlayerKind { get; set; }
 
         public int DiscardOnly { get; set; }
+
+        public int PlayAgain { get; set; }
     }
 }

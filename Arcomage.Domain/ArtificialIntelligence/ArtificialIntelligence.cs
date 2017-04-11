@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using Arcomage.Domain.Actions;
 using Arcomage.Domain.Internal;
 using Arcomage.Domain.Players;
-using Arcomage.Domain.Services;
 
 namespace Arcomage.Domain.ArtificialIntelligence
 {
@@ -17,32 +16,16 @@ namespace Arcomage.Domain.ArtificialIntelligence
     [Serializable]
     public class ArtificialIntelligence : IArtificialIntelligence
     {
-        private readonly IPlayCardAction playCardAction;
-
-        /// <summary>
-        /// Критерий возможности активации карты
-        /// </summary>
-        private readonly IPlayCardCriteria playCardCriteria;
-
-        /// <summary>
-        /// Критерий возможности сброса карты
-        /// </summary>
-        private readonly IDiscardCardCriteria discardCardCriteria;
+        private readonly IPlayAction playAction;
 
         /// <summary>
         /// Инициализирует экземпляр класса <see cref="ArtificialIntelligence"/>
         /// </summary>
-        /// <param name="playCardCriteria">Критерий возможности активации карты</param>
-        /// <param name="discardCardCriteria">Критерий возможности сброса карты</param>
-        public ArtificialIntelligence(IPlayCardAction playCardAction, IPlayCardCriteria playCardCriteria, IDiscardCardCriteria discardCardCriteria)
+        public ArtificialIntelligence(IPlayAction playAction)
         {
-            Contract.Requires(playCardAction != null);
-            Contract.Requires(playCardCriteria != null);
-            Contract.Requires(discardCardCriteria != null);
+            Contract.Requires(playAction != null);
 
-            this.playCardAction = playCardAction;
-            this.playCardCriteria = playCardCriteria;
-            this.discardCardCriteria = discardCardCriteria;
+            this.playAction = playAction;
         }
 
         /// <inheritdoc/>
@@ -72,9 +55,9 @@ namespace Arcomage.Domain.ArtificialIntelligence
                 var cloneGame = FrameworkExtensions.Copy(game);
                 var playResult = new PlayResult(i, true);
 
-                if (playCardCriteria.CanPlayCard(cloneGame, cloneGame.Players.CurrentPlayer, i))
+                if (playAction.CanPlay(cloneGame, cloneGame.Players.CurrentPlayer, playResult))
                 {
-                    playCardAction.Play(cloneGame, playResult);
+                    playAction.Play(cloneGame, cloneGame.Players.CurrentPlayer, playResult);
 
                     yield return new KeyValuePair<Game, PlayResult>(cloneGame, playResult);
                 }
@@ -85,9 +68,9 @@ namespace Arcomage.Domain.ArtificialIntelligence
                 var cloneGame = FrameworkExtensions.Copy(game);
                 var playResult = new PlayResult(i, false);
 
-                if (discardCardCriteria.CanDiscardCard(cloneGame, cloneGame.Players.CurrentPlayer, i))
+                if (playAction.CanPlay(cloneGame, cloneGame.Players.CurrentPlayer, playResult))
                 {
-                    playCardAction.Play(cloneGame, playResult);
+                    playAction.Play(cloneGame, cloneGame.Players.CurrentPlayer, playResult);
 
                     yield return new KeyValuePair<Game, PlayResult>(cloneGame, playResult);
                 }

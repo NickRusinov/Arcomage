@@ -4,17 +4,22 @@ using System.Linq;
 using System.Text;
 using Arcomage.Domain.Players;
 using Arcomage.Domain.Resources;
+using Arcomage.Unity.GameScene.Commands;
 using Arcomage.Unity.GameScene.ViewModels;
 using Arcomage.WebApi.Client.Models.Game;
+using Autofac;
 
 namespace Arcomage.Unity.GameScene.Scripts
 {
     public class NetworkViewModelUpdater
     {
+        private readonly ILifetimeScope lifetimeScope;
+
         private readonly GameViewModel viewModel;
 
-        public NetworkViewModelUpdater(GameViewModel viewModel)
+        public NetworkViewModelUpdater(ILifetimeScope lifetimeScope, GameViewModel viewModel)
         {
+            this.lifetimeScope = lifetimeScope;
             this.viewModel = viewModel;
         }
 
@@ -23,7 +28,7 @@ namespace Arcomage.Unity.GameScene.Scripts
             return Update(viewModel, model);
         }
 
-        private static GameViewModel Update(GameViewModel viewModel, GameModel model)
+        private GameViewModel Update(GameViewModel viewModel, GameModel model)
         {
             viewModel = viewModel ?? new GameViewModel();
             viewModel.LeftBuildings = Update(viewModel.LeftBuildings, model.FirstPlayer.Buildings);
@@ -33,13 +38,14 @@ namespace Arcomage.Unity.GameScene.Scripts
             viewModel.FinishedMenu = Update(viewModel.FinishedMenu, model.Result);
             viewModel.Hand = Update(viewModel.Hand, model.Hand);
             viewModel.History = Update(viewModel.History, model.History);
-            viewModel.PlayerKind = PlayerKind.First;
+            viewModel.PlayerKind = PlayerKind.First; // TODO
             viewModel.DiscardOnly = 0; // TODO
+            viewModel.PlayAgain = 0; // TODO
 
             return viewModel;
         }
 
-        private static BuildingsViewModel Update(BuildingsViewModel viewModel, GameModel.BuildingsModel model)
+        private BuildingsViewModel Update(BuildingsViewModel viewModel, GameModel.BuildingsModel model)
         {
             viewModel = viewModel ?? new BuildingsViewModel();
             viewModel.Wall = model.Wall;
@@ -50,7 +56,7 @@ namespace Arcomage.Unity.GameScene.Scripts
             return viewModel;
         }
 
-        private static ResourcesViewModel Update(ResourcesViewModel viewModel, GameModel.ResourcesModel model, GameModel.PlayerModel playerModel)
+        private ResourcesViewModel Update(ResourcesViewModel viewModel, GameModel.ResourcesModel model, GameModel.PlayerModel playerModel)
         {
             viewModel = viewModel ?? new ResourcesViewModel();
             viewModel.Name = playerModel.Name;
@@ -64,50 +70,55 @@ namespace Arcomage.Unity.GameScene.Scripts
             return viewModel;
         }
 
-        private static HandViewModel Update(HandViewModel viewModel, GameModel.HandModel model)
+        private HandViewModel Update(HandViewModel viewModel, GameModel.HandModel model)
         {
             viewModel = viewModel ?? new HandViewModel();
             viewModel.Cards = viewModel.Cards ?? new List<CardViewModel>();
             viewModel.Cards = model.Cards
-                .Select((c, i) => Update(viewModel.Cards.ElementAtOrDefault(i), c))
+                .Select((c, i) => Update(viewModel.Cards.ElementAtOrDefault(i), c, i))
                 .ToArray();
 
             return viewModel;
         }
 
-        private static HistoryViewModel Update(HistoryViewModel viewModel, GameModel.HistoryModel model)
+        private HistoryViewModel Update(HistoryViewModel viewModel, GameModel.HistoryModel model)
         {
             viewModel = viewModel ?? new HistoryViewModel();
             viewModel.Cards = viewModel.Cards ?? new List<HistoryCardViewModel>();
             viewModel.Cards = model.Cards
-                .Select((c, i) => Update(viewModel.Cards.ElementAtOrDefault(i), c))
+                .Select((c, i) => Update(viewModel.Cards.ElementAtOrDefault(i), c, i))
                 .ToArray();
 
             return viewModel;
         }
 
-        private static CardViewModel Update(CardViewModel viewModel, GameModel.CardModel model)
+        private CardViewModel Update(CardViewModel viewModel, GameModel.CardModel model, int index)
         {
             if (viewModel != null && viewModel.Index != model.Index)
                 viewModel = new CardViewModel();
 
             viewModel = viewModel ?? new CardViewModel();
-            viewModel.Index = model.Index;
+            viewModel.Id = model.Index;
+            viewModel.Index = index;
+            viewModel.PlayCommand = viewModel.PlayCommand ?? lifetimeScope.Resolve<NetworkPlayCardCommand>();
+            viewModel.DiscardCommand = viewModel.PlayCommand ?? lifetimeScope.Resolve<NetworkDiscardCardCommand>();
             viewModel.Identifier = model.Identifier;
             viewModel.Kind = (ResourceKind)model.ResourceKind;
             viewModel.Price = model.ResourcePrice;
             viewModel.IsPlay = true; // TODO
+            viewModel.IsDiscard = true; // TODO
 
             return viewModel;
         }
 
-        private static HistoryCardViewModel Update(HistoryCardViewModel viewModel, GameModel.HistoryCardModel model)
+        private HistoryCardViewModel Update(HistoryCardViewModel viewModel, GameModel.HistoryCardModel model, int index)
         {
             if (viewModel != null && viewModel.Index != model.Index)
                 viewModel = new HistoryCardViewModel();
 
             viewModel = viewModel ?? new HistoryCardViewModel();
-            viewModel.Index = model.Index;
+            viewModel.Id = model.Index;
+            viewModel.Index = index;
             viewModel.Identifier = model.Identifier;
             viewModel.Kind = (ResourceKind)model.ResourceKind;
             viewModel.Price = model.ResourcePrice;
@@ -116,7 +127,7 @@ namespace Arcomage.Unity.GameScene.Scripts
             return viewModel;
         }
 
-        private static FinishedMenuViewModel Update(FinishedMenuViewModel viewModel, GameModel.ResultModel model)
+        private FinishedMenuViewModel Update(FinishedMenuViewModel viewModel, GameModel.ResultModel model)
         {
             viewModel = viewModel ?? new FinishedMenuViewModel();
             viewModel.Identifier = model.Identifier;

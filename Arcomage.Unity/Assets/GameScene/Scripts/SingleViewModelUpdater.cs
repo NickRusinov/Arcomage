@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Arcomage.Domain;
+using Arcomage.Domain.Actions;
 using Arcomage.Domain.Buildings;
 using Arcomage.Domain.Cards;
 using Arcomage.Domain.Hands;
@@ -10,7 +11,6 @@ using Arcomage.Domain.Histories;
 using Arcomage.Domain.Players;
 using Arcomage.Domain.Resources;
 using Arcomage.Domain.Rules;
-using Arcomage.Domain.Services;
 using Arcomage.Unity.GameScene.Commands;
 using Arcomage.Unity.GameScene.ViewModels;
 using Arcomage.Unity.Shared.Scripts;
@@ -50,6 +50,7 @@ namespace Arcomage.Unity.GameScene.Scripts
             viewModel.History = Update(viewModel.History, game.History);
             viewModel.PlayerKind = game.Players.Kind;
             viewModel.DiscardOnly = game.DiscardOnly;
+            viewModel.PlayAgain = game.PlayAgain;
 
             return viewModel;
         }
@@ -103,8 +104,7 @@ namespace Arcomage.Unity.GameScene.Scripts
 
         private CardViewModel Update(CardViewModel viewModel, Game game, Player player, Card card, int index)
         {
-            var playCardCriteria = lifetimeScope.Resolve<IPlayCardCriteria>();
-            var discardCardCriteria = lifetimeScope.Resolve<IDiscardCardCriteria>();
+            var playAction = lifetimeScope.Resolve<IPlayAction>();
 
             if (viewModel != null && viewModel.Id != card.Index)
                 viewModel = new CardViewModel();
@@ -117,8 +117,8 @@ namespace Arcomage.Unity.GameScene.Scripts
             viewModel.Identifier = card.GetIdentifier();
             viewModel.Kind = card.Kind;
             viewModel.Price = card.Price;
-            viewModel.IsPlay = playCardCriteria.CanPlayCard(game, player, index);
-            viewModel.IsDiscard = discardCardCriteria.CanDiscardCard(game, player, index);
+            viewModel.IsPlay = playAction.CanPlay(game, player, new PlayResult(index, true));
+            viewModel.IsDiscard = playAction.CanPlay(game, player, new PlayResult(index, false));
 
             return viewModel;
         }

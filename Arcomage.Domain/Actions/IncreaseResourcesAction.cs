@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Arcomage.Domain.Players;
 
 namespace Arcomage.Domain.Actions
 {
@@ -18,14 +19,18 @@ namespace Arcomage.Domain.Actions
             this.nextAction = nextAction;
         }
 
-        /// <inheritdoc/>
-        public Task<GameResult> Play(Game game)
+        public Task<GameResult> Play(Game game, Player player, PlayResult playResult)
         {
-            game.Players.CurrentPlayer.Resources.Bricks += game.Players.CurrentPlayer.Resources.Quarry;
-            game.Players.CurrentPlayer.Resources.Gems += game.Players.CurrentPlayer.Resources.Magic;
-            game.Players.CurrentPlayer.Resources.Recruits += game.Players.CurrentPlayer.Resources.Dungeons;
+            player.Resources.Bricks += player.Resources.Quarry;
+            player.Resources.Gems += player.Resources.Magic;
+            player.Resources.Recruits += player.Resources.Dungeons;
 
-            return nextAction.Play(game);
+            return nextAction.Play(game, player, playResult);
+        }
+
+        public bool CanPlay(Game game, Player player, PlayResult playResult)
+        {
+            return nextAction.CanPlay(game, player, playResult);
         }
     }
 }

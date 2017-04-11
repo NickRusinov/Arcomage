@@ -27,11 +27,6 @@ namespace Arcomage.Unity.GameScene.Views
         public GameObject[] СardTemplates;
 
         /// <summary>
-        /// Если значение установлено, при добавлении карты в историю произойдет ее очистка
-        /// </summary>
-        private bool cleared;
-
-        /// <summary>
         /// Модель представления карты, добавляемой в историю из руки игрока
         /// </summary>
         private CardViewModel pushedCardViewModel;
@@ -50,7 +45,8 @@ namespace Arcomage.Unity.GameScene.Views
         {
             Bind(viewModel, h => h.Cards)
                 .OnAdded(OnAddedCard)
-                .OnCleared(OnClearedCard);
+                .OnReplaced((_, cardViewModel, index) => OnReplacedCard(cardViewModel, index))
+                .OnReplaced((_, cardViewModel, index) => OnAddedCard(cardViewModel, index));
         }
 
         /// <summary>
@@ -76,19 +72,6 @@ namespace Arcomage.Unity.GameScene.Views
         /// <param name="index">Номер добавляемой карты</param>
         private void OnAddedCard(HistoryCardViewModel cardViewModel, int index)
         {
-            if (cleared)
-            {
-                foreach (var cardScript in GetComponentsInChildren<HistoryCardView>())
-                {
-                    var localCardScript = cardScript;
-
-                    var cardTranslateScript = cardScript.gameObject.AddComponent<CardTranslateScript>();
-                    cardTranslateScript.Initialize(СardInitTemplate.transform.position);
-                    cardTranslateScript.EndedEvent.AddListener(() => 
-                        localCardScript.Do(s => Destroy(s.gameObject)));
-                }
-            }
-            
             if (pushedCardViewModel != null && pushedCardViewModel.Id == cardViewModel.Id)
             {
                 var cardTemplate = СardTemplates[index % СardTemplates.Length];
@@ -112,21 +95,22 @@ namespace Arcomage.Unity.GameScene.Views
                 cardTranslateScript.Initialize(cardTemplate.transform.position);
                 pushedCardTaskSource.TrySetResult(true);
             }
-
-            cleared = false;
+            
             pushedCardViewModel = null;
             pushedCardObject = null;
         }
 
-        /// <summary>
-        /// Очитска истории. В случае очистки карты убираются не сразу, а только после добавления первой карты в 
-        /// новую историю
-        /// </summary>
-        private void OnClearedCard()
+        private void OnReplacedCard(HistoryCardViewModel cardViewModel, int index)
         {
-            cleared = true;
-            pushedCardViewModel = null;
-            pushedCardObject = null;
+            foreach (var cardScript in GetComponentsInChildren<HistoryCardView>())
+            {
+                var localCardScript = cardScript;
+
+                var cardTranslateScript = cardScript.gameObject.AddComponent<CardTranslateScript>();
+                cardTranslateScript.Initialize(СardInitTemplate.transform.position);
+                cardTranslateScript.EndedEvent.AddListener(() =>
+                    localCardScript.Do(s => Destroy(s.gameObject)));
+            }
         }
     }
 }
