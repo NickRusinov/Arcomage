@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Arcomage.Unity.GameScene.ViewModels;
+using Arcomage.Unity.Shared.Scripts;
 using Autofac;
 
 namespace Arcomage.Unity.GameScene.Scripts
@@ -13,6 +14,10 @@ namespace Arcomage.Unity.GameScene.Scripts
         {
             builder.RegisterType<GameViewModel>()
                 .InstancePerLifetimeScope();
+
+            builder.Register(c => c.Resolve<Settings>().IsNetwork ?
+                c.Resolve<NetworkGameExecutor>() as GameExecutor : 
+                c.Resolve<SingleGameExecutor>() as GameExecutor);
         }
     }
 }

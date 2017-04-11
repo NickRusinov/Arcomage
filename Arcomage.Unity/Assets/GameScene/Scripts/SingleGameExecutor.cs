@@ -9,7 +9,7 @@ using Arcomage.Unity.Shared.Scripts;
 
 namespace Arcomage.Unity.GameScene.Scripts
 {
-    public class SingleGameExecutor
+    public class SingleGameExecutor : GameExecutor
     {
         private readonly Game game;
 
@@ -24,7 +24,7 @@ namespace Arcomage.Unity.GameScene.Scripts
             this.updater = updater;
         }
 
-        public IEnumerator Execute()
+        public override IEnumerator Execute()
         {
             updater.Update(game);
 

@@ -38,7 +38,7 @@ namespace Arcomage.Unity.GameScene.Scripts
         public void Start()
         {
             var gameViewModel = lifetimeScope.Resolve<GameViewModel>();
-            var gameExecutor = lifetimeScope.Resolve<SingleGameExecutor>();
+            var gameExecutor = lifetimeScope.Resolve<GameExecutor>();
 
             StartCoroutine(gameExecutor.Execute());
             GameScript.ViewModel = gameViewModel;

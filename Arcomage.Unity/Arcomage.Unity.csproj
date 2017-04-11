@@ -102,9 +102,11 @@
     <Compile Include="Assets\GameScene\Factories\HistoryCardFactory.cs" />
     <Compile Include="Assets\GameScene\Scripts\CardDragDropScript.cs" />
     <Compile Include="Assets\GameScene\Scripts\CardTranslateScript.cs" />
+    <Compile Include="Assets\GameScene\Scripts\GameExecutor.cs" />
     <Compile Include="Assets\GameScene\Scripts\GameExtensions.cs" />
     <Compile Include="Assets\GameScene\Scripts\GameSceneModule.cs" />
     <Compile Include="Assets\GameScene\Scripts\GameSceneScript.cs" />
+    <Compile Include="Assets\GameScene\Scripts\NetworkGameExecutor.cs" />
     <Compile Include="Assets\GameScene\Scripts\NetworkGameSceneModule.cs" />
     <Compile Include="Assets\GameScene\Scripts\NetworkViewModelUpdater.cs" />
     <Compile Include="Assets\GameScene\Scripts\SingleGameExecutor.cs" />

@@ -29,10 +29,12 @@ namespace Arcomage.Unity.NetworkScene
         public override void Awake()
         {
             base.Awake();
-            
+
+            var settings = lifetimeScope.Resolve<Settings>();
             var connectViewModel = lifetimeScope.Resolve<ConnectViewModel>();
             var prepareViewModel = lifetimeScope.Resolve<PrepareViewModel>();
 
+            settings.UseNetwork();
             ConnectPanel.ViewModel = connectViewModel;
             PreparePanel.ViewModel = prepareViewModel;
         }

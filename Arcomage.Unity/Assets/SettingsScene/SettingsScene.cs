@@ -20,8 +20,10 @@ namespace Arcomage.Unity.SettingsScene
         [Tooltip("Компонент настроек игры")]
         public SettingsView Settings;
 
-        public void Start()
+        public override void Awake()
         {
+            base.Awake();
+
             var settings = lifetimeScope.Resolve<Settings>();
             var settingsViewModel = lifetimeScope.Resolve<SettingsViewModel>();
 
