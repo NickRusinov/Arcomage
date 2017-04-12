@@ -42,6 +42,7 @@ namespace Arcomage.Domain
         {
             return builder.Register(b => 
                 new Game(
+                    b.Resolve<IPlayAction>(),
                     b.Resolve<Rule>(), 
                     b.Resolve<Deck>(), 
                     b.Resolve<History>(), 

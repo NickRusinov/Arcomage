@@ -19,22 +19,20 @@ namespace Arcomage.WebApi
     {
         public DomainProfile()
         {
-            CreateMap<Game, GameModel>()
-                .ForMember(m => m.FirstPlayer, exp => exp.MapFrom(g => g.Players.FirstPlayer))
-                .ForMember(m => m.SecondPlayer, exp => exp.MapFrom(g => g.Players.SecondPlayer))
-                .ForMember(m => m.Hand, exp => exp.MapFrom(g => g.Players.FirstPlayer.Hand))
-                .ForMember(m => m.Result, exp => exp.ResolveUsing(g => g.Rule.IsWin(g)))
-                .ForMember(m => m.Result, exp => exp.PreCondition(g => g.Rule.IsWin(g)));
-            CreateMap<GameContext, GameModel>()
-                .ForMember(m => m.FirstPlayer, exp => exp.MapFrom(c => c.FirstUser))
-                .ForMember(m => m.SecondPlayer, exp => exp.MapFrom(c => c.SecondUser))
-                .ForAllOtherMembers(exp => exp.Ignore());
+            CreateMap<(GameContext c, Game g), GameModel>()
+                .ForMember(m => m.FirstPlayer, exp => exp.ResolveUsing(t => (t.c.FirstUser, t.g.Players.FirstPlayer)))
+                .ForMember(m => m.SecondPlayer, exp => exp.ResolveUsing(t => (t.c.SecondUser, t.g.Players.SecondPlayer)))
+                .ForMember(m => m.History, exp => exp.ResolveUsing(t => t.g.History))
+                .ForMember(m => m.Hand, exp => exp.ResolveUsing(t => (t.g, t.g.Players.FirstPlayer, t.g.Players.FirstPlayer.Hand)))
+                .ForMember(m => m.Result, exp => exp.ResolveUsing(t => (t.c, t.g.Rule.IsWin(t.g))))
+                .ForMember(m => m.Result, exp => exp.PreCondition(t => t.g.Rule.IsWin(t.g)))
+                .ForMember(m => m.PlayAgain, exp => exp.MapFrom(t => t.g.PlayAgain))
+                .ForMember(m => m.DiscardOnly, exp => exp.MapFrom(t => t.g.DiscardOnly));
 
-            CreateMap<Player, GameModel.PlayerModel>()
-                .ForMember(m => m.Name, exp => exp.Ignore());
-            CreateMap<UserContext, GameModel.PlayerModel>()
-                .ForMember(m => m.Name, exp => exp.ResolveUsing(c => c.Id.ToString()))
-                .ForAllOtherMembers(exp => exp.Ignore());
+            CreateMap<(UserContext c, Player p), GameModel.PlayerModel>()
+                .ForMember(m => m.Name, exp => exp.ResolveUsing(t => t.c.Id.ToString()))
+                .ForMember(m => m.Buildings, exp => exp.ResolveUsing(t => t.p.Buildings))
+                .ForMember(m => m.Resources, exp => exp.ResolveUsing(t => t.p.Resources));
 
             CreateMap<BuildingSet, GameModel.BuildingsModel>()
                 .ForMember(m => m.MaxWall, exp => exp.UseValue(50)) // TODO
@@ -42,26 +40,26 @@ namespace Arcomage.WebApi
 
             CreateMap<ResourceSet, GameModel.ResourcesModel>();
 
-            CreateMap<History, GameModel.HistoryModel>()
-                .ForMember(m => m.Cards, exp => exp.ResolveUsing(h => h.Cards.Select((c, i) => (c, i))));
-            CreateMap<(HistoryCard Card, int Index), GameModel.HistoryCardModel>()
-                .ForMember(m => m.Identifier, exp => exp.UseValue("Apprentice")) // TODO
-                .ForMember(m => m.Index, exp => exp.MapFrom(c => c.Index))
-                .ForMember(m => m.ResourceKind, exp => exp.MapFrom(c => c.Card.Card.Kind))
-                .ForMember(m => m.ResourcePrice, exp => exp.MapFrom(c => c.Card.Card.Price))
-                .ForMember(m => m.IsPlayed, exp => exp.MapFrom(c => c.Card.IsPlayed));
-
-            CreateMap<Hand, GameModel.HandModel>()
-                .ForMember(m => m.Cards, exp => exp.ResolveUsing(h => h.Cards.Select((c, i) => (c, i))));
-            CreateMap<(Card Card, int Index), GameModel.CardModel>()
-                .ForMember(m => m.Identifier, exp => exp.UseValue("Apprentice")) //TODO
-                .ForMember(m => m.Index, exp => exp.MapFrom(c => c.Index))
+            CreateMap<History, GameModel.HistoryModel>();
+            CreateMap<HistoryCard, GameModel.HistoryCardModel>()
+                .ForMember(m => m.Identifier, exp => exp.ResolveUsing(c => c.Card.GetIdentifier()))
+                .ForMember(m => m.Index, exp => exp.MapFrom(c => c.Card.Index))
                 .ForMember(m => m.ResourceKind, exp => exp.MapFrom(c => c.Card.Kind))
                 .ForMember(m => m.ResourcePrice, exp => exp.MapFrom(c => c.Card.Price));
 
-            CreateMap<GameResult, GameModel.ResultModel>()
-                .ForMember(m => m.Identifier, exp => exp.UseValue("BuildTower")) // TODO
-                .ForMember(m => m.WinPlayer, exp => exp.UseValue("FirstPlayer")); // TODO
+            CreateMap<(Game g, Player p, Hand h), GameModel.HandModel>()
+                .ForMember(m => m.Cards, exp => exp.ResolveUsing(t => t.h.Cards.Select((c, i) => (t.g, t.p, c, i))));
+            CreateMap<(Game g, Player p, Card c, int i), GameModel.CardModel>()
+                .ForMember(m => m.Identifier, exp => exp.ResolveUsing(t => t.c.GetIdentifier()))
+                .ForMember(m => m.Index, exp => exp.MapFrom(t => t.c.Index))
+                .ForMember(m => m.ResourceKind, exp => exp.MapFrom(t => t.c.Kind))
+                .ForMember(m => m.ResourcePrice, exp => exp.MapFrom(t => t.c.Price))
+                .ForMember(m => m.CanPlay, exp => exp.ResolveUsing(t => t.g.PlayAction.CanPlay(t.g, t.p, new PlayResult(t.i, true))))
+                .ForMember(m => m.CanDiscard, exp => exp.ResolveUsing(t => t.g.PlayAction.CanPlay(t.g, t.p, new PlayResult(t.i, false))));
+
+            CreateMap<(GameContext c, GameResult r), GameModel.ResultModel>()
+                .ForMember(m => m.Identifier, exp => exp.ResolveUsing(t => t.r.GetIdentifier()))
+                .ForMember(m => m.WinPlayer, exp => exp.ResolveUsing(t => t.c.GetName(t.r.Player)));
         }
     }
 }

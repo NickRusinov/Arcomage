@@ -10,6 +10,7 @@ namespace Arcomage.Domain.Actions
     /// <summary>
     /// Выполянет замену активированной или сброшенной карты на новую из игровой колоды
     /// </summary>
+    [Serializable]
     public class ReplaceCardAction : IPlayAction
     {
         private readonly IPlayAction nextAction;

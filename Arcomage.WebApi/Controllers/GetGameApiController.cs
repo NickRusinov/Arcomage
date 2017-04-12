@@ -31,11 +31,7 @@ namespace Arcomage.WebApi.Controllers
             var game = await getGameByIdQuery.Get(gameContext.Id) ?? 
                 throw new HttpException(400, "Not found active game");
 
-            var model = new GameModel();
-            Mapper.Map(game, model);
-            Mapper.Map(gameContext, model);
-
-            return model;
+            return Mapper.Map<GameModel>((gameContext, game));
         }
     }
 }

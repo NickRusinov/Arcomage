@@ -11,6 +11,7 @@ namespace Arcomage.Domain.Actions
     /// <summary>
     /// Добавляет карту в историю хода текущего игрока
     /// </summary>
+    [Serializable]
     public class AddHistoryAction : IPlayAction
     {
         private readonly IPlayAction nextAction;

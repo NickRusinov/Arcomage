@@ -8,6 +8,7 @@ using Arcomage.Domain.Players;
 
 namespace Arcomage.Domain.Actions
 {
+    [Serializable]
     public class TerminatePlayAction : IPlayAction
     {
         public Task<GameResult> Play(Game game, Player player, PlayResult playResult)

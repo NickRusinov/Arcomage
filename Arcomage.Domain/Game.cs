@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Threading.Tasks;
+using Arcomage.Domain.Actions;
 using Arcomage.Domain.Decks;
 using Arcomage.Domain.Histories;
 using Arcomage.Domain.Players;
@@ -35,20 +36,24 @@ namespace Arcomage.Domain
         /// <param name="history">История сделанных ходов</param>
         /// <param name="players">Игроки</param>
         /// <param name="timer">Таймер</param>
-        public Game(Rule rule, Deck deck, History history, PlayerSet players, Timer timer)
+        public Game(IPlayAction playAction, Rule rule, Deck deck, History history, PlayerSet players, Timer timer)
         {
+            Contract.Requires(playAction != null);
             Contract.Requires(rule != null);
             Contract.Requires(deck != null);
             Contract.Requires(history != null);
             Contract.Requires(players != null);
             Contract.Requires(timer != null);
 
+            PlayAction = playAction;
             Rule = rule;
             Deck = deck;
             History = history;
             Players = players;
             Timer = timer;
         }
+
+        public IPlayAction PlayAction { get; }
 
         /// <summary>
         /// Правила игры

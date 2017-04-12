@@ -11,6 +11,7 @@ namespace Arcomage.Domain.Actions
     /// <summary>
     /// Выполняет передачу хода другому игроку, в случае окончания хода текущего
     /// </summary>
+    [Serializable]
     public class ReplacePlayerAction : IPlayAction
     {
         private readonly IPlayAction nextWhenReplacedPlayerAction;

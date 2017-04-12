@@ -10,6 +10,7 @@ namespace Arcomage.Domain.Actions
     /// <summary>
     /// Увеличивает значения ресурсов текущего игрока на их прирост
     /// </summary>
+    [Serializable]
     public class IncreaseResourcesAction : IPlayAction
     {
         private readonly IPlayAction nextAction;

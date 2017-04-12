@@ -10,6 +10,7 @@ namespace Arcomage.Domain.Actions
     /// <summary>
     /// Выполняет действия, связанные с активацией или сбросом карты
     /// </summary>
+    [Serializable]
     public class ActivateCardAction : IPlayAction
     {
         private readonly IPlayAction nextAction;

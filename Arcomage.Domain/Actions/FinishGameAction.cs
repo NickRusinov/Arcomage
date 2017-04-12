@@ -11,6 +11,7 @@ namespace Arcomage.Domain.Actions
     /// <summary>
     /// Выполняет проверку окончания игры
     /// </summary>
+    [Serializable]
     public class FinishGameAction : IPlayAction
     {
         private readonly IPlayAction nextWhenNotFinishedGameAction;

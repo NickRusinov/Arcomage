@@ -140,6 +140,7 @@
     <Compile Include="Controllers\ConnectGameApiController.cs" />
     <Compile Include="Controllers\GetGameApiController.cs" />
     <Compile Include="Controllers\PlayGameApiController.cs" />
+    <Compile Include="GameExtensions.cs" />
     <Compile Include="Hubs\ApplicationHub.cs" />
     <Compile Include="Hubs\IConnectGameClient.cs" />
     <Compile Include="Hubs\IPlayGameClient.cs" />

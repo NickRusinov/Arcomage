@@ -9,6 +9,7 @@ using Arcomage.Domain.Players;
 
 namespace Arcomage.Domain.Actions
 {
+    [Serializable]
     public class RootPlayAction : IPlayAction
     {
         private readonly IPlayAction nextAction;

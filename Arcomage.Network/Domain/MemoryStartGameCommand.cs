@@ -29,22 +29,22 @@ namespace Arcomage.Network.Domain
         {
             var gameBuilderContext = gameBuilder.CreateContext();
             var game = gameBuilderContext.Resolve<Game>();
-            var playAction = gameBuilderContext.Resolve<IPlayAction>();
 
             gameStorage.AddOrUpdate(gameContext.Id, game, (_, g) => g);
 
-            Task.Run(() => StartGame(gameContext, game, playAction));
+            Task.Run(() => StartGame(gameContext, game));
 
             return Task.CompletedTask;
         }
 
-        private async Task StartGame(GameContext gameContext, Game game, IPlayAction playAction)
+        private async Task StartGame(GameContext gameContext, Game game)
         {
+            var rootPlayAction = new RootPlayAction(game.PlayAction);
             await changeStateGameCommand.ChangeState(gameContext, GameState.Played);
-
+            
             while (!game.Rule.IsWin(game))
             {
-                await playAction.Play(game);
+                var gameResult = await rootPlayAction.WaitPlay(game);
             }
 
             await changeStateGameCommand.ChangeState(gameContext, GameState.Finished);

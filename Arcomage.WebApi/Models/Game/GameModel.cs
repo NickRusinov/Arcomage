@@ -17,6 +17,10 @@ namespace Arcomage.WebApi.Models.Game
 
         public ResultModel Result { get; set; }
 
+        public int DiscardOnly { get; set; }
+
+        public int PlayAgain { get; set; }
+
         public class PlayerModel
         {
             public string Name { get; set; }
@@ -71,10 +75,22 @@ namespace Arcomage.WebApi.Models.Game
             public int ResourceKind { get; set; }
 
             public int ResourcePrice { get; set; }
+
+            public bool CanPlay { get; set; }
+
+            public bool CanDiscard { get; set; }
         }
 
-        public class HistoryCardModel : CardModel
+        public class HistoryCardModel
         {
+            public string Identifier { get; set; }
+
+            public int Index { get; set; }
+
+            public int ResourceKind { get; set; }
+
+            public int ResourcePrice { get; set; }
+
             public bool IsPlayed { get; set; }
         }
 
