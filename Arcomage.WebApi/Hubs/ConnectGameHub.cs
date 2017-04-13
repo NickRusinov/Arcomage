@@ -13,20 +13,27 @@ namespace Arcomage.WebApi.Hubs
     {
         private readonly IGetUserByIdQuery getUserByIdQuery;
 
+        private readonly IGetGameByUserIdQuery getGameByUserIdQuery;
+
         private readonly ICreateGameCommand createGameService;
 
-        public ConnectGameHub(IGetUserByIdQuery getUserByIdQuery, ICreateGameCommand createGameService)
+        public ConnectGameHub(IGetUserByIdQuery getUserByIdQuery, IGetGameByUserIdQuery getGameByUserIdQuery, ICreateGameCommand createGameService)
         {
             this.getUserByIdQuery = getUserByIdQuery;
+            this.getGameByUserIdQuery = getGameByUserIdQuery;
             this.createGameService = createGameService;
         }
 
         public async Task Connect()
         {
-            var firstUserContext = await getUserByIdQuery.Get(Identity.Id);
-            var secondUserContext = await getUserByIdQuery.Get(Identity.Id);
+            var gameContext = await getGameByUserIdQuery.Get(Identity.Id);
+            if (gameContext == null)
+            {
+                var firstUserContext = await getUserByIdQuery.Get(Identity.Id);
+                var secondUserContext = await getUserByIdQuery.Get(Identity.Id);
 
-            var gameContext = await createGameService.Create(firstUserContext, secondUserContext);
+                gameContext = await createGameService.Create(firstUserContext, secondUserContext);
+            }
 
             Clients.User(Identity.Id.ToString()).Connected(gameContext.Id);
         }

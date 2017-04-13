@@ -13,6 +13,7 @@ namespace Arcomage.Unity.GameScene.Scripts
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterType<GameViewModel>()
+                .PropertiesAutowired()
                 .InstancePerLifetimeScope();
 
             builder.Register(c => c.Resolve<Settings>().IsNetwork ?

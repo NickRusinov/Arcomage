@@ -36,14 +36,14 @@ namespace Arcomage.Unity.GameScene.Views
             Bind(viewModel, b => b.Tower)
                 .OnChanged(t => TowerParticle.Play())
                 .OnChangedAndInit(t => TowerText.text = t.ToString())
-                .OnChangedAndInit(t => TowerImage.transform.SetLocalPosition(y: -330f + Math.Min(180f, 180f * t / viewModel.MaxTower)))
-                .OnChangedAndInit(t => TowerImage.material.SetFloat("_Length", 1f - (150f + Math.Min(180f, 180f * t / viewModel.MaxTower)) / TowerImage.sprite.texture.height));
+                .OnChangedAndInit(t => TowerImage.transform.SetLocalPosition(y: -330f + Math.Min(180f, 180f * t / viewModel.MaxTower ?? 50)))
+                .OnChangedAndInit(t => TowerImage.material.SetFloat("_Length", 1f - (150f + Math.Min(180f, 180f * t / viewModel.MaxTower ?? 50)) / TowerImage.sprite.texture.height));
 
             Bind(viewModel, b => b.Wall)
                 .OnChanged(w => WallParticle.Play())
                 .OnChangedAndInit(w => WallText.text = w.ToString())
-                .OnChangedAndInit(w => WallImage.transform.SetLocalPosition(y: -460f + Math.Min(280f, 280f * w / viewModel.MaxWall)))
-                .OnChangedAndInit(w => WallImage.material.SetFloat("_Length", 1f - (20f + Math.Min(280f, 280f * w / viewModel.MaxWall)) / WallImage.sprite.texture.height));
+                .OnChangedAndInit(w => WallImage.transform.SetLocalPosition(y: -460f + Math.Min(280f, 280f * w / viewModel.MaxWall ?? 50)))
+                .OnChangedAndInit(w => WallImage.material.SetFloat("_Length", 1f - (20f + Math.Min(280f, 280f * w / viewModel.MaxWall ?? 50)) / WallImage.sprite.texture.height));
         }
     }
 }

@@ -34,6 +34,8 @@ namespace Arcomage.WebApi.Hubs
                 ?? throw new HubException("Game not found");
 
             await playGameCommand.PlayCard(gameContext, userContext, cardIndex);
+
+            Clients.User(Identity.Id.ToString()).Update();
         }
 
         public async Task DiscardCard(int cardIndex)
@@ -45,6 +47,8 @@ namespace Arcomage.WebApi.Hubs
                 ?? throw new HubException("Game not found");
 
             await playGameCommand.DiscardCard(gameContext, userContext, cardIndex);
+
+            Clients.User(Identity.Id.ToString()).Update();
         }
     }
 }

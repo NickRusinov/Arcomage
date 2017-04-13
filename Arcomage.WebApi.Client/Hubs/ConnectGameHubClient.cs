@@ -17,7 +17,7 @@ namespace Arcomage.WebApi.Client.Hubs
         /// </summary>
         /// <param name="hubConnectionFactory">Фабрика для создания подключению к хабу</param>
         public ConnectGameHubClient(IHubConnectionFactory hubConnectionFactory)
-            : base(hubConnectionFactory, "NetworkGameHub")
+            : base(hubConnectionFactory, "ConnectGameHub")
         {
             
         }

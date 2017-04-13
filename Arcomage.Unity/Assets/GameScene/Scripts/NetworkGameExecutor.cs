@@ -12,14 +12,17 @@ namespace Arcomage.Unity.GameScene.Scripts
 {
     public class NetworkGameExecutor : GameExecutor
     {
+        private readonly UnityDispatcher dispatcher;
+
         private readonly PlayGameHubClient playGameHubClient;
 
         private readonly GetGameControllerClient getGameControllerClient;
 
         private readonly NetworkViewModelUpdater viewModelUpdater;
 
-        public NetworkGameExecutor(PlayGameHubClient playGameHubClient, GetGameControllerClient getGameControllerClient, NetworkViewModelUpdater viewModelUpdater)
+        public NetworkGameExecutor(UnityDispatcher dispatcher, PlayGameHubClient playGameHubClient, GetGameControllerClient getGameControllerClient, NetworkViewModelUpdater viewModelUpdater)
         {
+            this.dispatcher = dispatcher;
             this.playGameHubClient = playGameHubClient;
             this.getGameControllerClient = getGameControllerClient;
             this.viewModelUpdater = viewModelUpdater;
@@ -29,8 +32,8 @@ namespace Arcomage.Unity.GameScene.Scripts
         {
             var getGameTask = getGameControllerClient.GetGame();
 
-            playGameHubClient.OnUpdate += () => 
-                Interlocked.Exchange(ref getGameTask, getGameControllerClient.GetGame());
+            playGameHubClient.OnUpdate += dispatcher.Invoke(() =>
+                Interlocked.Exchange(ref getGameTask, getGameControllerClient.GetGame()));
 
             yield return new TaskYieldInstruction(getGameTask);
             var viewModel = viewModelUpdater.Update(getGameTask.Result);

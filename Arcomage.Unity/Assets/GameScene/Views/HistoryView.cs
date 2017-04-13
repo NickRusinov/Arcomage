@@ -43,7 +43,7 @@ namespace Arcomage.Unity.GameScene.Views
 
         protected override void OnViewModel(HistoryViewModel viewModel)
         {
-            Bind(viewModel, h => h.Cards)
+            Bind(viewModel, h => h.Cards as IList<HistoryCardViewModel>)
                 .OnAdded(OnAddedCard)
                 .OnReplaced((_, cardViewModel, index) => OnReplacedCard(cardViewModel, index))
                 .OnReplaced((_, cardViewModel, index) => OnAddedCard(cardViewModel, index));

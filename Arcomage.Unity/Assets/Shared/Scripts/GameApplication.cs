@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using Arcomage.WebApi.Client.Controllers;
+using Arcomage.WebApi.Client.Hubs;
 using Autofac;
 using Autofac.Features.ResolveAnything;
 
@@ -17,6 +19,14 @@ namespace Arcomage.Unity.Shared.Scripts
             var builder = new ContainerBuilder();
             builder.RegisterSource(new AnyConcreteTypeNotAlreadyRegisteredSource());
             builder.RegisterAssemblyModules(Assembly.GetExecutingAssembly());
+
+            builder.RegisterAssemblyTypes(typeof(ApplicationControllerClient).Assembly)
+                .AssignableTo<ApplicationControllerClient>()
+                .InstancePerLifetimeScope();
+
+            builder.RegisterAssemblyTypes(typeof(ApplicationHubClient).Assembly)
+                .AssignableTo<ApplicationHubClient>()
+                .InstancePerLifetimeScope();
 
             builder.RegisterType<Settings>()
                 .SingleInstance();

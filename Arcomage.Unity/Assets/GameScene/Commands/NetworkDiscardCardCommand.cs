@@ -20,7 +20,9 @@ namespace Arcomage.Unity.GameScene.Commands
 
         public override Task Execute(CardViewModel state)
         {
-            return playGameHubClient.DiscardCard(state.Index);
+            return playGameHubClient.Start()
+                .ContinueWith(t => playGameHubClient.DiscardCard(state.Index),
+                    TaskContinuationOptions.ExecuteSynchronously);
         }
     }
 }

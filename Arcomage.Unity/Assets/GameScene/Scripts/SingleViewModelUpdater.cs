@@ -86,7 +86,7 @@ namespace Arcomage.Unity.GameScene.Scripts
             viewModel.Cards = viewModel.Cards ?? new List<CardViewModel>();
             viewModel.Cards = hand.Cards
                 .Select((c, i) => Update(viewModel.Cards.ElementAtOrDefault(i), game, player, c, i))
-                .ToArray();
+                .ToList();
 
             return viewModel;
         }
@@ -97,7 +97,7 @@ namespace Arcomage.Unity.GameScene.Scripts
             viewModel.Cards = viewModel.Cards ?? new List<HistoryCardViewModel>();
             viewModel.Cards = history.Cards
                 .Select((c, i) => Update(viewModel.Cards.ElementAtOrDefault(i), c, i))
-                .ToArray();
+                .ToList();
 
             return viewModel;
         }

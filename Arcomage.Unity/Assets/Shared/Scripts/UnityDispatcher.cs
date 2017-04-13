@@ -19,19 +19,24 @@ namespace Arcomage.Unity.Shared.Scripts
                 action.Invoke();
         }
 
-        public void Invoke(Action action)
+        public void Dispatch(Action action)
         {
             executionQueue.Enqueue(action);
         }
 
-        public void Invoke<T>(Action<T> action, T obj)
+        public void Dispatch<T>(Action<T> action, T obj)
         {
             executionQueue.Enqueue(() => action(obj));
         }
 
+        public Action Invoke(Action action)
+        {
+            return () => Dispatch(action);
+        }
+
         public Action<T> Invoke<T>(Action<T> action)
         {
-            return a => Invoke(action, a);
+            return a => Dispatch(action, a);
         }
     }
 }

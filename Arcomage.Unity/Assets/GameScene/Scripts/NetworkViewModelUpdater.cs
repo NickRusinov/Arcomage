@@ -35,12 +35,12 @@ namespace Arcomage.Unity.GameScene.Scripts
             viewModel.LeftResources = Update(viewModel.LeftResources, model.FirstPlayer.Resources, model.FirstPlayer);
             viewModel.RightBuildings = Update(viewModel.RightBuildings, model.SecondPlayer.Buildings);
             viewModel.RightResources = Update(viewModel.RightResources, model.SecondPlayer.Resources, model.SecondPlayer);
-            viewModel.FinishedMenu = Update(viewModel.FinishedMenu, model.Result);
+            viewModel.FinishedMenu = Update(viewModel.FinishedMenu, model.Result ?? new GameModel.ResultModel());
             viewModel.Hand = Update(viewModel.Hand, model.Hand);
             viewModel.History = Update(viewModel.History, model.History);
             viewModel.PlayerKind = PlayerKind.First; // TODO
-            viewModel.DiscardOnly = 0; // TODO
-            viewModel.PlayAgain = 0; // TODO
+            viewModel.DiscardOnly = model.DiscardOnly;
+            viewModel.PlayAgain = model.PlayAgain;
 
             return viewModel;
         }
@@ -76,7 +76,7 @@ namespace Arcomage.Unity.GameScene.Scripts
             viewModel.Cards = viewModel.Cards ?? new List<CardViewModel>();
             viewModel.Cards = model.Cards
                 .Select((c, i) => Update(viewModel.Cards.ElementAtOrDefault(i), c, i))
-                .ToArray();
+                .ToList();
 
             return viewModel;
         }
@@ -87,7 +87,7 @@ namespace Arcomage.Unity.GameScene.Scripts
             viewModel.Cards = viewModel.Cards ?? new List<HistoryCardViewModel>();
             viewModel.Cards = model.Cards
                 .Select((c, i) => Update(viewModel.Cards.ElementAtOrDefault(i), c, i))
-                .ToArray();
+                .ToList();
 
             return viewModel;
         }

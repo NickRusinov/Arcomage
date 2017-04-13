@@ -11,8 +11,8 @@ namespace Arcomage.Unity.GameScene.ViewModels
 
         public int Tower { get; set; }
 
-        public int MaxWall { get; set; }
+        public int? MaxWall { get; set; }
 
-        public int MaxTower { get; set; }
+        public int? MaxTower { get; set; }
     }
 }

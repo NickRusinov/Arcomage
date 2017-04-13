@@ -32,6 +32,7 @@ namespace Arcomage.Unity.GameScene.Views
         {
             Bind(viewModel, h => h.Cards)
                 .OnInit(OnInitializeCard)
+                .OnAdded(OnInitializeCard)
                 .OnReplaced(OnReplacedCard);
         }
 
