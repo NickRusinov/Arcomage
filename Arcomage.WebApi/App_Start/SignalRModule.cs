@@ -35,6 +35,10 @@ namespace Arcomage.WebApi
                 .AsImplementedInterfaces()
                 .SingleInstance();
 
+            builder.Register(c => c.Resolve<IConnectionManager>().GetHubContext<PlayGameHub, IPlayGameClient>())
+                .AsImplementedInterfaces()
+                .SingleInstance();
+
             builder.RegisterType<ApplicationUserIdProvider>()
                 .AsImplementedInterfaces()
                 .SingleInstance();

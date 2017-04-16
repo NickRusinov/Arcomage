@@ -8,9 +8,18 @@ namespace Arcomage.Network
 {
     public class GameContext
     {
-        public Guid Id { get; set; }
+        public GameContext()
+        {
+        }
 
-        public GameState State { get; set; }
+        public GameContext(Guid id, UserContext firstUser, UserContext secondUser)
+        {
+            Id = id;
+            FirstUser = firstUser;
+            SecondUser = secondUser;
+        }
+
+        public Guid Id { get; set; }
 
         public UserContext FirstUser { get; set; }
 

@@ -2,33 +2,25 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Http;
-using Arcomage.Network.Games;
-using Arcomage.Network.Users;
+using Arcomage.Network.Services;
 
 namespace Arcomage.WebApi.Controllers
 {
     [Authorize]
     public class ConnectGameApiController : ApplicationApiController
     {
-        private readonly IGetUserByIdQuery getUserByIdQuery;
+        private readonly IConnectGameService connectGameService;
 
-        private readonly ICreateGameCommand createGameCommand;
-
-        public ConnectGameApiController(IGetUserByIdQuery getUserByIdQuery, ICreateGameCommand createGameCommand)
+        public ConnectGameApiController(IConnectGameService connectGameService)
         {
-            this.getUserByIdQuery = getUserByIdQuery;
-            this.createGameCommand = createGameCommand;
+            this.connectGameService = connectGameService;
         }
 
         [HttpPost, Route("~/api/game/connect")]
         public async Task<Guid> Connect()
         {
-            var firstUserContext = await getUserByIdQuery.Get(Identity.Id);
-            var secondUserContext = await getUserByIdQuery.Get(Identity.Id);
-
-            var gameContext = await createGameCommand.Create(firstUserContext, secondUserContext);
+            var gameContext = await connectGameService.ConnectGame(Identity.Id);
 
             return gameContext.Id;
         }

@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Arcomage.Network.Games
+namespace Arcomage.Network.Repositories
 {
-    public interface IGetGameByUserIdQuery
+    public interface IUserContextRepository
     {
-        Task<GameContext> Get(Guid userId);
+        Task<UserContext> GetById(Guid id);
     }
 }

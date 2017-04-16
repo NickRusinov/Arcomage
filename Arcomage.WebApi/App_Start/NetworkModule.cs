@@ -1,10 +1,14 @@
 ﻿using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
-using Arcomage.Domain;
 using Arcomage.Network;
+using Arcomage.Network.Jobs;
+using Arcomage.Network.Repositories;
+using Arcomage.Network.Services;
+using Arcomage.WebApi.Hubs;
+using Arcomage.WebApi.Network;
 using Autofac;
+using Microsoft.AspNet.SignalR;
 
 namespace Arcomage.WebApi
 {
@@ -12,25 +16,35 @@ namespace Arcomage.WebApi
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<ConcurrentDictionary<Guid, Game>>()
-                .AsSelf()
-                .SingleInstance();
-
-            builder.RegisterType<ConcurrentDictionary<Guid, GameContext>>()
-                .AsSelf()
-                .SingleInstance();
-
-            builder.RegisterType<ConcurrentDictionary<Guid, UserContext>>()
-                .AsSelf()
-#warning Hardcode user
-                .OnActivating(ea => ea.Instance.TryAdd(Guid.Parse("EB3AB862-E0D0-413B-B732-6BDD86B3A1A2"), new UserContext { Id = Guid.Parse("EB3AB862-E0D0-413B-B732-6BDD86B3A1A2") }))
-#warning Hardcode user
-                .OnActivating(ea => ea.Instance.TryAdd(Guid.Parse("EB3AB862-E0D0-413B-B732-6BDD86B3A1A3"), new UserContext { Id = Guid.Parse("EB3AB862-E0D0-413B-B732-6BDD86B3A1A3") }))
-                .SingleInstance();
-
             builder.RegisterAssemblyTypes(typeof(GameContext).Assembly)
+                .InNamespaceOf<IPlayGameService>()
                 .AsImplementedInterfaces()
                 .InstancePerLifetimeScope();
+
+            builder.RegisterAssemblyTypes(typeof(GameContext).Assembly)
+                .InNamespaceOf<IGameRepository>()
+                .AsImplementedInterfaces()
+                .SingleInstance();
+
+            builder.RegisterType<ConnectGameService>()
+                .Named<IConnectGameService>("connectGameService")
+                .AsImplementedInterfaces()
+                .InstancePerDependency();
+
+            builder.RegisterDecorator<IConnectGameService>((c, s) =>
+                new SignalRConnectGameService(s,
+                    c.Resolve<IHubContext<IConnectGameClient>>()),
+                fromKey: "connectGameService");
+
+            builder.RegisterType<DefaultPlayGamePublisher>()
+                .Named<IPlayGamePublisher>("defaultPlayGamePublisher")
+                .AsImplementedInterfaces()
+                .InstancePerDependency();
+
+            builder.RegisterDecorator<IPlayGamePublisher>((c, s) =>
+                new SignalRPlayGamePublisher(s,
+                    c.Resolve<IHubContext<IPlayGameClient>>()),
+                fromKey: "defaultPlayGamePublisher");
         }
     }
 }

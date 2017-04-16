@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Arcomage.Network.Games;
-using Arcomage.Network.Users;
+using Arcomage.Network.Services;
 using Microsoft.AspNet.SignalR;
 
 namespace Arcomage.WebApi.Hubs
@@ -11,29 +10,16 @@ namespace Arcomage.WebApi.Hubs
     [Authorize]
     public class ConnectGameHub : ApplicationHub<IConnectGameClient>
     {
-        private readonly IGetUserByIdQuery getUserByIdQuery;
+        private readonly IConnectGameService connectGameService;
 
-        private readonly IGetGameByUserIdQuery getGameByUserIdQuery;
-
-        private readonly ICreateGameCommand createGameService;
-
-        public ConnectGameHub(IGetUserByIdQuery getUserByIdQuery, IGetGameByUserIdQuery getGameByUserIdQuery, ICreateGameCommand createGameService)
+        public ConnectGameHub(IConnectGameService connectGameService)
         {
-            this.getUserByIdQuery = getUserByIdQuery;
-            this.getGameByUserIdQuery = getGameByUserIdQuery;
-            this.createGameService = createGameService;
+            this.connectGameService = connectGameService;
         }
-
+        
         public async Task Connect()
         {
-            var gameContext = await getGameByUserIdQuery.Get(Identity.Id);
-            if (gameContext == null)
-            {
-                var firstUserContext = await getUserByIdQuery.Get(Identity.Id);
-                var secondUserContext = await getUserByIdQuery.Get(Identity.Id);
-
-                gameContext = await createGameService.Create(firstUserContext, secondUserContext);
-            }
+            var gameContext = await connectGameService.ConnectGame(Identity.Id);
 
             Clients.User(Identity.Id.ToString()).Connected(gameContext.Id);
         }

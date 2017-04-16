@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Arcomage.Network.Domain
+namespace Arcomage.Network.Services
 {
-    public interface IStartGameCommand
+    public interface IConnectGameService
     {
-        Task Start(GameContext gameContext);
+        Task<GameContext> ConnectGame(Guid userId);
     }
 }

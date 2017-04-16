@@ -5,10 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using Arcomage.Domain;
 
-namespace Arcomage.Network.Domain
+namespace Arcomage.Network.Repositories
 {
-    public interface IGetGameByIdQuery
+    public interface IGameRepository
     {
-        Task<Game> Get(Guid gameId);
+        Task<bool> Add(Guid id, Game game);
+
+        Task<Game> GetById(Guid id);
     }
 }

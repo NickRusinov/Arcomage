@@ -4,6 +4,22 @@
     <TargetFramework>net46</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="Hangfire.Core" Version="1.6.12" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\Arcomage.Domain\Arcomage.Domain.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="NetworkResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>NetworkResources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="NetworkResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>NetworkResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>
