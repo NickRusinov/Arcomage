@@ -10,8 +10,10 @@ namespace Arcomage.Network.Repositories
     {
         Task<bool> Add(GameContext gameContext);
 
+        Task<bool> Save(GameContext gameContext);
+
         Task<GameContext> GetById(Guid id);
 
-        Task<GameContext> GetByUserId(Guid id);
+        Task<GameContext> GetByUserId(Guid id, GameState state);
     }
 }

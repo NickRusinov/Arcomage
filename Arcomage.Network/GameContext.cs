@@ -8,18 +8,29 @@ namespace Arcomage.Network
 {
     public class GameContext
     {
-        public GameContext()
+        public static GameContext New(UserContext firstUser, UserContext secondUser)
         {
-        }
-
-        public GameContext(Guid id, UserContext firstUser, UserContext secondUser)
-        {
-            Id = id;
-            FirstUser = firstUser;
-            SecondUser = secondUser;
+            return new GameContext
+            {
+                Id = Guid.NewGuid(),
+                State = GameState.Created,
+                CreatedDate = DateTime.UtcNow,
+                StartedDate = null,
+                FinishedDate = null,
+                FirstUser = firstUser,
+                SecondUser = secondUser,
+            };
         }
 
         public Guid Id { get; set; }
+
+        public GameState State { get; set; }
+
+        public DateTime? CreatedDate { get; set; }
+
+        public DateTime? StartedDate { get; set; }
+
+        public DateTime? FinishedDate { get; set; }
 
         public UserContext FirstUser { get; set; }
 

@@ -11,6 +11,10 @@ namespace Arcomage.WebApi
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterApiControllers(ThisAssembly);
+
+            builder.RegisterType<AutofacWebApiDependencyResolver>()
+                .AsImplementedInterfaces()
+                .SingleInstance();
         }
     }
 }

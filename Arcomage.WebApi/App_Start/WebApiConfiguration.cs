@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Web.Http;
+using System.Web.Http.Dependencies;
 using Autofac;
-using Autofac.Integration.WebApi;
 using Owin;
 
 namespace Arcomage.WebApi
@@ -15,7 +15,7 @@ namespace Arcomage.WebApi
         {
             var httpConfiguration = new HttpConfiguration();
             httpConfiguration.MapHttpAttributeRoutes();
-            httpConfiguration.DependencyResolver = new AutofacWebApiDependencyResolver(container);
+            httpConfiguration.DependencyResolver = container.Resolve<IDependencyResolver>();
 
             var traceWriter = httpConfiguration.EnableSystemDiagnosticsTracing();
             traceWriter.TraceSource = new TraceSource("WebApi");

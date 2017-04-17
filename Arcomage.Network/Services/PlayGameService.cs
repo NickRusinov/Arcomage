@@ -37,7 +37,7 @@ namespace Arcomage.Network.Services
 
         private async Task<HumanPlayer> GetHumanPlayer(Guid userId)
         {
-            var gameContext = await gameContextRepository.GetByUserId(userId) ??
+            var gameContext = await gameContextRepository.GetByUserId(userId, GameState.Playing) ??
                 throw new NetworkException(NetworkResources.NotFoundActiveGameContext);
 
             var game = await gameRepository.GetById(gameContext.Id) ??

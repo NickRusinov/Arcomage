@@ -24,7 +24,7 @@ namespace Arcomage.Network.Services
 
         public async Task<GameContext> ConnectGame(Guid userId)
         {
-            var gameContext = await gameContextRepository.GetByUserId(userId);
+            var gameContext = await gameContextRepository.GetByUserId(userId, GameState.Created | GameState.Playing);
             if (gameContext != null)
                 return gameContext;
 

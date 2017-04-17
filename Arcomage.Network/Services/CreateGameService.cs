@@ -27,7 +27,7 @@ namespace Arcomage.Network.Services
 
         public async Task<GameContext> CreateGame(UserContext firstUserContext, UserContext secondUserContext)
         {
-            var gameContext = new GameContext(Guid.NewGuid(), firstUserContext, secondUserContext);
+            var gameContext = GameContext.New(firstUserContext, secondUserContext);
             var gameBuilderContext = gameBuilder.CreateContext();
             var game = gameBuilderContext.Resolve<Game>();
 

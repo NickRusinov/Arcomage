@@ -18,6 +18,7 @@ namespace Arcomage.WebApi
         {
             builder.RegisterAssemblyTypes(typeof(GameContext).Assembly)
                 .InNamespaceOf<IPlayGameService>()
+                .Except<ConnectGameService>()
                 .AsImplementedInterfaces()
                 .InstancePerLifetimeScope();
 
@@ -27,24 +28,27 @@ namespace Arcomage.WebApi
                 .SingleInstance();
 
             builder.RegisterType<ConnectGameService>()
-                .Named<IConnectGameService>("connectGameService")
-                .AsImplementedInterfaces()
+                .Named<IConnectGameService>("ConnectGameService")
                 .InstancePerDependency();
 
             builder.RegisterDecorator<IConnectGameService>((c, s) =>
                 new SignalRConnectGameService(s,
                     c.Resolve<IHubContext<IConnectGameClient>>()),
-                fromKey: "connectGameService");
+                fromKey: "ConnectGameService", toKey: null);
 
             builder.RegisterType<DefaultPlayGamePublisher>()
-                .Named<IPlayGamePublisher>("defaultPlayGamePublisher")
-                .AsImplementedInterfaces()
+                .Named<IPlayGamePublisher>("DefaultPlayGamePublisher")
                 .InstancePerDependency();
+
+            builder.RegisterDecorator<IPlayGamePublisher>((c, s) =>
+                new GameStatePlayGamePublisher(s,
+                    c.Resolve<IGameContextRepository>()),
+                fromKey: "DefaultPlayGamePublisher", toKey: "GameStatePlayGamePublisher");
 
             builder.RegisterDecorator<IPlayGamePublisher>((c, s) =>
                 new SignalRPlayGamePublisher(s,
                     c.Resolve<IHubContext<IPlayGameClient>>()),
-                fromKey: "defaultPlayGamePublisher");
+                fromKey: "GameStatePlayGamePublisher", toKey: null);
         }
     }
 }

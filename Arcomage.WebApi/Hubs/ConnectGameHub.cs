@@ -20,8 +20,6 @@ namespace Arcomage.WebApi.Hubs
         public async Task Connect()
         {
             var gameContext = await connectGameService.ConnectGame(Identity.Id);
-
-            Clients.User(Identity.Id.ToString()).Connected(gameContext.Id);
         }
     }
 }

@@ -6,12 +6,15 @@ using System.Threading.Tasks;
 
 namespace Arcomage.Network
 {
+    [Flags]
     public enum GameState
     {
-        Created,
+        Created  = 0x0000_0001,
 
-        Played,
+        Playing  = 0x0000_0002,
 
-        Finished,
+        Finished = 0x0000_0004,
+
+        All      = Created | Playing | Finished,
     }
 }

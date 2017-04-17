@@ -16,26 +16,17 @@ namespace Arcomage.WebApi
         {
             builder.RegisterHubs(ThisAssembly);
 
-            builder.Register(c => GlobalHost.ConnectionManager)
-                .AsImplementedInterfaces();
-
-            builder.Register(c => GlobalHost.Configuration)
-                .AsImplementedInterfaces();
-
-            builder.Register(c => GlobalHost.DependencyResolver)
-                .AsImplementedInterfaces();
-
-            builder.Register(c => GlobalHost.HubPipeline)
-                .AsImplementedInterfaces();
-
-            builder.Register(c => GlobalHost.TraceManager)
-                .AsImplementedInterfaces();
+            builder.RegisterType<AutofacDependencyResolver>()
+                .AsImplementedInterfaces()
+                .SingleInstance();
             
-            builder.Register(c => c.Resolve<IConnectionManager>().GetHubContext<ConnectGameHub, IConnectGameClient>())
+            builder.Register(c => c.Resolve<IDependencyResolver>().Resolve<IConnectionManager>()
+                    .GetHubContext<ConnectGameHub, IConnectGameClient>())
                 .AsImplementedInterfaces()
                 .SingleInstance();
 
-            builder.Register(c => c.Resolve<IConnectionManager>().GetHubContext<PlayGameHub, IPlayGameClient>())
+            builder.Register(c => c.Resolve<IDependencyResolver>().Resolve<IConnectionManager>()
+                    .GetHubContext<PlayGameHub, IPlayGameClient>())
                 .AsImplementedInterfaces()
                 .SingleInstance();
 

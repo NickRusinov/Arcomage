@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Http;
+using Arcomage.Network;
 using Arcomage.Network.Repositories;
 using Arcomage.WebApi.Models.Game;
 
@@ -24,8 +26,11 @@ namespace Arcomage.WebApi.Controllers
         [HttpGet, Route("~/api/game")]
         public async Task<GameModel> GetGame()
         {
-            var gameContext = await gameContextRepository.GetByUserId(Identity.Id);
-            var game = await gameRepository.GetById(gameContext.Id);
+            var gameContext = await gameContextRepository.GetByUserId(Identity.Id, GameState.All) ??
+                throw new HttpException();
+
+            var game = await gameRepository.GetById(gameContext.Id) ??
+                throw new HttpException();
 
             return Mapper.Map<GameModel>((gameContext, game));
         }
