@@ -101,7 +101,7 @@ namespace Arcomage.Unity.GameScene.Scripts
             viewModel.Id = model.Index;
             viewModel.Index = index;
             viewModel.PlayCommand = viewModel.PlayCommand ?? lifetimeScope.Resolve<NetworkPlayCardCommand>();
-            viewModel.DiscardCommand = viewModel.PlayCommand ?? lifetimeScope.Resolve<NetworkDiscardCardCommand>();
+            viewModel.DiscardCommand = viewModel.DiscardCommand ?? lifetimeScope.Resolve<NetworkDiscardCardCommand>();
             viewModel.Identifier = model.Identifier;
             viewModel.Kind = (ResourceKind)model.ResourceKind;
             viewModel.Price = model.ResourcePrice;

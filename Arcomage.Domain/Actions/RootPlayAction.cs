@@ -43,9 +43,12 @@ namespace Arcomage.Domain.Actions
             return gameResult;
         }
 
-        public Task<GameResult> Play(Game game, Player player, PlayResult playResult)
+        public async Task<GameResult> Play(Game game, Player player, PlayResult playResult)
         {
-            return nextAction.Play(game, player, playResult);
+            if (nextAction.CanPlay(game, player, playResult))
+                return await nextAction.Play(game, player, playResult);
+
+            return game.Rule.IsWin(game);
         }
 
         public bool CanPlay(Game game, Player player, PlayResult playResult)
