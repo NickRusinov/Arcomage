@@ -28,7 +28,7 @@ namespace Arcomage.WebApi.Client.Hubs
         /// <returns>Задача, представляющая вызов серверного метода</returns>
         public Task Connect()
         {
-            return HubProxy.Invoke("Connect");
+            return Invoke("Connect");
         }
 
         /// <summary>

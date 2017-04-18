@@ -10,7 +10,7 @@ namespace Arcomage.WebApi.Client.Controllers
     /// <summary>
     /// Базовый класс для реализации клиентов контроллеров
     /// </summary>
-    public abstract class ApplicationControllerClient
+    public abstract class ApplicationControllerClient : IDisposable
     {
         /// <summary>
         /// Фабрика для создания http клиентов
@@ -82,6 +82,14 @@ namespace Arcomage.WebApi.Client.Controllers
             var response = await HttpClient.Post(url, data ?? new Dictionary<string, string>(0));
 
             return JsonConvert.DeserializeObject<T>(response);
+        }
+
+        /// <summary>
+        /// Закрывает соединение с сервером
+        /// </summary>
+        public void Dispose()
+        {
+            httpClient?.Dispose();
         }
     }
 }

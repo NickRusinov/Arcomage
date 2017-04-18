@@ -94,7 +94,7 @@ namespace Arcomage.Unity.GameScene.Scripts
 
         private CardViewModel Update(CardViewModel viewModel, GameModel.CardModel model, int index)
         {
-            if (viewModel != null && viewModel.Index != model.Index)
+            if (viewModel != null && viewModel.Id != model.Index)
                 viewModel = new CardViewModel();
 
             viewModel = viewModel ?? new CardViewModel();
@@ -105,15 +105,15 @@ namespace Arcomage.Unity.GameScene.Scripts
             viewModel.Identifier = model.Identifier;
             viewModel.Kind = (ResourceKind)model.ResourceKind;
             viewModel.Price = model.ResourcePrice;
-            viewModel.IsPlay = true; // TODO
-            viewModel.IsDiscard = true; // TODO
+            viewModel.IsPlay = model.CanPlay;
+            viewModel.IsDiscard = model.CanDiscard;
 
             return viewModel;
         }
 
         private HistoryCardViewModel Update(HistoryCardViewModel viewModel, GameModel.HistoryCardModel model, int index)
         {
-            if (viewModel != null && viewModel.Index != model.Index)
+            if (viewModel != null && viewModel.Id != model.Index)
                 viewModel = new HistoryCardViewModel();
 
             viewModel = viewModel ?? new HistoryCardViewModel();

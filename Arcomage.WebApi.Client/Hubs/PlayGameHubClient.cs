@@ -29,7 +29,7 @@ namespace Arcomage.WebApi.Client.Hubs
         /// <returns>Задача, представляющая вызов серверного метода</returns>
         public Task PlayCard(int cardIndex)
         {
-            return HubProxy.Invoke("PlayCard", cardIndex);
+            return Invoke("PlayCard", cardIndex);
         }
 
         /// <summary>
@@ -39,7 +39,7 @@ namespace Arcomage.WebApi.Client.Hubs
         /// <returns>Задача, представляющая вызов серверного метода</returns>
         public Task DiscardCard(int cardIndex)
         {
-            return HubProxy.Invoke("DiscardCard", cardIndex);
+            return Invoke("DiscardCard", cardIndex);
         }
 
         /// <summary>

@@ -9,7 +9,7 @@ namespace Arcomage.WebApi.Client
     /// <summary>
     /// Представляет http клиент, выполняющий запросы к серверу
     /// </summary>
-    public interface IHttpClient
+    public interface IHttpClient : IDisposable
     {
         /// <summary>
         /// Вызывает get метод

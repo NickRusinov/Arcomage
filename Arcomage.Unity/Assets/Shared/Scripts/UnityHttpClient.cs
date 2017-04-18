@@ -26,7 +26,7 @@ namespace Arcomage.Unity.Shared.Scripts
         public IDictionary<string, string> Headers { get; private set; }
 
         public TextWriter TraceWriter { get; set; }
-        
+
         public Task<string> Get(string url)
         {
             var webRequest = UnityWebRequest.Get(baseUrl + url);
@@ -49,8 +49,8 @@ namespace Arcomage.Unity.Shared.Scripts
                 webRequest.SetRequestHeader(pair.Key, pair.Value);
 
             var task = sendWebRequest.Invoke(webRequest);
-            task.ContinueWith(t => Trace(t.Result), TaskContinuationOptions.OnlyOnRanToCompletion);
-            task.ContinueWith(t => Trace(t.Exception.ToString()), TaskContinuationOptions.OnlyOnFaulted);
+            task.ContinueWith(t => Trace(t.Result), TaskContinuationOptions.OnlyOnRanToCompletion | TaskContinuationOptions.ExecuteSynchronously);
+            task.ContinueWith(t => Trace(t.Exception.ToString()), TaskContinuationOptions.OnlyOnFaulted | TaskContinuationOptions.ExecuteSynchronously);
 
             return task;
         }
@@ -59,6 +59,11 @@ namespace Arcomage.Unity.Shared.Scripts
         {
             if (TraceWriter != null)
                 TraceWriter.Write(message);
+        }
+
+        public void Dispose()
+        {
+
         }
     }
 }

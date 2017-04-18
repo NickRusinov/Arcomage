@@ -27,8 +27,7 @@ namespace Arcomage.Unity.NetworkScene.Commands
         {
             connectGameHubClient.OnConnected += dispatcher.Invoke<Guid>(OnConnected);
 
-            return connectGameHubClient.Start()
-                .ContinueWith(t => connectGameHubClient.Connect());
+            return connectGameHubClient.Connect();
         }
 
         private void OnConnected(Guid gameId)

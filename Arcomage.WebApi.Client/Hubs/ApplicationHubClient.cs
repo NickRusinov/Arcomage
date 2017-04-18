@@ -4,13 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNet.SignalR.Client;
+using static System.Threading.Tasks.TaskContinuationOptions;
 
 namespace Arcomage.WebApi.Client.Hubs
 {
     /// <summary>
     /// Базовый класс для реализации клиентов хабов SignalR
     /// </summary>
-    public abstract class ApplicationHubClient
+    public abstract class ApplicationHubClient : IDisposable
     {
         /// <summary>
         /// Хранит список подключенных событий хаба
@@ -57,7 +58,7 @@ namespace Arcomage.WebApi.Client.Hubs
         /// Прокси серверного хаба
         /// </summary>
         protected IHubProxy HubProxy => hubProxy = hubProxy ?? HubConnection.CreateHubProxy(hubName);
-        
+
         /// <summary>
         /// Устанавливает соединение с серверным хабом
         /// </summary>
@@ -73,6 +74,17 @@ namespace Arcomage.WebApi.Client.Hubs
         public virtual void Stop()
         {
             hubConnection?.Stop();
+        }
+
+        /// <summary>
+        /// Вызывает метод серверного хаба
+        /// </summary>
+        /// <param name="name">Имя метода серверного хаба</param>
+        /// <param name="args">Параметры метода серверного хаба</param>
+        /// <returns>Операция вызова метода серверного хаба</returns>
+        protected virtual Task Invoke(string name, params object[] args)
+        {
+            return Start().ContinueWith(t => HubProxy.Invoke(name, args), ExecuteSynchronously);
         }
 
         /// <summary>
@@ -96,6 +108,14 @@ namespace Arcomage.WebApi.Client.Hubs
                 hubSubscriptions.Remove(@delegate);
                 subscription.Dispose();
             }
+        }
+        
+        /// <summary>
+        /// Завершает соединение с серверным хабом
+        /// </summary>
+        public virtual void Dispose()
+        {
+            Stop();
         }
     }
 }
