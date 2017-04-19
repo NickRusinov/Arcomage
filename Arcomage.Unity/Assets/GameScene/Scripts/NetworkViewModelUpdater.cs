@@ -13,6 +13,8 @@ namespace Arcomage.Unity.GameScene.Scripts
 {
     public class NetworkViewModelUpdater
     {
+        private int currentVersion = -1;
+
         private readonly ILifetimeScope lifetimeScope;
 
         private readonly GameViewModel viewModel;
@@ -25,7 +27,10 @@ namespace Arcomage.Unity.GameScene.Scripts
 
         public GameViewModel Update(GameModel model)
         {
-            return Update(viewModel, model);
+            if (model.Version >= currentVersion)
+                return Update(viewModel, model);
+
+            return viewModel;
         }
 
         private GameViewModel Update(GameViewModel viewModel, GameModel model)
@@ -41,6 +46,8 @@ namespace Arcomage.Unity.GameScene.Scripts
             viewModel.PlayerKind = PlayerKind.First; // TODO
             viewModel.DiscardOnly = model.DiscardOnly;
             viewModel.PlayAgain = model.PlayAgain;
+
+            currentVersion = model.Version;
 
             return viewModel;
         }

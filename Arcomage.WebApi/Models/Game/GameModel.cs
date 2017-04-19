@@ -21,6 +21,8 @@ namespace Arcomage.WebApi.Models.Game
 
         public int PlayAgain { get; set; }
 
+        public int Version { get; set; }
+
         public class PlayerModel
         {
             public string Name { get; set; }

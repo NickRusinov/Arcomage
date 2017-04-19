@@ -37,5 +37,14 @@ namespace Arcomage.Network.Jobs
 
             await base.OnFinish(gameContext, game);
         }
+
+        public override async Task OnAfterPlay(GameContext gameContext, Game game)
+        {
+            gameContext.Version++;
+
+            await gameContextRepository.Save(gameContext);
+
+            await base.OnAfterPlay(gameContext, game);
+        }
     }
 }

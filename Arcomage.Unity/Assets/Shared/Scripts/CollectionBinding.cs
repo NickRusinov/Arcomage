@@ -42,15 +42,28 @@ namespace Arcomage.Unity.Shared.Scripts
                 InvokeCleared();
             }
 
-            for (var i = 0; i < newValueList.Count; i++)
+            var count = Math.Max(newValueList.Count, ValueList.Count);
+            for (var i = 0; i < count; i++)
             {
-                if (ValueList.Count > i && !Equals(ValueList[i], newValueList[i]))
+                if (ValueList.Count > i && newValueList.Count > i && !Equals(ValueList[i], newValueList[i]))
                 {
                     var oldValue = ValueList[i];
                     var newValue = newValueList[i];
                     ValueList[i] = newValue;
 
                     InvokeReplaced(oldValue, newValue, i);
+
+                    continue;
+                }
+
+                if (newValueList.Count <= i)
+                {
+                    var oldValue = ValueList[newValueList.Count];
+                    ValueList.RemoveAt(newValueList.Count);
+
+                    InvokeRemoved(oldValue, i);
+
+                    continue;
                 }
 
                 if (ValueList.Count <= i)
@@ -59,6 +72,8 @@ namespace Arcomage.Unity.Shared.Scripts
                     ValueList.Add(newValue);
 
                     InvokeAdded(newValue, i);
+
+                    continue;
                 }
             }
         }
@@ -73,6 +88,12 @@ namespace Arcomage.Unity.Shared.Scripts
         {
             if (Added != null)
                 Added.Invoke(value, index);
+        }
+
+        private void InvokeRemoved(TValue value, int index)
+        {
+            if (Removed != null)
+                Removed.Invoke(value, index);
         }
 
         private void InvokeCleared()
@@ -91,6 +112,8 @@ namespace Arcomage.Unity.Shared.Scripts
         public event Action<TValue, TValue, int> Replaced;
 
         public event Action<TValue, int> Added;
+
+        public event Action<TValue, int> Removed;
 
         public event Action Cleared;
 

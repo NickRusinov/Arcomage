@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -27,6 +28,21 @@ namespace Arcomage.Unity.GameScene.Views
         public GameObject[] СardTemplates;
 
         /// <summary>
+        /// Количество активных анимаций добавления карт в историю из руки игрока
+        /// </summary>
+        private int addedFromHandAnimationCount;
+
+        /// <summary>
+        /// Количество активных анимаций добавления карт в историю из начального положения
+        /// </summary>
+        private int addedFromInitAnimationCount;
+
+        /// <summary>
+        /// Количество активных анимаций удаления карт из истории
+        /// </summary>
+        private int removedAnimationCount;
+
+        /// <summary>
         /// Модель представления карты, добавляемой в историю из руки игрока
         /// </summary>
         private CardViewModel pushedCardViewModel;
@@ -39,14 +55,13 @@ namespace Arcomage.Unity.GameScene.Views
         /// <summary>
         /// Задача ожидания завершения анимации перемещения карты в истрорию
         /// </summary>
-        private TaskCompletionSource<bool> pushedCardTaskSource = new TaskCompletionSource<bool>();
+        private TaskCompletionSource<object> pushedCardTaskSource = new TaskCompletionSource<object>();
 
         protected override void OnViewModel(HistoryViewModel viewModel)
         {
             Bind(viewModel, h => h.Cards as IList<HistoryCardViewModel>)
-                .OnAdded(OnAddedCard)
-                .OnReplaced((_, cardViewModel, index) => OnReplacedCard(cardViewModel, index))
-                .OnReplaced((_, cardViewModel, index) => OnAddedCard(cardViewModel, index));
+                .OnAdded((m, i) => StartCoroutine(OnAddedCard(m, i)))
+                .OnReplaced((_, m, i) => StartCoroutine(OnReplacedCard(m, i)));
         }
 
         /// <summary>
@@ -59,7 +74,7 @@ namespace Arcomage.Unity.GameScene.Views
         {
             pushedCardViewModel = cardViewModel;
             pushedCardObject = cardObject;
-            pushedCardTaskSource = new TaskCompletionSource<bool>();
+            pushedCardTaskSource = new TaskCompletionSource<object>();
 
             return pushedCardTaskSource.Task;
         }
@@ -70,10 +85,15 @@ namespace Arcomage.Unity.GameScene.Views
         /// </summary>
         /// <param name="cardViewModel">Модель представления карты, добавляемой в историю</param>
         /// <param name="index">Номер добавляемой карты</param>
-        private void OnAddedCard(HistoryCardViewModel cardViewModel, int index)
+        private IEnumerator OnAddedCard(HistoryCardViewModel cardViewModel, int index)
         {
             if (pushedCardViewModel != null && pushedCardViewModel.Id == cardViewModel.Id)
             {
+                while (addedFromInitAnimationCount != 0 || removedAnimationCount != 0)
+                    yield return null;
+
+                addedFromHandAnimationCount++;
+
                 var cardTemplate = СardTemplates[index % СardTemplates.Length];
                 var cardObject = HistoryСardFactory.CreateCard(transform, cardViewModel);
                 cardObject.transform.CopyFrom(cardTemplate.transform);
@@ -81,11 +101,16 @@ namespace Arcomage.Unity.GameScene.Views
                 
                 var cardTranslateScript = cardObject.AddComponent<CardTranslateScript>();
                 cardTranslateScript.Initialize(cardTemplate.transform.position);
-                cardTranslateScript.EndedEvent.AddListener(() => 
-                    pushedCardTaskSource.TrySetResult(true));
+                cardTranslateScript.EndedEvent.AddListener(() => pushedCardTaskSource.TrySetResult(null));
+                cardTranslateScript.EndedEvent.AddListener(() => addedFromHandAnimationCount--);
             }
             else
             {
+                while (addedFromHandAnimationCount != 0 || removedAnimationCount != 0)
+                    yield return null;
+
+                addedFromInitAnimationCount++;
+
                 var cardTemplate = СardTemplates[index % СardTemplates.Length];
                 var cardObject = HistoryСardFactory.CreateCard(transform, cardViewModel);
                 cardObject.transform.CopyFrom(cardTemplate.transform);
@@ -93,24 +118,33 @@ namespace Arcomage.Unity.GameScene.Views
 
                 var cardTranslateScript = cardObject.AddComponent<CardTranslateScript>();
                 cardTranslateScript.Initialize(cardTemplate.transform.position);
-                pushedCardTaskSource.TrySetResult(true);
+                cardTranslateScript.EndedEvent.AddListener(() => addedFromInitAnimationCount--);
+                pushedCardTaskSource.TrySetResult(null);
             }
-            
+
             pushedCardViewModel = null;
             pushedCardObject = null;
         }
 
-        private void OnReplacedCard(HistoryCardViewModel cardViewModel, int index)
+        private IEnumerator OnReplacedCard(HistoryCardViewModel cardViewModel, int index)
         {
+            removedAnimationCount++;
+
+            while (addedFromHandAnimationCount != 0 || addedFromInitAnimationCount != 0)
+                yield return null;
+
             foreach (var cardScript in GetComponentsInChildren<HistoryCardView>())
             {
                 var localCardScript = cardScript;
-
-                var cardTranslateScript = cardScript.gameObject.AddComponent<CardTranslateScript>();
+                
+                var cardTranslateScript = localCardScript.gameObject.AddComponent<CardTranslateScript>();
                 cardTranslateScript.Initialize(СardInitTemplate.transform.position);
-                cardTranslateScript.EndedEvent.AddListener(() =>
-                    localCardScript.Do(s => Destroy(s.gameObject)));
+                cardTranslateScript.EndedEvent.AddListener(() => localCardScript.TryDestroyObject());
             }
+
+            removedAnimationCount--;
+
+            yield return OnAddedCard(cardViewModel, index);
         }
     }
 }

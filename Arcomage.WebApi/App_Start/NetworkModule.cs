@@ -41,14 +41,14 @@ namespace Arcomage.WebApi
                 .InstancePerDependency();
 
             builder.RegisterDecorator<IPlayGamePublisher>((c, s) =>
-                new GameStatePlayGamePublisher(s,
-                    c.Resolve<IGameContextRepository>()),
-                fromKey: "DefaultPlayGamePublisher", toKey: "GameStatePlayGamePublisher");
-
-            builder.RegisterDecorator<IPlayGamePublisher>((c, s) =>
                 new SignalRPlayGamePublisher(s,
                     c.Resolve<IHubContext<IPlayGameClient>>()),
-                fromKey: "GameStatePlayGamePublisher", toKey: null);
+                fromKey: "DefaultPlayGamePublisher", toKey: "SignalRPlayGamePublisher");
+
+            builder.RegisterDecorator<IPlayGamePublisher>((c, s) =>
+                new GameStatePlayGamePublisher(s,
+                    c.Resolve<IGameContextRepository>()),
+                fromKey: "SignalRPlayGamePublisher", toKey: null);
         }
     }
 }

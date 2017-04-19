@@ -28,6 +28,9 @@ namespace Arcomage.WebApi.Client.Models.Game
 
         [JsonProperty, JsonRequired]
         public int PlayAgain { get; set; }
+
+        [JsonProperty, JsonRequired]
+        public int Version { get; set; }
         
         public class PlayerModel
         {

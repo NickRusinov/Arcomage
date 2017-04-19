@@ -7,6 +7,7 @@ using System.Threading;
 using Arcomage.Unity.Shared.Scripts;
 using Arcomage.WebApi.Client.Controllers;
 using Arcomage.WebApi.Client.Hubs;
+using Arcomage.WebApi.Client.Models.Game;
 
 namespace Arcomage.Unity.GameScene.Scripts
 {
@@ -30,22 +31,20 @@ namespace Arcomage.Unity.GameScene.Scripts
 
         public override IEnumerator Execute()
         {
-            var getGameTask = getGameControllerClient.GetGame();
+            GameModel gameModel = null;
+            playGameHubClient.OnUpdate += dispatcher.Invoke<GameModel>(gm => 
+                Interlocked.Exchange(ref gameModel, gm));
 
-            playGameHubClient.OnUpdate += dispatcher.Invoke(() =>
-                Interlocked.Exchange(ref getGameTask, getGameControllerClient.GetGame()));
+            var getGameTask = getGameControllerClient.GetGame();
 
             yield return new TaskYieldInstruction(getGameTask);
             var viewModel = viewModelUpdater.Update(getGameTask.Result);
 
             while (string.IsNullOrEmpty(viewModel.FinishedMenu.Identifier))
             {
-                var localGetGameTask = Interlocked.Exchange(ref getGameTask, null);
-                if (localGetGameTask != null)
-                {
-                    yield return new TaskYieldInstruction(localGetGameTask);
-                    viewModelUpdater.Update(localGetGameTask.Result);
-                }
+                var localGameModel = Interlocked.Exchange(ref gameModel, null);
+                if (localGameModel != null)
+                    viewModelUpdater.Update(localGameModel);
 
                 yield return null;
             }

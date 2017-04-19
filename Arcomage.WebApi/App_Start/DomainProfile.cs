@@ -27,7 +27,8 @@ namespace Arcomage.WebApi
                 .ForMember(m => m.Result, exp => exp.ResolveUsing(t => (t.c, t.g.Rule.IsWin(t.g))))
                 .ForMember(m => m.Result, exp => exp.PreCondition(t => t.g.Rule.IsWin(t.g)))
                 .ForMember(m => m.PlayAgain, exp => exp.MapFrom(t => t.g.PlayAgain))
-                .ForMember(m => m.DiscardOnly, exp => exp.MapFrom(t => t.g.DiscardOnly));
+                .ForMember(m => m.DiscardOnly, exp => exp.MapFrom(t => t.g.DiscardOnly))
+                .ForMember(m => m.Version, exp => exp.MapFrom(t => t.c.Version));
 
             CreateMap<(UserContext c, Player p), GameModel.PlayerModel>()
                 .ForMember(m => m.Name, exp => exp.ResolveUsing(t => t.c.Id.ToString()))

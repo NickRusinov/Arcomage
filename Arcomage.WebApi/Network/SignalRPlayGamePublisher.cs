@@ -6,6 +6,8 @@ using Arcomage.Domain;
 using Arcomage.Network;
 using Arcomage.Network.Jobs;
 using Arcomage.WebApi.Hubs;
+using Arcomage.WebApi.Models.Game;
+using AutoMapper;
 using Microsoft.AspNet.SignalR;
 
 namespace Arcomage.WebApi.Network
@@ -22,13 +24,15 @@ namespace Arcomage.WebApi.Network
 
         public override async Task OnAfterPlay(GameContext gameContext, Game game)
         {
-            await base.OnAfterPlay(gameContext, game);
+            var model = Mapper.Map<GameModel>((gameContext, game));
 
             var firstUser = gameContext.FirstUser.Id.ToString();
             var secondUser = gameContext.SecondUser.Id.ToString();
             var users = new[] { firstUser, secondUser };
 
-            playGameHubContext.Clients.Users(users).Update();
+            playGameHubContext.Clients.Users(users).Update(model);
+
+            await base.OnAfterPlay(gameContext, game);
         }
     }
 }

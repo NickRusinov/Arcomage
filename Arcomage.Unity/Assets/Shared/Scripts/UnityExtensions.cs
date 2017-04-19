@@ -19,5 +19,17 @@ namespace Arcomage.Unity.Shared.Scripts
         {
             transform.localPosition = new Vector3(x ?? transform.localPosition.x, y ?? transform.localPosition.y, z ?? transform.localPosition.z);
         }
+
+        public static void TryDestroyObject(this Component component)
+        {
+            if (component != null && component.gameObject != null)
+                UnityEngine.Object.Destroy(component.gameObject);
+        }
+
+        public static void TryDestroy(this UnityEngine.Object @object)
+        {
+            if (@object != null)
+                UnityEngine.Object.Destroy(@object);
+        }
     }
 }

@@ -79,8 +79,7 @@ namespace Arcomage.Unity.GameScene.Views
         /// <returns>Корутина</returns>
         private static IEnumerator OldCardDestroy(Task task, GameObject cardObject)
         {
-            while (!task.IsCompleted)
-                yield return null;
+            yield return new TaskYieldInstruction(task);
 
             Destroy(cardObject);
         }
@@ -95,8 +94,7 @@ namespace Arcomage.Unity.GameScene.Views
         /// <returns>Корутина</returns>
         private static IEnumerator NewCardTranslate(Task task, GameObject cardObject, Vector3 position)
         {
-            while (!task.IsCompleted)
-                yield return null;
+            yield return new TaskYieldInstruction(task);
             
             cardObject.SetActive(true);
 

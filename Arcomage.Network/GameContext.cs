@@ -13,6 +13,7 @@ namespace Arcomage.Network
             return new GameContext
             {
                 Id = Guid.NewGuid(),
+                Version = 0,
                 State = GameState.Created,
                 CreatedDate = DateTime.UtcNow,
                 StartedDate = null,
@@ -23,6 +24,8 @@ namespace Arcomage.Network
         }
 
         public Guid Id { get; set; }
+
+        public int Version { get; set; }
 
         public GameState State { get; set; }
 

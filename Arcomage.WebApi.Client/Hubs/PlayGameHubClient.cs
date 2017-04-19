@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Arcomage.WebApi.Client.Models.Game;
 using Microsoft.AspNet.SignalR.Client;
 
 namespace Arcomage.WebApi.Client.Hubs
@@ -45,7 +46,7 @@ namespace Arcomage.WebApi.Client.Hubs
         /// <summary>
         /// Серверное событие хаба "Состояние игры изменено"
         /// </summary>
-        public event Action OnUpdate
+        public event Action<GameModel> OnUpdate
         {
             add { AddSubscription(value, HubProxy.On("Update", value)); }
             remove { RemoveSubscription(value); }
