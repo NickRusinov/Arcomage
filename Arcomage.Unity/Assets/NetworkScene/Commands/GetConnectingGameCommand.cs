@@ -8,18 +8,18 @@ using Arcomage.WebApi.Client.Controllers;
 
 namespace Arcomage.Unity.NetworkScene.Commands
 {
-    public class DisconnectGameCommand : Command<object>
+    public class GetConnectingGameCommand : Command<object, Guid?>
     {
         private readonly ConnectGameControllerClient connectGameControllerClient;
 
-        public DisconnectGameCommand(ConnectGameControllerClient connectGameControllerClient)
+        public GetConnectingGameCommand(ConnectGameControllerClient connectGameControllerClient)
         {
             this.connectGameControllerClient = connectGameControllerClient;
         }
 
-        public override Task Execute(object state)
+        public override Task<Guid?> Execute(object state)
         {
-            return connectGameControllerClient.Disconnect();
+            return connectGameControllerClient.GetConnecting();
         }
     }
 }

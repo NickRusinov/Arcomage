@@ -30,6 +30,15 @@ namespace Arcomage.WebApi.Client.Hubs
         {
             return Invoke("Connect");
         }
+        
+        /// <summary>
+        /// Вызов серверного метода "Отключиться от игры"
+        /// </summary>
+        /// <returns>Задача, представляющая вызов серверного метода</returns>
+        public Task Disconnect()
+        {
+            return Invoke("Disconnect");
+        }
 
         /// <summary>
         /// Серверное событие хаба "Подключение к игре произведено"
@@ -37,6 +46,15 @@ namespace Arcomage.WebApi.Client.Hubs
         public event Action<Guid> OnConnected
         {
             add { AddSubscription(value, HubProxy.On("Connected", value)); }
+            remove { RemoveSubscription(value); }
+        }
+
+        /// <summary>
+        /// Серверное событие хаба "Отключение от игры произведено"
+        /// </summary>
+        public event Action<Guid> OnDisconnected
+        {
+            add { AddSubscription(value, HubProxy.On("Disconnected", value)); }
             remove { RemoveSubscription(value); }
         }
     }

@@ -37,7 +37,10 @@ namespace Arcomage.Network.Services
             if (!await gameRepository.Add(gameContext.Id, game))
                 throw new NetworkException(NetworkResources.NotAddedNewGame);
             
-            BackgroundJob.Enqueue<PlayGameJob>(j => j.Start(gameContext));
+            var jobId = BackgroundJob.Enqueue<PlayGameJob>(j => j.Start(gameContext));
+            
+            await gameContextRepository.Update(gameContext,
+                gc => gc.JobId = jobId);
 
             return gameContext;
         }

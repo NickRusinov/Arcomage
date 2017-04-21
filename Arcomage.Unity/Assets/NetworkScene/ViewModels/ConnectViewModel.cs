@@ -10,5 +10,7 @@ namespace Arcomage.Unity.NetworkScene.ViewModels
     public class ConnectViewModel
     {
         public Command<object, VersionModel> GetVersionCommand { get; set; }
+
+        public Command<object, Guid?> GetConnectingGameCommand { get; set; }
     }
 }

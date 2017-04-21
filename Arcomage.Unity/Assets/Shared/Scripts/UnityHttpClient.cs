@@ -38,6 +38,10 @@ namespace Arcomage.Unity.Shared.Scripts
         {
             var dictionaryData = data as Dictionary<string, string> ?? new Dictionary<string, string>(data);
 
+            // BUG https://issuetracker.unity3d.com/issues/unitywebrequest-post-with-empty-body-results-in-error
+            if (dictionaryData.Count == 0)
+                dictionaryData.Add(Guid.NewGuid().ToString("N"), Guid.NewGuid().ToString("N"));
+
             var webRequest = UnityWebRequest.Post(baseUrl + url, dictionaryData);
 
             return Send(webRequest);

@@ -23,10 +23,10 @@ namespace Arcomage.WebApi.Controllers
             this.gameContextRepository = gameContextRepository;
         }
 
-        [HttpGet, Route("~/api/game")]
-        public async Task<GameModel> GetGame()
+        [HttpGet, Route("~/api/game/{id:guid}")]
+        public async Task<GameModel> GetGame(Guid id)
         {
-            var gameContext = await gameContextRepository.GetByUserId(Identity.Id, GameState.All) ??
+            var gameContext = await gameContextRepository.GetById(id) ??
                 throw new HttpException();
 
             var game = await gameRepository.GetById(gameContext.Id) ??

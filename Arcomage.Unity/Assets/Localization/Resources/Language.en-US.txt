@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<root>
-  <!-- 
+<root><!-- 
     Microsoft ResX Schema 
     
     Version 2.0
@@ -117,727 +116,736 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="CardAmethystDescription" xml:space="preserve">
+	<data name="CardAmethystDescription" xml:space="preserve">
 		<value>+3 Tower</value>
 	</data>
-  <data name="CardAmethystName" xml:space="preserve">
+	<data name="CardAmethystName" xml:space="preserve">
 		<value>Amethyst</value>
 	</data>
-  <data name="CardApprenticeDescription" xml:space="preserve">
+	<data name="CardApprenticeDescription" xml:space="preserve">
 		<value>+4 Tower, you lose 3 recruits, 2 damage to enemy Tower</value>
 	</data>
-  <data name="CardApprenticeName" xml:space="preserve">
+	<data name="CardApprenticeName" xml:space="preserve">
 		<value>Apprentice</value>
 	</data>
-  <data name="CardBagOfBaublesDescription" xml:space="preserve">
+	<data name="CardBagOfBaublesDescription" xml:space="preserve">
 		<value>If Tower &lt; enemy Tower, + 2 Tower, else +1 Tower</value>
 	</data>
-  <data name="CardBagOfBaublesName" xml:space="preserve">
+	<data name="CardBagOfBaublesName" xml:space="preserve">
 		<value>Bag of Baubles</value>
 	</data>
-  <data name="CardBarracksDescription" xml:space="preserve">
+	<data name="CardBarracksDescription" xml:space="preserve">
 		<value>+6 Recruits, +6 Wall, if Dungeon &lt; enemy Dungeon, +1 Dungeon</value>
 	</data>
-  <data name="CardBarracksName" xml:space="preserve">
+	<data name="CardBarracksName" xml:space="preserve">
 		<value>Barracks</value>
 	</data>
-  <data name="CardBasicWallDescription" xml:space="preserve">
+	<data name="CardBasicWallDescription" xml:space="preserve">
 		<value>+3 Wall</value>
 	</data>
-  <data name="CardBasicWallName" xml:space="preserve">
+	<data name="CardBasicWallName" xml:space="preserve">
 		<value>Basic Wall</value>
 	</data>
-  <data name="CardBattlementsDescription" xml:space="preserve">
+	<data name="CardBattlementsDescription" xml:space="preserve">
 		<value>+7 Wall, 6 damage to enemy</value>
 	</data>
-  <data name="CardBattlementsName" xml:space="preserve">
+	<data name="CardBattlementsName" xml:space="preserve">
 		<value>Battlements</value>
 	</data>
-  <data name="CardBerserkerDescription" xml:space="preserve">
+	<data name="CardBerserkerDescription" xml:space="preserve">
 		<value>8 damage, 3 damage to your Tower</value>
 	</data>
-  <data name="CardBerserkerName" xml:space="preserve">
+	<data name="CardBerserkerName" xml:space="preserve">
 		<value>Berserker</value>
 	</data>
-  <data name="CardBigWallDescription" xml:space="preserve">
+	<data name="CardBigWallDescription" xml:space="preserve">
 		<value>+6 Wall</value>
 	</data>
-  <data name="CardBigWallName" xml:space="preserve">
+	<data name="CardBigWallName" xml:space="preserve">
 		<value>Big Wall</value>
 	</data>
-  <data name="CardBrickShortageDescription" xml:space="preserve">
+	<data name="CardBrickShortageDescription" xml:space="preserve">
 		<value>All players lose 8 bricks</value>
 	</data>
-  <data name="CardBrickShortageName" xml:space="preserve">
+	<data name="CardBrickShortageName" xml:space="preserve">
 		<value>Brick Shortage</value>
 	</data>
-  <data name="CardCollapseDescription" xml:space="preserve">
+	<data name="CardCollapseDescription" xml:space="preserve">
 		<value>-1 enemy Quarry</value>
 	</data>
-  <data name="CardCollapseName" xml:space="preserve">
+	<data name="CardCollapseName" xml:space="preserve">
 		<value>Collapse!</value>
 	</data>
-  <data name="CardCoppingTheTechDescription" xml:space="preserve">
+	<data name="CardCoppingTheTechDescription" xml:space="preserve">
 		<value>If Quarry &lt; enemy Quarry, Quarry = enemy Quarry</value>
 	</data>
-  <data name="CardCoppingTheTechName" xml:space="preserve">
+	<data name="CardCoppingTheTechName" xml:space="preserve">
 		<value>Copping the Tech</value>
 	</data>
-  <data name="CardCorrosionCloudDescription" xml:space="preserve">
+	<data name="CardCorrosionCloudDescription" xml:space="preserve">
 		<value>If enemy Wall &gt; 0, 10 damage, else 7 damage</value>
 	</data>
-  <data name="CardCorrosionCloudName" xml:space="preserve">
+	<data name="CardCorrosionCloudName" xml:space="preserve">
 		<value>Corrosion Cloud</value>
 	</data>
-  <data name="CardCrumblestoneDescription" xml:space="preserve">
+	<data name="CardCrumblestoneDescription" xml:space="preserve">
 		<value>+5 Tower, enemy loses 6 Bricks</value>
 	</data>
-  <data name="CardCrumblestoneName" xml:space="preserve">
+	<data name="CardCrumblestoneName" xml:space="preserve">
 		<value>Crumblestone</value>
 	</data>
-  <data name="CardCrystallizeDescription" xml:space="preserve">
+	<data name="CardCrystallizeDescription" xml:space="preserve">
 		<value>+11 Tower, -6 Wall</value>
 	</data>
-  <data name="CardCrystallizeName" xml:space="preserve">
+	<data name="CardCrystallizeName" xml:space="preserve">
 		<value>Crystallize</value>
 	</data>
-  <data name="CardCrystalMatrixDescription" xml:space="preserve">
+	<data name="CardCrystalMatrixDescription" xml:space="preserve">
 		<value>+1 Magic, +3 Tower, +1 enemy Tower</value>
 	</data>
-  <data name="CardCrystalMatrixName" xml:space="preserve">
+	<data name="CardCrystalMatrixName" xml:space="preserve">
 		<value>Crystal Matrix</value>
 	</data>
-  <data name="CardCrystalRocksDescription" xml:space="preserve">
+	<data name="CardCrystalRocksDescription" xml:space="preserve">
 		<value>+7 Wall, gain 7 Gems</value>
 	</data>
-  <data name="CardCrystalRocksName" xml:space="preserve">
+	<data name="CardCrystalRocksName" xml:space="preserve">
 		<value>Crystal Rocks</value>
 	</data>
-  <data name="CardCrystalShieldDescription" xml:space="preserve">
+	<data name="CardCrystalShieldDescription" xml:space="preserve">
 		<value>+8 Tower, +3 Wall</value>
 	</data>
-  <data name="CardCrystalShieldName" xml:space="preserve">
+	<data name="CardCrystalShieldName" xml:space="preserve">
 		<value>Crystal Shield</value>
 	</data>
-  <data name="CardDiamondDescription" xml:space="preserve">
+	<data name="CardDiamondDescription" xml:space="preserve">
 		<value>+15 Tower</value>
 	</data>
-  <data name="CardDiamondName" xml:space="preserve">
+	<data name="CardDiamondName" xml:space="preserve">
 		<value>Diamond</value>
 	</data>
-  <data name="CardDiscardText" xml:space="preserve">
+	<data name="CardDiscardText" xml:space="preserve">
 		<value>Dicarded</value>
 	</data>
-  <data name="CardDiscordDescription" xml:space="preserve">
+	<data name="CardDiscordDescription" xml:space="preserve">
 		<value>7 damage to all Tower, all player's Magic -1</value>
 	</data>
-  <data name="CardDiscordName" xml:space="preserve">
+	<data name="CardDiscordName" xml:space="preserve">
 		<value>Discord</value>
 	</data>
-  <data name="CardDragonDescription" xml:space="preserve">
+	<data name="CardDragonDescription" xml:space="preserve">
 		<value>20 damage, enemy loses 10 Gems, -1 enemy Dungeon</value>
 	</data>
-  <data name="CardDragonName" xml:space="preserve">
+	<data name="CardDragonName" xml:space="preserve">
 		<value>Dragon</value>
 	</data>
-  <data name="CardDragonsEyeDescription" xml:space="preserve">
+	<data name="CardDragonsEyeDescription" xml:space="preserve">
 		<value>+20 Tower</value>
 	</data>
-  <data name="CardDragonsEyeName" xml:space="preserve">
+	<data name="CardDragonsEyeName" xml:space="preserve">
 		<value>Dragon's Eye</value>
 	</data>
-  <data name="CardDragonsHeartDescription" xml:space="preserve">
+	<data name="CardDragonsHeartDescription" xml:space="preserve">
 		<value>+20 Wall, +8 Tower</value>
 	</data>
-  <data name="CardDragonsHeartName" xml:space="preserve">
+	<data name="CardDragonsHeartName" xml:space="preserve">
 		<value>Dragon's Heart</value>
 	</data>
-  <data name="CardDwarvenMinersDescription" xml:space="preserve">
+	<data name="CardDwarvenMinersDescription" xml:space="preserve">
 		<value>+4 Wall, +1 Quarry</value>
 	</data>
-  <data name="CardDwarvenMinersName" xml:space="preserve">
+	<data name="CardDwarvenMinersName" xml:space="preserve">
 		<value>Dwarven Miners</value>
 	</data>
-  <data name="CardDwarvesDescription" xml:space="preserve">
+	<data name="CardDwarvesDescription" xml:space="preserve">
 		<value>4 damage, +3 Wall</value>
 	</data>
-  <data name="CardDwarvesName" xml:space="preserve">
+	<data name="CardDwarvesName" xml:space="preserve">
 		<value>Dwarves</value>
 	</data>
-  <data name="CardEarthquakeDescription" xml:space="preserve">
+	<data name="CardEarthquakeDescription" xml:space="preserve">
 		<value>-1 to all player's Quarries</value>
 	</data>
-  <data name="CardEarthquakeName" xml:space="preserve">
+	<data name="CardEarthquakeName" xml:space="preserve">
 		<value>Earthquake</value>
 	</data>
-  <data name="CardElvenArchersDescription" xml:space="preserve">
+	<data name="CardElvenArchersDescription" xml:space="preserve">
 		<value>If Wall &gt; enemy Wall, 6 damage to enemy Tower, else 6 damage</value>
 	</data>
-  <data name="CardElvenArchersName" xml:space="preserve">
+	<data name="CardElvenArchersName" xml:space="preserve">
 		<value>Elven Archers</value>
 	</data>
-  <data name="CardElvenScoutDescription" xml:space="preserve">
+	<data name="CardElvenScoutDescription" xml:space="preserve">
 		<value>Draw 1 card, discard 1 card, play again</value>
 	</data>
-  <data name="CardElvenScoutName" xml:space="preserve">
+	<data name="CardElvenScoutName" xml:space="preserve">
 		<value>Elven Scout</value>
 	</data>
-  <data name="CardEmeraldDescription" xml:space="preserve">
+	<data name="CardEmeraldDescription" xml:space="preserve">
 		<value>+8 Tower</value>
 	</data>
-  <data name="CardEmeraldName" xml:space="preserve">
+	<data name="CardEmeraldName" xml:space="preserve">
 		<value>Emerald</value>
 	</data>
-  <data name="CardEmpathyGemDescription" xml:space="preserve">
+	<data name="CardEmpathyGemDescription" xml:space="preserve">
 		<value>+8 Tower, +1 Dungeon</value>
 	</data>
-  <data name="CardEmpathyGemName" xml:space="preserve">
+	<data name="CardEmpathyGemName" xml:space="preserve">
 		<value>Empathy Gem</value>
 	</data>
-  <data name="CardFaerieDescription" xml:space="preserve">
+	<data name="CardFaerieDescription" xml:space="preserve">
 		<value>+2 damage, play again</value>
 	</data>
-  <data name="CardFaerieName" xml:space="preserve">
+	<data name="CardFaerieName" xml:space="preserve">
 		<value>Faerie</value>
 	</data>
-  <data name="CardFireRubyDescription" xml:space="preserve">
+	<data name="CardFireRubyDescription" xml:space="preserve">
 		<value>+6 Tower, 4 damage to enemy Tower</value>
 	</data>
-  <data name="CardFireRubyName" xml:space="preserve">
+	<data name="CardFireRubyName" xml:space="preserve">
 		<value>Fire Ruby</value>
 	</data>
-  <data name="CardFloodWaterDescription" xml:space="preserve">
+	<data name="CardFloodWaterDescription" xml:space="preserve">
 		<value>Player with lowest Wall are -1 Dungeon and 2 damage to Tower</value>
 	</data>
-  <data name="CardFloodWaterName" xml:space="preserve">
+	<data name="CardFloodWaterName" xml:space="preserve">
 		<value>Flood Water</value>
 	</data>
-  <data name="CardFocusedDesignsDescription" xml:space="preserve">
+	<data name="CardFocusedDesignsDescription" xml:space="preserve">
 		<value>+8 Wall, +5 Tower</value>
 	</data>
-  <data name="CardFocusedDesignsName" xml:space="preserve">
+	<data name="CardFocusedDesignsName" xml:space="preserve">
 		<value>Focused Designs</value>
 	</data>
-  <data name="CardForcedLaborDescription" xml:space="preserve">
+	<data name="CardForcedLaborDescription" xml:space="preserve">
 		<value>+9 Wall, lose 5 Recruits</value>
 	</data>
-  <data name="CardForcedLaborName" xml:space="preserve">
+	<data name="CardForcedLaborName" xml:space="preserve">
 		<value>Forced Labor</value>
 	</data>
-  <data name="CardFoundationsDescription" xml:space="preserve">
+	<data name="CardFoundationsDescription" xml:space="preserve">
 		<value>If Wall = 0, +6 Wall, else +3 Wall</value>
 	</data>
-  <data name="CardFoundationsName" xml:space="preserve">
+	<data name="CardFoundationsName" xml:space="preserve">
 		<value>Foundations</value>
 	</data>
-  <data name="CardFriendlyTerrainDescription" xml:space="preserve">
+	<data name="CardFriendlyTerrainDescription" xml:space="preserve">
 		<value>+1 Wall, play again</value>
 	</data>
-  <data name="CardFriendlyTerrainName" xml:space="preserve">
+	<data name="CardFriendlyTerrainName" xml:space="preserve">
 		<value>Friendly Terrain</value>
 	</data>
-  <data name="CardFullMoonDescription" xml:space="preserve">
+	<data name="CardFullMoonDescription" xml:space="preserve">
 		<value>+1 to all player's Dungeon, you gain 3 Recruits</value>
 	</data>
-  <data name="CardFullMoonName" xml:space="preserve">
+	<data name="CardFullMoonName" xml:space="preserve">
 		<value>Full Moon</value>
 	</data>
-  <data name="CardGemSpearDescription" xml:space="preserve">
+	<data name="CardGemSpearDescription" xml:space="preserve">
 		<value>5 damage to enemy Tower</value>
 	</data>
-  <data name="CardGemSpearName" xml:space="preserve">
+	<data name="CardGemSpearName" xml:space="preserve">
 		<value>Gem Spear</value>
 	</data>
-  <data name="CardGemstoneFlawDescription" xml:space="preserve">
+	<data name="CardGemstoneFlawDescription" xml:space="preserve">
 		<value>3 damage to enemy Tower</value>
 	</data>
-  <data name="CardGemstoneFlawName" xml:space="preserve">
+	<data name="CardGemstoneFlawName" xml:space="preserve">
 		<value>Gemstone Flaw</value>
 	</data>
-  <data name="CardGnomeDescription" xml:space="preserve">
+	<data name="CardGnomeDescription" xml:space="preserve">
 		<value>3 damage, +1 Gem</value>
 	</data>
-  <data name="CardGnomeName" xml:space="preserve">
+	<data name="CardGnomeName" xml:space="preserve">
 		<value>Gnome</value>
 	</data>
-  <data name="CardGoblinArchersDescription" xml:space="preserve">
+	<data name="CardGoblinArchersDescription" xml:space="preserve">
 		<value>3 damage to enemy Tower, you take 1 damage</value>
 	</data>
-  <data name="CardGoblinArchersName" xml:space="preserve">
+	<data name="CardGoblinArchersName" xml:space="preserve">
 		<value>Goblin Archers</value>
 	</data>
-  <data name="CardGoblinMobDescription" xml:space="preserve">
+	<data name="CardGoblinMobDescription" xml:space="preserve">
 		<value>6 damage, you take 3 damage</value>
 	</data>
-  <data name="CardGoblinMobName" xml:space="preserve">
+	<data name="CardGoblinMobName" xml:space="preserve">
 		<value>Goblin Mob</value>
 	</data>
-  <data name="CardGreatWallDescription" xml:space="preserve">
+	<data name="CardGreatWallDescription" xml:space="preserve">
 		<value>+15 Wall</value>
 	</data>
-  <data name="CardGreatWallName" xml:space="preserve">
+	<data name="CardGreatWallName" xml:space="preserve">
 		<value>Great Wall</value>
 	</data>
-  <data name="CardHarmonicOreDescription" xml:space="preserve">
+	<data name="CardHarmonicOreDescription" xml:space="preserve">
 		<value>+6 Wall, +3 Tower</value>
 	</data>
-  <data name="CardHarmonicOreName" xml:space="preserve">
+	<data name="CardHarmonicOreName" xml:space="preserve">
 		<value>Harmonic Ore</value>
 	</data>
-  <data name="CardHarmonicVibeDescription" xml:space="preserve">
+	<data name="CardHarmonicVibeDescription" xml:space="preserve">
 		<value>+1 Magic, +3 Tower, +3 Wall</value>
 	</data>
-  <data name="CardHarmonicVibeName" xml:space="preserve">
+	<data name="CardHarmonicVibeName" xml:space="preserve">
 		<value>Harmonic Vibe</value>
 	</data>
-  <data name="CardImpDescription" xml:space="preserve">
+	<data name="CardImpDescription" xml:space="preserve">
 		<value>6 damage, all players lose 5 Bricks, Gems and Recruits</value>
 	</data>
-  <data name="CardImpName" xml:space="preserve">
+	<data name="CardImpName" xml:space="preserve">
 		<value>Imp</value>
 	</data>
-  <data name="CardInnovationsDescription" xml:space="preserve">
+	<data name="CardInnovationsDescription" xml:space="preserve">
 		<value>+1 to all player's Quarries, you gain 4 Gems</value>
 	</data>
-  <data name="CardInnovationsName" xml:space="preserve">
+	<data name="CardInnovationsName" xml:space="preserve">
 		<value>Innovations</value>
 	</data>
-  <data name="CardLavaJewelDescription" xml:space="preserve">
+	<data name="CardLavaJewelDescription" xml:space="preserve">
 		<value>+12 Tower, 6 damage to enemy</value>
 	</data>
-  <data name="CardLavaJewelName" xml:space="preserve">
+	<data name="CardLavaJewelName" xml:space="preserve">
 		<value>Lava Jewel</value>
 	</data>
-  <data name="CardLightningShardDescription" xml:space="preserve">
+	<data name="CardLightningShardDescription" xml:space="preserve">
 		<value>If Tower &gt; enemy Wall, 8 damage to enemy Tower, else 8 damage</value>
 	</data>
-  <data name="CardLightningShardName" xml:space="preserve">
+	<data name="CardLightningShardName" xml:space="preserve">
 		<value>Lightning Shard</value>
 	</data>
-  <data name="CardLittleSnakesDescription" xml:space="preserve">
+	<data name="CardLittleSnakesDescription" xml:space="preserve">
 		<value>4 damage to enemy Tower</value>
 	</data>
-  <data name="CardLittleSnakesName" xml:space="preserve">
+	<data name="CardLittleSnakesName" xml:space="preserve">
 		<value>Little Snakes</value>
 	</data>
-  <data name="CardLodestoneDescription" xml:space="preserve">
+	<data name="CardLodestoneDescription" xml:space="preserve">
 		<value>+8 Tower</value>
 	</data>
-  <data name="CardLodestoneName" xml:space="preserve">
+	<data name="CardLodestoneName" xml:space="preserve">
 		<value>Lodestone</value>
 	</data>
-  <data name="CardLuckyCacheDescription" xml:space="preserve">
+	<data name="CardLuckyCacheDescription" xml:space="preserve">
 		<value>+2 Bricks, +2 Gems, play again</value>
 	</data>
-  <data name="CardLuckyCacheName" xml:space="preserve">
+	<data name="CardLuckyCacheName" xml:space="preserve">
 		<value>Lucky Cache</value>
 	</data>
-  <data name="CardMadCowDiseaseDescription" xml:space="preserve">
+	<data name="CardMadCowDiseaseDescription" xml:space="preserve">
 		<value>All players lose 6 Recruits</value>
 	</data>
-  <data name="CardMadCowDiseaseName" xml:space="preserve">
+	<data name="CardMadCowDiseaseName" xml:space="preserve">
 		<value>Mad Cow Disease</value>
 	</data>
-  <data name="CardMinersDescription" xml:space="preserve">
+	<data name="CardMinersDescription" xml:space="preserve">
 		<value>+1 Quarry</value>
 	</data>
-  <data name="CardMinersName" xml:space="preserve">
+	<data name="CardMinersName" xml:space="preserve">
 		<value>Miners</value>
 	</data>
-  <data name="CardMinotaurDescription" xml:space="preserve">
+	<data name="CardMinotaurDescription" xml:space="preserve">
 		<value>+1 Dungeon</value>
 	</data>
-  <data name="CardMinotaurName" xml:space="preserve">
+	<data name="CardMinotaurName" xml:space="preserve">
 		<value>Minotaur</value>
 	</data>
-  <data name="CardMondoWallDescription" xml:space="preserve">
+	<data name="CardMondoWallDescription" xml:space="preserve">
 		<value>+12 Wall</value>
 	</data>
-  <data name="CardMondoWallName" xml:space="preserve">
+	<data name="CardMondoWallName" xml:space="preserve">
 		<value>Mondo Wall</value>
 	</data>
-  <data name="CardMoodyGoblinsDescription" xml:space="preserve">
+	<data name="CardMoodyGoblinsDescription" xml:space="preserve">
 		<value>4 damage, you lose 3 Gems</value>
 	</data>
-  <data name="CardMoodyGoblinsName" xml:space="preserve">
+	<data name="CardMoodyGoblinsName" xml:space="preserve">
 		<value>Moody Goblins</value>
 	</data>
-  <data name="CardMotherLodeDescription" xml:space="preserve">
+	<data name="CardMotherLodeDescription" xml:space="preserve">
 		<value>If Quarry &lt; enemy Quarry, +2 Quarry, else +1 Quarry</value>
 	</data>
-  <data name="CardMotherLodeName" xml:space="preserve">
+	<data name="CardMotherLodeName" xml:space="preserve">
 		<value>Mother Lode</value>
 	</data>
-  <data name="CardNewEquipmentDescription" xml:space="preserve">
+	<data name="CardNewEquipmentDescription" xml:space="preserve">
 		<value>+2 Quarry</value>
 	</data>
-  <data name="CardNewEquipmentName" xml:space="preserve">
+	<data name="CardNewEquipmentName" xml:space="preserve">
 		<value>New Equipment</value>
 	</data>
-  <data name="CardOgreDescription" xml:space="preserve">
+	<data name="CardOgreDescription" xml:space="preserve">
 		<value>7 damage</value>
 	</data>
-  <data name="CardOgreName" xml:space="preserve">
+	<data name="CardOgreName" xml:space="preserve">
 		<value>Ogre</value>
 	</data>
-  <data name="CardOrcDescription" xml:space="preserve">
+	<data name="CardOrcDescription" xml:space="preserve">
 		<value>5 damage</value>
 	</data>
-  <data name="CardOrcName" xml:space="preserve">
+	<data name="CardOrcName" xml:space="preserve">
 		<value>Orc</value>
 	</data>
-  <data name="CardParityDescription" xml:space="preserve">
+	<data name="CardParityDescription" xml:space="preserve">
 		<value>All player's Magic equals the highest player's Magic</value>
 	</data>
-  <data name="CardParityName" xml:space="preserve">
+	<data name="CardParityName" xml:space="preserve">
 		<value>Parity</value>
 	</data>
-  <data name="CardPearlOfWisdomDescription" xml:space="preserve">
+	<data name="CardPearlOfWisdomDescription" xml:space="preserve">
 		<value>+5 Tower, +1 Magic</value>
 	</data>
-  <data name="CardPearlOfWisdomName" xml:space="preserve">
+	<data name="CardPearlOfWisdomName" xml:space="preserve">
 		<value>Pearl of Wisdom</value>
 	</data>
-  <data name="CardPegasusLancerDescription" xml:space="preserve">
+	<data name="CardPegasusLancerDescription" xml:space="preserve">
 		<value>12 damage to enemy Tower</value>
 	</data>
-  <data name="CardPegasusLancerName" xml:space="preserve">
+	<data name="CardPegasusLancerName" xml:space="preserve">
 		<value>Pegasus Lancer</value>
 	</data>
-  <data name="CardPhaseJewelDescription" xml:space="preserve">
+	<data name="CardPhaseJewelDescription" xml:space="preserve">
 		<value>+13 Tower, +6 Recruits, +6 Bricks</value>
 	</data>
-  <data name="CardPhaseJewelName" xml:space="preserve">
+	<data name="CardPhaseJewelName" xml:space="preserve">
 		<value>Phase Jewel</value>
 	</data>
-  <data name="CardPorticulusDescription" xml:space="preserve">
+	<data name="CardPorticulusDescription" xml:space="preserve">
 		<value>+5 Wall, +1 Dungeon</value>
 	</data>
-  <data name="CardPorticulusName" xml:space="preserve">
+	<data name="CardPorticulusName" xml:space="preserve">
 		<value>Porticulus</value>
 	</data>
-  <data name="CardPowerBurnDescription" xml:space="preserve">
+	<data name="CardPowerBurnDescription" xml:space="preserve">
 		<value>5 damage to your Tower, +2 Magic</value>
 	</data>
-  <data name="CardPowerBurnName" xml:space="preserve">
+	<data name="CardPowerBurnName" xml:space="preserve">
 		<value>Power Burn</value>
 	</data>
-  <data name="CardPrismDescription" xml:space="preserve">
+	<data name="CardPrismDescription" xml:space="preserve">
 		<value>Draw 1 card, discard 1 card, play again</value>
 	</data>
-  <data name="CardPrismName" xml:space="preserve">
+	<data name="CardPrismName" xml:space="preserve">
 		<value>Prism</value>
 	</data>
-  <data name="CardQuarrysHelpDescription" xml:space="preserve">
+	<data name="CardQuarrysHelpDescription" xml:space="preserve">
 		<value>+7 Tower, lose 10 Bricks</value>
 	</data>
-  <data name="CardQuarrysHelpName" xml:space="preserve">
+	<data name="CardQuarrysHelpName" xml:space="preserve">
 		<value>Quarry's Help</value>
 	</data>
-  <data name="CardQuartzDescription" xml:space="preserve">
+	<data name="CardQuartzDescription" xml:space="preserve">
 		<value>+1 Tower, play again</value>
 	</data>
-  <data name="CardQuartzName" xml:space="preserve">
+	<data name="CardQuartzName" xml:space="preserve">
 		<value>Quartz</value>
 	</data>
-  <data name="CardRabidSheepDescription" xml:space="preserve">
+	<data name="CardRabidSheepDescription" xml:space="preserve">
 		<value>6 damage, enemy loses 3 Recruits</value>
 	</data>
-  <data name="CardRabidSheepName" xml:space="preserve">
+	<data name="CardRabidSheepName" xml:space="preserve">
 		<value>Rabid Sheep</value>
 	</data>
-  <data name="CardRainbowDescription" xml:space="preserve">
+	<data name="CardRainbowDescription" xml:space="preserve">
 		<value>+1 Tower to all players, you gain 3 Gems</value>
 	</data>
-  <data name="CardRainbowName" xml:space="preserve">
+	<data name="CardRainbowName" xml:space="preserve">
 		<value>Rainbow</value>
 	</data>
-  <data name="CardReinforcedWallDescription" xml:space="preserve">
+	<data name="CardReinforcedWallDescription" xml:space="preserve">
 		<value>+8 Wall</value>
 	</data>
-  <data name="CardReinforcedWallName" xml:space="preserve">
+	<data name="CardReinforcedWallName" xml:space="preserve">
 		<value>Reinforced Wall</value>
 	</data>
-  <data name="CardRockGardenDescription" xml:space="preserve">
+	<data name="CardRockGardenDescription" xml:space="preserve">
 		<value>+1 Wall, +1 Tower, +2 Recruits</value>
 	</data>
-  <data name="CardRockGardenName" xml:space="preserve">
+	<data name="CardRockGardenName" xml:space="preserve">
 		<value>Rock Garden</value>
 	</data>
-  <data name="CardRockLauncherDescription" xml:space="preserve">
+	<data name="CardRockLauncherDescription" xml:space="preserve">
 		<value>+6 Wall, 10 damage to enemy</value>
 	</data>
-  <data name="CardRockLauncherName" xml:space="preserve">
+	<data name="CardRockLauncherName" xml:space="preserve">
 		<value>Rock Launcher</value>
 	</data>
-  <data name="CardRockStompersDescription" xml:space="preserve">
+	<data name="CardRockStompersDescription" xml:space="preserve">
 		<value>8 damage, -1 enemy Quarry</value>
 	</data>
-  <data name="CardRockStompersName" xml:space="preserve">
+	<data name="CardRockStompersName" xml:space="preserve">
 		<value>Rock Stompers</value>
 	</data>
-  <data name="CardRubyDescription" xml:space="preserve">
+	<data name="CardRubyDescription" xml:space="preserve">
 		<value>+5 Tower</value>
 	</data>
-  <data name="CardRubyName" xml:space="preserve">
+	<data name="CardRubyName" xml:space="preserve">
 		<value>Ruby</value>
 	</data>
-  <data name="CardSanctuaryDescription" xml:space="preserve">
+	<data name="CardSanctuaryDescription" xml:space="preserve">
 		<value>+10 Tower, +5 Wall, gain 5 Recruits</value>
 	</data>
-  <data name="CardSanctuaryName" xml:space="preserve">
+	<data name="CardSanctuaryName" xml:space="preserve">
 		<value>Sanctuary</value>
 	</data>
-  <data name="CardSapphireDescription" xml:space="preserve">
+	<data name="CardSapphireDescription" xml:space="preserve">
 		<value>+11 Tower</value>
 	</data>
-  <data name="CardSapphireName" xml:space="preserve">
+	<data name="CardSapphireName" xml:space="preserve">
 		<value>Sapphire</value>
 	</data>
-  <data name="CardSecretRoomDescription" xml:space="preserve">
+	<data name="CardSecretRoomDescription" xml:space="preserve">
 		<value>+1 Magic, play again</value>
 	</data>
-  <data name="CardSecretRoomName" xml:space="preserve">
+	<data name="CardSecretRoomName" xml:space="preserve">
 		<value>Secret Room</value>
 	</data>
-  <data name="CardShadowFaerieDescription" xml:space="preserve">
+	<data name="CardShadowFaerieDescription" xml:space="preserve">
 		<value>2 damage to enemy Tower, play again</value>
 	</data>
-  <data name="CardShadowFaerieName" xml:space="preserve">
+	<data name="CardShadowFaerieName" xml:space="preserve">
 		<value>Shadow Faerie</value>
 	</data>
-  <data name="CardShattererDescription" xml:space="preserve">
+	<data name="CardShattererDescription" xml:space="preserve">
 		<value>-1 Magic, 9 damage to enemy Tower</value>
 	</data>
-  <data name="CardShattererName" xml:space="preserve">
+	<data name="CardShattererName" xml:space="preserve">
 		<value>Shatterer</value>
 	</data>
-  <data name="CardShiftDescription" xml:space="preserve">
+	<data name="CardShiftDescription" xml:space="preserve">
 		<value>Switch your Wall with enemy Wall</value>
 	</data>
-  <data name="CardShiftName" xml:space="preserve">
+	<data name="CardShiftName" xml:space="preserve">
 		<value>Shift</value>
 	</data>
-  <data name="CardSlasherDescription" xml:space="preserve">
+	<data name="CardSlasherDescription" xml:space="preserve">
 		<value>6 damage</value>
 	</data>
-  <data name="CardSlasherName" xml:space="preserve">
+	<data name="CardSlasherName" xml:space="preserve">
 		<value>Slasher</value>
 	</data>
-  <data name="CardSmokyQuartzDescription" xml:space="preserve">
+	<data name="CardSmokyQuartzDescription" xml:space="preserve">
 		<value>+1 damage to enemy Tower, play again</value>
 	</data>
-  <data name="CardSmokyQuartzName" xml:space="preserve">
+	<data name="CardSmokyQuartzName" xml:space="preserve">
 		<value>Smoky Quartz</value>
 	</data>
-  <data name="CardSolarFlareDescription" xml:space="preserve">
+	<data name="CardSolarFlareDescription" xml:space="preserve">
 		<value>+2 Tower, +2 damage to enemy Tower</value>
 	</data>
-  <data name="CardSolarFlareName" xml:space="preserve">
+	<data name="CardSolarFlareName" xml:space="preserve">
 		<value>Solar Flare</value>
 	</data>
-  <data name="CardSpearmanDescription" xml:space="preserve">
+	<data name="CardSpearmanDescription" xml:space="preserve">
 		<value>If Wall &gt; enemy Wall, do 3 damage, else do 2 damage</value>
 	</data>
-  <data name="CardSpearmanName" xml:space="preserve">
+	<data name="CardSpearmanName" xml:space="preserve">
 		<value>Spearman</value>
 	</data>
-  <data name="CardSpellWeaversDescription" xml:space="preserve">
+	<data name="CardSpellWeaversDescription" xml:space="preserve">
 		<value>+1 Magic</value>
 	</data>
-  <data name="CardSpellWeaversName" xml:space="preserve">
+	<data name="CardSpellWeaversName" xml:space="preserve">
 		<value>Spell Weavers</value>
 	</data>
-  <data name="CardSpizzerDescription" xml:space="preserve">
+	<data name="CardSpizzerDescription" xml:space="preserve">
 		<value>If enemy Wall = 0, 10 damage, else 6 damage</value>
 	</data>
-  <data name="CardSpizzerName" xml:space="preserve">
+	<data name="CardSpizzerName" xml:space="preserve">
 		<value>Spizzer</value>
 	</data>
-  <data name="CardStoneGiantDescription" xml:space="preserve">
+	<data name="CardStoneGiantDescription" xml:space="preserve">
 		<value>10 damage, +4 Wall</value>
 	</data>
-  <data name="CardStoneGiantName" xml:space="preserve">
+	<data name="CardStoneGiantName" xml:space="preserve">
 		<value>Stone Giant</value>
 	</data>
-  <data name="CardStripMineDescription" xml:space="preserve">
+	<data name="CardStripMineDescription" xml:space="preserve">
 		<value>-1 Quarry, +10 Wall, you gain 5 Gems</value>
 	</data>
-  <data name="CardStripMineName" xml:space="preserve">
+	<data name="CardStripMineName" xml:space="preserve">
 		<value>Strip Mine</value>
 	</data>
-  <data name="CardSturdyWallDescription" xml:space="preserve">
+	<data name="CardSturdyWallDescription" xml:space="preserve">
 		<value>+4 Wall</value>
 	</data>
-  <data name="CardSturdyWallName" xml:space="preserve">
+	<data name="CardSturdyWallName" xml:space="preserve">
 		<value>Sturdy Wall</value>
 	</data>
-  <data name="CardSuccubusDescription" xml:space="preserve">
+	<data name="CardSuccubusDescription" xml:space="preserve">
 		<value>5 damage to enemy Tower, enemy loses 8 Recruits</value>
 	</data>
-  <data name="CardSuccubusName" xml:space="preserve">
+	<data name="CardSuccubusName" xml:space="preserve">
 		<value>Succubus</value>
 	</data>
-  <data name="CardThiefDescription" xml:space="preserve">
+	<data name="CardThiefDescription" xml:space="preserve">
 		<value>Enemy loses 10 Gems, 5 Bricks, you gain 1/2 round up</value>
 	</data>
-  <data name="CardThiefName" xml:space="preserve">
+	<data name="CardThiefName" xml:space="preserve">
 		<value>Thief</value>
 	</data>
-  <data name="CardTowerGremlinDescription" xml:space="preserve">
+	<data name="CardTowerGremlinDescription" xml:space="preserve">
 		<value>2 damage, +4 Wall, +2 Tower</value>
 	</data>
-  <data name="CardTowerGremlinName" xml:space="preserve">
+	<data name="CardTowerGremlinName" xml:space="preserve">
 		<value>Tower Gremlin</value>
 	</data>
-  <data name="CardTremorsDescription" xml:space="preserve">
+	<data name="CardTremorsDescription" xml:space="preserve">
 		<value>All Walls take 5 damages, play again</value>
 	</data>
-  <data name="CardTremorsName" xml:space="preserve">
+	<data name="CardTremorsName" xml:space="preserve">
 		<value>Tremors</value>
 	</data>
-  <data name="CardTrollTrainerDescription" xml:space="preserve">
+	<data name="CardTrollTrainerDescription" xml:space="preserve">
 		<value>+2 Dungeon</value>
 	</data>
-  <data name="CardTrollTrainerName" xml:space="preserve">
+	<data name="CardTrollTrainerName" xml:space="preserve">
 		<value>Troll Trainers</value>
 	</data>
-  <data name="CardUnicornDescription" xml:space="preserve">
+	<data name="CardUnicornDescription" xml:space="preserve">
 		<value>If Magic &gt; enemy Magic, 12 damage, else 8 damage</value>
 	</data>
-  <data name="CardUnicornName" xml:space="preserve">
+	<data name="CardUnicornName" xml:space="preserve">
 		<value>Unicorn</value>
 	</data>
-  <data name="CardVampireDescription" xml:space="preserve">
+	<data name="CardVampireDescription" xml:space="preserve">
 		<value>10 damage, enemy loses 5 Recruits, -1 enemy Dungeon</value>
 	</data>
-  <data name="CardVampireName" xml:space="preserve">
+	<data name="CardVampireName" xml:space="preserve">
 		<value>Vampire</value>
 	</data>
-  <data name="CardWarlordDescription" xml:space="preserve">
+	<data name="CardWarlordDescription" xml:space="preserve">
 		<value>13 damage, you lose 3 Gems</value>
 	</data>
-  <data name="CardWarlordName" xml:space="preserve">
+	<data name="CardWarlordName" xml:space="preserve">
 		<value>Warlord</value>
 	</data>
-  <data name="CardWerewolfDescription" xml:space="preserve">
+	<data name="CardWerewolfDescription" xml:space="preserve">
 		<value>9 damage</value>
 	</data>
-  <data name="CardWerewolfName" xml:space="preserve">
+	<data name="CardWerewolfName" xml:space="preserve">
 		<value>Werewolf</value>
 	</data>
-  <data name="CardWorkOvertimeDescription" xml:space="preserve">
+	<data name="CardWorkOvertimeDescription" xml:space="preserve">
 		<value>+5 Wall, you lose 6 Gems</value>
 	</data>
-  <data name="CardWorkOvertimeName" xml:space="preserve">
+	<data name="CardWorkOvertimeName" xml:space="preserve">
 		<value>Work Overtime</value>
 	</data>
-  <data name="DeckClassicDescription" xml:space="preserve">
+	<data name="DeckClassicDescription" xml:space="preserve">
 		<value>TODO Classic Description</value>
 	</data>
-  <data name="DeckClassicName" xml:space="preserve">
+	<data name="DeckClassicName" xml:space="preserve">
 		<value>Classic</value>
 	</data>
-  <data name="DeckInfinityDescription" xml:space="preserve">
+	<data name="DeckInfinityDescription" xml:space="preserve">
 		<value>TODO Infinity Description</value>
 	</data>
-  <data name="DeckInfinityName" xml:space="preserve">
+	<data name="DeckInfinityName" xml:space="preserve">
 		<value>Infinity</value>
 	</data>
-  <data name="GameDiscardText" xml:space="preserve">
+	<data name="GameDiscardText" xml:space="preserve">
 		<value>Discard card</value>
 	</data>
-  <data name="GameFinishedBackButtonText" xml:space="preserve">
+	<data name="GameFinishedBackButtonText" xml:space="preserve">
 		<value>Back</value>
 	</data>
-  <data name="GameFinishedPlayButtonText" xml:space="preserve">
+	<data name="GameFinishedPlayButtonText" xml:space="preserve">
 		<value>Play again</value>
 	</data>
-  <data name="GameFinishedResourcesAccumulateText" xml:space="preserve">
+	<data name="GameFinishedResourcesAccumulateText" xml:space="preserve">
 		<value>Accumulate resources</value>
 	</data>
-  <data name="GameFinishedText" xml:space="preserve">
+	<data name="GameFinishedText" xml:space="preserve">
 		<value>Game finished</value>
 	</data>
-  <data name="GameFinishedTowerBuildText" xml:space="preserve">
+	<data name="GameFinishedTowerBuildText" xml:space="preserve">
 		<value>Build tower</value>
 	</data>
-  <data name="GameFinishedTowerDestroyText" xml:space="preserve">
+	<data name="GameFinishedTowerDestroyText" xml:space="preserve">
 		<value>Destroy tower</value>
 	</data>
-  <data name="GameFinishedWinnerText" xml:space="preserve">
+	<data name="GameFinishedWinnerText" xml:space="preserve">
 		<value>Win {0}</value>
 	</data>
-  <data name="MenuExitButtonText" xml:space="preserve">
+	<data name="MenuExitButtonText" xml:space="preserve">
 		<value>Exit</value>
 	</data>
-  <data name="MenuNetworkPlayButtonText" xml:space="preserve">
+	<data name="MenuNetworkPlayButtonText" xml:space="preserve">
 		<value>Network</value>
 	</data>
-  <data name="MenuSinglePlayButtonText" xml:space="preserve">
+	<data name="MenuSinglePlayButtonText" xml:space="preserve">
 		<value>Play</value>
 	</data>
-  <data name="NetworkBackButtonText" xml:space="preserve">
+	<data name="NetworkBackButtonText" xml:space="preserve">
 		<value>Back</value>
 	</data>
-  <data name="NetworkConnectText" xml:space="preserve">
+	<data name="NetworkConnectingContinueText" xml:space="preserve">
+		<value>Continue</value>
+	</data>
+	<data name="NetworkConnectingStartNewText" xml:space="preserve">
+		<value>Start new</value>
+	</data>
+	<data name="NetworkConnectingText" xml:space="preserve">
+		<value>Continue existing game or start new game?</value>
+	</data>
+	<data name="NetworkConnectText" xml:space="preserve">
 		<value>Connecting to server...</value>
 	</data>
-  <data name="RuleEastRiverDescription" xml:space="preserve">
+	<data name="NetworkFailureConnectText" xml:space="preserve">
+		<value>Cannot connect to server =(</value>
+	</data>
+	<data name="NetworkFailureVersionText" xml:space="preserve">
+		<value>Need upgrade application =(</value>
+	</data>
+	<data name="NetworkPrepareText" xml:space="preserve">
+		<value>Search for players...</value>
+	</data>
+	<data name="RuleEastRiverDescription" xml:space="preserve">
 		<value>To win, build a tower height of {0}, {1} accumuate each resource or destroy the opponent's tower</value>
 	</data>
-  <data name="RuleEastRiverName" xml:space="preserve">
+	<data name="RuleEastRiverName" xml:space="preserve">
 		<value>East River</value>
 	</data>
-  <data name="RuleEmpireCapitalDescription" xml:space="preserve">
+	<data name="RuleEmpireCapitalDescription" xml:space="preserve">
 		<value>To win, build a tower height of {0}, {1} accumuate each resource or destroy the opponent's tower</value>
 	</data>
-  <data name="RuleEmpireCapitalName" xml:space="preserve">
+	<data name="RuleEmpireCapitalName" xml:space="preserve">
 		<value>Empire Capital</value>
 	</data>
-  <data name="RuleTigersLakeDescription" xml:space="preserve">
+	<data name="RuleTigersLakeDescription" xml:space="preserve">
 		<value>To win, build a tower height of {0}, {1} accumuate each resource or destroy the opponent's tower</value>
 	</data>
-  <data name="RuleTigersLakeName" xml:space="preserve">
+	<data name="RuleTigersLakeName" xml:space="preserve">
 		<value>Tiger's Lake</value>
 	</data>
-  <data name="SettingsBackButtonText" xml:space="preserve">
+	<data name="SettingsBackButtonText" xml:space="preserve">
 		<value>Back</value>
 	</data>
-  <data name="SettingsDeckText" xml:space="preserve">
+	<data name="SettingsDeckText" xml:space="preserve">
 		<value>Deck</value>
 	</data>
-  <data name="SettingsFirstPlayerDefaultName" xml:space="preserve">
+	<data name="SettingsFirstPlayerDefaultName" xml:space="preserve">
 		<value>Player 1</value>
 	</data>
-  <data name="SettingsFirstPlayerPlaceholder" xml:space="preserve">
+	<data name="SettingsFirstPlayerPlaceholder" xml:space="preserve">
 		<value>Enter player's name ...</value>
 	</data>
-  <data name="SettingsFirstPlayerText" xml:space="preserve">
+	<data name="SettingsFirstPlayerText" xml:space="preserve">
 		<value>Player's name #1</value>
 	</data>
-  <data name="SettingsPlayButtonText" xml:space="preserve">
+	<data name="SettingsPlayButtonText" xml:space="preserve">
 		<value>Play</value>
 	</data>
-  <data name="SettingsRuleText" xml:space="preserve">
+	<data name="SettingsRuleText" xml:space="preserve">
 		<value>Rule</value>
 	</data>
-  <data name="SettingsSecondPlayerDefaultName" xml:space="preserve">
+	<data name="SettingsSecondPlayerDefaultName" xml:space="preserve">
 		<value>Player 2</value>
 	</data>
-  <data name="SettingsSecondPlayerPlaceholder" xml:space="preserve">
+	<data name="SettingsSecondPlayerPlaceholder" xml:space="preserve">
 		<value>Enter player's name ...</value>
 	</data>
-  <data name="SettingsSecondPlayerText" xml:space="preserve">
+	<data name="SettingsSecondPlayerText" xml:space="preserve">
 		<value>Player's name #2</value>
 	</data>
-  <data name="NetworkFailureConnectText" xml:space="preserve">
-    <value>Cannot connect to server =(</value>
-  </data>
-  <data name="NetworkFailureVersionText" xml:space="preserve">
-    <value>Need upgrade application =(</value>
-  </data>
-  <data name="NetworkPrepareText" xml:space="preserve">
-    <value>Search for players...</value>
-  </data>
 </root>

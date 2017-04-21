@@ -38,6 +38,13 @@ namespace Arcomage.Unity.Shared.Scripts
             return this;
         }
 
+        public TaskBinding<T> OnSuccess(Action<Task<T>> successHandler, Predicate<Task<T>> successPredicate)
+        {
+            successHandlers += t => { if (successPredicate(t)) successHandler(t); };
+
+            return this;
+        }
+
         public TaskBinding<T> OnFailure(Action<Task<T>> failureHandler)
         {
             failureHandlers += failureHandler;

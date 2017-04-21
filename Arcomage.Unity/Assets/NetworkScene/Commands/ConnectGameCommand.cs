@@ -10,29 +10,24 @@ namespace Arcomage.Unity.NetworkScene.Commands
 {
     public class ConnectGameCommand : Command<object>
     {
-        private readonly UnityDispatcher dispatcher;
-
-        private readonly UnitySceneManager sceneManager;
-
         private readonly ConnectGameHubClient connectGameHubClient;
 
-        public ConnectGameCommand(UnityDispatcher dispatcher, UnitySceneManager sceneManager, ConnectGameHubClient connectGameHubClient)
+        private readonly NetworkSettings settings;
+
+        public ConnectGameCommand(ConnectGameHubClient connectGameHubClient, NetworkSettings settings)
         {
-            this.dispatcher = dispatcher;
-            this.sceneManager = sceneManager;
             this.connectGameHubClient = connectGameHubClient;
+            this.settings = settings;
         }
         
         public override Task Execute(object state)
         {
-            connectGameHubClient.OnConnected += dispatcher.Invoke<Guid>(OnConnected);
+            var taskCompletionSource = new TaskCompletionSource<Guid>();
+            connectGameHubClient.OnConnected += id => taskCompletionSource.TrySetResult(id);
 
-            return connectGameHubClient.Connect();
-        }
-
-        private void OnConnected(Guid gameId)
-        {
-            sceneManager.LoadGameScene();
+            return connectGameHubClient.Connect()
+                .ContinueWith(t => taskCompletionSource.Task, TaskContinuationOptions.ExecuteSynchronously).Unwrap()
+                .ContinueWith(t => settings.GameId = t.Result, TaskContinuationOptions.ExecuteSynchronously);
         }
     }
 }

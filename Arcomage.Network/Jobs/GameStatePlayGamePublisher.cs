@@ -20,29 +20,26 @@ namespace Arcomage.Network.Jobs
 
         public override async Task OnStart(GameContext gameContext, Game game)
         {
-            gameContext.State = GameState.Playing;
-            gameContext.StartedDate = DateTime.UtcNow;
-
-            await gameContextRepository.Save(gameContext);
+            await gameContextRepository.Update(gameContext,
+                gc => gc.State = GameState.Playing,
+                gc => gc.StartedDate = DateTime.UtcNow);
 
             await base.OnStart(gameContext, game);
         }
 
         public override async Task OnFinish(GameContext gameContext, Game game)
         {
-            gameContext.State = GameState.Finished;
-            gameContext.StartedDate = DateTime.UtcNow;
-
-            await gameContextRepository.Save(gameContext);
+            await gameContextRepository.Update(gameContext,
+                gc => gc.State = GameState.Finished,
+                gc => gc.StartedDate = DateTime.UtcNow);
 
             await base.OnFinish(gameContext, game);
         }
 
         public override async Task OnAfterPlay(GameContext gameContext, Game game)
         {
-            gameContext.Version++;
-
-            await gameContextRepository.Save(gameContext);
+            await gameContextRepository.Update(gameContext,
+                gc => gc.Version++);
 
             await base.OnAfterPlay(gameContext, game);
         }

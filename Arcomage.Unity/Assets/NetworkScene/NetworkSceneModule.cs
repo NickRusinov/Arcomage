@@ -15,11 +15,15 @@ namespace Arcomage.Unity.NetworkScene
         {
             builder.RegisterType<ConnectViewModel>()
                 .OnActivated(ea => ea.Instance.GetVersionCommand = ea.Context.Resolve<GetVersionCommand>())
+                .OnActivated(ea => ea.Instance.GetConnectingGameCommand = ea.Context.Resolve<GetConnectingGameCommand>())
+                .InstancePerLifetimeScope();
+
+            builder.RegisterType<ConnectDialogViewModel>()
+                .OnActivated(ea => ea.Instance.DisconnectGameCommand = ea.Context.Resolve<DisconnectGameCommand>())
                 .InstancePerLifetimeScope();
 
             builder.RegisterType<PrepareViewModel>()
-                .OnActivated(ea => ea.Instance.ConnectCommand = ea.Context.Resolve<ConnectGameCommand>())
-                .OnActivated(ea => ea.Instance.DisconnectCommand = ea.Context.Resolve<DisconnectGameCommand>())
+                .OnActivated(ea => ea.Instance.ConnectGameCommand = ea.Context.Resolve<ConnectGameCommand>())
                 .InstancePerLifetimeScope();
         }
     }

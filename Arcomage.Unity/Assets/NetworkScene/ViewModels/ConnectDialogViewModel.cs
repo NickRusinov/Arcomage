@@ -6,8 +6,8 @@ using Arcomage.Unity.Shared.Scripts;
 
 namespace Arcomage.Unity.NetworkScene.ViewModels
 {
-    public class PrepareViewModel
+    public class ConnectDialogViewModel
     {
-        public Command<object> ConnectGameCommand { get; set; }
+        public Command<object> DisconnectGameCommand { get; set; }
     }
 }

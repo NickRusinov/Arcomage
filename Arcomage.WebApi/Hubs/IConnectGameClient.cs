@@ -9,5 +9,7 @@ namespace Arcomage.WebApi.Hubs
     public interface IConnectGameClient
     {
         void Connected(Guid gameId);
+
+        void Disconnected(Guid gameId);
     }
 }

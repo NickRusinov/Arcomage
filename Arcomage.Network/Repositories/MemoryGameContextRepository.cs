@@ -26,6 +26,26 @@ namespace Arcomage.Network.Repositories
             return Task.FromResult(true);
         }
 
+        public Task<bool> Update(GameContext gameContext, params Action<GameContext>[] update)
+        {
+            gameStorage.AddOrUpdate(gameContext.Id,
+                id =>
+                {
+                    Array.ForEach(update, u => u.Invoke(gameContext));
+
+                    return gameContext;
+                },
+                (id, gc) =>
+                {
+                    Array.ForEach(update, u => u.Invoke(gameContext));
+                    Array.ForEach(update, u => u.Invoke(gc));
+
+                    return gc;
+                });
+
+            return Task.FromResult(true);
+        }
+
         public Task<GameContext> GetById(Guid id)
         {
             gameStorage.TryGetValue(id, out var gameContext);

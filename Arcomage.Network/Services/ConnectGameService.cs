@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Arcomage.Network.Queries;
 using Arcomage.Network.Repositories;
 
 namespace Arcomage.Network.Services
@@ -11,20 +12,20 @@ namespace Arcomage.Network.Services
     {
         private readonly ICreateGameService createGameService;
 
-        private readonly IGameContextRepository gameContextRepository;
-
         private readonly IUserContextRepository userContextRepository;
 
-        public ConnectGameService(ICreateGameService createGameService, IGameContextRepository gameContextRepository, IUserContextRepository userContextRepository)
+        private readonly GetConnectingGameQuery getConnectingGameQuery;
+
+        public ConnectGameService(ICreateGameService createGameService, IUserContextRepository userContextRepository, GetConnectingGameQuery getConnectingGameQuery)
         {
             this.createGameService = createGameService;
-            this.gameContextRepository = gameContextRepository;
             this.userContextRepository = userContextRepository;
+            this.getConnectingGameQuery = getConnectingGameQuery;
         }
 
         public async Task<GameContext> ConnectGame(Guid userId)
         {
-            var gameContext = await gameContextRepository.GetByUserId(userId, GameState.Created | GameState.Playing);
+            var gameContext = await getConnectingGameQuery.Handle(userId);
             if (gameContext != null)
                 return gameContext;
 

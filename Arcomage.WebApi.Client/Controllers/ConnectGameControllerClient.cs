@@ -14,9 +14,19 @@ namespace Arcomage.WebApi.Client.Controllers
 
         }
 
+        public Task<Guid?> GetConnecting()
+        {
+            return Get<Guid?>("api/game/connecting");
+        }
+
         public Task Connect()
         {
             return Post("api/game/connect");
+        }
+
+        public Task Disconnect()
+        {
+            return Post("api/game/disconnect");
         }
     }
 }

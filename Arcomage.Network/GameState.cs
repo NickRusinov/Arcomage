@@ -9,12 +9,14 @@ namespace Arcomage.Network
     [Flags]
     public enum GameState
     {
-        Created  = 0x0000_0001,
+        Created   = 0x0000_0001,
 
-        Playing  = 0x0000_0002,
+        Playing   = 0x0000_0002,
 
-        Finished = 0x0000_0004,
+        Finished  = 0x0000_0004,
 
-        All      = Created | Playing | Finished,
+        Cancelled = 0x0000_0008,
+
+        All      = Created | Playing | Finished | Cancelled,
     }
 }

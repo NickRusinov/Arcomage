@@ -5,14 +5,18 @@ using System.Text;
 using System.Threading.Tasks;
 using Arcomage.Unity.NetworkScene.ViewModels;
 using Arcomage.Unity.Shared.Scripts;
+using Arcomage.WebApi.Client.Models.About;
 using UnityEngine;
 
 namespace Arcomage.Unity.NetworkScene.Views
 {
     public class ConnectPanelView : View<ConnectViewModel>
     {
-        [Tooltip("Объект, активирующийся при удачном соединении с игровым веб-сервером")]
-        public GameObject SuccessObject;
+        [Tooltip("Объект, активирующийся при удачном соединении с игровым веб-сервером и отсутствующей активной игры")]
+        public GameObject SuccessNotExistsGameObject;
+
+        [Tooltip("Объект, активирующийся при удачном соединении  игровым веб-сервером и наличии активной игры")]
+        public GameObject SuccessExistsGameObject;
 
         [Tooltip("Объект, активирующийся при неудачном соединении с игровым веб-сервером")]
         public GameObject FailureConnectObject;
@@ -23,10 +27,47 @@ namespace Arcomage.Unity.NetworkScene.Views
         public void OnEnable()
         {
             Bind(ViewModel.GetVersionCommand.Execute(ViewModel))
-                .OnComplete(t => gameObject.SetActive(false))
-                .OnSuccess(t => SuccessObject.SetActive(t.Result.Version == 0))
-                .OnSuccess(t => FailureVersionObject.SetActive(t.Result.Version != 0))
-                .OnFailure(t => FailureConnectObject.SetActive(true));
+                .OnSuccess(t => OnGetVersionCorrectSuccess(t.Result), t => t.Result.Version == 0)
+                .OnSuccess(t => OnGetVersionIncorrectSuccess(t.Result), t => t.Result.Version != 0)
+                .OnFailure(t => OnGetVersionFailure());
+        }
+
+        private void OnGetVersionCorrectSuccess(VersionModel versionModel)
+        {
+            Bind(ViewModel.GetConnectingGameCommand.Execute(ViewModel))
+                .OnSuccess(t => OnGetConnectingGameExistsSuccess(), t => t.Result.HasValue)
+                .OnSuccess(t => OnGetConnectingGameNotExistsSuccess(), t => !t.Result.HasValue)
+                .OnFailure(t => OnGetConnectingGameFailure());
+        }
+
+        private void OnGetVersionIncorrectSuccess(VersionModel versionModel)
+        {
+            gameObject.SetActive(false);
+            FailureVersionObject.SetActive(true);
+        }
+
+        private void OnGetVersionFailure()
+        {
+            gameObject.SetActive(false);
+            FailureConnectObject.SetActive(true);
+        }
+
+        private void OnGetConnectingGameExistsSuccess()
+        {
+            gameObject.SetActive(false);
+            SuccessExistsGameObject.SetActive(true);
+        }
+
+        private void OnGetConnectingGameNotExistsSuccess()
+        {
+            gameObject.SetActive(false);
+            SuccessNotExistsGameObject.SetActive(true);
+        }
+
+        private void OnGetConnectingGameFailure()
+        {
+            gameObject.SetActive(false);
+            FailureConnectObject.SetActive(true);
         }
     }
 }

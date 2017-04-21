@@ -15,9 +15,9 @@ namespace Arcomage.WebApi.Client.Controllers
 
         }
 
-        public Task<GameModel> GetGame()
+        public Task<GameModel> GetGame(Guid id)
         {
-            return Get<GameModel>($"api/game");
+            return Get<GameModel>($"api/game/{id}");
         }
     }
 }

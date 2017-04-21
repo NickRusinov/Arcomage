@@ -13,6 +13,7 @@ namespace Arcomage.Network
             return new GameContext
             {
                 Id = Guid.NewGuid(),
+                JobId = "",
                 Version = 0,
                 State = GameState.Created,
                 CreatedDate = DateTime.UtcNow,
@@ -25,6 +26,8 @@ namespace Arcomage.Network
 
         public Guid Id { get; set; }
 
+        public string JobId { get; set; }
+
         public int Version { get; set; }
 
         public GameState State { get; set; }
@@ -34,6 +37,8 @@ namespace Arcomage.Network
         public DateTime? StartedDate { get; set; }
 
         public DateTime? FinishedDate { get; set; }
+
+        public DateTime? CancelledDate { get; set; }
 
         public UserContext FirstUser { get; set; }
 

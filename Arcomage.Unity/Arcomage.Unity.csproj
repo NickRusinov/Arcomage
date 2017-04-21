@@ -131,11 +131,14 @@
     <Compile Include="Assets\MenuScene\Scripts\MenuSceneScript.cs" />
     <Compile Include="Assets\NetworkScene\Commands\ConnectGameCommand.cs" />
     <Compile Include="Assets\NetworkScene\Commands\DisconnectGameCommand.cs" />
+    <Compile Include="Assets\NetworkScene\Commands\GetConnectingGameCommand.cs" />
     <Compile Include="Assets\NetworkScene\Commands\GetVersionCommand.cs" />
     <Compile Include="Assets\NetworkScene\NetworkSceneModule.cs" />
     <Compile Include="Assets\NetworkScene\NetworkSceneScript.cs" />
+    <Compile Include="Assets\NetworkScene\ViewModels\ConnectDialogViewModel.cs" />
     <Compile Include="Assets\NetworkScene\ViewModels\ConnectViewModel.cs" />
     <Compile Include="Assets\NetworkScene\ViewModels\PrepareViewModel.cs" />
+    <Compile Include="Assets\NetworkScene\Views\ConnectDialogPanelView.cs" />
     <Compile Include="Assets\NetworkScene\Views\ConnectPanelView.cs" />
     <Compile Include="Assets\NetworkScene\Views\PreparePanelView.cs" />
     <Compile Include="Assets\SettingsScene\Scripts\DeckFactory.cs" />

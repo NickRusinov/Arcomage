@@ -12,14 +12,22 @@ namespace Arcomage.WebApi.Hubs
     {
         private readonly IConnectGameService connectGameService;
 
-        public ConnectGameHub(IConnectGameService connectGameService)
+        private readonly IDisconnectGameService disconnectGameService;
+
+        public ConnectGameHub(IConnectGameService connectGameService, IDisconnectGameService disconnectGameService)
         {
             this.connectGameService = connectGameService;
+            this.disconnectGameService = disconnectGameService;
         }
         
         public async Task Connect()
         {
             var gameContext = await connectGameService.ConnectGame(Identity.Id);
+        }
+
+        public async Task Disconnect()
+        {
+            var gameContext = await disconnectGameService.DisconnectGame(Identity.Id);
         }
     }
 }
