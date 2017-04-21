@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Arcomage.Unity.GameScene.Views;
+using Arcomage.Unity.Shared.Scripts;
 using UnityEngine;
 
 namespace Arcomage.Unity.GameScene.Scripts
@@ -41,7 +42,7 @@ namespace Arcomage.Unity.GameScene.Scripts
 
             if (Input.GetMouseButton(0) && draggingItem)
             {
-                Vector2 inputPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                var inputPosition = (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
                 transform.position = inputPosition + touchOffset;
                 transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, -0.50f);
@@ -49,7 +50,7 @@ namespace Arcomage.Unity.GameScene.Scripts
 
             if (Input.GetMouseButton(0) && !draggingItem && !globalDraggingItem)
             {
-                Vector2 inputPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                var inputPosition = (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition);
             
                 var hit = Physics2D.RaycastAll(inputPosition, inputPosition).FirstOrDefault();
 
@@ -65,14 +66,15 @@ namespace Arcomage.Unity.GameScene.Scripts
             {
                 draggingItem = globalDraggingItem = false;
                 var cardViewModel = GetComponent<CardView>().ViewModel;
+                var cardExecuteTask = (Task)TaskEx.FromResult<object>(null);
 
                 if (transform.position.y - initialPosition.y >= +25f && cardViewModel.IsPlay)
-                    cardViewModel.PlayCommand.Execute(cardViewModel);
+                    cardExecuteTask = cardViewModel.PlayCommand.Execute(cardViewModel);
 
                 if (transform.position.y - initialPosition.y <= -25f && cardViewModel.IsDiscard)
-                    cardViewModel.DiscardCommand.Execute(cardViewModel);
+                    cardExecuteTask = cardViewModel.DiscardCommand.Execute(cardViewModel);
 
-                StartCoroutine(CardTranslate(gameObject, initialPosition));
+                StartCoroutine(CardTranslate(gameObject, initialPosition, cardExecuteTask));
             }
         }
 
@@ -82,8 +84,9 @@ namespace Arcomage.Unity.GameScene.Scripts
         /// <param name="cardObject">Игровой объект карты</param>
         /// <param name="position">Исходное положение карты</param>
         /// <returns>Корутина</returns>
-        private static IEnumerator CardTranslate(GameObject cardObject, Vector3 position)
+        private static IEnumerator CardTranslate(GameObject cardObject, Vector3 position, Task cardExecuteTask)
         {
+            yield return new TaskYieldInstruction(cardExecuteTask);
             yield return null;
         
             var cardTranslateScript = cardObject.AddComponent<CardTranslateScript>();
