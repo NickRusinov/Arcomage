@@ -167,8 +167,8 @@ PlayerSettings:
   AndroidTargetDevice: 0
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: D:/Projects/Arcomage/Arcomage.keystore
-  AndroidKeyaliasName: 
+  AndroidKeystoreName: D:/Projects/Arcomage/Arcomage.Unity/Arcomage.keystore
+  AndroidKeyaliasName: arcomage
   AndroidTVCompatibility: 1
   AndroidIsGame: 1
   androidEnableBanner: 0

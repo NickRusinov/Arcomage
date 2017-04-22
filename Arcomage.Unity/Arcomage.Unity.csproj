@@ -164,7 +164,10 @@
     <Compile Include="Assets\Shared\Scripts\DropdownView.cs" />
     <Compile Include="Assets\Shared\Scripts\FrameworkExtensions.cs" />
     <Compile Include="Assets\Shared\Scripts\GameApplication.cs" />
+    <Compile Include="Assets\Shared\Scripts\LanguageExtensions.cs" />
     <Compile Include="Assets\Shared\Scripts\LocalizationScript.cs" />
+    <Compile Include="Assets\Shared\Scripts\LoggingExtensions.Android.cs" />
+    <Compile Include="Assets\Shared\Scripts\LoggingExtensions.cs" />
     <Compile Include="Assets\Shared\Scripts\NetworkSettings.cs" />
     <Compile Include="Assets\Shared\Scripts\ScaleScript.cs" />
     <Compile Include="Assets\Shared\Scripts\Scene.cs" />
