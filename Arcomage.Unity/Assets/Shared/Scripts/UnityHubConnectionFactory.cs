@@ -19,8 +19,7 @@ namespace Arcomage.Unity.Shared.Scripts
             hubConnection.TransportConnectTimeout = TimeSpan.FromSeconds(30);
             hubConnection.TraceLevel = TraceLevels.All;
             hubConnection.TraceWriter = new UnityLogTextWriter();
-            //hubConnection.Headers.Add("Authenticate", "authenticate");
-            //hubConnection.Headers.Add("Content-Type", "application/json");
+            hubConnection.Headers.Add(Scene.Authorization.GetAuthorizationHeader(), Scene.Authorization.GetAuthorizationToken());
 
             return hubConnection;
         }

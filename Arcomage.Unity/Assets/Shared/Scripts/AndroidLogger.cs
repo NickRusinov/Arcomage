@@ -6,31 +6,29 @@ using UnityEngine;
 
 namespace Arcomage.Unity.Shared.Scripts
 {
-    public static partial class LoggingExtensions
+    public class AndroidLogger : Logger
     {
-#if UNITY_ANDROID && !UNITY_EDITOR
+        private bool isHasBeenException;
 
-        private static bool isHasBeenException;
-
-        static partial void OnException(MonoBehaviour monoBehaviour, string message, string stackTrace)
+        public override void LogException(string message, string stackTrace)
         {
-            if (!isHasBeenException)
-            {
-                var activityClass = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
-                var activity = activityClass.GetStatic<AndroidJavaObject>("currentActivity");
+            if (isHasBeenException)
+                return;
 
-                var sendReportClickListenerProxy = new SendReportClickListenerProxy("Exception", message, stackTrace);
-                var cancelReportClickListenerProxy = new CancelReportClickHandlerProxy();
-                var builder = new AndroidJavaObject("android.app.AlertDialog$Builder", activity);
-                builder = builder.Call<AndroidJavaObject>("setCancelable", false);
-                builder = builder.Call<AndroidJavaObject>("setTitle", "Непредвиденная ошибка");
-                builder = builder.Call<AndroidJavaObject>("setMessage", "Отправить отчет разработчикам?");
-                builder = builder.Call<AndroidJavaObject>("setPositiveButton", "Да", sendReportClickListenerProxy);
-                builder = builder.Call<AndroidJavaObject>("setNegativeButton", "Нет", cancelReportClickListenerProxy);
+            var activityClass = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
+            var activity = activityClass.GetStatic<AndroidJavaObject>("currentActivity");
 
-                var alert = builder.Call<AndroidJavaObject>("create");
-                alert.Call("show");
-            }
+            var sendReportClickListenerProxy = new SendReportClickListenerProxy("Exception", message, stackTrace);
+            var cancelReportClickListenerProxy = new CancelReportClickHandlerProxy();
+            var builder = new AndroidJavaObject("android.app.AlertDialog$Builder", activity);
+            builder = builder.Call<AndroidJavaObject>("setCancelable", false);
+            builder = builder.Call<AndroidJavaObject>("setTitle", "Непредвиденная ошибка");
+            builder = builder.Call<AndroidJavaObject>("setMessage", "Отправить отчет разработчикам?");
+            builder = builder.Call<AndroidJavaObject>("setPositiveButton", "Да", sendReportClickListenerProxy);
+            builder = builder.Call<AndroidJavaObject>("setNegativeButton", "Нет", cancelReportClickListenerProxy);
+
+            var alert = builder.Call<AndroidJavaObject>("create");
+            alert.Call("show");
 
             isHasBeenException = true;
         }
@@ -95,7 +93,5 @@ namespace Arcomage.Unity.Shared.Scripts
                 Application.Quit();
             }
         }
-
-#endif
     }
 }

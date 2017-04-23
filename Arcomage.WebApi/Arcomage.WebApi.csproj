@@ -138,6 +138,7 @@
     <Reference Include="System.Web.Http.Tracing, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Tracing.5.2.3\lib\net45\System.Web.Http.Tracing.dll</HintPath>
     </Reference>
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">
@@ -145,14 +146,16 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="web.config" />
+    <Content Include="web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationIdentity.cs" />
     <Compile Include="ApplicationPrincipal.cs" />
     <Compile Include="ApplicationUserIdProvider.cs" />
+    <Compile Include="App_Start\AndroidAuthorizationMiddleware.cs" />
     <Compile Include="App_Start\AuthorizationConfiguration.cs" />
-    <Compile Include="App_Start\AuthorizationMiddleware.cs" />
     <Compile Include="App_Start\AutofacConfiguration.cs" />
     <Compile Include="App_Start\AutoMapperConfiguration.cs" />
     <Compile Include="App_Start\DomainModule.cs" />
@@ -161,6 +164,7 @@
     <Compile Include="App_Start\NetworkModule.cs" />
     <Compile Include="App_Start\SignalRConfiguration.cs" />
     <Compile Include="App_Start\SignalRModule.cs" />
+    <Compile Include="App_Start\UnityAuthorizationMiddleware.cs" />
     <Compile Include="App_Start\WebApiConfiguration.cs" />
     <Compile Include="App_Start\WebApiModule.cs" />
     <Compile Include="Controllers\AboutController.cs" />

@@ -10,11 +10,9 @@ using Autofac.Features.ResolveAnything;
 
 namespace Arcomage.Unity.Shared.Scripts
 {
-    public class GameApplication
+    public class AutofacConfiguration
     {
-        public static readonly GameApplication Instance = new GameApplication();
-        
-        private GameApplication()
+        public IContainer Configure()
         {
             var builder = new ContainerBuilder();
             builder.RegisterSource(new AnyConcreteTypeNotAlreadyRegisteredSource());
@@ -42,9 +40,7 @@ namespace Arcomage.Unity.Shared.Scripts
             builder.Register(c => c.Resolve<Scene>().GetComponent<UnitySceneManager>())
                 .AsSelf().AsImplementedInterfaces();
 
-            Container = builder.Build();
+            return builder.Build();
         }
-
-        public IContainer Container { get; private set; }
     }
 }

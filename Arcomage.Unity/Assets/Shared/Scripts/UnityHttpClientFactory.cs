@@ -19,7 +19,7 @@ namespace Arcomage.Unity.Shared.Scripts
         {
             var httpClient = new UnityHttpClient(BaseUrl, SendWebRequest);
             httpClient.TraceWriter = new UnityLogTextWriter();
-            httpClient.Headers.Add("Authenticate", "authenticate");
+            httpClient.Headers.Add(Scene.Authorization.GetAuthorizationHeader(), Scene.Authorization.GetAuthorizationToken());
             httpClient.Headers.Add("Content-Type", "application/json");
 
             return httpClient;
