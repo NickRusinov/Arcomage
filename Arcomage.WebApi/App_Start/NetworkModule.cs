@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
+using Arcomage.Domain;
 using Arcomage.Network;
 using Arcomage.Network.Jobs;
+using Arcomage.Network.Queries;
 using Arcomage.Network.Repositories;
 using Arcomage.Network.Services;
 using Arcomage.WebApi.Hubs;
@@ -16,25 +19,42 @@ namespace Arcomage.WebApi
     {
         protected override void Load(ContainerBuilder builder)
         {
+            builder.RegisterType<ConcurrentDictionary<Guid, GameContext>>()
+                .UsingConstructor()
+                .SingleInstance();
+
+            builder.RegisterType<ConcurrentDictionary<Guid, UserContext>>()
+                .UsingConstructor()
+                .SingleInstance();
+
+            builder.RegisterType<ConcurrentDictionary<Guid, Game>>()
+                .UsingConstructor()
+                .SingleInstance();
+
             builder.RegisterAssemblyTypes(typeof(GameContext).Assembly)
                 .InNamespaceOf<IPlayGameService>()
-                .Except<ConnectGameService>()
+                .Except<CreateGameService>()
                 .AsImplementedInterfaces()
                 .InstancePerLifetimeScope();
 
             builder.RegisterAssemblyTypes(typeof(GameContext).Assembly)
                 .InNamespaceOf<IGameRepository>()
                 .AsImplementedInterfaces()
-                .SingleInstance();
+                .InstancePerLifetimeScope();
 
-            builder.RegisterType<ConnectGameService>()
-                .Named<IConnectGameService>("ConnectGameService")
+            builder.RegisterAssemblyTypes(typeof(GameContext).Assembly)
+                .InNamespaceOf<IGetPlayingGameQuery>()
+                .AsImplementedInterfaces()
+                .InstancePerLifetimeScope();
+
+            builder.RegisterType<CreateGameService>()
+                .Named<ICreateGameService>("CreateGameService")
                 .InstancePerDependency();
 
-            builder.RegisterDecorator<IConnectGameService>((c, s) =>
-                new SignalRConnectGameService(s,
+            builder.RegisterDecorator<ICreateGameService>((c, s) =>
+                new SignalRCreateGameService(s,
                     c.Resolve<IHubContext<IConnectGameClient>>()),
-                fromKey: "ConnectGameService", toKey: null);
+                fromKey: "CreateGameService", toKey: null);
 
             builder.RegisterType<DefaultPlayGamePublisher>()
                 .Named<IPlayGamePublisher>("DefaultPlayGamePublisher")
@@ -47,7 +67,8 @@ namespace Arcomage.WebApi
 
             builder.RegisterDecorator<IPlayGamePublisher>((c, s) =>
                 new GameStatePlayGamePublisher(s,
-                    c.Resolve<IGameContextRepository>()),
+                    c.Resolve<IGameContextRepository>(),
+                    c.Resolve<IUserContextRepository>()),
                 fromKey: "SignalRPlayGamePublisher", toKey: null);
         }
     }

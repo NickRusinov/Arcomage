@@ -7,6 +7,7 @@ using Hangfire;
 using Hangfire.MemoryStorage;
 using Hangfire.Dashboard;
 using System.Configuration;
+using Arcomage.Network.Jobs;
 
 namespace Arcomage.WebApi
 {
@@ -46,6 +47,8 @@ namespace Arcomage.WebApi
 
             app.UseHangfireDashboard("/hangfire", options);
             app.UseHangfireServer();
+
+            BackgroundJob.Schedule<CreateGameJob>(j => j.Start(), TimeSpan.FromSeconds(30));
         }
     }
 }

@@ -8,6 +8,12 @@ namespace Arcomage.Network.Repositories
 {
     public interface IUserContextRepository
     {
+        Task<bool> Add(UserContext userContext);
+
+        Task<bool> Save(UserContext userContext);
+
+        Task<bool> Update(UserContext userContext, params Action<UserContext>[] update);
+
         Task<UserContext> GetById(Guid id);
     }
 }

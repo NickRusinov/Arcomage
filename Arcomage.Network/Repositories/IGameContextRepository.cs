@@ -15,7 +15,5 @@ namespace Arcomage.Network.Repositories
         Task<bool> Update(GameContext gameContext, params Action<GameContext>[] update);
 
         Task<GameContext> GetById(Guid id);
-
-        Task<GameContext> GetByUserId(Guid id, GameState state);
     }
 }

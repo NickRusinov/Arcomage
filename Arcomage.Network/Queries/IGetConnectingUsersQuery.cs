@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Arcomage.Network.Services
+namespace Arcomage.Network.Queries
 {
-    public interface IConnectGameService
+    public interface IGetConnectingUsersQuery
     {
-        Task<GameContext> ConnectGame(Guid userId);
+        Task<IEnumerable<UserContext>> Handle();
     }
 }

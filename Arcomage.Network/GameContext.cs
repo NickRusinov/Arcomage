@@ -15,8 +15,7 @@ namespace Arcomage.Network
                 Id = Guid.NewGuid(),
                 JobId = "",
                 Version = 0,
-                State = GameState.Created,
-                CreatedDate = DateTime.UtcNow,
+                State = GameState.None,
                 StartedDate = null,
                 FinishedDate = null,
                 FirstUser = firstUser,
@@ -31,8 +30,6 @@ namespace Arcomage.Network
         public int Version { get; set; }
 
         public GameState State { get; set; }
-
-        public DateTime? CreatedDate { get; set; }
 
         public DateTime? StartedDate { get; set; }
 

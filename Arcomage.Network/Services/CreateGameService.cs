@@ -18,11 +18,14 @@ namespace Arcomage.Network.Services
 
         private readonly IGameContextRepository gameContextRepository;
 
-        public CreateGameService(GameBuilder gameBuilder, IGameRepository gameRepository, IGameContextRepository gameContextRepository)
+        private readonly IUserContextRepository userContextRepository;
+
+        public CreateGameService(GameBuilder gameBuilder, IGameRepository gameRepository, IGameContextRepository gameContextRepository, IUserContextRepository userContextRepository)
         {
             this.gameBuilder = gameBuilder;
             this.gameRepository = gameRepository;
             this.gameContextRepository = gameContextRepository;
+            this.userContextRepository = userContextRepository;
         }
 
         public async Task<GameContext> CreateGame(UserContext firstUserContext, UserContext secondUserContext)
@@ -36,10 +39,19 @@ namespace Arcomage.Network.Services
 
             if (!await gameRepository.Add(gameContext.Id, game))
                 throw new NetworkException(NetworkResources.NotAddedNewGame);
-            
+
+            await gameContextRepository.Update(gameContext,
+                gc => gc.State = GameState.Playing,
+                gc => gc.StartedDate = DateTime.UtcNow);
+
+            await userContextRepository.Update(firstUserContext,
+                uc => uc.State = UserState.Playing);
+            await userContextRepository.Update(secondUserContext,
+                uc => uc.State = UserState.Playing);
+
             var jobId = BackgroundJob.Enqueue<PlayGameJob>(j => j.Start(gameContext));
             
-            await gameContextRepository.Update(gameContext,
+            await gameContextRepository.Update(gameContext, 
                 gc => gc.JobId = jobId);
 
             return gameContext;

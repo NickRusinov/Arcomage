@@ -8,6 +8,17 @@ namespace Arcomage.Network
 {
     public class UserContext
     {
+        public static UserContext New()
+        {
+            return new UserContext
+            {
+                Id = Guid.NewGuid(),
+                State = UserState.None,
+            };
+        }
+
         public Guid Id { get; set; }
+
+        public UserState State { get; set; }
     }
 }

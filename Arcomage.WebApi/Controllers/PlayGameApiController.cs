@@ -20,13 +20,13 @@ namespace Arcomage.WebApi.Controllers
         [HttpPost, Route("~/api/game/play")]
         public async Task PlayCard(int cardIndex)
         {
-            await playGameService.PlayCard(Identity.Id, cardIndex);
+            await playGameService.PlayCard(Identity.UserContext, cardIndex);
         }
 
         [HttpPost, Route("~/api/game/discard")]
         public async Task DiscardCard(int cardIndex)
         {
-            await playGameService.DiscardCard(Identity.Id, cardIndex);
+            await playGameService.DiscardCard(Identity.UserContext, cardIndex);
         }
     }
 }

@@ -11,15 +11,12 @@ namespace Arcomage.WebApi.Controllers
     [Authorize]
     public class ConnectGameApiController : ApplicationApiController
     {
-        private readonly IConnectGameService connectGameService;
-
         private readonly IDisconnectGameService disconnectGameService;
 
-        private readonly GetConnectingGameQuery getConnectingGameQuery;
+        private readonly MemoryGetPlayingGameQuery getConnectingGameQuery;
 
-        public ConnectGameApiController(IConnectGameService connectGameService, IDisconnectGameService disconnectGameService, GetConnectingGameQuery getConnectingGameQuery)
+        public ConnectGameApiController(IDisconnectGameService disconnectGameService, MemoryGetPlayingGameQuery getConnectingGameQuery)
         {
-            this.connectGameService = connectGameService;
             this.disconnectGameService = disconnectGameService;
             this.getConnectingGameQuery = getConnectingGameQuery;
         }
@@ -27,23 +24,23 @@ namespace Arcomage.WebApi.Controllers
         [HttpGet, Route("~/api/game/connecting")]
         public async Task<Guid?> GetConnecting()
         {
-            var gameContext = await getConnectingGameQuery.Handle(Identity.Id);
+            var gameContext = await getConnectingGameQuery.Handle(Identity.UserContext);
 
             return gameContext?.Id;
         }
 
-        [HttpPost, Route("~/api/game/connect")]
-        public async Task<Guid?> Connect()
-        {
-            var gameContext = await connectGameService.ConnectGame(Identity.Id);
+        //[HttpPost, Route("~/api/game/connect")]
+        //public async Task<Guid?> Connect()
+        //{
+        //    var gameContext = await connectGameService.ConnectGame(Identity.UserContext);
 
-            return gameContext?.Id;
-        }
+        //    return gameContext?.Id;
+        //}
 
         [HttpPost, Route("~/api/game/disconnect")]
         public async Task<Guid?> Disconnect()
         {
-            var gameContext = await disconnectGameService.DisconnectGame(Identity.Id);
+            var gameContext = await disconnectGameService.DisconnectGame(Identity.UserContext);
 
             return gameContext?.Id;
         }

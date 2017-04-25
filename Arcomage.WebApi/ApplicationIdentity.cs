@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
+using Arcomage.Network;
 
 namespace Arcomage.WebApi
 {
@@ -24,6 +25,9 @@ namespace Arcomage.WebApi
         public override string Name { get; }
 
         public string Email { get; }
+
+#warning Model in infrastructure logic
+        public UserContext UserContext => new UserContext { Id = Id };
 
         public override bool IsAuthenticated => Id != Guid.Empty;
     }

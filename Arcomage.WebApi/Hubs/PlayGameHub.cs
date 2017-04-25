@@ -19,12 +19,12 @@ namespace Arcomage.WebApi.Hubs
 
         public async Task PlayCard(int cardIndex)
         {
-            await playGameService.PlayCard(Identity.Id, cardIndex);
+            await playGameService.PlayCard(Identity.UserContext, cardIndex);
         }
 
         public async Task DiscardCard(int cardIndex)
         {
-            await playGameService.DiscardCard(Identity.Id, cardIndex);
+            await playGameService.DiscardCard(Identity.UserContext, cardIndex);
         }
     }
 }

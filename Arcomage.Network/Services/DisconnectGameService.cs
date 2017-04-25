@@ -13,17 +13,20 @@ namespace Arcomage.Network.Services
     {
         private readonly IGameContextRepository gameContextRepository;
 
-        private readonly GetConnectingGameQuery getConnectingGameQuery;
+        private readonly IUserContextRepository userContextRepository;
 
-        public DisconnectGameService(IGameContextRepository gameContextRepository, GetConnectingGameQuery getConnectingGameQuery)
+        private readonly IGetPlayingGameQuery getConnectingGameQuery;
+
+        public DisconnectGameService(IGameContextRepository gameContextRepository, IUserContextRepository userContextRepository, IGetPlayingGameQuery getConnectingGameQuery)
         {
             this.gameContextRepository = gameContextRepository;
+            this.userContextRepository = userContextRepository;
             this.getConnectingGameQuery = getConnectingGameQuery;
         }
 
-        public async Task<GameContext> DisconnectGame(Guid userId)
+        public async Task<GameContext> DisconnectGame(UserContext userContext)
         {
-            var gameContext = await getConnectingGameQuery.Handle(userId);
+            var gameContext = await getConnectingGameQuery.Handle(userContext);
             if (gameContext == null)
                 return null;
 
@@ -32,6 +35,11 @@ namespace Arcomage.Network.Services
             await gameContextRepository.Update(gameContext, 
                 gc => gc.State = GameState.Cancelled, 
                 gc => gc.CancelledDate = DateTime.UtcNow);
+
+            await userContextRepository.Update(gameContext.FirstUser,
+                uc => uc.State = UserState.None);
+            await userContextRepository.Update(gameContext.SecondUser,
+                uc => uc.State = UserState.None);
 
             return gameContext;
         }

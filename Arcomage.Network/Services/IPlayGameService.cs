@@ -8,8 +8,8 @@ namespace Arcomage.Network.Services
 {
     public interface IPlayGameService
     {
-        Task PlayCard(Guid userId, int cardIndex);
+        Task PlayCard(UserContext userContext, int cardIndex);
 
-        Task DiscardCard(Guid userId, int cardIndex);
+        Task DiscardCard(UserContext userContext, int cardIndex);
     }
 }

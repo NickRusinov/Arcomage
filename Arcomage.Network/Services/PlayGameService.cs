@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Arcomage.Domain;
 using Arcomage.Domain.Players;
+using Arcomage.Network.Queries;
 using Arcomage.Network.Repositories;
 
 namespace Arcomage.Network.Services
@@ -15,38 +16,41 @@ namespace Arcomage.Network.Services
 
         private readonly IGameContextRepository gameContextRepository;
 
-        public PlayGameService(IGameRepository gameRepository, IGameContextRepository gameContextRepository)
+        private readonly IGetPlayingGameQuery getPlayingGameQuery;
+
+        public PlayGameService(IGameRepository gameRepository, IGameContextRepository gameContextRepository, IGetPlayingGameQuery getPlayingGameQuery)
         {
             this.gameRepository = gameRepository;
             this.gameContextRepository = gameContextRepository;
+            this.getPlayingGameQuery = getPlayingGameQuery;
         }
 
-        public async Task PlayCard(Guid userId, int cardIndex)
+        public async Task PlayCard(UserContext userContext, int cardIndex)
         {
-            var humanPlayer = await GetHumanPlayer(userId);
+            var humanPlayer = await GetHumanPlayer(userContext);
 
             humanPlayer.SetPlayResult(new PlayResult(cardIndex, true));
         }
 
-        public async Task DiscardCard(Guid userId, int cardIndex)
+        public async Task DiscardCard(UserContext userContext, int cardIndex)
         {
-            var humanPlayer = await GetHumanPlayer(userId);
+            var humanPlayer = await GetHumanPlayer(userContext);
 
             humanPlayer.SetPlayResult(new PlayResult(cardIndex, false));
         }
 
-        private async Task<HumanPlayer> GetHumanPlayer(Guid userId)
+        private async Task<HumanPlayer> GetHumanPlayer(UserContext userContext)
         {
-            var gameContext = await gameContextRepository.GetByUserId(userId, GameState.Playing) ??
+            var gameContext = await getPlayingGameQuery.Handle(userContext) ??
                 throw new NetworkException(NetworkResources.NotFoundActiveGameContext);
 
             var game = await gameRepository.GetById(gameContext.Id) ??
                 throw new NetworkException(NetworkResources.NotFoundActiveGame);
 
-            if (gameContext.FirstUser.Id == userId && game.Players.Kind != PlayerKind.First)
+            if (gameContext.FirstUser.Id == userContext.Id && game.Players.Kind != PlayerKind.First)
                 throw new NetworkException(NetworkResources.NotPlayedHumanPlayer);
 
-            if (gameContext.SecondUser.Id == userId && game.Players.Kind != PlayerKind.Second)
+            if (gameContext.SecondUser.Id == userContext.Id && game.Players.Kind != PlayerKind.Second)
                 throw new NetworkException(NetworkResources.NotPlayedHumanPlayer);
 
             if (!(game.Players.CurrentPlayer is HumanPlayer humanPlayer))

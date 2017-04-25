@@ -12,19 +12,13 @@ namespace Arcomage.Network.Jobs
     {
         private readonly IGameContextRepository gameContextRepository;
 
-        public GameStatePlayGamePublisher(IPlayGamePublisher playGamePublisher, IGameContextRepository gameContextRepository) 
+        private readonly IUserContextRepository userContextRepository;
+
+        public GameStatePlayGamePublisher(IPlayGamePublisher playGamePublisher, IGameContextRepository gameContextRepository, IUserContextRepository userContextRepository) 
             : base(playGamePublisher)
         {
             this.gameContextRepository = gameContextRepository;
-        }
-
-        public override async Task OnStart(GameContext gameContext, Game game)
-        {
-            await gameContextRepository.Update(gameContext,
-                gc => gc.State = GameState.Playing,
-                gc => gc.StartedDate = DateTime.UtcNow);
-
-            await base.OnStart(gameContext, game);
+            this.userContextRepository = userContextRepository;
         }
 
         public override async Task OnFinish(GameContext gameContext, Game game)

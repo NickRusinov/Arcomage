@@ -10,8 +10,12 @@ namespace Arcomage.Network.Repositories
 {
     public class MemoryGameRepository : IGameRepository
     {
-        private readonly ConcurrentDictionary<Guid, Game> gameStorage =
-            new ConcurrentDictionary<Guid, Game>();
+        private readonly ConcurrentDictionary<Guid, Game> gameStorage;
+
+        public MemoryGameRepository(ConcurrentDictionary<Guid, Game> gameStorage)
+        {
+            this.gameStorage = gameStorage;
+        }
 
         public Task<bool> Add(Guid id, Game game)
         {

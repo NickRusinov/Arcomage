@@ -8,6 +8,6 @@ namespace Arcomage.Network.Services
 {
     public interface IDisconnectGameService
     {
-        Task<GameContext> DisconnectGame(Guid userId);
+        Task<GameContext> DisconnectGame(UserContext userContext);
     }
 }
