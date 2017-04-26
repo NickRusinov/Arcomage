@@ -10,8 +10,8 @@ namespace Arcomage.WebApi
     {
         public void Configure(IAppBuilder app, IContainer container)
         {
-            app.Use<UnityAuthorizationMiddleware>();
-            app.Use<AndroidAuthorizationMiddleware>();
+            app.Use<UnityAuthorizationMiddleware>(container);
+            app.Use<AndroidAuthorizationMiddleware>(container);
         }
     }
 }

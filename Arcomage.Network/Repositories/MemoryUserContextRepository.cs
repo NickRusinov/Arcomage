@@ -14,13 +14,6 @@ namespace Arcomage.Network.Repositories
         public MemoryUserContextRepository(ConcurrentDictionary<Guid, UserContext> userStorage)
         {
             this.userStorage = userStorage;
-
-#warning Hardcode users
-            userStorage.AddOrUpdate(Guid.Parse("EB3AB862-E0D0-413B-B732-6BDD86B3A1A2"),
-                new UserContext { Id = Guid.Parse("EB3AB862-E0D0-413B-B732-6BDD86B3A1A2") }, (_, u) => u);
-
-            userStorage.AddOrUpdate(Guid.Parse("EB3AB862-E0D0-413B-B732-6BDD86B3A1A3"),
-                new UserContext { Id = Guid.Parse("EB3AB862-E0D0-413B-B732-6BDD86B3A1A3") }, (_, u) => u);
         }
 
         public Task<bool> Add(UserContext userContext)

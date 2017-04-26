@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
+using Arcomage.Network.Requests;
+using Autofac;
+using MediatR;
 using Microsoft.Owin;
 
 namespace Arcomage.WebApi
@@ -11,9 +13,12 @@ namespace Arcomage.WebApi
     {
         private readonly Func<IDictionary<string, object>, Task> nextMiddleware;
 
-        public UnityAuthorizationMiddleware(Func<IDictionary<string, object>, Task> nextMiddleware)
+        private readonly ILifetimeScope lifetimeScope;
+
+        public UnityAuthorizationMiddleware(Func<IDictionary<string, object>, Task> nextMiddleware, ILifetimeScope lifetimeScope)
         {
             this.nextMiddleware = nextMiddleware;
+            this.lifetimeScope = lifetimeScope;
         }
 
         public async Task Invoke(IDictionary<string, object> environment)
@@ -23,11 +28,16 @@ namespace Arcomage.WebApi
 
             if (authenticate != null)
             {
-#warning Hardcode user
-                var applicationIdentity = new ApplicationIdentity(Guid.Parse("EB3AB862-E0D0-413B-B732-6BDD86B3A1A2"), "Debug User", "Debug Email");
-                var applicationPrincipal = new ApplicationPrincipal(applicationIdentity);
+                using (var innerLifetimeScope = lifetimeScope.BeginLifetimeScope())
+                {
+                    var mediator = innerLifetimeScope.Resolve<IMediator>();
+                    var userContext = await mediator.Send(new GetOrAddUserRequest("Unity Player"));
 
-                owinContext.Authentication.User = applicationPrincipal;
+                    var applicationIdentity = new ApplicationIdentity(userContext);
+                    var applicationPrincipal = new ApplicationPrincipal(applicationIdentity);
+
+                    owinContext.Authentication.User = applicationPrincipal;
+                }
             }
 
             await nextMiddleware.Invoke(environment);

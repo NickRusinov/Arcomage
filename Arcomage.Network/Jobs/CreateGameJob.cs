@@ -39,7 +39,7 @@ namespace Arcomage.Network.Jobs
 
                 if (userContextList.Count % 2 == 1)
                 {
-                    var gameContext = await mediator.Send(new CreateGameRequest(userContextList[userContextList.Count - 1], UserContext.New()));
+                    var gameContext = await mediator.Send(new CreateGameRequest(userContextList[userContextList.Count - 1], UserContext.New("Computer Player")));
 
                     var jobId = BackgroundJob.Enqueue<PlayGameJob>(j => j.Start(gameContext));
                     await gameContextRepository.Update(gameContext, gc => gc.JobId = jobId);

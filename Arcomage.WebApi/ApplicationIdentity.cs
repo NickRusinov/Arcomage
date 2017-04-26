@@ -10,25 +10,20 @@ namespace Arcomage.WebApi
     {
         public ApplicationIdentity()
         {
-            Id = Guid.Empty;
+            UserContext = null;
         }
 
-        public ApplicationIdentity(Guid id, string name, string email)
+        public ApplicationIdentity(UserContext userContext)
         {
-            Id = id;
-            Name = name;
-            Email = email;
+            UserContext = userContext;
         }
 
-        public Guid Id { get; }
+        public UserContext UserContext { get; }
 
-        public override string Name { get; }
+        public Guid Id => UserContext.Id;
 
-        public string Email { get; }
+        public override string Name => UserContext.Name;
 
-#warning Model in infrastructure logic
-        public UserContext UserContext => new UserContext { Id = Id };
-
-        public override bool IsAuthenticated => Id != Guid.Empty;
+        public override bool IsAuthenticated => UserContext != null;
     }
 }
