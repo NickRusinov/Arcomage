@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MediatR;
 
-namespace Arcomage.Network.Queries
+namespace Arcomage.Network.Requests
 {
-    public interface IGetConnectingUsersQuery
+    public class GetConnectingUsersRequest : IRequest<IEnumerable<UserContext>>
     {
-        Task<IEnumerable<UserContext>> Handle();
+
     }
 }

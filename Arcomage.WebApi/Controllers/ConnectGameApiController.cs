@@ -3,28 +3,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Http;
-using Arcomage.Network.Queries;
-using Arcomage.Network.Services;
+using Arcomage.Network.Requests;
+using MediatR;
 
 namespace Arcomage.WebApi.Controllers
 {
     [Authorize]
     public class ConnectGameApiController : ApplicationApiController
     {
-        private readonly IDisconnectGameService disconnectGameService;
+        private readonly IMediator mediator;
 
-        private readonly MemoryGetPlayingGameQuery getConnectingGameQuery;
-
-        public ConnectGameApiController(IDisconnectGameService disconnectGameService, MemoryGetPlayingGameQuery getConnectingGameQuery)
+        public ConnectGameApiController(IMediator mediator)
         {
-            this.disconnectGameService = disconnectGameService;
-            this.getConnectingGameQuery = getConnectingGameQuery;
+            this.mediator = mediator;
         }
 
         [HttpGet, Route("~/api/game/connecting")]
         public async Task<Guid?> GetConnecting()
         {
-            var gameContext = await getConnectingGameQuery.Handle(Identity.UserContext);
+            var gameContext = await mediator.Send(new GetPlayingGameRequest(Identity.UserContext));
 
             return gameContext?.Id;
         }
@@ -40,7 +37,9 @@ namespace Arcomage.WebApi.Controllers
         [HttpPost, Route("~/api/game/disconnect")]
         public async Task<Guid?> Disconnect()
         {
-            var gameContext = await disconnectGameService.DisconnectGame(Identity.UserContext);
+            var gameContext = await mediator.Send(new GetPlayingGameRequest(Identity.UserContext));
+            if (gameContext != null)
+                await mediator.Send(new CancelGameRequest(gameContext));
 
             return gameContext?.Id;
         }

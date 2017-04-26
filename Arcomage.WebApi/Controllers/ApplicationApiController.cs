@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
-using AutoMapper;
 
 namespace Arcomage.WebApi.Controllers
 {
@@ -11,7 +10,5 @@ namespace Arcomage.WebApi.Controllers
         protected ApplicationPrincipal Principal => (ApplicationPrincipal)User;
 
         protected ApplicationIdentity Identity => (ApplicationIdentity)User.Identity;
-
-        protected IMapper Mapper => AutoMapper.Mapper.Instance;
     }
 }

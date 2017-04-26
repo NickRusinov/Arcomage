@@ -4,9 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
-using Arcomage.Network;
 using Arcomage.Network.Repositories;
 using Arcomage.WebApi.Models.Game;
+using AutoMapper;
 
 namespace Arcomage.WebApi.Controllers
 {

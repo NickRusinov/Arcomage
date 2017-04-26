@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Arcomage.Network.Services;
+using Arcomage.Network.Requests;
+using MediatR;
 using Microsoft.AspNet.SignalR;
 
 namespace Arcomage.WebApi.Hubs
@@ -10,21 +11,27 @@ namespace Arcomage.WebApi.Hubs
     [Authorize]
     public class PlayGameHub : ApplicationHub<IPlayGameClient>
     {
-        private readonly IPlayGameService playGameService;
+        private readonly IMediator mediator;
 
-        public PlayGameHub(IPlayGameService playGameService)
+        public PlayGameHub(IMediator mediator)
         {
-            this.playGameService = playGameService;
+            this.mediator = mediator;
         }
 
         public async Task PlayCard(int cardIndex)
         {
-            await playGameService.PlayCard(Identity.UserContext, cardIndex);
+            var gameContext = await mediator.Send(new GetPlayingGameRequest(Identity.UserContext)) ??
+                throw new HubException();
+
+            await mediator.Send(new PlayCardGameRequest(gameContext, Identity.UserContext, cardIndex));
         }
 
         public async Task DiscardCard(int cardIndex)
         {
-            await playGameService.DiscardCard(Identity.UserContext, cardIndex);
+            var gameContext = await mediator.Send(new GetPlayingGameRequest(Identity.UserContext)) ??
+                throw new HubException();
+
+            await mediator.Send(new DiscardCardGameRequest(gameContext, Identity.UserContext, cardIndex));
         }
     }
 }

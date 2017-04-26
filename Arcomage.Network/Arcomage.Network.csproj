@@ -5,6 +5,7 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Hangfire.Core" Version="1.6.12" />
+    <PackageReference Include="MediatR" Version="3.0.1" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Arcomage.Domain\Arcomage.Domain.csproj" />
