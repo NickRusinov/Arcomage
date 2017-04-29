@@ -22,6 +22,8 @@ namespace Arcomage.Unity.GameScene.ViewModels
 
         public HandViewModel Hand { get; set; }
 
+        public TimerViewModel Timer { get; set; }
+
         public PlayerKind PlayerKind { get; set; }
 
         public int DiscardOnly { get; set; }

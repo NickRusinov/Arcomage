@@ -14,6 +14,11 @@ namespace Arcomage.Domain.Timers
     public abstract class Timer
     {
         /// <summary>
+        /// Остаток времени до окончания периода таймера
+        /// </summary>
+        public abstract TimeSpan TimeRest { get; }
+
+        /// <summary>
         /// Запускает игровой таймер. Возвращаемая задача завершается после истечения периода таймера или после 
         /// отмены указанного токена
         /// </summary>

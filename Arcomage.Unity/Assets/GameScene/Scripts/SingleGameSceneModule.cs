@@ -26,6 +26,7 @@ namespace Arcomage.Unity.GameScene.Scripts
                 GameBuilderExtensions.GetDefault()
                     .RegisterFirstHumanPlayer(null)
                     .RegisterSecondComputerPlayer(null)
+                    .RegisterFixedTimer(null, () => TimeSpan.FromSeconds(30))
                     .RegisterPlayerSet(null, () => new Random().Next(100) < 50 ? PlayerKind.First : PlayerKind.Second)
                     .RegisterClassicRule(null, () => (ClassicRuleInfo)c.Resolve<SingleSettings>().Rule)
                     .RegisterClassicDeck("ClassicDeck", () => (ClassicDeckInfo)c.Resolve<SingleSettings>().Deck)

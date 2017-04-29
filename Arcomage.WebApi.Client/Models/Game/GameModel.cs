@@ -20,6 +20,9 @@ namespace Arcomage.WebApi.Client.Models.Game
         [JsonProperty, JsonRequired]
         public HandModel Hand { get; set; }
 
+        [JsonProperty, JsonRequired]
+        public TimerModel Timer { get; set; }
+
         [JsonProperty]
         public ResultModel Result { get; set; }
 
@@ -129,6 +132,12 @@ namespace Arcomage.WebApi.Client.Models.Game
 
             [JsonProperty, JsonRequired]
             public bool IsPlayed { get; set; }
+        }
+
+        public class TimerModel
+        {
+            [JsonProperty, JsonRequired]
+            public int TimeRest { get; set; }
         }
 
         public class ResultModel

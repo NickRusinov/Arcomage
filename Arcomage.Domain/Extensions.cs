@@ -7,9 +7,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Arcomage.Domain.Internal
+namespace Arcomage.Domain
 {
-    internal static class FrameworkExtensions
+    internal static class Extensions
     {
         public static Task CompletedTask()
         {
@@ -30,6 +30,15 @@ namespace Arcomage.Domain.Internal
         }
 
         public static Task Delay(TimeSpan period, CancellationToken token = default(CancellationToken))
+        {
+#if NET35
+            return TaskEx.Delay(period, token);
+#else
+            return Task.Delay(period, token);
+#endif
+        }
+
+        public static Task Delay(int period, CancellationToken token = default(CancellationToken))
         {
 #if NET35
             return TaskEx.Delay(period, token);

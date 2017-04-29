@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Arcomage.Domain.Actions;
-using Arcomage.Domain.Internal;
 using Arcomage.Domain.Players;
+using static Arcomage.Domain.Extensions;
 
 namespace Arcomage.Domain.ArtificialIntelligence
 {
@@ -28,7 +28,7 @@ namespace Arcomage.Domain.ArtificialIntelligence
         /// <inheritdoc/>
         public async Task<PlayResult> Execute(Game game, Player player)
         {
-            await FrameworkExtensions.Delay(TimeSpan.FromSeconds(1));
+            await Delay(TimeSpan.FromSeconds(1));
 
             if (playAction.CanPlay(game, player, new PlayResult(0, true)))
                 return new PlayResult(0, true);

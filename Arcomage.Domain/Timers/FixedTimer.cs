@@ -4,7 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using Arcomage.Domain.Internal;
+using static System.DateTime;
+using static Arcomage.Domain.Extensions;
 
 namespace Arcomage.Domain.Timers
 {
@@ -20,6 +21,11 @@ namespace Arcomage.Domain.Timers
         private readonly TimeSpan fixedPeriod;
 
         /// <summary>
+        /// Время начала периода времени
+        /// </summary>
+        private DateTime startDateTime;
+
+        /// <summary>
         /// Инициализирует экземпляр класса <see cref="FixedTimer"/>
         /// </summary>
         /// <param name="fixedPeriod">Фиксированный заданный период времени</param>
@@ -29,9 +35,14 @@ namespace Arcomage.Domain.Timers
         }
 
         /// <inheritdoc/>
+        public override TimeSpan TimeRest => startDateTime - Now + fixedPeriod;
+
+        /// <inheritdoc/>
         public override Task Start(CancellationToken token)
         {
-            return FrameworkExtensions.Delay(fixedPeriod, token);
+            startDateTime = Now;
+
+            return Delay(fixedPeriod, token);
         }
     }
 }

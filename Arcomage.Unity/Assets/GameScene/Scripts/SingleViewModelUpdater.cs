@@ -11,6 +11,7 @@ using Arcomage.Domain.Histories;
 using Arcomage.Domain.Players;
 using Arcomage.Domain.Resources;
 using Arcomage.Domain.Rules;
+using Arcomage.Domain.Timers;
 using Arcomage.Unity.GameScene.Commands;
 using Arcomage.Unity.GameScene.ViewModels;
 using Arcomage.Unity.Shared.Scripts;
@@ -48,6 +49,7 @@ namespace Arcomage.Unity.GameScene.Scripts
             viewModel.FinishedMenu = Update(viewModel.FinishedMenu, game);
             viewModel.Hand = Update(viewModel.Hand, game, game.Players.FirstPlayer, game.Players.FirstPlayer.Hand);
             viewModel.History = Update(viewModel.History, game.History);
+            viewModel.Timer = Update(viewModel.Timer, game.Timer);
             viewModel.PlayerKind = game.Players.Kind;
             viewModel.DiscardOnly = game.DiscardOnly;
             viewModel.PlayAgain = game.PlayAgain;
@@ -135,6 +137,14 @@ namespace Arcomage.Unity.GameScene.Scripts
             viewModel.Kind = historyCard.Card.Kind;
             viewModel.Price = historyCard.Card.Price;
             viewModel.IsPlayed = historyCard.IsPlayed;
+
+            return viewModel;
+        }
+
+        private TimerViewModel Update(TimerViewModel viewModel, Timer timer)
+        {
+            viewModel = viewModel ?? new TimerViewModel();
+            viewModel.TimeRest = (float)timer.TimeRest.TotalSeconds;
 
             return viewModel;
         }

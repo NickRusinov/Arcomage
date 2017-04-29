@@ -37,6 +37,9 @@ namespace Arcomage.Unity.GameScene.Views
         [Tooltip("Компонент карт первого игрока")]
         public HandView Hand;
 
+        [Tooltip("Компонент таймер")]
+        public TimerView Timer;
+
         [Tooltip("Текст для вывода информации для сброса карты")]
         public TextMesh DiscardOnlyText;
 
@@ -57,6 +60,8 @@ namespace Arcomage.Unity.GameScene.Views
 
             History.ViewModel = viewModel.History;
             Hand.ViewModel = viewModel.Hand;
+
+            Timer.ViewModel = viewModel.Timer;
         }
     }
 }

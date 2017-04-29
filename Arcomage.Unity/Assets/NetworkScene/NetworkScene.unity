@@ -2002,7 +2002,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5fc1030c1e8d8446984f676ea683ef5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BaseUrl: http://arcomagic.ru/
+  BaseUrl: http://192.168.137.1:55994/
 --- !u!114 &1462564884
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2014,7 +2014,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08a108b9239383a4ca8964763dbb1bfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BaseUrl: http://arcomagic.ru/
+  BaseUrl: http://192.168.137.1:55994/
 --- !u!114 &1462564886
 MonoBehaviour:
   m_ObjectHideFlags: 0

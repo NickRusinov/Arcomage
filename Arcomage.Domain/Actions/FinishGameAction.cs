@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Arcomage.Domain.Internal;
 using Arcomage.Domain.Players;
+using static Arcomage.Domain.Extensions;
 
 namespace Arcomage.Domain.Actions
 {
@@ -25,7 +25,7 @@ namespace Arcomage.Domain.Actions
         {
             var gameResult = game.Rule.IsWin(game);
             if (gameResult)
-                return FrameworkExtensions.FromResult(gameResult);
+                return FromResult(gameResult);
 
             return nextWhenNotFinishedGameAction.Play(game, player, playResult);
         }

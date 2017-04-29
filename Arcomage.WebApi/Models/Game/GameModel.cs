@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 
 namespace Arcomage.WebApi.Models.Game
 {
@@ -14,6 +13,8 @@ namespace Arcomage.WebApi.Models.Game
         public HistoryModel History { get; set; }
 
         public HandModel Hand { get; set; }
+
+        public TimerModel Timer { get; set; }
 
         public ResultModel Result { get; set; }
 
@@ -94,6 +95,11 @@ namespace Arcomage.WebApi.Models.Game
             public int ResourcePrice { get; set; }
 
             public bool IsPlayed { get; set; }
+        }
+
+        public class TimerModel
+        {
+            public int TimeRest { get; set; }
         }
 
         public class ResultModel

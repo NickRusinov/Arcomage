@@ -5,8 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Arcomage.Domain.Actions;
-using Arcomage.Domain.Internal;
 using Arcomage.Domain.Players;
+using static Arcomage.Domain.Extensions;
 
 namespace Arcomage.Domain.ArtificialIntelligence
 {
@@ -52,7 +52,7 @@ namespace Arcomage.Domain.ArtificialIntelligence
         {
             for (var i = 0; i < game.Players.CurrentPlayer.Hand.Cards.Count; ++i)
             {
-                var cloneGame = FrameworkExtensions.Copy(game);
+                var cloneGame = Copy(game);
                 var playResult = new PlayResult(i, true);
 
                 if (playAction.CanPlay(cloneGame, cloneGame.Players.CurrentPlayer, playResult))
@@ -65,7 +65,7 @@ namespace Arcomage.Domain.ArtificialIntelligence
 
             for (var i = 0; i < game.Players.CurrentPlayer.Hand.Cards.Count; ++i)
             {
-                var cloneGame = FrameworkExtensions.Copy(game);
+                var cloneGame = Copy(game);
                 var playResult = new PlayResult(i, false);
 
                 if (playAction.CanPlay(cloneGame, cloneGame.Players.CurrentPlayer, playResult))

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Arcomage.Domain.Cards;
+using static Arcomage.Domain.Extensions;
 
 namespace Arcomage.Domain.Decks
 {
@@ -48,7 +49,8 @@ namespace Arcomage.Domain.Decks
         {
             var randomCardIndex = deckInfo.Random.Next(cardCollection.Count / 2);
 
-            var card = cardCollection[randomCardIndex].WithIndex(++index);
+            var card = Copy(cardCollection[randomCardIndex]);
+            card.Index = ++index;
             cardCollection.RemoveAt(randomCardIndex);
 
             return card;

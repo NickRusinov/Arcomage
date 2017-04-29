@@ -43,6 +43,7 @@ namespace Arcomage.Unity.GameScene.Scripts
             viewModel.FinishedMenu = Update(viewModel.FinishedMenu, model.Result ?? new GameModel.ResultModel());
             viewModel.Hand = Update(viewModel.Hand, model.Hand);
             viewModel.History = Update(viewModel.History, model.History);
+            viewModel.Timer = Update(viewModel.Timer, model.Timer);
             viewModel.PlayerKind = PlayerKind.First; // TODO
             viewModel.DiscardOnly = model.DiscardOnly;
             viewModel.PlayAgain = model.PlayAgain;
@@ -130,6 +131,14 @@ namespace Arcomage.Unity.GameScene.Scripts
             viewModel.Kind = (ResourceKind)model.ResourceKind;
             viewModel.Price = model.ResourcePrice;
             viewModel.IsPlayed = model.IsPlayed;
+
+            return viewModel;
+        }
+
+        private TimerViewModel Update(TimerViewModel viewModel, GameModel.TimerModel model)
+        {
+            viewModel = viewModel ?? new TimerViewModel();
+            viewModel.TimeRest = model.TimeRest;
 
             return viewModel;
         }

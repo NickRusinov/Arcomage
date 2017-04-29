@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Arcomage.Domain.Internal;
 using Arcomage.Domain.Resources;
 
 namespace Arcomage.Domain.Cards
@@ -16,7 +15,7 @@ namespace Arcomage.Domain.Cards
         /// <summary>
         /// Порядковый номер карты, извлеченной из колоды
         /// </summary>
-        public int Index { get; private set; }
+        public int Index { get; set; }
 
         /// <summary>
         /// Цена карты
@@ -33,18 +32,5 @@ namespace Arcomage.Domain.Cards
         /// </summary>
         /// <param name="game">Контекст игры</param>
         public abstract void Activate(Game game);
-        
-        /// <summary>
-        /// Создает копию карту с указанным порядковым номером
-        /// </summary>
-        /// <param name="index">Порядковый номер новой карты</param>
-        /// <returns>Новая карта с указанным порядковым номером</returns>
-        public virtual Card WithIndex(int index)
-        {
-            var card = FrameworkExtensions.Copy(this);
-            card.Index = index;
-
-            return card;
-        }
     }
 }

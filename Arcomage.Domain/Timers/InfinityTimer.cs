@@ -4,7 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using Arcomage.Domain.Internal;
+using static System.TimeSpan;
+using static Arcomage.Domain.Extensions;
 
 namespace Arcomage.Domain.Timers
 {
@@ -15,9 +16,12 @@ namespace Arcomage.Domain.Timers
     public class InfinityTimer : Timer
     {
         /// <inheritdoc/>
+        public override TimeSpan TimeRest => FromMilliseconds(-1);
+
+        /// <inheritdoc/>
         public override Task Start(CancellationToken token)
         {
-            return FrameworkExtensions.Delay(TimeSpan.FromMilliseconds(-1), token);
+            return Delay(-1, token);
         }
     }
 }
