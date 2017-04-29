@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Arcomage.Unity.NetworkScene.Requests;
 using Autofac;
 
-namespace Arcomage.Unity.NetworkScene
+namespace Arcomage.Unity.Configuration
 {
     public class NetworkSceneModule : Module
     {

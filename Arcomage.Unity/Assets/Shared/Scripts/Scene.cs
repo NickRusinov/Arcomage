@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Arcomage.Unity.Configuration;
 using Autofac;
 using MediatR;
 using SmartLocalization;

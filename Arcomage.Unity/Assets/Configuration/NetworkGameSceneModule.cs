@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Autofac;
 
-namespace Arcomage.Unity.GameScene.Scripts
+namespace Arcomage.Unity.Configuration
 {
     public class NetworkGameSceneModule : Module
     {

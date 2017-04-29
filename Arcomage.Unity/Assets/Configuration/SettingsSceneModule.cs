@@ -8,7 +8,7 @@ using Arcomage.Unity.SettingsScene.ViewModels;
 using Arcomage.Unity.Shared.Scripts;
 using Autofac;
 
-namespace Arcomage.Unity.SettingsScene
+namespace Arcomage.Unity.Configuration
 {
     public class SettingsSceneModule : Module
     {

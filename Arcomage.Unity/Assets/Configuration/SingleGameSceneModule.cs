@@ -10,7 +10,7 @@ using Arcomage.Domain.Rules;
 using Arcomage.Unity.Shared.Scripts;
 using Autofac;
 
-namespace Arcomage.Unity.GameScene.Scripts
+namespace Arcomage.Unity.Configuration
 {
     /// <summary>
     /// Модуль, устанавливающий зависимости игровой логики

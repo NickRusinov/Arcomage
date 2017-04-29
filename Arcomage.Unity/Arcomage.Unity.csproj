@@ -97,6 +97,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Configuration\AndroidModule.cs" />
+    <Compile Include="Assets\Configuration\MediatRModule.cs" />
+    <Compile Include="Assets\Configuration\SceneModule.cs" />
+    <Compile Include="Assets\Configuration\UnityModule.cs" />
+    <Compile Include="Assets\Configuration\WebApiModule.cs" />
     <Compile Include="Assets\GameScene\Requests\NetworkDiscardCardRequestHandler.cs" />
     <Compile Include="Assets\GameScene\Requests\NetworkPlayCardRequestHandler.cs" />
     <Compile Include="Assets\GameScene\Requests\SingleDiscardCardRequestHandler.cs" />
@@ -112,10 +117,10 @@
     <Compile Include="Assets\GameScene\Scripts\GameSceneModule.cs" />
     <Compile Include="Assets\GameScene\Scripts\GameSceneScript.cs" />
     <Compile Include="Assets\GameScene\Scripts\NetworkGameExecutor.cs" />
-    <Compile Include="Assets\GameScene\Scripts\NetworkGameSceneModule.cs" />
+    <Compile Include="Assets\Configuration\NetworkGameSceneModule.cs" />
     <Compile Include="Assets\GameScene\Scripts\NetworkViewModelUpdater.cs" />
     <Compile Include="Assets\GameScene\Scripts\SingleGameExecutor.cs" />
-    <Compile Include="Assets\GameScene\Scripts\SingleGameSceneModule.cs" />
+    <Compile Include="Assets\Configuration\SingleGameSceneModule.cs" />
     <Compile Include="Assets\GameScene\Scripts\SingleViewModelUpdater.cs" />
     <Compile Include="Assets\GameScene\ViewModels\BuildingsViewModel.cs" />
     <Compile Include="Assets\GameScene\ViewModels\CardViewModel.cs" />
@@ -140,7 +145,7 @@
     <Compile Include="Assets\NetworkScene\Requests\DisconnectGameRequestHandler.cs" />
     <Compile Include="Assets\NetworkScene\Requests\GetConnectingGameRequestHandler.cs" />
     <Compile Include="Assets\NetworkScene\Requests\GetVersionRequestHandler.cs" />
-    <Compile Include="Assets\NetworkScene\NetworkSceneModule.cs" />
+    <Compile Include="Assets\Configuration\NetworkSceneModule.cs" />
     <Compile Include="Assets\NetworkScene\NetworkSceneScript.cs" />
     <Compile Include="Assets\NetworkScene\Requests\ConnectGameRequest.cs" />
     <Compile Include="Assets\NetworkScene\Requests\DisconnectGameRequest.cs" />
@@ -152,7 +157,7 @@
     <Compile Include="Assets\SettingsScene\Scripts\DeckFactory.cs" />
     <Compile Include="Assets\SettingsScene\Scripts\RuleFactory.cs" />
     <Compile Include="Assets\SettingsScene\SettingsScene.cs" />
-    <Compile Include="Assets\SettingsScene\SettingsSceneModule.cs" />
+    <Compile Include="Assets\Configuration\SettingsSceneModule.cs" />
     <Compile Include="Assets\SettingsScene\ViewModels\DeckListViewModel.cs" />
     <Compile Include="Assets\SettingsScene\ViewModels\DeckViewModel.cs" />
     <Compile Include="Assets\SettingsScene\ViewModels\RuleListViewModel.cs" />
@@ -167,7 +172,7 @@
     <Compile Include="Assets\Shared\Scripts\AndroidAuthorization.cs" />
     <Compile Include="Assets\Shared\Scripts\AndroidLogger.cs" />
     <Compile Include="Assets\Shared\Scripts\Authorization.cs" />
-    <Compile Include="Assets\Shared\Scripts\AutofacConfiguration.cs" />
+    <Compile Include="Assets\Configuration\AutofacConfiguration.cs" />
     <Compile Include="Assets\Shared\Scripts\Binding.cs" />
     <Compile Include="Assets\Shared\Scripts\BindingExtensions.cs" />
     <Compile Include="Assets\Shared\Scripts\CollectionBinding.cs" />
