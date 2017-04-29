@@ -39,7 +39,7 @@ namespace Arcomage.Unity.GameScene.Scripts
         
         public void Update()
         {
-            if (GameSceneScript.Pause)
+            if (GameScene.Pause)
                 return;
 
             if (Input.GetMouseButton(0) && draggingItem)

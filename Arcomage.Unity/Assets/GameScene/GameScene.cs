@@ -2,20 +2,21 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Arcomage.Unity.GameScene.Scripts;
 using Arcomage.Unity.GameScene.ViewModels;
 using Arcomage.Unity.GameScene.Views;
 using Arcomage.Unity.Shared.Scripts;
 using Autofac;
 using UnityEngine;
 
-namespace Arcomage.Unity.GameScene.Scripts
+namespace Arcomage.Unity.GameScene
 {
     /// <summary>
     /// Корневой скрипт сцены
     /// </summary>
     [RequireComponent(typeof(UnityBackHandler))]
     [RequireComponent(typeof(UnitySceneManager))]
-    public class GameSceneScript : Scene
+    public class GameScene : Scene
     {
         /// <summary>
         /// Игра поставлена на паузу

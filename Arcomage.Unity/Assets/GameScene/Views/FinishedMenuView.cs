@@ -36,7 +36,7 @@ namespace Arcomage.Unity.GameScene.Views
         /// </summary>
         public void OnShowHandler()
         {
-            GameSceneScript.Pause = true;
+            GameScene.Pause = true;
         }
     }
 }

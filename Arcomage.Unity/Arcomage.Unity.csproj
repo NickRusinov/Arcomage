@@ -114,8 +114,8 @@
     <Compile Include="Assets\GameScene\Scripts\CardTranslateScript.cs" />
     <Compile Include="Assets\GameScene\Scripts\GameExecutor.cs" />
     <Compile Include="Assets\GameScene\Scripts\GameExtensions.cs" />
-    <Compile Include="Assets\GameScene\Scripts\GameSceneModule.cs" />
-    <Compile Include="Assets\GameScene\Scripts\GameSceneScript.cs" />
+    <Compile Include="Assets\Configuration\GameSceneModule.cs" />
+    <Compile Include="Assets\GameScene\GameScene.cs" />
     <Compile Include="Assets\GameScene\Scripts\NetworkGameExecutor.cs" />
     <Compile Include="Assets\Configuration\NetworkGameSceneModule.cs" />
     <Compile Include="Assets\GameScene\Scripts\NetworkViewModelUpdater.cs" />
@@ -140,13 +140,13 @@
     <Compile Include="Assets\GameScene\Views\HistoryView.cs" />
     <Compile Include="Assets\GameScene\Views\ResourcesView.cs" />
     <Compile Include="Assets\GameScene\Views\TimerView.cs" />
-    <Compile Include="Assets\MenuScene\Scripts\MenuSceneScript.cs" />
+    <Compile Include="Assets\MenuScene\MenuScene.cs" />
     <Compile Include="Assets\NetworkScene\Requests\ConnectGameRequestHandler.cs" />
     <Compile Include="Assets\NetworkScene\Requests\DisconnectGameRequestHandler.cs" />
     <Compile Include="Assets\NetworkScene\Requests\GetConnectingGameRequestHandler.cs" />
     <Compile Include="Assets\NetworkScene\Requests\GetVersionRequestHandler.cs" />
     <Compile Include="Assets\Configuration\NetworkSceneModule.cs" />
-    <Compile Include="Assets\NetworkScene\NetworkSceneScript.cs" />
+    <Compile Include="Assets\NetworkScene\NetworkScene.cs" />
     <Compile Include="Assets\NetworkScene\Requests\ConnectGameRequest.cs" />
     <Compile Include="Assets\NetworkScene\Requests\DisconnectGameRequest.cs" />
     <Compile Include="Assets\NetworkScene\Requests\GetConnectingGameRequest.cs" />

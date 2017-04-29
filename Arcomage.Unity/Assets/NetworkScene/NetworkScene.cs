@@ -16,7 +16,7 @@ namespace Arcomage.Unity.NetworkScene
     [RequireComponent(typeof(UnitySceneManager))]
     [RequireComponent(typeof(UnityHttpClientFactory))]
     [RequireComponent(typeof(UnityHubConnectionFactory))]
-    public class NetworkSceneScript : Scene
+    public class NetworkScene : Scene
     {
         [Tooltip("Панель, информирующая о соединении с игровым веб-сервером")]
         public ConnectPanelView ConnectPanel;

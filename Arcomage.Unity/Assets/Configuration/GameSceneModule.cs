@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Arcomage.Unity.GameScene.Requests;
+using Arcomage.Unity.GameScene.Scripts;
 using Arcomage.Unity.GameScene.ViewModels;
 using Arcomage.Unity.Shared.Scripts;
 using Autofac;
 using MediatR;
 
-namespace Arcomage.Unity.GameScene.Scripts
+namespace Arcomage.Unity.Configuration
 {
     public class GameSceneModule : Module
     {
