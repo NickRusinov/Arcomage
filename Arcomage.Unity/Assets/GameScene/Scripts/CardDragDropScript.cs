@@ -2,7 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
+using Arcomage.Unity.GameScene.Requests;
 using Arcomage.Unity.GameScene.Views;
 using Arcomage.Unity.Shared.Scripts;
 using UnityEngine;
@@ -69,10 +71,10 @@ namespace Arcomage.Unity.GameScene.Scripts
                 var cardExecuteTask = (Task)TaskEx.FromResult<object>(null);
 
                 if (transform.position.y - initialPosition.y >= +25f && cardViewModel.IsPlay)
-                    cardExecuteTask = cardViewModel.PlayCommand.Execute(cardViewModel);
+                    cardExecuteTask = Scene.Mediator.Send(new PlayCardRequest(cardViewModel.Index), CancellationToken.None);
 
                 if (transform.position.y - initialPosition.y <= -25f && cardViewModel.IsDiscard)
-                    cardExecuteTask = cardViewModel.DiscardCommand.Execute(cardViewModel);
+                    cardExecuteTask = Scene.Mediator.Send(new DiscardCardRequest(cardViewModel.Index), CancellationToken.None);
 
                 StartCoroutine(CardTranslate(gameObject, initialPosition, cardExecuteTask));
             }

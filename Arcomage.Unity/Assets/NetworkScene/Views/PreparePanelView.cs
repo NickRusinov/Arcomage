@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Text;
 using Arcomage.Unity.Shared.Scripts;
-using Arcomage.Unity.NetworkScene.ViewModels;
 using UnityEngine.Events;
 using UnityEngine;
+using Arcomage.Unity.NetworkScene.Requests;
 
 namespace Arcomage.Unity.NetworkScene.Views
 {
-    public class PreparePanelView : View<PrepareViewModel>
+    public class PreparePanelView : View
     {
         [Tooltip("Событие, вызываемое при установлении соединения с игрой")]
         public UnityEvent ConnectedEvent;
@@ -20,7 +21,7 @@ namespace Arcomage.Unity.NetworkScene.Views
 
         public void OnEnable()
         {
-            Bind(ViewModel.ConnectGameCommand.Execute(ViewModel))
+            Bind(Scene.Mediator.Send(new ConnectGameRequest(), CancellationToken.None))
                 .OnSuccess(t => ConnectedEvent.Invoke())
                 .OnFailure(t => OnConnectGameFailure());
         }

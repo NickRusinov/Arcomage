@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Arcomage.Domain.Resources;
-using Arcomage.Unity.Shared.Scripts;
 
 namespace Arcomage.Unity.GameScene.ViewModels
 {
@@ -22,10 +21,6 @@ namespace Arcomage.Unity.GameScene.ViewModels
         public ResourceKind Kind { get; set; }
 
         public int Price { get; set; }
-
-        public Command<CardViewModel> PlayCommand { get; set; }
-
-        public Command<CardViewModel> DiscardCommand { get; set; }
         
         public override int GetHashCode()
         {

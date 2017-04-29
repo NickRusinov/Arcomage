@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Arcomage.Unity.NetworkScene.Commands;
-using Arcomage.Unity.NetworkScene.ViewModels;
+using Arcomage.Unity.NetworkScene.Requests;
 using Autofac;
 
 namespace Arcomage.Unity.NetworkScene
@@ -13,18 +12,17 @@ namespace Arcomage.Unity.NetworkScene
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<ConnectViewModel>()
-                .OnActivated(ea => ea.Instance.GetVersionCommand = ea.Context.Resolve<GetVersionCommand>())
-                .OnActivated(ea => ea.Instance.GetConnectingGameCommand = ea.Context.Resolve<GetConnectingGameCommand>())
-                .InstancePerLifetimeScope();
+            builder.RegisterType<ConnectGameRequestHandler>()
+                .AsImplementedInterfaces();
 
-            builder.RegisterType<ConnectDialogViewModel>()
-                .OnActivated(ea => ea.Instance.DisconnectGameCommand = ea.Context.Resolve<DisconnectGameCommand>())
-                .InstancePerLifetimeScope();
+            builder.RegisterType<DisconnectGameRequestHandler>()
+                .AsImplementedInterfaces();
 
-            builder.RegisterType<PrepareViewModel>()
-                .OnActivated(ea => ea.Instance.ConnectGameCommand = ea.Context.Resolve<ConnectGameCommand>())
-                .InstancePerLifetimeScope();
+            builder.RegisterType<GetConnectingGameRequestHandler>()
+                .AsImplementedInterfaces();
+
+            builder.RegisterType<GetVersionRequestHandler>()
+                .AsImplementedInterfaces();
         }
     }
 }

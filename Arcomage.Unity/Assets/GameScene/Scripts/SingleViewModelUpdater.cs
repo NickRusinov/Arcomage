@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Arcomage.Domain;
-using Arcomage.Domain.Actions;
 using Arcomage.Domain.Buildings;
 using Arcomage.Domain.Cards;
 using Arcomage.Domain.Hands;
@@ -12,24 +11,19 @@ using Arcomage.Domain.Players;
 using Arcomage.Domain.Resources;
 using Arcomage.Domain.Rules;
 using Arcomage.Domain.Timers;
-using Arcomage.Unity.GameScene.Commands;
 using Arcomage.Unity.GameScene.ViewModels;
 using Arcomage.Unity.Shared.Scripts;
-using Autofac;
 
 namespace Arcomage.Unity.GameScene.Scripts
 {
     public class SingleViewModelUpdater
     {
-        private readonly ILifetimeScope lifetimeScope;
-
         private readonly SingleSettings settings;
 
         private readonly GameViewModel viewModel;
 
-        public SingleViewModelUpdater(ILifetimeScope lifetimeScope, SingleSettings settings, GameViewModel viewModel)
+        public SingleViewModelUpdater(SingleSettings settings, GameViewModel viewModel)
         {
-            this.lifetimeScope = lifetimeScope;
             this.settings = settings;
             this.viewModel = viewModel;
         }
@@ -106,21 +100,17 @@ namespace Arcomage.Unity.GameScene.Scripts
 
         private CardViewModel Update(CardViewModel viewModel, Game game, Player player, Card card, int index)
         {
-            var playAction = lifetimeScope.Resolve<IPlayAction>();
-
             if (viewModel != null && viewModel.Id != card.Index)
                 viewModel = new CardViewModel();
 
             viewModel = viewModel ?? new CardViewModel();
             viewModel.Id = card.Index;
             viewModel.Index = index;
-            viewModel.PlayCommand = viewModel.PlayCommand ?? lifetimeScope.Resolve<SinglePlayCardCommand>();
-            viewModel.DiscardCommand = viewModel.DiscardCommand ?? lifetimeScope.Resolve<SingleDiscardCardCommand>();
             viewModel.Identifier = card.GetIdentifier();
             viewModel.Kind = card.Kind;
             viewModel.Price = card.Price;
-            viewModel.IsPlay = playAction.CanPlay(game, player, new PlayResult(index, true));
-            viewModel.IsDiscard = playAction.CanPlay(game, player, new PlayResult(index, false));
+            viewModel.IsPlay = game.PlayAction.CanPlay(game, player, new PlayResult(index, true));
+            viewModel.IsDiscard = game.PlayAction.CanPlay(game, player, new PlayResult(index, false));
 
             return viewModel;
         }

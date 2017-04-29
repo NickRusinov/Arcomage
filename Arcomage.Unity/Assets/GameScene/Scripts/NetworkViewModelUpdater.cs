@@ -4,24 +4,19 @@ using System.Linq;
 using System.Text;
 using Arcomage.Domain.Players;
 using Arcomage.Domain.Resources;
-using Arcomage.Unity.GameScene.Commands;
 using Arcomage.Unity.GameScene.ViewModels;
 using Arcomage.WebApi.Client.Models.Game;
-using Autofac;
 
 namespace Arcomage.Unity.GameScene.Scripts
 {
     public class NetworkViewModelUpdater
     {
         private int currentVersion = -1;
-
-        private readonly ILifetimeScope lifetimeScope;
-
+        
         private readonly GameViewModel viewModel;
 
-        public NetworkViewModelUpdater(ILifetimeScope lifetimeScope, GameViewModel viewModel)
+        public NetworkViewModelUpdater(GameViewModel viewModel)
         {
-            this.lifetimeScope = lifetimeScope;
             this.viewModel = viewModel;
         }
 
@@ -108,8 +103,6 @@ namespace Arcomage.Unity.GameScene.Scripts
             viewModel = viewModel ?? new CardViewModel();
             viewModel.Id = model.Index;
             viewModel.Index = index;
-            viewModel.PlayCommand = viewModel.PlayCommand ?? lifetimeScope.Resolve<NetworkPlayCardCommand>();
-            viewModel.DiscardCommand = viewModel.DiscardCommand ?? lifetimeScope.Resolve<NetworkDiscardCardCommand>();
             viewModel.Identifier = model.Identifier;
             viewModel.Kind = (ResourceKind)model.ResourceKind;
             viewModel.Price = model.ResourcePrice;

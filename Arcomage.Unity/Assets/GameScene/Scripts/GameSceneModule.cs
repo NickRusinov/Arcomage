@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Arcomage.Unity.GameScene.Requests;
 using Arcomage.Unity.GameScene.ViewModels;
 using Arcomage.Unity.Shared.Scripts;
 using Autofac;
+using MediatR;
 
 namespace Arcomage.Unity.GameScene.Scripts
 {
@@ -17,8 +19,16 @@ namespace Arcomage.Unity.GameScene.Scripts
                 .InstancePerLifetimeScope();
 
             builder.Register(c => c.Resolve<Settings>().IsNetwork ?
-                c.Resolve<NetworkGameExecutor>() as GameExecutor : 
-                c.Resolve<SingleGameExecutor>() as GameExecutor);
+                (GameExecutor)c.Resolve<NetworkGameExecutor>() : 
+                c.Resolve<SingleGameExecutor>());
+
+            builder.Register(c => c.Resolve<Settings>().IsNetwork ?
+                (IAsyncRequestHandler<PlayCardRequest>)c.Resolve<NetworkPlayCardRequestHandler>() :
+                c.Resolve<SinglePlayCardRequestHandler>());
+
+            builder.Register(c => c.Resolve<Settings>().IsNetwork ?
+                (IAsyncRequestHandler<DiscardCardRequest>)c.Resolve<NetworkDiscardCardRequestHandler>() :
+                c.Resolve<SingleDiscardCardRequestHandler>());
         }
     }
 }

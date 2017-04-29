@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Arcomage.Unity.NetworkScene.ViewModels;
+using System.Threading;
+using Arcomage.Unity.NetworkScene.Requests;
 using Arcomage.Unity.Shared.Scripts;
 using UnityEngine;
 
 namespace Arcomage.Unity.NetworkScene.Views
 {
-    public class ConnectDialogPanelView : View<ConnectDialogViewModel>
+    public class ConnectDialogPanelView : View
     {
         [Tooltip("Объект, активирующийся при подготовке к соединении к игре")]
         public GameObject PrepareGameObject;
@@ -24,7 +25,7 @@ namespace Arcomage.Unity.NetworkScene.Views
 
         public void OnDisconnectClick()
         {
-            Bind(ViewModel.DisconnectGameCommand.Execute(ViewModel))
+            Bind(Scene.Mediator.Send(new DisconnectGameRequest(), CancellationToken.None))
                 .OnSuccess(t => OnDisconnectSuccess())
                 .OnFailure(t => OnDisconnectFailure());
         }

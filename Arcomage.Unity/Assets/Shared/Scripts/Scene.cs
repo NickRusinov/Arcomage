@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Autofac;
+using MediatR;
 using SmartLocalization;
 using UnityEngine;
 
@@ -10,11 +11,13 @@ namespace Arcomage.Unity.Shared.Scripts
 {
     public class Scene : MonoBehaviour
     {
+        private static IContainer Container;
+
         public static Authorization Authorization;
 
-        public static IContainer Container;
-
         public static Logger Logger;
+
+        public static IMediator Mediator;
 
         protected ILifetimeScope lifetimeScope;
 
@@ -23,33 +26,23 @@ namespace Arcomage.Unity.Shared.Scripts
         {
             Debug.Log("Инициализация игры");
 
-#if   UNITY_EDITOR
-
             Container = new AutofacConfiguration().Configure();
-            Authorization = new UnityAuthorization();
-            Logger = new UnityLogger();
-
-#elif UNITY_ANDROID
-            
-            Container = new AutofacConfiguration().Configure();
-            Authorization = new AndroidAuthorization();
-            Logger = new AndroidLogger();
-
-#endif
-
-            Application.logMessageReceived += Logger.Log;
-
+            Application.logMessageReceived += (message, stackTrace, logType) => Logger.Log(message, stackTrace, logType);
         }
 
         public virtual void Awake()
         {
-#if   !UNITY_EDITOR
+#if !UNITY_EDITOR
 
             LanguageManager.Instance.defaultLanguage = Application.systemLanguage.GetLanguageCode();
             LanguageManager.Instance.ChangeLanguage(LanguageManager.Instance.defaultLanguage);
 
 #endif
             lifetimeScope = Container.BeginLifetimeScope(b => b.RegisterInstance(this));
+
+            Authorization = lifetimeScope.Resolve<Authorization>();
+            Logger = lifetimeScope.Resolve<Logger>();
+            Mediator = lifetimeScope.Resolve<IMediator>();
         }
 
         public virtual void OnDestroy()
