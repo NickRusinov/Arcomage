@@ -13,8 +13,7 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Full v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile>
-    </CompilerResponseFile>
+    <CompilerResponseFile></CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>Android:13</UnityBuildTarget>
     <UnityVersion>5.4.2f2</UnityVersion>
@@ -98,29 +97,32 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Configuration\AndroidModule.cs" />
+    <Compile Include="Assets\Configuration\AutofacConfiguration.cs" />
+    <Compile Include="Assets\Configuration\GameSceneModule.cs" />
     <Compile Include="Assets\Configuration\MediatRModule.cs" />
+    <Compile Include="Assets\Configuration\NetworkGameSceneModule.cs" />
+    <Compile Include="Assets\Configuration\NetworkSceneModule.cs" />
     <Compile Include="Assets\Configuration\SceneModule.cs" />
+    <Compile Include="Assets\Configuration\SettingsSceneModule.cs" />
+    <Compile Include="Assets\Configuration\SingleGameSceneModule.cs" />
     <Compile Include="Assets\Configuration\UnityModule.cs" />
     <Compile Include="Assets\Configuration\WebApiModule.cs" />
+    <Compile Include="Assets\GameScene\GameScene.cs" />
+    <Compile Include="Assets\GameScene\Requests\DiscardCardRequest.cs" />
     <Compile Include="Assets\GameScene\Requests\NetworkDiscardCardRequestHandler.cs" />
     <Compile Include="Assets\GameScene\Requests\NetworkPlayCardRequestHandler.cs" />
+    <Compile Include="Assets\GameScene\Requests\PlayCardRequest.cs" />
     <Compile Include="Assets\GameScene\Requests\SingleDiscardCardRequestHandler.cs" />
     <Compile Include="Assets\GameScene\Requests\SinglePlayCardRequestHandler.cs" />
-    <Compile Include="Assets\GameScene\Factories\CardFactory.cs" />
-    <Compile Include="Assets\GameScene\Factories\HistoryCardFactory.cs" />
-    <Compile Include="Assets\GameScene\Requests\DiscardCardRequest.cs" />
-    <Compile Include="Assets\GameScene\Requests\PlayCardRequest.cs" />
     <Compile Include="Assets\GameScene\Scripts\CardDragDropScript.cs" />
+    <Compile Include="Assets\GameScene\Scripts\CardFactory.cs" />
     <Compile Include="Assets\GameScene\Scripts\CardTranslateScript.cs" />
     <Compile Include="Assets\GameScene\Scripts\GameExecutor.cs" />
     <Compile Include="Assets\GameScene\Scripts\GameExtensions.cs" />
-    <Compile Include="Assets\Configuration\GameSceneModule.cs" />
-    <Compile Include="Assets\GameScene\GameScene.cs" />
+    <Compile Include="Assets\GameScene\Scripts\HistoryCardFactory.cs" />
     <Compile Include="Assets\GameScene\Scripts\NetworkGameExecutor.cs" />
-    <Compile Include="Assets\Configuration\NetworkGameSceneModule.cs" />
     <Compile Include="Assets\GameScene\Scripts\NetworkViewModelUpdater.cs" />
     <Compile Include="Assets\GameScene\Scripts\SingleGameExecutor.cs" />
-    <Compile Include="Assets\Configuration\SingleGameSceneModule.cs" />
     <Compile Include="Assets\GameScene\Scripts\SingleViewModelUpdater.cs" />
     <Compile Include="Assets\GameScene\ViewModels\BuildingsViewModel.cs" />
     <Compile Include="Assets\GameScene\ViewModels\CardViewModel.cs" />
@@ -141,23 +143,21 @@
     <Compile Include="Assets\GameScene\Views\ResourcesView.cs" />
     <Compile Include="Assets\GameScene\Views\TimerView.cs" />
     <Compile Include="Assets\MenuScene\MenuScene.cs" />
-    <Compile Include="Assets\NetworkScene\Requests\ConnectGameRequestHandler.cs" />
-    <Compile Include="Assets\NetworkScene\Requests\DisconnectGameRequestHandler.cs" />
-    <Compile Include="Assets\NetworkScene\Requests\GetConnectingGameRequestHandler.cs" />
-    <Compile Include="Assets\NetworkScene\Requests\GetVersionRequestHandler.cs" />
-    <Compile Include="Assets\Configuration\NetworkSceneModule.cs" />
     <Compile Include="Assets\NetworkScene\NetworkScene.cs" />
     <Compile Include="Assets\NetworkScene\Requests\ConnectGameRequest.cs" />
+    <Compile Include="Assets\NetworkScene\Requests\ConnectGameRequestHandler.cs" />
     <Compile Include="Assets\NetworkScene\Requests\DisconnectGameRequest.cs" />
+    <Compile Include="Assets\NetworkScene\Requests\DisconnectGameRequestHandler.cs" />
     <Compile Include="Assets\NetworkScene\Requests\GetConnectingGameRequest.cs" />
+    <Compile Include="Assets\NetworkScene\Requests\GetConnectingGameRequestHandler.cs" />
     <Compile Include="Assets\NetworkScene\Requests\GetVersionRequest.cs" />
+    <Compile Include="Assets\NetworkScene\Requests\GetVersionRequestHandler.cs" />
     <Compile Include="Assets\NetworkScene\Views\ConnectDialogPanelView.cs" />
     <Compile Include="Assets\NetworkScene\Views\ConnectPanelView.cs" />
     <Compile Include="Assets\NetworkScene\Views\PreparePanelView.cs" />
     <Compile Include="Assets\SettingsScene\Scripts\DeckFactory.cs" />
     <Compile Include="Assets\SettingsScene\Scripts\RuleFactory.cs" />
     <Compile Include="Assets\SettingsScene\SettingsScene.cs" />
-    <Compile Include="Assets\Configuration\SettingsSceneModule.cs" />
     <Compile Include="Assets\SettingsScene\ViewModels\DeckListViewModel.cs" />
     <Compile Include="Assets\SettingsScene\ViewModels\DeckViewModel.cs" />
     <Compile Include="Assets\SettingsScene\ViewModels\RuleListViewModel.cs" />
@@ -172,7 +172,6 @@
     <Compile Include="Assets\Shared\Scripts\AndroidAuthorization.cs" />
     <Compile Include="Assets\Shared\Scripts\AndroidLogger.cs" />
     <Compile Include="Assets\Shared\Scripts\Authorization.cs" />
-    <Compile Include="Assets\Configuration\AutofacConfiguration.cs" />
     <Compile Include="Assets\Shared\Scripts\Binding.cs" />
     <Compile Include="Assets\Shared\Scripts\BindingExtensions.cs" />
     <Compile Include="Assets\Shared\Scripts\CollectionBinding.cs" />
@@ -211,7 +210,6 @@
     <None Include="Assets\Shared\Shaders\ClipAreaShader.shader" />
     <None Include="Assets\Shared\Shaders\GrayScaleShader.shader" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
 </Project>

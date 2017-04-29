@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Arcomage.Unity.GameScene.Scripts;
 using Arcomage.Unity.GameScene.ViewModels;
 using Arcomage.Unity.GameScene.Views;
 using UnityEngine;
 
-namespace Arcomage.Unity.GameScene.Factories
+namespace Arcomage.Unity.GameScene.Scripts
 {
     /// <summary>
     /// Фабрика, создающая игровые объекты карты из префаба
