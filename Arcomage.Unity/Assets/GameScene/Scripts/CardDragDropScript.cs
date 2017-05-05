@@ -8,6 +8,7 @@ using Arcomage.Unity.GameScene.Requests;
 using Arcomage.Unity.GameScene.Views;
 using Arcomage.Unity.Shared.Scripts;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace Arcomage.Unity.GameScene.Scripts
 {
@@ -15,7 +16,7 @@ namespace Arcomage.Unity.GameScene.Scripts
     /// Скрипт, позволяющий карте быть перемещаемой игроком
     /// </summary>
     [RequireComponent(typeof(CardView))]
-    public class CardDragDropScript : MonoBehaviour
+    public class CardDragDropScript : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
     {
         /// <summary>
         /// В один момент времени только одна карта может быть перемещаемая игроком
@@ -37,36 +38,35 @@ namespace Arcomage.Unity.GameScene.Scripts
         /// </summary>
         private Vector3 initialPosition;
         
-        public void Update()
+        public void OnBeginDrag(PointerEventData eventData)
         {
-            if (GameScene.Pause)
-                return;
-
-            if (Input.GetMouseButton(0) && draggingItem)
+            Vector2 position;
+            if (!draggingItem && !globalDraggingItem && RectTransformUtility.ScreenPointToLocalPointInRectangle((RectTransform)transform.parent, eventData.position, Camera.main, out position))
             {
-                var inputPosition = (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                draggingItem = globalDraggingItem = true;
 
-                transform.position = inputPosition + touchOffset;
-                transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, -0.50f);
+                initialPosition = transform.position;
+                touchOffset = (Vector2)transform.localPosition - position;
+
+                transform.SetAsLastSibling();
             }
+        }
 
-            if (Input.GetMouseButton(0) && !draggingItem && !globalDraggingItem)
+        public void OnDrag(PointerEventData eventData)
+        {
+            Vector2 position;
+            if (draggingItem && RectTransformUtility.ScreenPointToLocalPointInRectangle((RectTransform)transform.parent, eventData.position, Camera.main, out position))
             {
-                var inputPosition = (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            
-                var hit = Physics2D.RaycastAll(inputPosition, inputPosition).FirstOrDefault();
-
-                if (hit.transform != null && hit.transform.gameObject == transform.gameObject)
-                {
-                    draggingItem = globalDraggingItem = true;
-                    initialPosition = hit.transform.position;
-                    touchOffset = (Vector2)hit.transform.position - inputPosition;
-                }
+                transform.localPosition = position + touchOffset;
             }
+        }
 
-            if (!Input.GetMouseButton(0) && draggingItem)
+        public void OnEndDrag(PointerEventData eventData)
+        {
+            if (draggingItem)
             {
                 draggingItem = globalDraggingItem = false;
+                
                 var cardViewModel = GetComponent<CardView>().ViewModel;
                 var cardExecuteTask = (Task)TaskEx.FromResult<object>(null);
 
@@ -90,7 +90,7 @@ namespace Arcomage.Unity.GameScene.Scripts
         {
             yield return new TaskYieldInstruction(cardExecuteTask);
             yield return null;
-        
+
             var cardTranslateScript = cardObject.AddComponent<CardTranslateScript>();
             cardTranslateScript.Initialize(position);
         }

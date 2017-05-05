@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Arcomage.Unity.GameScene.ViewModels;
 using Arcomage.Unity.GameScene.Views;
+using Arcomage.Unity.Shared.Scripts;
 using UnityEngine;
 
 namespace Arcomage.Unity.GameScene.Scripts
@@ -19,15 +20,24 @@ namespace Arcomage.Unity.GameScene.Scripts
         /// <summary>
         /// Создает игровой объект карты в истории хода
         /// </summary>
-        /// <param name="transform">Положение карты в истории хода</param>
+        /// <param name="template">Шаблон положения карты в истории хода</param>
         /// <param name="cardViewModel">Модель представления карты в истории хода</param>
         /// <returns>Игровой объект карты в истории хода</returns>
-        public GameObject CreateCard(Transform transform, HistoryCardViewModel cardViewModel)
+        public GameObject CreateCard(GameObject template, HistoryCardViewModel cardViewModel)
         {
-            var cardObject = (GameObject)Instantiate(Prefab, transform);
+            var templateTransform = template.GetComponent<RectTransform>();
+
+            var cardObject = (GameObject)Instantiate(Prefab, templateTransform.parent);
             cardObject.name = "Card" + cardViewModel.Index;
 
-            cardObject.GetComponent<HistoryCardView>().ViewModel = cardViewModel;
+            var cardTransform = cardObject.GetComponent<RectTransform>();
+            cardTransform.CopyFrom(templateTransform);
+
+            var inCardObjectTransform = (RectTransform)cardObject.transform.GetChild(0);
+            inCardObjectTransform.pivot = templateTransform.pivot;
+
+            var cardView = cardObject.GetComponent<HistoryCardView>();
+            cardView.ViewModel = cardViewModel;
 
             return cardObject;
         }

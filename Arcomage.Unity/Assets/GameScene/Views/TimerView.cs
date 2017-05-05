@@ -5,13 +5,14 @@ using System.Text;
 using Arcomage.Unity.GameScene.ViewModels;
 using Arcomage.Unity.Shared.Scripts;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Arcomage.Unity.GameScene.Views
 {
     public class TimerView : View<TimerViewModel>
     {
         [Tooltip("Текст для вывода оставшегося времени хода в секундах")]
-        public TextMesh TimeText;
+        public Text TimeText;
 
         [Tooltip("Цвет текста для вывода достаточного оставшегося времени хода")]
         public Color RegularTimeColor;

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Arcomage.Unity.GameScene.ViewModels;
 using Arcomage.Unity.Shared.Scripts;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Arcomage.Unity.GameScene.Views
 {
@@ -14,25 +15,25 @@ namespace Arcomage.Unity.GameScene.Views
     public class ResourcesView : View<ResourcesViewModel>
     {
         [Tooltip("Текст для вывода имени игрока")]
-        public TextMesh PlayerText;
+        public Text PlayerText;
 
         [Tooltip("Текст для вывода количества шахт")]
-        public TextMesh QuarryText;
+        public Text QuarryText;
 
         [Tooltip("Текст для вывода количества руды")]
-        public TextMesh BricksText;
+        public Text BricksText;
 
         [Tooltip("Текст для вывода количества монастырей")]
-        public TextMesh MagicText;
+        public Text MagicText;
 
         [Tooltip("Текст для вывода количества маны")]
-        public TextMesh GemsText;
+        public Text GemsText;
 
         [Tooltip("Текст для вывода количества казарм")]
-        public TextMesh DungeonsText;
+        public Text DungeonsText;
 
         [Tooltip("Текст для вывода количества отрядов")]
-        public TextMesh RecruitsText;
+        public Text RecruitsText;
 
         [Tooltip("Система частиц, запускаемая при изменении количества шахт")]
         public ParticleSystem QuarryParticle;

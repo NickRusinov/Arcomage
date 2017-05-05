@@ -32,7 +32,7 @@ namespace Arcomage.Unity.Configuration
                     .RegisterClassicDeck("ClassicDeck", () => (ClassicDeckInfo)c.Resolve<SingleSettings>().Deck)
                     .RegisterInfinityDeck("InfinityDeck", () => (InfinityDeckInfo)c.Resolve<SingleSettings>().Deck)
                     .With<Deck>(() => c.Resolve<SingleSettings>().Deck.Identifier + "Deck"))
-                .SingleInstance();
+                .InstancePerLifetimeScope();
 
             builder.Register(c => c.Resolve<GameBuilder>().CreateContext())
                 .InstancePerLifetimeScope();

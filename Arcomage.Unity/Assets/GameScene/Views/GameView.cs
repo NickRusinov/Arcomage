@@ -8,6 +8,7 @@ using Arcomage.Unity.Shared.Scripts;
 using SmartLocalization;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 namespace Arcomage.Unity.GameScene.Views
 {
@@ -41,7 +42,7 @@ namespace Arcomage.Unity.GameScene.Views
         public TimerView Timer;
 
         [Tooltip("Текст для вывода информации для сброса карты")]
-        public TextMesh DiscardOnlyText;
+        public Text DiscardOnlyText;
 
         protected override void OnViewModel(GameViewModel viewModel)
         {

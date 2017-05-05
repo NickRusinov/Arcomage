@@ -6,6 +6,7 @@ using Arcomage.Unity.GameScene.ViewModels;
 using Arcomage.Unity.Shared.Scripts;
 using SmartLocalization;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Arcomage.Unity.GameScene.Views
 {
@@ -15,19 +16,19 @@ namespace Arcomage.Unity.GameScene.Views
     public class CardView : View<CardViewModel>
     {
         [Tooltip("Текст для вывода названия карты")]
-        public TextMesh NameText;
+        public Text NameText;
 
         [Tooltip("Текст для вывода описания карты")]
-        public TextMesh DescriptionText;
+        public Text DescriptionText;
 
         [Tooltip("Текст для вывода стоимости карты")]
-        public TextMesh PriceText;
+        public Text PriceText;
 
         [Tooltip("Спрайт фона карты")]
-        public SpriteRenderer BackgroundImage;
+        public Image BackgroundImage;
 
         [Tooltip("Спрайт изображения карты")]
-        public SpriteRenderer ForegroundImage;
+        public Image ForegroundImage;
 
         [Tooltip("Материал для фона карты, когда она может быть разыграна")]
         public Material BackgroundCanPlayMaterial;

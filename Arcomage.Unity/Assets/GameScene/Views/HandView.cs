@@ -43,8 +43,7 @@ namespace Arcomage.Unity.GameScene.Views
         private void OnInitializeCard(CardViewModel cardViewModel, int index)
         {
             var cardTemplate = CardTemplates[index % CardTemplates.Length];
-            var cardObject = CardFactory.CreateCard(transform, cardViewModel);
-            cardObject.transform.CopyFrom(cardTemplate.transform);
+            CardFactory.CreateCard(cardTemplate, cardViewModel);
         }
 
         /// <summary>
@@ -55,12 +54,12 @@ namespace Arcomage.Unity.GameScene.Views
         /// <param name="index">Номер карты</param>
         private void OnReplacedCard(CardViewModel oldCardViewModel, CardViewModel newCardViewModel, int index)
         {
+            var cardTemplate = CardTemplates[index % CardTemplates.Length];
+
             var oldCardObject = transform.Find("Card" + index).gameObject;
             oldCardObject.SetActive(false);
 
-            var cardTemplate = CardTemplates[index % CardTemplates.Length];
-            var cardObject = CardFactory.CreateCard(transform, newCardViewModel);
-            cardObject.transform.CopyFrom(cardTemplate.transform);
+            var cardObject = CardFactory.CreateCard(cardTemplate, newCardViewModel);
             cardObject.transform.position = CardInitTemplate.transform.position;
             cardObject.SetActive(false);
 
@@ -97,8 +96,12 @@ namespace Arcomage.Unity.GameScene.Views
             
             cardObject.SetActive(true);
 
+            var cardCanvas = cardObject.AddComponent<Canvas>();
+            cardCanvas.overrideSorting = true;
+
             var cardTranslateScript = cardObject.AddComponent<CardTranslateScript>();
             cardTranslateScript.Initialize(position);
+            cardTranslateScript.EndedEvent.AddListener(cardCanvas.TryDestroy);
         }
     }
 }

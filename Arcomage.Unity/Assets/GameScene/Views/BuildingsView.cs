@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Arcomage.Unity.GameScene.ViewModels;
 using Arcomage.Unity.Shared.Scripts;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Arcomage.Unity.GameScene.Views
 {
@@ -14,10 +15,10 @@ namespace Arcomage.Unity.GameScene.Views
     public class BuildingsView : View<BuildingsViewModel>
     {
         [Tooltip("Текст для вывода высоты башни")]
-        public TextMesh TowerText;
+        public Text TowerText;
 
         [Tooltip("Текст для вывода высоты стены")]
-        public TextMesh WallText;
+        public Text WallText;
 
         [Tooltip("Система частиц, запускаемая при изменении высоты башни")]
         public ParticleSystem TowerParticle;
@@ -26,24 +27,26 @@ namespace Arcomage.Unity.GameScene.Views
         public ParticleSystem WallParticle;
 
         [Tooltip("Спрайт башни")]
-        public SpriteRenderer TowerImage;
+        public Image TowerImage;
 
         [Tooltip("Спрайт стены")]
-        public SpriteRenderer WallImage;
+        public Image WallImage;
 
         protected override void OnViewModel(BuildingsViewModel viewModel)
         {
             Bind(viewModel, b => b.Tower)
                 .OnChanged(t => TowerParticle.Play())
                 .OnChangedAndInit(t => TowerText.text = t.ToString())
-                .OnChangedAndInit(t => TowerImage.transform.SetLocalPosition(y: -330f + Math.Min(180f, 180f * t / viewModel.MaxTower ?? 50)))
-                .OnChangedAndInit(t => TowerImage.material.SetFloat("_Length", 1f - (150f + Math.Min(180f, 180f * t / viewModel.MaxTower ?? 50)) / TowerImage.sprite.texture.height));
+                .OnChangedAndInit(t => TowerImage.transform.SetAnchor(
+                    minY: Mathf.Min(-.2f, -.75f + .55f * t / viewModel.MaxTower ?? 50),
+                    maxY: Mathf.Min(+.8f, +.25f + .55f * t / viewModel.MaxTower ?? 50)));
 
             Bind(viewModel, b => b.Wall)
                 .OnChanged(w => WallParticle.Play())
                 .OnChangedAndInit(w => WallText.text = w.ToString())
-                .OnChangedAndInit(w => WallImage.transform.SetLocalPosition(y: -460f + Math.Min(280f, 280f * w / viewModel.MaxWall ?? 50)))
-                .OnChangedAndInit(w => WallImage.material.SetFloat("_Length", 1f - (20f + Math.Min(280f, 280f * w / viewModel.MaxWall ?? 50)) / WallImage.sprite.texture.height));
+                .OnChangedAndInit(w => WallImage.transform.SetAnchor(
+                    minY: Mathf.Min(-.2f, -.85f + .65f * w / viewModel.MaxWall ?? 50),
+                    maxY: Mathf.Min(+.8f, +.15f + .65f * w / viewModel.MaxWall ?? 50)));
         }
     }
 }

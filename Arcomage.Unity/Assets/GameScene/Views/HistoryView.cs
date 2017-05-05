@@ -60,7 +60,8 @@ namespace Arcomage.Unity.GameScene.Views
         {
             Bind(viewModel, h => h.Cards as IList<HistoryCardViewModel>)
                 .OnAdded((m, i) => StartCoroutine(OnAddedCard(m, i)))
-                .OnReplaced((_, m, i) => StartCoroutine(OnReplacedCard(m, i)));
+                .OnReplaced((_, m, i) => StartCoroutine(OnReplacedCard(m, i)))
+                .OnReplaced((_, m, i) => StartCoroutine(OnAddedCard(m, i)));
         }
 
         /// <summary>
@@ -88,32 +89,34 @@ namespace Arcomage.Unity.GameScene.Views
         {
             if (pushedCardViewModel != null && pushedCardViewModel.Id == cardViewModel.Id)
             {
+                var cardTemplate = СardTemplates[index % СardTemplates.Length];
+                var cardObject = HistoryСardFactory.CreateCard(cardTemplate, cardViewModel);
+                cardObject.transform.SetPosition(pushedCardObject.transform);
+
                 while (addedFromInitAnimationCount != 0 || removedAnimationCount != 0)
                     yield return null;
 
                 addedFromHandAnimationCount++;
-
-                var cardTemplate = СardTemplates[index % СardTemplates.Length];
-                var cardObject = HistoryСardFactory.CreateCard(transform, cardViewModel);
-                cardObject.transform.CopyFrom(cardTemplate.transform);
-                cardObject.transform.position = pushedCardObject.transform.position;
                 
+                var cardCanvas = cardObject.AddComponent<Canvas>();
+                cardCanvas.overrideSorting = true;
+
                 var cardTranslateScript = cardObject.AddComponent<CardTranslateScript>();
                 cardTranslateScript.Initialize(cardTemplate.transform.position);
+                cardTranslateScript.EndedEvent.AddListener(cardCanvas.TryDestroy);
                 cardTranslateScript.EndedEvent.AddListener(() => pushedCardTaskSource.TrySetResult(null));
                 cardTranslateScript.EndedEvent.AddListener(() => addedFromHandAnimationCount--);
             }
             else
             {
+                var cardTemplate = СardTemplates[index % СardTemplates.Length];
+                var cardObject = HistoryСardFactory.CreateCard(cardTemplate, cardViewModel);
+                cardObject.transform.position = СardInitTemplate.transform.position;
+
                 while (addedFromHandAnimationCount != 0 || removedAnimationCount != 0)
                     yield return null;
 
                 addedFromInitAnimationCount++;
-
-                var cardTemplate = СardTemplates[index % СardTemplates.Length];
-                var cardObject = HistoryСardFactory.CreateCard(transform, cardViewModel);
-                cardObject.transform.CopyFrom(cardTemplate.transform);
-                cardObject.transform.position = СardInitTemplate.transform.position;
 
                 var cardTranslateScript = cardObject.AddComponent<CardTranslateScript>();
                 cardTranslateScript.Initialize(cardTemplate.transform.position);
@@ -127,23 +130,23 @@ namespace Arcomage.Unity.GameScene.Views
 
         private IEnumerator OnReplacedCard(HistoryCardViewModel cardViewModel, int index)
         {
+            var historyCardViewCollection = GetComponentsInChildren<HistoryCardView>();
+
             removedAnimationCount++;
 
             while (addedFromHandAnimationCount != 0 || addedFromInitAnimationCount != 0)
                 yield return null;
 
-            foreach (var cardScript in GetComponentsInChildren<HistoryCardView>())
+            foreach (var cardScript in historyCardViewCollection)
             {
                 var localCardScript = cardScript;
                 
                 var cardTranslateScript = localCardScript.gameObject.AddComponent<CardTranslateScript>();
                 cardTranslateScript.Initialize(СardInitTemplate.transform.position);
-                cardTranslateScript.EndedEvent.AddListener(() => localCardScript.TryDestroyObject());
+                cardTranslateScript.EndedEvent.AddListener(localCardScript.TryDestroyObject);
             }
 
             removedAnimationCount--;
-
-            yield return OnAddedCard(cardViewModel, index);
         }
     }
 }
