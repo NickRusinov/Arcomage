@@ -44,7 +44,7 @@ namespace Arcomage.Unity.GameScene.Views
 
         public void UpdateTimer()
         {
-            if (lastUpdateTime >= 0 && ViewModel != null && ViewModel.TimeRest >= 0)
+            if (lastUpdateTime >= 0 && ViewModel != null && ViewModel.TimeRest >= 0 && !GameScene.Pause)
             {
                 var deltaUpdateTime = Time.timeSinceLevelLoad - lastUpdateTime;
                 ViewModel.TimeRest = Math.Max(0, ViewModel.TimeRest - deltaUpdateTime);
