@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Arcomage.Unity.Framework;
 using Arcomage.Unity.SettingsScene.Scripts;
 using Arcomage.Unity.SettingsScene.ViewModels;
-using Arcomage.Unity.Shared.Scripts;
 using UnityEngine;
 
 namespace Arcomage.Unity.SettingsScene.Views

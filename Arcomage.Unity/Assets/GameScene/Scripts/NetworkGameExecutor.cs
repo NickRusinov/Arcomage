@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using Arcomage.Unity.Framework;
 using Arcomage.Unity.Shared.Scripts;
 using Arcomage.WebApi.Client.Controllers;
 using Arcomage.WebApi.Client.Hubs;

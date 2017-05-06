@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using Arcomage.Domain;
 using Arcomage.Domain.Actions;
-using Arcomage.Unity.Shared.Scripts;
+using Arcomage.Unity.Framework;
 
 namespace Arcomage.Unity.GameScene.Scripts
 {

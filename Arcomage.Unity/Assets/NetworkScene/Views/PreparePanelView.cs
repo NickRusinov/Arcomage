@@ -4,10 +4,10 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Text;
-using Arcomage.Unity.Shared.Scripts;
 using UnityEngine.Events;
 using UnityEngine;
 using Arcomage.Unity.NetworkScene.Requests;
+using Arcomage.Unity.Framework;
 
 namespace Arcomage.Unity.NetworkScene.Views
 {
@@ -21,7 +21,7 @@ namespace Arcomage.Unity.NetworkScene.Views
 
         public void OnEnable()
         {
-            Bind(Scene.Mediator.Send(new ConnectGameRequest(), CancellationToken.None))
+            Bind(Global.Mediator.Send(new ConnectGameRequest(), CancellationToken.None))
                 .OnSuccess(t => ConnectedEvent.Invoke())
                 .OnFailure(t => OnConnectGameFailure());
         }

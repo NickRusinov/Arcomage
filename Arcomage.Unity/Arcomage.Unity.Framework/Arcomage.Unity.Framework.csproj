@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net35</TargetFrameworks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="UnityEngine">
+      <HintPath>$(SolutionDir)..\Tools\UnityEngine\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>$(SolutionDir)..\Tools\UnityEngine\UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac">
+      <HintPath>$(SolutionDir)Assets\Plugins\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="MediatR">
+      <HintPath>$(SolutionDir)Assets\Plugins\MediatR.dll</HintPath>
+    </Reference>
+    <Reference Include="Nivot.SignalR.Client.Net35">
+      <HintPath>$(SolutionDir)Assets\Plugins\Nivot.SignalR.Client.Net35.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading">
+      <HintPath>$(SolutionDir)Assets\Plugins\System.Threading.dll</HintPath>
+    </Reference>
+    <Reference Include="AsyncBridge.Net35">
+      <HintPath>$(SolutionDir)Assets\Plugins\AsyncBridge.Net35.dll</HintPath>
+    </Reference>
+    <Reference Include="Netwonsoft.Json">
+      <HintPath>$(SolutionDir)Assets\Plugins\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="SmartLocalization_Runtime">
+      <HintPath>$(SolutionDir)Assets\Plugins\SmartLocalization_Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Arcomage.WebApi.Client">
+      <HintPath>$(SolutionDir)Assets\Plugins\Arcomage.WebApi.Client.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <Target Name="Unity" AfterTargets="Build" Condition=" '$(TargetFramework)' == 'net35' ">
+    <Copy SourceFiles="$(TargetPath)" DestinationFiles="$(SolutionDir)Assets\Plugins\$(TargetFileName)" />
+  </Target>
+</Project>

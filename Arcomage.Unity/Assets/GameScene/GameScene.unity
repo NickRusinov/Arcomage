@@ -28297,7 +28297,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1571637847}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b8578f22c3a3cf46a715f2e47ddf17e, type: 3}
+  m_Script: {fileID: -2069570567, guid: aed6dbf8d3fa40e468089d61512a466d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   AspectWidth: 1280
@@ -34825,7 +34825,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1871480637}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9159c5f136407c40bdb876836e8059f, type: 3}
+  m_Script: {fileID: -945100758, guid: aed6dbf8d3fa40e468089d61512a466d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   BackHandler:
@@ -34852,10 +34852,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1871480637}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08a108b9239383a4ca8964763dbb1bfa, type: 3}
+  m_Script: {fileID: -505309611, guid: aed6dbf8d3fa40e468089d61512a466d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BaseUrl: http://192.168.137.1:55994/
+  BaseUrl: http://arcomagic.ru
 --- !u!114 &1871480643
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34864,10 +34864,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1871480637}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5fc1030c1e8d8446984f676ea683ef5, type: 3}
+  m_Script: {fileID: -2137722505, guid: aed6dbf8d3fa40e468089d61512a466d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BaseUrl: http://192.168.137.1:55994/
+  BaseUrl: http://arcomagic.ru
 --- !u!114 &1871480644
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34876,7 +34876,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1871480637}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f43fc8ade0289bf4c85116ba1c9067a9, type: 3}
+  m_Script: {fileID: -1226806510, guid: aed6dbf8d3fa40e468089d61512a466d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1878927405

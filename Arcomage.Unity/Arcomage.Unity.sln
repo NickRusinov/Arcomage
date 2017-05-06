@@ -3,6 +3,12 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2017
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Arcomage.Unity", "Arcomage.Unity.csproj", "{4A9A9EC0-861A-5733-DCFD-382EE7F33CC9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Arcomage.Unity.Framework", "Arcomage.Unity.Framework\Arcomage.Unity.Framework.csproj", "{A39A8B52-2C50-4360-A266-863DFF39E151}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Arcomage.Unity.Framework.Editor", "Arcomage.Unity.Framework.Editor\Arcomage.Unity.Framework.Editor.csproj", "{3EC36F52-09C2-495B-9FB8-6CA2FC0D0925}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Arcomage.Unity.Framework.Android", "Arcomage.Unity.Framework.Android\Arcomage.Unity.Framework.Android.csproj", "{7897ED90-E489-4F23-B6F8-263E4FA37EE3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +19,18 @@ Global
 		{4A9A9EC0-861A-5733-DCFD-382EE7F33CC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4A9A9EC0-861A-5733-DCFD-382EE7F33CC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4A9A9EC0-861A-5733-DCFD-382EE7F33CC9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A39A8B52-2C50-4360-A266-863DFF39E151}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A39A8B52-2C50-4360-A266-863DFF39E151}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A39A8B52-2C50-4360-A266-863DFF39E151}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A39A8B52-2C50-4360-A266-863DFF39E151}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3EC36F52-09C2-495B-9FB8-6CA2FC0D0925}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3EC36F52-09C2-495B-9FB8-6CA2FC0D0925}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3EC36F52-09C2-495B-9FB8-6CA2FC0D0925}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3EC36F52-09C2-495B-9FB8-6CA2FC0D0925}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7897ED90-E489-4F23-B6F8-263E4FA37EE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7897ED90-E489-4F23-B6F8-263E4FA37EE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7897ED90-E489-4F23-B6F8-263E4FA37EE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7897ED90-E489-4F23-B6F8-263E4FA37EE3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

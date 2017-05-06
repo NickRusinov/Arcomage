@@ -1953,9 +1953,9 @@ GameObject:
   m_Component:
   - 4: {fileID: 1462564882}
   - 114: {fileID: 1462564881}
+  - 114: {fileID: 1462564886}
   - 114: {fileID: 1462564883}
   - 114: {fileID: 1462564884}
-  - 114: {fileID: 1462564886}
   - 114: {fileID: 1462564887}
   m_Layer: 0
   m_Name: NetworkScene
@@ -1999,10 +1999,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1462564880}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5fc1030c1e8d8446984f676ea683ef5, type: 3}
+  m_Script: {fileID: -2137722505, guid: aed6dbf8d3fa40e468089d61512a466d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BaseUrl: http://192.168.137.1:55994/
+  BaseUrl: http://arcomagic.ru
 --- !u!114 &1462564884
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2011,10 +2011,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1462564880}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08a108b9239383a4ca8964763dbb1bfa, type: 3}
+  m_Script: {fileID: -505309611, guid: aed6dbf8d3fa40e468089d61512a466d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BaseUrl: http://192.168.137.1:55994/
+  BaseUrl: http://arcomagic.ru
 --- !u!114 &1462564886
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2034,7 +2034,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1462564880}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9159c5f136407c40bdb876836e8059f, type: 3}
+  m_Script: {fileID: -945100758, guid: aed6dbf8d3fa40e468089d61512a466d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   BackHandler:

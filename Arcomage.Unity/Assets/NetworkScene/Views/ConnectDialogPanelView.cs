@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using Arcomage.Unity.Framework;
 using Arcomage.Unity.NetworkScene.Requests;
-using Arcomage.Unity.Shared.Scripts;
 using UnityEngine;
 
 namespace Arcomage.Unity.NetworkScene.Views
@@ -25,7 +25,7 @@ namespace Arcomage.Unity.NetworkScene.Views
 
         public void OnDisconnectClick()
         {
-            Bind(Scene.Mediator.Send(new DisconnectGameRequest(), CancellationToken.None))
+            Bind(Global.Mediator.Send(new DisconnectGameRequest(), CancellationToken.None))
                 .OnSuccess(t => OnDisconnectSuccess())
                 .OnFailure(t => OnDisconnectFailure());
         }

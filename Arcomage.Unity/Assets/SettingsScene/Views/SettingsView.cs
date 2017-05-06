@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Arcomage.Unity.Framework;
+using Arcomage.Unity.Framework.Bindings;
 using Arcomage.Unity.SettingsScene.ViewModels;
 using Arcomage.Unity.Shared.Scripts;
 using UnityEngine;

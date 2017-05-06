@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Arcomage.Unity.Framework;
+using Arcomage.Unity.Framework.Scripts;
 using Arcomage.Unity.SettingsScene.ViewModels;
 using Arcomage.Unity.SettingsScene.Views;
 using Arcomage.Unity.Shared.Scripts;
@@ -24,8 +26,8 @@ namespace Arcomage.Unity.SettingsScene
         {
             base.Awake();
 
-            var settings = lifetimeScope.Resolve<Settings>();
-            var settingsViewModel = lifetimeScope.Resolve<SettingsViewModel>();
+            var settings = Global.Scope.Resolve<Settings>();
+            var settingsViewModel = Global.Scope.Resolve<SettingsViewModel>();
 
             settings.UseSingle();
             Settings.ViewModel = settingsViewModel;

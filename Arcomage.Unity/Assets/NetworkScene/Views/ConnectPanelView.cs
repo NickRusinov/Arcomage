@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Arcomage.Unity.Framework;
 using Arcomage.Unity.NetworkScene.Requests;
-using Arcomage.Unity.Shared.Scripts;
 using Arcomage.WebApi.Client.Models.About;
 using UnityEngine;
 
@@ -27,7 +27,7 @@ namespace Arcomage.Unity.NetworkScene.Views
 
         public void OnEnable()
         {
-            Bind(Scene.Mediator.Send(new GetVersionRequest(), CancellationToken.None))
+            Bind(Global.Mediator.Send(new GetVersionRequest(), CancellationToken.None))
                 .OnSuccess(t => OnGetVersionCorrectSuccess(t.Result), t => t.Result.Version == 0)
                 .OnSuccess(t => OnGetVersionIncorrectSuccess(t.Result), t => t.Result.Version != 0)
                 .OnFailure(t => OnGetVersionFailure());
@@ -35,7 +35,7 @@ namespace Arcomage.Unity.NetworkScene.Views
 
         private void OnGetVersionCorrectSuccess(VersionModel versionModel)
         {
-            Bind(Scene.Mediator.Send(new GetConnectingGameRequest(), CancellationToken.None))
+            Bind(Global.Mediator.Send(new GetConnectingGameRequest(), CancellationToken.None))
                 .OnSuccess(t => OnGetConnectingGameExistsSuccess(), t => t.Result.HasValue)
                 .OnSuccess(t => OnGetConnectingGameNotExistsSuccess(), t => !t.Result.HasValue)
                 .OnFailure(t => OnGetConnectingGameFailure());

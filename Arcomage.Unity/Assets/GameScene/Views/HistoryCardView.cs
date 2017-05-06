@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Arcomage.Unity.Framework;
+using Arcomage.Unity.Framework.Bindings;
 using Arcomage.Unity.GameScene.ViewModels;
-using Arcomage.Unity.Shared.Scripts;
 using SmartLocalization;
 using UnityEngine;
 using UnityEngine.UI;

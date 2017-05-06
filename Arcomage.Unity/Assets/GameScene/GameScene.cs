@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Arcomage.Unity.Framework;
+using Arcomage.Unity.Framework.Scripts;
 using Arcomage.Unity.GameScene.Scripts;
 using Arcomage.Unity.GameScene.ViewModels;
 using Arcomage.Unity.GameScene.Views;
@@ -38,8 +40,8 @@ namespace Arcomage.Unity.GameScene
 
         public void Start()
         {
-            var gameViewModel = lifetimeScope.Resolve<GameViewModel>();
-            var gameExecutor = lifetimeScope.Resolve<GameExecutor>();
+            var gameViewModel = Global.Scope.Resolve<GameViewModel>();
+            var gameExecutor = Global.Scope.Resolve<GameExecutor>();
 
             StartCoroutine(gameExecutor.Execute());
             GameScript.ViewModel = gameViewModel;

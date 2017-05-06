@@ -15,7 +15,7 @@ namespace Arcomage.Unity.Configuration
         {
             var builder = new ContainerBuilder();
             builder.RegisterSource(new AnyConcreteTypeNotAlreadyRegisteredSource());
-            builder.RegisterAssemblyModules(Assembly.GetExecutingAssembly());
+            builder.RegisterAssemblyModules(AppDomain.CurrentDomain.GetAssemblies());
             
             builder.RegisterType<Settings>()
                 .SingleInstance();

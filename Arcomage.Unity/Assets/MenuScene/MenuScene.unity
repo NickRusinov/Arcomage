@@ -339,6 +339,9 @@ MonoBehaviour:
   - MenuNetworkPlayButtonText
   - MenuSinglePlayButtonText
   - NetworkBackButtonText
+  - NetworkConnectingContinueText
+  - NetworkConnectingStartNewText
+  - NetworkConnectingText
   - NetworkConnectText
   - NetworkFailureConnectText
   - NetworkFailureVersionText
@@ -2231,6 +2234,32 @@ MonoBehaviour:
     overrideLocalizedObject: 0
     overrideObjectLanguageCode: 
   - objectType: 0
+    textValue: "\u041F\u043E\u0434\u043A\u043B\u044E\u0447\u0438\u0442\u044C\u0441\u044F"
+    thisGameObject: {fileID: 0}
+    thisAudioClip: {fileID: 0}
+    thisTexture: {fileID: 0}
+    thisTextAsset: {fileID: 0}
+    overrideLocalizedObject: 0
+    overrideObjectLanguageCode: 
+  - objectType: 0
+    textValue: "\u0421\u043E\u0437\u0434\u0430\u0442\u044C \u043D\u043E\u0432\u0443\u044E"
+    thisGameObject: {fileID: 0}
+    thisAudioClip: {fileID: 0}
+    thisTexture: {fileID: 0}
+    thisTextAsset: {fileID: 0}
+    overrideLocalizedObject: 0
+    overrideObjectLanguageCode: 
+  - objectType: 0
+    textValue: "\u041F\u043E\u0434\u043A\u043B\u044E\u0447\u0438\u0442\u044C\u0441\u044F
+      \u043A \u0438\u0433\u0440\u0435 \u0438\u043B\u0438 \u0441\u043E\u0437\u0434\u0430\u0442\u044C
+      \u043D\u043E\u0432\u0443\u044E?"
+    thisGameObject: {fileID: 0}
+    thisAudioClip: {fileID: 0}
+    thisTexture: {fileID: 0}
+    thisTextAsset: {fileID: 0}
+    overrideLocalizedObject: 0
+    overrideObjectLanguageCode: 
+  - objectType: 0
     textValue: "\u0418\u0434\u0435\u0442 \u0441\u043E\u0435\u0434\u0438\u043D\u0435\u043D\u0438\u0435
       \u0441 \u0441\u0435\u0440\u0432\u0435\u0440\u043E\u043C..."
     thisGameObject: {fileID: 0}
@@ -3322,7 +3351,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1817450574}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9159c5f136407c40bdb876836e8059f, type: 3}
+  m_Script: {fileID: -945100758, guid: aed6dbf8d3fa40e468089d61512a466d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   BackHandler:

@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Arcomage.Unity.Framework;
+using Arcomage.Unity.Framework.Scripts;
 using Arcomage.Unity.NetworkScene.Views;
 using Arcomage.Unity.Shared.Scripts;
 using Autofac;
@@ -31,7 +33,7 @@ namespace Arcomage.Unity.NetworkScene
         {
             base.Awake();
 
-            var settings = lifetimeScope.Resolve<Settings>();
+            var settings = Global.Scope.Resolve<Settings>();
 
             settings.UseNetwork();
         }
