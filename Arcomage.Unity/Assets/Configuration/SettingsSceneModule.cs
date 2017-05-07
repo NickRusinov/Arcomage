@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Arcomage.Domain.Decks;
 using Arcomage.Domain.Rules;
+using Arcomage.Unity.SettingsScene.Requests;
 using Arcomage.Unity.SettingsScene.ViewModels;
 using Arcomage.Unity.Shared.Scripts;
 using Autofac;
@@ -49,6 +50,9 @@ namespace Arcomage.Unity.Configuration
             builder.RegisterType<RuleViewModel>()
                 .OnActivated(ea => ea.Instance.Settings = ea.Context.Resolve<SingleSettings>())
                 .OnActivated(ea => ea.Instance.RuleInfo = ea.Parameters.Named<ClassicRuleInfo>("RuleInfo"));
+
+            builder.RegisterType<PlayRequestHandler>()
+                .AsImplementedInterfaces();
         }
     }
 }

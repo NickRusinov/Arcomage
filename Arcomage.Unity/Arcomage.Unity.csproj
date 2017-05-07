@@ -13,7 +13,8 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Full v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile></CompilerResponseFile>
+    <CompilerResponseFile>
+    </CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>Android:13</UnityBuildTarget>
     <UnityVersion>5.4.2f2</UnityVersion>
@@ -147,10 +148,14 @@
     <Compile Include="Assets\NetworkScene\Requests\GetConnectingGameRequestHandler.cs" />
     <Compile Include="Assets\NetworkScene\Requests\GetVersionRequest.cs" />
     <Compile Include="Assets\NetworkScene\Requests\GetVersionRequestHandler.cs" />
+    <Compile Include="Assets\NetworkScene\Requests\PlayRequest.cs" />
+    <Compile Include="Assets\NetworkScene\Requests\PlayRequestHandler.cs" />
     <Compile Include="Assets\NetworkScene\Views\ConnectDialogPanelView.cs" />
     <Compile Include="Assets\NetworkScene\Views\ConnectPanelView.cs" />
     <Compile Include="Assets\NetworkScene\Views\PreparePanelView.cs" />
     <Compile Include="Assets\Program.cs" />
+    <Compile Include="Assets\SettingsScene\Requests\PlayRequest.cs" />
+    <Compile Include="Assets\SettingsScene\Requests\PlayRequestHandler.cs" />
     <Compile Include="Assets\SettingsScene\Scripts\DeckFactory.cs" />
     <Compile Include="Assets\SettingsScene\Scripts\RuleFactory.cs" />
     <Compile Include="Assets\SettingsScene\SettingsScene.cs" />

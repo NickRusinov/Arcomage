@@ -4,9 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
-using Arcomage.Unity.Framework;
 using Arcomage.Unity.Shared.Scripts;
-using Arcomage.WebApi.Client.Controllers;
 using Arcomage.WebApi.Client.Hubs;
 using Arcomage.WebApi.Client.Models.Game;
 
@@ -18,15 +16,12 @@ namespace Arcomage.Unity.GameScene.Scripts
 
         private readonly PlayGameHubClient playGameHubClient;
 
-        private readonly GetGameControllerClient getGameControllerClient;
-
         private readonly NetworkViewModelUpdater viewModelUpdater;
 
-        public NetworkGameExecutor(NetworkSettings settings, PlayGameHubClient playGameHubClient, GetGameControllerClient getGameControllerClient, NetworkViewModelUpdater viewModelUpdater)
+        public NetworkGameExecutor(NetworkSettings settings, PlayGameHubClient playGameHubClient, NetworkViewModelUpdater viewModelUpdater)
         {
             this.settings = settings;
             this.playGameHubClient = playGameHubClient;
-            this.getGameControllerClient = getGameControllerClient;
             this.viewModelUpdater = viewModelUpdater;
         }
 
@@ -34,11 +29,8 @@ namespace Arcomage.Unity.GameScene.Scripts
         {
             GameModel gameModel = null;
             playGameHubClient.OnUpdate += gm => Interlocked.Exchange(ref gameModel, gm);
-
-            var getGameTask = getGameControllerClient.GetGame(settings.GameId);
-
-            yield return new TaskYieldInstruction(getGameTask);
-            var viewModel = viewModelUpdater.Update(getGameTask.Result);
+            
+            var viewModel = viewModelUpdater.Update(settings.GameModel);
 
             while (string.IsNullOrEmpty(viewModel.FinishedMenu.Identifier))
             {

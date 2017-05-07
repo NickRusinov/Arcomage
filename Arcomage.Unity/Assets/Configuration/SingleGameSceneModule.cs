@@ -22,19 +22,10 @@ namespace Arcomage.Unity.Configuration
         /// </summary>
         protected override void Load(ContainerBuilder builder)
         {
-            builder.Register(c =>
-                GameBuilderExtensions.GetDefault()
-                    .RegisterFirstHumanPlayer(null)
-                    .RegisterSecondComputerPlayer(null)
-                    .RegisterFixedTimer(null, () => TimeSpan.FromSeconds(30))
-                    .RegisterPlayerSet(null, () => new Random().Next(100) < 50 ? PlayerKind.First : PlayerKind.Second)
-                    .RegisterClassicRule(null, () => (ClassicRuleInfo)c.Resolve<SingleSettings>().Rule)
-                    .RegisterClassicDeck("ClassicDeck", () => (ClassicDeckInfo)c.Resolve<SingleSettings>().Deck)
-                    .RegisterInfinityDeck("InfinityDeck", () => (InfinityDeckInfo)c.Resolve<SingleSettings>().Deck)
-                    .With<Deck>(() => c.Resolve<SingleSettings>().Deck.Identifier + "Deck"))
+            builder.Register(c => ResolveGameBuilder(c.Resolve<SingleSettings>()))
                 .InstancePerLifetimeScope();
 
-            builder.Register(c => c.Resolve<GameBuilder>().CreateContext())
+            builder.Register(c => c.Resolve<SingleSettings>().GameBuilderContext ?? c.Resolve<GameBuilder>().CreateContext())
                 .InstancePerLifetimeScope();
 
             builder.Register(c => c.Resolve<GameBuilderContext>().Resolve<Game>())
@@ -45,6 +36,19 @@ namespace Arcomage.Unity.Configuration
 
             builder.Register(c => (HumanPlayer)c.Resolve<Game>().Players.FirstPlayer)
                 .InstancePerLifetimeScope();
+        }
+
+        private static GameBuilder ResolveGameBuilder(SingleSettings settings)
+        {
+            return GameBuilderExtensions.GetDefault()
+                .RegisterFirstHumanPlayer(null)
+                .RegisterSecondComputerPlayer(null)
+                .RegisterFixedTimer(null, () => TimeSpan.FromSeconds(30))
+                .RegisterPlayerSet(null, () => new Random().Next(100) < 50 ? PlayerKind.First : PlayerKind.Second)
+                .RegisterClassicRule(null, () => (ClassicRuleInfo)settings.Rule)
+                .RegisterClassicDeck("ClassicDeck", () => (ClassicDeckInfo)settings.Deck)
+                .RegisterInfinityDeck("InfinityDeck", () => (InfinityDeckInfo)settings.Deck)
+                .With<Deck>(() => settings.Deck.Identifier + "Deck");
         }
     }
 }

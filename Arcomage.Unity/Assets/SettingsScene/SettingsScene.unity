@@ -2649,6 +2649,8 @@ MonoBehaviour:
   DeckListView: {fileID: 1140801142}
   RuleText: {fileID: 195973041}
   RuleListView: {fileID: 1119589737}
+  PlayButton: {fileID: 251599401}
+  SceneManager: {fileID: 537403667}
 --- !u!95 &1363638934
 Animator:
   serializedVersion: 3

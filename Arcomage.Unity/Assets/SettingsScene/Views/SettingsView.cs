@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Arcomage.Unity.Framework;
 using Arcomage.Unity.Framework.Bindings;
+using Arcomage.Unity.SettingsScene.Requests;
 using Arcomage.Unity.SettingsScene.ViewModels;
 using Arcomage.Unity.Shared.Scripts;
 using UnityEngine;
@@ -31,6 +33,12 @@ namespace Arcomage.Unity.SettingsScene.Views
         [Tooltip("Представление списка правил")]
         public RuleListView RuleListView;
 
+        [Tooltip("Кнопка запуска игры")]
+        public Button PlayButton;
+
+        [Tooltip("Менеджер сцен")]
+        public UnitySceneManager SceneManager;
+
         protected override void OnViewModel(SettingsViewModel viewModel)
         {
             DeckListView.ViewModel = viewModel.DeckList;
@@ -53,6 +61,10 @@ namespace Arcomage.Unity.SettingsScene.Views
 
             SecondPlayerInput.onEndEdit
                 .AddListener(s => viewModel.Settings.SecondPlayer = s);
+
+            PlayButton.onClick
+                .AddListener(() => Bind(Global.Mediator.Send(new PlayRequest(), CancellationToken.None))
+                    .OnSuccess(_ => SceneManager.LoadGameScene()));
         }
     }
 }
