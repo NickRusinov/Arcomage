@@ -46,8 +46,8 @@ namespace Arcomage.Unity.GameScene.Views
                 .OnChanged(w => WallParticle.Play())
                 .OnChangedAndInit(w => WallText.text = w.ToString())
                 .OnChangedAndInit(w => WallImage.transform.SetAnchor(
-                    minY: Mathf.Min(-.2f, -.85f + .65f * w / viewModel.MaxWall ?? 50),
-                    maxY: Mathf.Min(+.8f, +.15f + .65f * w / viewModel.MaxWall ?? 50)));
+                    minY: Mathf.Min(-.3f, -.95f + .65f * w / viewModel.MaxWall ?? 50),
+                    maxY: Mathf.Min(+.7f, +.05f + .65f * w / viewModel.MaxWall ?? 50)));
         }
     }
 }
