@@ -29,8 +29,8 @@ namespace Arcomage.Unity.GameScene.Views
                 .OnChangedAndInit(t => TimeText.text = ((int)t).ToString())
                 .OnChangedAndInit(t => TimeText.gameObject.SetActive(t >= 0))
                 .OnChangedAndInit(t => lastUpdateTime = Time.timeSinceLevelLoad)
-                .OnChangedAndInit(t => t > 5, t => TimeText.color = RegularTimeColor)
-                .OnChangedAndInit(t => t <= 5, t => TimeText.color = WarningTimeColor);
+                .OnChangedAndInit(t => t >= 6, t => TimeText.color = RegularTimeColor)
+                .OnChangedAndInit(t => t < 6, t => TimeText.color = WarningTimeColor);
         }
 
         public void OnEnable()
