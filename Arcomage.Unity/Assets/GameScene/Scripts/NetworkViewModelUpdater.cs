@@ -141,6 +141,8 @@ namespace Arcomage.Unity.GameScene.Scripts
             viewModel = viewModel ?? new FinishedMenuViewModel();
             viewModel.Identifier = model.Identifier;
             viewModel.Name = model.WinPlayer;
+            viewModel.IsSingle = false;
+            viewModel.IsNetwork = true;
 
             return viewModel;
         }

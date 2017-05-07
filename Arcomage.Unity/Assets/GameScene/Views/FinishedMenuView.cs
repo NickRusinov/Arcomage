@@ -22,6 +22,9 @@ namespace Arcomage.Unity.GameScene.Views
         [Tooltip("Текст для вывода имени игрока победителя")]
         public LocalizationScript WinnerText;
 
+        [Tooltip("Менеджер сцен")]
+        public UnitySceneManager SceneManager;
+
         protected override void OnViewModel(FinishedMenuViewModel viewModel)
         {
             Bind(viewModel, f => f.Identifier)
@@ -38,6 +41,18 @@ namespace Arcomage.Unity.GameScene.Views
         public void OnShowHandler()
         {
             GameScene.Pause = true;
+        }
+
+        /// <summary>
+        /// Обработчик на кнопку "Заново"
+        /// </summary>
+        public void OnPlayButtonClick()
+        {
+            if (ViewModel.IsSingle)
+                SceneManager.LoadSettingsScene();
+
+            if (ViewModel.IsNetwork)
+                SceneManager.LoadNetworkScene();
         }
     }
 }

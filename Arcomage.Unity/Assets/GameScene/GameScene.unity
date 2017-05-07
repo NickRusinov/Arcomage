@@ -222,10 +222,10 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 1123769161}
   - {fileID: 1158843361}
   - {fileID: 392791849}
   - {fileID: 795604619}
+  - {fileID: 1123769161}
   - {fileID: 1404953115}
   - {fileID: 932443879}
   - {fileID: 233211402}
@@ -6738,7 +6738,7 @@ RectTransform:
   m_Children:
   - {fileID: 2018369888}
   m_Father: {fileID: 15266597}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0.45}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -13247,7 +13247,7 @@ RectTransform:
   - {fileID: 1127235992}
   - {fileID: 1076545282}
   m_Father: {fileID: 15266597}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -15926,6 +15926,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CauseText: {fileID: 651192746}
   WinnerText: {fileID: 1714859312}
+  SceneManager: {fileID: 1871480640}
 --- !u!1 &983070456
 GameObject:
   m_ObjectHideFlags: 0
@@ -18326,7 +18327,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 15266597}
-  m_RootOrder: 0
+  m_RootOrder: 3
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 18}
@@ -20252,7 +20253,7 @@ RectTransform:
   m_Children:
   - {fileID: 901641340}
   m_Father: {fileID: 15266597}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0.45}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -35159,8 +35160,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1871480640}
-        m_MethodName: LoadGameScene
+      - m_Target: {fileID: 957697964}
+        m_MethodName: OnPlayButtonClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

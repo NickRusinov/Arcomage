@@ -10,5 +10,9 @@ namespace Arcomage.Unity.GameScene.ViewModels
         public string Identifier { get; set; }
 
         public string Name { get; set; }
+
+        public bool IsSingle { get; set; }
+
+        public bool IsNetwork { get; set; }
     }
 }
