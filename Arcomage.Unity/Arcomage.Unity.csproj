@@ -64,6 +64,9 @@
     <Reference Include="Arcomage.Domain">
       <HintPath>Assets\Plugins\Arcomage.Domain.dll</HintPath>
     </Reference>
+    <Reference Include="Arcomage.Unity.Framework">
+      <HintPath>Assets\Plugins\Arcomage.Unity.Framework.dll</HintPath>
+    </Reference>
     <Reference Include="Arcomage.WebApi.Client">
       <HintPath>Assets\Plugins\Arcomage.WebApi.Client.dll</HintPath>
     </Reference>
@@ -87,12 +90,6 @@
     </Reference>
     <Reference Include="System.Threading">
       <HintPath>Assets\Plugins\System.Threading.dll</HintPath>
-    </Reference>
-    <Reference Include="Arcomage.Unity.Framework">
-      <HintPath>Assets\Plugins\Arcomage.Unity.Framework.dll</HintPath>
-    </Reference>
-    <Reference Include="Arcomage.Unity.Framework.Android">
-      <HintPath>Assets\Plugins\Android\Arcomage.Unity.Framework.Android.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
