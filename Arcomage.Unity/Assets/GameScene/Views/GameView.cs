@@ -6,10 +6,8 @@ using Arcomage.Domain.Players;
 using Arcomage.Unity.Framework;
 using Arcomage.Unity.Framework.Bindings;
 using Arcomage.Unity.GameScene.ViewModels;
-using SmartLocalization;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.UI;
 
 namespace Arcomage.Unity.GameScene.Views
 {
@@ -43,7 +41,10 @@ namespace Arcomage.Unity.GameScene.Views
         public TimerView Timer;
 
         [Tooltip("Текст для вывода информации для сброса карты")]
-        public Text DiscardOnlyText;
+        public GameObject DiscardOnlyText;
+
+        [Tooltip("Текст для вывода информации о ходе игрока")]
+        public GameObject YouPlayText;
 
         protected override void OnViewModel(GameViewModel viewModel)
         {
@@ -51,8 +52,12 @@ namespace Arcomage.Unity.GameScene.Views
                 .OnChangedAndInit(id => !string.IsNullOrEmpty(id), id => FinishedEvent.Invoke());
 
             Bind(viewModel, g => g.DiscardOnly)
-                .OnChangedAndInit(@do => DiscardOnlyText.gameObject.SetActive(@do > 0 && viewModel.PlayerKind == PlayerKind.First))
-                .OnChangedAndInit(@do => DiscardOnlyText.text = LanguageManager.Instance.GetTextValue("GameDiscardText"));
+                .OnChangedAndInit(@do => DiscardOnlyText.SetActive(@do > 0 && viewModel.PlayerKind == PlayerKind.First))
+                .OnChangedAndInit(@do => YouPlayText.SetActive(@do == 0 && viewModel.PlayerKind == PlayerKind.First));
+
+            Bind(viewModel, g => g.PlayerKind)
+                .OnChangedAndInit(pk => DiscardOnlyText.SetActive(viewModel.DiscardOnly > 0 && pk == PlayerKind.First))
+                .OnChangedAndInit(pk => YouPlayText.SetActive(viewModel.DiscardOnly == 0 && pk == PlayerKind.First));
 
             LeftResources.ViewModel = viewModel.LeftResources;
             RightResources.ViewModel = viewModel.RightResources;

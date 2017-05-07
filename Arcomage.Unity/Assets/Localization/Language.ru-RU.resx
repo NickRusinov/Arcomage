@@ -767,6 +767,9 @@
 	<data name="GameFinishedWinnerText" xml:space="preserve">
 		<value>Победил {0}</value>
 	</data>
+	<data name="GameYouPlayText" xml:space="preserve">
+		<value>Ваш ход</value>
+	</data>
 	<data name="MenuExitButtonText" xml:space="preserve">
 		<value>Выход</value>
 	</data>

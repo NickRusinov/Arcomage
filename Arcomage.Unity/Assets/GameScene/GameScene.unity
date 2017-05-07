@@ -154,7 +154,8 @@ MonoBehaviour:
   History: {fileID: 914533527}
   Hand: {fileID: 991833533}
   Timer: {fileID: 1750642223}
-  DiscardOnlyText: {fileID: 1123769159}
+  DiscardOnlyText: {fileID: 1123769158}
+  YouPlayText: {fileID: 100896626}
 --- !u!114 &15266594
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -226,6 +227,7 @@ RectTransform:
   - {fileID: 392791849}
   - {fileID: 795604619}
   - {fileID: 1123769161}
+  - {fileID: 100896627}
   - {fileID: 1404953115}
   - {fileID: 932443879}
   - {fileID: 233211402}
@@ -511,6 +513,94 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 20
+--- !u!1 &100896626
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 100896627}
+  - 222: {fileID: 100896630}
+  - 114: {fileID: 100896629}
+  - 114: {fileID: 100896628}
+  m_Layer: 5
+  m_Name: YouPlayText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &100896627
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 100896626}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 15266597}
+  m_RootOrder: 4
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 10}
+  m_SizeDelta: {x: 720, y: 72}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &100896628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 100896626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 223b02a34eacaa84dac67caede6a19a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  identifier: GameYouPlayText
+  arguments: []
+--- !u!114 &100896629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 100896626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.2794118, g: 0.041089974, b: 0.041089974, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 1fc3d773b0c16aa46a42e3f30ea6cc56, type: 3}
+    m_FontSize: 42
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 3
+    m_MaxSize: 60
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: "\u0412\u0430\u0448 \u0445\u043E\u0434"
+--- !u!222 &100896630
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 100896626}
 --- !u!1 &114997336
 GameObject:
   m_ObjectHideFlags: 0
@@ -644,7 +734,7 @@ RectTransform:
   - {fileID: 1615748781}
   - {fileID: 659193505}
   m_Father: {fileID: 15266597}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_AnchorMin: {x: 0.3, y: 0.6}
   m_AnchorMax: {x: 0.42, y: 0.95}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -6245,7 +6335,7 @@ RectTransform:
   - {fileID: 100436330}
   - {fileID: 361948885}
   m_Father: {fileID: 15266597}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_AnchorMin: {x: 0, y: 0.45}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 2.9999886}
@@ -8823,8 +8913,18 @@ MonoBehaviour:
   - GameFinishedTowerBuildText
   - GameFinishedTowerDestroyText
   - GameFinishedWinnerText
+  - GameYouPlayText
   - MenuExitButtonText
-  - MenuPlayButtonText
+  - MenuNetworkPlayButtonText
+  - MenuSinglePlayButtonText
+  - NetworkBackButtonText
+  - NetworkConnectingContinueText
+  - NetworkConnectingStartNewText
+  - NetworkConnectingText
+  - NetworkConnectText
+  - NetworkFailureConnectText
+  - NetworkFailureVersionText
+  - NetworkPrepareText
   - RuleEastRiverDescription
   - RuleEastRiverName
   - RuleEmpireCapitalDescription
@@ -10681,6 +10781,14 @@ MonoBehaviour:
     overrideLocalizedObject: 0
     overrideObjectLanguageCode: 
   - objectType: 0
+    textValue: "\u0412\u0430\u0448 \u0445\u043E\u0434"
+    thisGameObject: {fileID: 0}
+    thisAudioClip: {fileID: 0}
+    thisTexture: {fileID: 0}
+    thisTextAsset: {fileID: 0}
+    overrideLocalizedObject: 0
+    overrideObjectLanguageCode: 
+  - objectType: 0
     textValue: "\u0412\u044B\u0445\u043E\u0434"
     thisGameObject: {fileID: 0}
     thisAudioClip: {fileID: 0}
@@ -10689,7 +10797,84 @@ MonoBehaviour:
     overrideLocalizedObject: 0
     overrideObjectLanguageCode: 
   - objectType: 0
-    textValue: "\u0418\u0433\u0440\u0430\u0442\u044C"
+    textValue: "\u0421\u0435\u0442\u0435\u0432\u0430\u044F \u0438\u0433\u0440\u0430"
+    thisGameObject: {fileID: 0}
+    thisAudioClip: {fileID: 0}
+    thisTexture: {fileID: 0}
+    thisTextAsset: {fileID: 0}
+    overrideLocalizedObject: 0
+    overrideObjectLanguageCode: 
+  - objectType: 0
+    textValue: "\u041E\u0434\u0438\u043D\u043E\u0447\u043D\u0430\u044F \u0438\u0433\u0440\u0430"
+    thisGameObject: {fileID: 0}
+    thisAudioClip: {fileID: 0}
+    thisTexture: {fileID: 0}
+    thisTextAsset: {fileID: 0}
+    overrideLocalizedObject: 0
+    overrideObjectLanguageCode: 
+  - objectType: 0
+    textValue: "\u041D\u0430\u0437\u0430\u0434"
+    thisGameObject: {fileID: 0}
+    thisAudioClip: {fileID: 0}
+    thisTexture: {fileID: 0}
+    thisTextAsset: {fileID: 0}
+    overrideLocalizedObject: 0
+    overrideObjectLanguageCode: 
+  - objectType: 0
+    textValue: "\u041F\u043E\u0434\u043A\u043B\u044E\u0447\u0438\u0442\u044C\u0441\u044F"
+    thisGameObject: {fileID: 0}
+    thisAudioClip: {fileID: 0}
+    thisTexture: {fileID: 0}
+    thisTextAsset: {fileID: 0}
+    overrideLocalizedObject: 0
+    overrideObjectLanguageCode: 
+  - objectType: 0
+    textValue: "\u0421\u043E\u0437\u0434\u0430\u0442\u044C \u043D\u043E\u0432\u0443\u044E"
+    thisGameObject: {fileID: 0}
+    thisAudioClip: {fileID: 0}
+    thisTexture: {fileID: 0}
+    thisTextAsset: {fileID: 0}
+    overrideLocalizedObject: 0
+    overrideObjectLanguageCode: 
+  - objectType: 0
+    textValue: "\u041F\u043E\u0434\u043A\u043B\u044E\u0447\u0438\u0442\u044C\u0441\u044F
+      \u043A \u0438\u0433\u0440\u0435 \u0438\u043B\u0438 \u0441\u043E\u0437\u0434\u0430\u0442\u044C
+      \u043D\u043E\u0432\u0443\u044E?"
+    thisGameObject: {fileID: 0}
+    thisAudioClip: {fileID: 0}
+    thisTexture: {fileID: 0}
+    thisTextAsset: {fileID: 0}
+    overrideLocalizedObject: 0
+    overrideObjectLanguageCode: 
+  - objectType: 0
+    textValue: "\u0418\u0434\u0435\u0442 \u0441\u043E\u0435\u0434\u0438\u043D\u0435\u043D\u0438\u0435
+      \u0441 \u0441\u0435\u0440\u0432\u0435\u0440\u043E\u043C..."
+    thisGameObject: {fileID: 0}
+    thisAudioClip: {fileID: 0}
+    thisTexture: {fileID: 0}
+    thisTextAsset: {fileID: 0}
+    overrideLocalizedObject: 0
+    overrideObjectLanguageCode: 
+  - objectType: 0
+    textValue: "\u041E\u0448\u0438\u0431\u043A\u0430 \u0441\u043E\u0435\u0434\u0438\u043D\u0435\u043D\u0438\u044F
+      \u0441 \u0441\u0435\u0440\u0432\u0435\u0440\u043E\u043C =("
+    thisGameObject: {fileID: 0}
+    thisAudioClip: {fileID: 0}
+    thisTexture: {fileID: 0}
+    thisTextAsset: {fileID: 0}
+    overrideLocalizedObject: 0
+    overrideObjectLanguageCode: 
+  - objectType: 0
+    textValue: "\u0422\u0440\u0435\u0431\u0443\u0435\u0442\u0441\u044F \u043E\u0431\u043D\u043E\u0432\u043B\u0435\u043D\u0438\u0435
+      \u043F\u0440\u0438\u043B\u043E\u0436\u0435\u043D\u0438\u044F =("
+    thisGameObject: {fileID: 0}
+    thisAudioClip: {fileID: 0}
+    thisTexture: {fileID: 0}
+    thisTextAsset: {fileID: 0}
+    overrideLocalizedObject: 0
+    overrideObjectLanguageCode: 
+  - objectType: 0
+    textValue: "\u041F\u043E\u0438\u0441\u043A \u0438\u0433\u0440\u043E\u043A\u043E\u0432..."
     thisGameObject: {fileID: 0}
     thisAudioClip: {fileID: 0}
     thisTexture: {fileID: 0}
@@ -15546,7 +15731,7 @@ RectTransform:
   - {fileID: 1568438138}
   - {fileID: 1331030786}
   m_Father: {fileID: 15266597}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -15665,7 +15850,7 @@ RectTransform:
   - {fileID: 88584784}
   - {fileID: 1179509127}
   m_Father: {fileID: 15266597}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_AnchorMin: {x: 1, y: 0.45}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: -0.000030517578}
@@ -16052,7 +16237,7 @@ RectTransform:
   - {fileID: 928476727}
   - {fileID: 795746807}
   m_Father: {fileID: 15266597}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -16128,7 +16313,7 @@ RectTransform:
   - {fileID: 944654438}
   - {fileID: 1902208362}
   m_Father: {fileID: 15266597}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_AnchorMin: {x: 1, y: 0.45}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 2.9999695}
@@ -18269,6 +18454,7 @@ GameObject:
   - 224: {fileID: 1123769161}
   - 222: {fileID: 1123769160}
   - 114: {fileID: 1123769159}
+  - 114: {fileID: 1123769162}
   m_Layer: 5
   m_Name: DiscardOnlyText
   m_TagString: Untagged
@@ -18330,9 +18516,22 @@ RectTransform:
   m_RootOrder: 3
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 18}
+  m_AnchoredPosition: {x: 0, y: 10}
   m_SizeDelta: {x: 720, y: 72}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1123769162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1123769158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 223b02a34eacaa84dac67caede6a19a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  identifier: GameDiscardText
+  arguments: []
 --- !u!1 &1127235991
 GameObject:
   m_ObjectHideFlags: 0
@@ -27918,7 +28117,7 @@ RectTransform:
   - {fileID: 1851643824}
   - {fileID: 642122566}
   m_Father: {fileID: 15266597}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_AnchorMin: {x: 0, y: 0.45}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: -0.000011444092}
@@ -28895,7 +29094,7 @@ RectTransform:
   m_Children:
   - {fileID: 1751735546}
   m_Father: {fileID: 15266597}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_AnchorMin: {x: 0.3, y: 0.6}
   m_AnchorMax: {x: 0.42, y: 0.95}
   m_AnchoredPosition: {x: 0.000011444092, y: -0.000022888184}

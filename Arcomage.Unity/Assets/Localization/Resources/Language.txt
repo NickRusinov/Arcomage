@@ -779,6 +779,12 @@
 	<data name="NetworkBackButtonText" xml:space="preserve">
 		<value>Back</value>
 	</data>
+	<data name="NetworkConnectingContinueText" xml:space="preserve">
+		<value>Continue</value>
+	</data>
+	<data name="NetworkConnectingStartNewText" xml:space="preserve">
+		<value>Start new</value>
+	</data>
 	<data name="NetworkConnectingText" xml:space="preserve">
 		<value>Continue existing game or start new game?</value>
 	</data>
@@ -842,10 +848,7 @@
 	<data name="SettingsSecondPlayerText" xml:space="preserve">
 		<value>Player's name #2</value>
 	</data>
-	<data name="NetworkConnectingContinueText" xml:space="preserve">
-		<value>Continue</value>
-	</data>
-	<data name="NetworkConnectingStartNewText" xml:space="preserve">
-		<value>Start new</value>
+	<data name="GameYouPlayText" xml:space="preserve">
+		<value>Play</value>
 	</data>
 </root>
