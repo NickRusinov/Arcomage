@@ -24,7 +24,9 @@ namespace Arcomage.Unity.GameScene.ViewModels
 
         public TimerViewModel Timer { get; set; }
 
-        public PlayerKind PlayerKind { get; set; }
+        public PlayerKind CurrentPlayerKind { get; set; }
+
+        public PlayerKind UserPlayerKind { get; set; }
 
         public int DiscardOnly { get; set; }
 

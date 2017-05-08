@@ -32,14 +32,15 @@ namespace Arcomage.Unity.GameScene.Scripts
         {
             viewModel = viewModel ?? new GameViewModel();
             viewModel.LeftBuildings = Update(viewModel.LeftBuildings, model.FirstPlayer.Buildings);
-            viewModel.LeftResources = Update(viewModel.LeftResources, model.FirstPlayer.Resources, model.FirstPlayer);
+            viewModel.LeftResources = Update(viewModel.LeftResources, model.FirstPlayer.Resources, model.FirstPlayer); // TODO
             viewModel.RightBuildings = Update(viewModel.RightBuildings, model.SecondPlayer.Buildings);
-            viewModel.RightResources = Update(viewModel.RightResources, model.SecondPlayer.Resources, model.SecondPlayer);
+            viewModel.RightResources = Update(viewModel.RightResources, model.SecondPlayer.Resources, model.SecondPlayer); // TODO
             viewModel.FinishedMenu = Update(viewModel.FinishedMenu, model.Result ?? new GameModel.ResultModel());
             viewModel.Hand = Update(viewModel.Hand, model.Hand);
             viewModel.History = Update(viewModel.History, model.History);
             viewModel.Timer = Update(viewModel.Timer, model.Timer);
-            viewModel.PlayerKind = PlayerKind.First; // TODO
+            viewModel.CurrentPlayerKind = (PlayerKind)model.CurrentPlayerKind;
+            viewModel.UserPlayerKind = (PlayerKind)model.UserPlayerKind;
             viewModel.DiscardOnly = model.DiscardOnly;
             viewModel.PlayAgain = model.PlayAgain;
 

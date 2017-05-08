@@ -12,13 +12,13 @@ namespace Arcomage.Network.Handlers
 {
     public class CreateGameRequestHandler : IAsyncRequestHandler<CreateGameRequest, GameContext>
     {
-        private readonly GameBuilder gameBuilder;
+        private readonly GameBuilder<GameContext> gameBuilder;
 
         private readonly IGameRepository gameRepository;
 
         private readonly IGameContextRepository gameContextRepository;
 
-        public CreateGameRequestHandler(GameBuilder gameBuilder, IGameRepository gameRepository, IGameContextRepository gameContextRepository)
+        public CreateGameRequestHandler(GameBuilder<GameContext> gameBuilder, IGameRepository gameRepository, IGameContextRepository gameContextRepository)
         {
             this.gameBuilder = gameBuilder;
             this.gameRepository = gameRepository;
@@ -28,7 +28,7 @@ namespace Arcomage.Network.Handlers
         public async Task<GameContext> Handle(CreateGameRequest message)
         {
             var gameContext = GameContext.New(message.FirstUserContext, message.SecondUserContext);
-            var gameBuilderContext = gameBuilder.CreateContext();
+            var gameBuilderContext = gameBuilder.CreateContext(gameContext);
             var game = gameBuilderContext.Resolve<Game>();
 
             if (!await gameContextRepository.Add(gameContext))

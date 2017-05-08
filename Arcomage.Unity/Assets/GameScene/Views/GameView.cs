@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Arcomage.Domain.Players;
 using Arcomage.Unity.Framework;
 using Arcomage.Unity.Framework.Bindings;
 using Arcomage.Unity.GameScene.ViewModels;
@@ -52,12 +51,12 @@ namespace Arcomage.Unity.GameScene.Views
                 .OnChangedAndInit(id => !string.IsNullOrEmpty(id), id => FinishedEvent.Invoke());
 
             Bind(viewModel, g => g.DiscardOnly)
-                .OnChangedAndInit(@do => DiscardOnlyText.SetActive(@do > 0 && viewModel.PlayerKind == PlayerKind.First))
-                .OnChangedAndInit(@do => YouPlayText.SetActive(@do == 0 && viewModel.PlayerKind == PlayerKind.First));
+                .OnChangedAndInit(@do => DiscardOnlyText.SetActive(@do > 0 && viewModel.CurrentPlayerKind == viewModel.UserPlayerKind))
+                .OnChangedAndInit(@do => YouPlayText.SetActive(@do == 0 && viewModel.CurrentPlayerKind == viewModel.UserPlayerKind));
 
-            Bind(viewModel, g => g.PlayerKind)
-                .OnChangedAndInit(pk => DiscardOnlyText.SetActive(viewModel.DiscardOnly > 0 && pk == PlayerKind.First))
-                .OnChangedAndInit(pk => YouPlayText.SetActive(viewModel.DiscardOnly == 0 && pk == PlayerKind.First));
+            Bind(viewModel, g => g.CurrentPlayerKind)
+                .OnChangedAndInit(pk => DiscardOnlyText.SetActive(viewModel.DiscardOnly > 0 && pk == viewModel.UserPlayerKind))
+                .OnChangedAndInit(pk => YouPlayText.SetActive(viewModel.DiscardOnly == 0 && pk == viewModel.UserPlayerKind));
 
             LeftResources.ViewModel = viewModel.LeftResources;
             RightResources.ViewModel = viewModel.RightResources;

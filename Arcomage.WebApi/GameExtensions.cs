@@ -45,5 +45,16 @@ namespace Arcomage.WebApi
 
             return "";
         }
+
+        public static PlayerKind GetPlayerKind(this GameContext gameContext, UserContext userContext)
+        {
+            if (gameContext.FirstUser.Id == userContext.Id)
+                return PlayerKind.First;
+
+            if (gameContext.SecondUser.Id == userContext.Id)
+                return PlayerKind.Second;
+
+            throw new InvalidOperationException();
+        }
     }
 }

@@ -22,33 +22,35 @@ namespace Arcomage.Unity.Configuration
         /// </summary>
         protected override void Load(ContainerBuilder builder)
         {
-            builder.Register(c => ResolveGameBuilder(c.Resolve<SingleSettings>()))
+            builder.Register(c => 
+                GameBuilderExtensions.GetDefault<SingleSettings>()
+                    .RegisterFirstHumanPlayer("FirstFirstPlayer")
+                    .RegisterSecondComputerPlayer("FirstSecondPlayer")
+                    .RegisterFirstComputerPlayer("SecondFirstPlayer")
+                    .RegisterSecondHumanPlayer("SecondSecondPlayer")
+                    .RegisterFixedTimer(null, s => TimeSpan.FromSeconds(30))
+                    .RegisterPlayerSet(null, s => new Random().Next(100) < 50 ? PlayerKind.First : PlayerKind.Second)
+                    .RegisterClassicRule(null, s => (ClassicRuleInfo)s.Rule)
+                    .RegisterClassicDeck("ClassicDeck", s => (ClassicDeckInfo)s.Deck)
+                    .RegisterInfinityDeck("InfinityDeck", s => (InfinityDeckInfo)s.Deck)
+                    .WithFirstPlayer(s => s.PlayerKind + "FirstPlayer")
+                    .WithSecondPlayer(s => s.PlayerKind + "SecondPlayer")
+                    .With(typeof(Deck), s => s.Deck.Identifier + "Deck"))
+                .SingleInstance();
+
+            builder.Register(c => c.Resolve<SingleSettings>().GameBuilderContext ?? 
+                    c.Resolve<GameBuilder<SingleSettings>>().CreateContext(c.Resolve<SingleSettings>()))
                 .InstancePerLifetimeScope();
 
-            builder.Register(c => c.Resolve<SingleSettings>().GameBuilderContext ?? c.Resolve<GameBuilder>().CreateContext())
+            builder.Register(c => c.Resolve<GameBuilderContext<SingleSettings>>().Resolve<Game>())
                 .InstancePerLifetimeScope();
 
-            builder.Register(c => c.Resolve<GameBuilderContext>().Resolve<Game>())
+            builder.Register(c => c.Resolve<GameBuilderContext<SingleSettings>>().Resolve<IPlayAction>())
                 .InstancePerLifetimeScope();
 
-            builder.Register(c => c.Resolve<GameBuilderContext>().Resolve<IPlayAction>())
+            builder.Register(c => c.Resolve<Game>().Players.FirstPlayer as HumanPlayer ?? 
+                    c.Resolve<Game>().Players.SecondPlayer as HumanPlayer)
                 .InstancePerLifetimeScope();
-
-            builder.Register(c => (HumanPlayer)c.Resolve<Game>().Players.FirstPlayer)
-                .InstancePerLifetimeScope();
-        }
-
-        private static GameBuilder ResolveGameBuilder(SingleSettings settings)
-        {
-            return GameBuilderExtensions.GetDefault()
-                .RegisterFirstHumanPlayer(null)
-                .RegisterSecondComputerPlayer(null)
-                .RegisterFixedTimer(null, () => TimeSpan.FromSeconds(30))
-                .RegisterPlayerSet(null, () => new Random().Next(100) < 50 ? PlayerKind.First : PlayerKind.Second)
-                .RegisterClassicRule(null, () => (ClassicRuleInfo)settings.Rule)
-                .RegisterClassicDeck("ClassicDeck", () => (ClassicDeckInfo)settings.Deck)
-                .RegisterInfinityDeck("InfinityDeck", () => (InfinityDeckInfo)settings.Deck)
-                .With<Deck>(() => settings.Deck.Identifier + "Deck");
         }
     }
 }

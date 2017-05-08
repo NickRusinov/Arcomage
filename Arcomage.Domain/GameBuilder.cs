@@ -5,12 +5,27 @@ using System.Text;
 
 namespace Arcomage.Domain
 {
-    public class GameBuilder
+    /// <summary>
+    /// Строитель, предназначенный для построения объектов игровой логики
+    /// </summary>
+    /// <typeparam name="TState">Тип параметра для конфигурации объектов игровой логики</typeparam>
+    public class GameBuilder<TState>
     {
-        private readonly Dictionary<KeyValuePair<Type, string>, Func<GameBuilderContext, object>> registry =
-            new Dictionary<KeyValuePair<Type, string>, Func<GameBuilderContext, object>>();
+        /// <summary>
+        /// Хранилище зарегистрированных функций для построения объектов игровой логики
+        /// </summary>
+        private readonly Dictionary<KeyValuePair<Type, string>, Func<GameBuilderContext<TState>, object>> registry =
+            new Dictionary<KeyValuePair<Type, string>, Func<GameBuilderContext<TState>, object>>();
 
-        public GameBuilder Register(Type type, string key, Func<GameBuilderContext, object> factory)
+        /// <summary>
+        /// Регистрирует функцию для построения объекта игровой логики <paramref name="factory"/> с типом 
+        /// <paramref name="type"/>и ключом <paramref name="type"/>
+        /// </summary>
+        /// <param name="type">Тип регистрируемого объекта игровой логики</param>
+        /// <param name="key">Ключ для регистрации объекта игровой логики</param>
+        /// <param name="factory">Функция для построения объекта игровой логики</param>
+        /// <returns>Текущий строитель</returns>
+        public GameBuilder<TState> Register(Type type, string key, Func<GameBuilderContext<TState>, object> factory)
         {
             var keyValuePair = new KeyValuePair<Type, string>(type, key);
 
@@ -19,24 +34,51 @@ namespace Arcomage.Domain
             return this;
         }
 
-        public GameBuilder Register(Type type, Func<GameBuilderContext, object> factory)
+        /// <summary>
+        /// Региструет функцию для построения объекта игровой логики <paramref name="factory"/> с типом 
+        /// <paramref name="type"/> и ключом по умолчанию
+        /// </summary>
+        /// <param name="type">Тип регистрируемого объекта игровой логики</param>
+        /// <param name="factory">Функция для построения объекта игровой логики</param>
+        /// <returns>Текущий строитель</returns>
+        public GameBuilder<TState> Register(Type type, Func<GameBuilderContext<TState>, object> factory)
         {
             return Register(type, null, factory);
         }
 
-        public GameBuilder Register<T>(string key, Func<GameBuilderContext, T> factory)
+        /// <summary>
+        /// Регистрирует функцию для построения объекта игровой логики <paramref name="factory"/> с типом
+        /// <typeparamref name="T"/> и ключом <paramref name="key"/>
+        /// </summary>
+        /// <typeparam name="T">Тип регистрируемого объекта игровой логики</typeparam>
+        /// <param name="key">Ключ для регистрации объекта игровой логики</param>
+        /// <param name="factory">Функция для построения объекта игровой логики</param>
+        /// <returns>Текущий строитель</returns>
+        public GameBuilder<TState> Register<T>(string key, Func<GameBuilderContext<TState>, T> factory)
         {
             return Register(typeof(T), key, c => factory(c));
         }
 
-        public GameBuilder Register<T>(Func<GameBuilderContext, T> factory)
+        /// <summary>
+        /// Регистрирует функцию для построения объекта игровой логики <paramref name="factory"/> с типом
+        /// <typeparamref name="T"/> и ключом по умолчанию
+        /// </summary>
+        /// <typeparam name="T">Тип регистрируемого объекта игровой логики</typeparam>
+        /// <param name="factory">Функция для построения объекта игровой логики</param>
+        /// <returns>Текущий строитель</returns>
+        public GameBuilder<TState> Register<T>(Func<GameBuilderContext<TState>, T> factory)
         {
             return Register(typeof(T), null, c => factory(c));
         }
 
-        public GameBuilderContext CreateContext()
+        /// <summary>
+        /// Создает экземпляр класса для создания объектов игровой логики в одной области
+        /// </summary>
+        /// <param name="state">Параметр для конфигурации объектов игровой логики</param>
+        /// <returns>Экземпляр класса для создания объектов игровой логики в одной области</returns>
+        public GameBuilderContext<TState> CreateContext(TState state)
         {
-            return new GameBuilderContext(registry);
+            return new GameBuilderContext<TState>(registry, state);
         }
     }
 }

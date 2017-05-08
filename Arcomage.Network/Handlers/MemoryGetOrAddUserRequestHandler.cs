@@ -23,7 +23,7 @@ namespace Arcomage.Network.Handlers
         {
             var userContext = userStorage.Values
                 .Where(uc => string.Equals(uc.Name, message.Name, OrdinalIgnoreCase))
-                .SingleOrDefault() ?? UserContext.New(message.Name);
+                .SingleOrDefault() ?? UserContext.New(message.Name, message.Kind);
 
             return userStorage.GetOrAdd(userContext.Id, userContext);
         }

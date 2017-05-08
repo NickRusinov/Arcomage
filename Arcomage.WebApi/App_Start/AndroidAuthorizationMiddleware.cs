@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Threading.Tasks;
+using Arcomage.Network;
 using Arcomage.Network.Requests;
 using Autofac;
 using MediatR;
@@ -34,7 +35,8 @@ namespace Arcomage.WebApi
                 using (var innerLifetimeScope = lifetimeScope.BeginLifetimeScope())
                 {
                     var mediator = innerLifetimeScope.Resolve<IMediator>();
-                    var userContext = await mediator.Send(new GetOrAddUserRequest(authenticate));
+                    var getOrAddUserRequest = new GetOrAddUserRequest(authenticate, UserKind.Human);
+                    var userContext = await mediator.Send(getOrAddUserRequest);
 
                     var applicationIdentity = new ApplicationIdentity(userContext);
                     var applicationPrincipal = new ApplicationPrincipal(applicationIdentity);

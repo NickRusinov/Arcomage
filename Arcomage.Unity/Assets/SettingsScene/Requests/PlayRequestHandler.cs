@@ -12,9 +12,9 @@ namespace Arcomage.Unity.SettingsScene.Requests
     {
         private readonly SingleSettings singleSettings;
 
-        private readonly GameBuilder gameBuilder;
+        private readonly GameBuilder<SingleSettings> gameBuilder;
 
-        public PlayRequestHandler(SingleSettings singleSettings, GameBuilder gameBuilder)
+        public PlayRequestHandler(SingleSettings singleSettings, GameBuilder<SingleSettings> gameBuilder)
         {
             this.singleSettings = singleSettings;
             this.gameBuilder = gameBuilder;
@@ -22,7 +22,7 @@ namespace Arcomage.Unity.SettingsScene.Requests
 
         public void Handle(PlayRequest message)
         {
-            singleSettings.GameBuilderContext = gameBuilder.CreateContext();
+            singleSettings.GameBuilderContext = gameBuilder.CreateContext(singleSettings);
         }
     }
 }

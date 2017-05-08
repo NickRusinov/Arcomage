@@ -32,7 +32,7 @@ namespace Arcomage.WebApi.Controllers
             var game = await gameRepository.GetById(gameContext.Id) ??
                 throw new HttpException();
 
-            return Mapper.Map<GameModel>((gameContext, game));
+            return Mapper.Map<GameModel>((gameContext, Identity.UserContext, game));
         }
     }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Arcomage.Domain;
 using Arcomage.Domain.Decks;
+using Arcomage.Domain.Players;
 using Arcomage.Domain.Rules;
 using SmartLocalization;
 
@@ -19,6 +20,8 @@ namespace Arcomage.Unity.Shared.Scripts
 
         public DeckInfo Deck = new ClassicDeckInfo("Classic", new Random());
 
-        public GameBuilderContext GameBuilderContext { get; set; }
+        public PlayerKind PlayerKind = PlayerKind.First;
+
+        public GameBuilderContext<SingleSettings> GameBuilderContext { get; set; }
     }
 }

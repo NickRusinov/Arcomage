@@ -18,6 +18,10 @@ namespace Arcomage.WebApi.Models.Game
 
         public ResultModel Result { get; set; }
 
+        public int CurrentPlayerKind { get; set; }
+
+        public int UserPlayerKind { get; set; }
+
         public int DiscardOnly { get; set; }
 
         public int PlayAgain { get; set; }

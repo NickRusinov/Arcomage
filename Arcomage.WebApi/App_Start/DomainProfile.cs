@@ -20,14 +20,16 @@ namespace Arcomage.WebApi
     {
         public DomainProfile()
         {
-            CreateMap<(GameContext c, Game g), GameModel>()
+            CreateMap<(GameContext c, UserContext u, Game g), GameModel>()
                 .ForMember(m => m.FirstPlayer, exp => exp.ResolveUsing(t => (t.c.FirstUser, t.g.Players.FirstPlayer)))
                 .ForMember(m => m.SecondPlayer, exp => exp.ResolveUsing(t => (t.c.SecondUser, t.g.Players.SecondPlayer)))
                 .ForMember(m => m.History, exp => exp.ResolveUsing(t => t.g.History))
-                .ForMember(m => m.Hand, exp => exp.ResolveUsing(t => (t.g, t.g.Players.FirstPlayer, t.g.Players.FirstPlayer.Hand)))
+                .ForMember(m => m.Hand, exp => exp.ResolveUsing(t => (t.g, t.g.Players[t.c.GetPlayerKind(t.u)], t.g.Players[t.c.GetPlayerKind(t.u)].Hand)))
                 .ForMember(m => m.Timer, exp => exp.ResolveUsing(t => t.g.Timer))
                 .ForMember(m => m.Result, exp => exp.ResolveUsing(t => (t.c, t.g.Rule.IsWin(t.g))))
                 .ForMember(m => m.Result, exp => exp.PreCondition(t => t.g.Rule.IsWin(t.g)))
+                .ForMember(m => m.CurrentPlayerKind, exp => exp.ResolveUsing(t => t.g.Players.Kind))
+                .ForMember(m => m.UserPlayerKind, exp => exp.ResolveUsing(t => t.c.GetPlayerKind(t.u)))
                 .ForMember(m => m.PlayAgain, exp => exp.MapFrom(t => t.g.PlayAgain))
                 .ForMember(m => m.DiscardOnly, exp => exp.MapFrom(t => t.g.DiscardOnly))
                 .ForMember(m => m.Version, exp => exp.MapFrom(t => t.c.Version));

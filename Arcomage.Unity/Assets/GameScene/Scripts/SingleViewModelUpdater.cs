@@ -36,15 +36,16 @@ namespace Arcomage.Unity.GameScene.Scripts
         private GameViewModel Update(GameViewModel viewModel, Game game, ClassicRuleInfo ruleInfo)
         {
             viewModel = viewModel ?? new GameViewModel();
-            viewModel.LeftBuildings = Update(viewModel.LeftBuildings, game.Players.FirstPlayer.Buildings, ruleInfo);
-            viewModel.LeftResources = Update(viewModel.LeftResources, game.Players.FirstPlayer.Resources, PlayerKind.First);
-            viewModel.RightBuildings = Update(viewModel.RightBuildings, game.Players.SecondPlayer.Buildings, ruleInfo);
-            viewModel.RightResources = Update(viewModel.RightResources, game.Players.SecondPlayer.Resources, PlayerKind.Second);
+            viewModel.LeftBuildings = Update(viewModel.LeftBuildings, game.Players[settings.PlayerKind].Buildings, ruleInfo);
+            viewModel.LeftResources = Update(viewModel.LeftResources, game.Players[settings.PlayerKind].Resources, settings.PlayerKind);
+            viewModel.RightBuildings = Update(viewModel.RightBuildings, game.Players[PlayerSet.NextPlayerKind(settings.PlayerKind)].Buildings, ruleInfo);
+            viewModel.RightResources = Update(viewModel.RightResources, game.Players[PlayerSet.NextPlayerKind(settings.PlayerKind)].Resources, PlayerSet.NextPlayerKind(settings.PlayerKind));
             viewModel.FinishedMenu = Update(viewModel.FinishedMenu, game);
-            viewModel.Hand = Update(viewModel.Hand, game, game.Players.FirstPlayer, game.Players.FirstPlayer.Hand);
+            viewModel.Hand = Update(viewModel.Hand, game, game.Players[settings.PlayerKind], game.Players[settings.PlayerKind].Hand);
             viewModel.History = Update(viewModel.History, game.History);
             viewModel.Timer = Update(viewModel.Timer, game.Timer);
-            viewModel.PlayerKind = game.Players.Kind;
+            viewModel.CurrentPlayerKind = game.Players.Kind;
+            viewModel.UserPlayerKind = settings.PlayerKind;
             viewModel.DiscardOnly = game.DiscardOnly;
             viewModel.PlayAgain = game.PlayAgain;
 

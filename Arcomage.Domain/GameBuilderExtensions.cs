@@ -14,11 +14,14 @@ using Arcomage.Domain.Timers;
 
 namespace Arcomage.Domain
 {
+    /// <summary>
+    /// Методы расширения для конфигурации строителя, предназначенного для создания объектов игровой логики
+    /// </summary>
     public static class GameBuilderExtensions
     {
-        public static GameBuilder GetDefault()
+        public static GameBuilder<T> GetDefault<T>()
         {
-            return new GameBuilder()
+            return new GameBuilder<T>()
                 .RegisterGame(null)
                 .RegisterPlayAction(null)
                 .RegisterAllCard(null)
@@ -27,18 +30,18 @@ namespace Arcomage.Domain
                 .RegisterSecondHumanPlayer(null)
                 .RegisterArtificialIntelligence(null)
                 .RegisterInfinityTimer(null)
-                .RegisterPlayerSet(null, () => PlayerKind.First)
-                .RegisterClassicRule(null, () => new ClassicRuleInfo("Classic", 2, 5, 2, 5, 2, 5, 5, 20, 50, 150))
-                .RegisterClassicDeck(null, () => new ClassicDeckInfo("Classic", new Random()));
+                .RegisterPlayerSet(null, _ => PlayerKind.First)
+                .RegisterClassicRule(null, _ => new ClassicRuleInfo("Classic", 2, 5, 2, 5, 2, 5, 5, 20, 50, 150))
+                .RegisterClassicDeck(null, _ => new ClassicDeckInfo("Classic", new Random()));
         }
 
-        public static GameBuilder With<T>(this GameBuilder builder, Func<string> keySelector)
+        public static GameBuilder<T> With<T>(this GameBuilder<T> builder, Type type, Func<T, string> keySelector)
         {
             return builder.Register(b =>
-                b.Resolve<T>(keySelector.Invoke()));
+                b.Resolve(type, keySelector.Invoke(b.State)));
         }
 
-        public static GameBuilder RegisterGame(this GameBuilder builder, string key)
+        public static GameBuilder<T> RegisterGame<T>(this GameBuilder<T> builder, string key)
         {
             return builder.Register(b => 
                 new Game(
@@ -50,25 +53,25 @@ namespace Arcomage.Domain
                     b.Resolve<Timer>()));
         }
 
-        public static GameBuilder RegisterClassicRule(this GameBuilder builder, string key, Func<ClassicRuleInfo> ruleInfoFactory)
+        public static GameBuilder<T> RegisterClassicRule<T>(this GameBuilder<T> builder, string key, Func<T, ClassicRuleInfo> ruleInfoFactory)
         {
             return builder.Register<Rule>(key, b =>
-                new ClassicRule(ruleInfoFactory.Invoke()));
+                new ClassicRule(ruleInfoFactory.Invoke(b.State)));
         }
 
-        public static GameBuilder RegisterClassicDeck(this GameBuilder builder, string key, Func<ClassicDeckInfo> ruleInfoFactory)
+        public static GameBuilder<T> RegisterClassicDeck<T>(this GameBuilder<T> builder, string key, Func<T, ClassicDeckInfo> ruleInfoFactory)
         {
             return builder.Register<Deck>(key, b =>
-                new ClassicDeck(ruleInfoFactory.Invoke(), b.Resolve<ICollection<Card>>()));
+                new ClassicDeck(ruleInfoFactory.Invoke(b.State), b.Resolve<ICollection<Card>>()));
         }
 
-        public static GameBuilder RegisterInfinityDeck(this GameBuilder builder, string key, Func<InfinityDeckInfo> ruleInfoFactory)
+        public static GameBuilder<T> RegisterInfinityDeck<T>(this GameBuilder<T> builder, string key, Func<T, InfinityDeckInfo> ruleInfoFactory)
         {
             return builder.Register<Deck>(key, b =>
-                new InfinityDeck(ruleInfoFactory.Invoke(), b.Resolve<ICollection<Card>>()));
+                new InfinityDeck(ruleInfoFactory.Invoke(b.State), b.Resolve<ICollection<Card>>()));
         }
 
-        public static GameBuilder RegisterAllCard(this GameBuilder builder, string key)
+        public static GameBuilder<T> RegisterAllCard<T>(this GameBuilder<T> builder, string key)
         {
             return builder.Register<ICollection<Card>>(b =>
                 Assembly.GetExecutingAssembly().GetTypes()
@@ -78,22 +81,22 @@ namespace Arcomage.Domain
                 .Cast<Card>().ToArray());
         }
 
-        public static GameBuilder RegisterHistory(this GameBuilder builder, string key)
+        public static GameBuilder<T> RegisterHistory<T>(this GameBuilder<T> builder, string key)
         {
             return builder.Register(b => 
                 new History(new HistoryCard[0]));
         }
 
-        public static GameBuilder RegisterPlayerSet(this GameBuilder builder, string key, Func<PlayerKind> playerKindFactory)
+        public static GameBuilder<T> RegisterPlayerSet<T>(this GameBuilder<T> builder, string key, Func<T, PlayerKind> playerKindFactory)
         {
             return builder.Register(b =>
                 new PlayerSet(
-                    playerKindFactory.Invoke(), 
+                    playerKindFactory.Invoke(b.State), 
                     b.Resolve<Player>("FirstPlayer"), 
                     b.Resolve<Player>("SecondPlayer")));
         }
 
-        public static GameBuilder RegisterFirstHumanPlayer(this GameBuilder builder, string key)
+        public static GameBuilder<T> RegisterFirstHumanPlayer<T>(this GameBuilder<T> builder, string key)
         {
             return builder.Register<Player>(key ?? "FirstPlayer", b =>
                 new HumanPlayer(
@@ -102,7 +105,7 @@ namespace Arcomage.Domain
                     new Hand(Enumerable.Repeat(b.Resolve<Deck>(), 6).Select(d => d.PopCard(null)).ToArray())));
         }
 
-        public static GameBuilder RegisterSecondHumanPlayer(this GameBuilder builder, string key)
+        public static GameBuilder<T> RegisterSecondHumanPlayer<T>(this GameBuilder<T> builder, string key)
         {
             return builder.Register<Player>(key ?? "SecondPlayer", b =>
                 new HumanPlayer(
@@ -111,7 +114,7 @@ namespace Arcomage.Domain
                     new Hand(Enumerable.Repeat(b.Resolve<Deck>(), 6).Select(d => d.PopCard(null)).ToArray())));
         }
 
-        public static GameBuilder RegisterFirstComputerPlayer(this GameBuilder builder, string key)
+        public static GameBuilder<T> RegisterFirstComputerPlayer<T>(this GameBuilder<T> builder, string key)
         {
             return builder.Register<Player>(key ?? "FirstPlayer", b =>
                 new ComputerPlayer(
@@ -121,7 +124,7 @@ namespace Arcomage.Domain
                     new Hand(Enumerable.Repeat(b.Resolve<Deck>(), 6).Select(d => d.PopCard(null)).ToArray())));
         }
 
-        public static GameBuilder RegisterSecondComputerPlayer(this GameBuilder builder, string key)
+        public static GameBuilder<T> RegisterSecondComputerPlayer<T>(this GameBuilder<T> builder, string key)
         {
             return builder.Register<Player>(key ?? "SecondPlayer", b =>
                 new ComputerPlayer(
@@ -131,45 +134,45 @@ namespace Arcomage.Domain
                     new Hand(Enumerable.Repeat(b.Resolve<Deck>(), 6).Select(d => d.PopCard(null)).ToArray())));
         }
         
-        public static GameBuilder WithFirstPlayer(this GameBuilder builder, Func<string> playerKeyFactory)
+        public static GameBuilder<T> WithFirstPlayer<T>(this GameBuilder<T> builder, Func<T, string> playerKeyFactory)
         {
             return builder.Register("FirstPlayer", b =>
-                b.Resolve<Player>(playerKeyFactory.Invoke()));
+                b.Resolve<Player>(playerKeyFactory.Invoke(b.State)));
         }
 
-        public static GameBuilder WithSecondPlayer(this GameBuilder builder, Func<string> playerKeyFactory)
+        public static GameBuilder<T> WithSecondPlayer<T>(this GameBuilder<T> builder, Func<T, string> playerKeyFactory)
         {
             return builder.Register("SecondPlayer", b =>
-                b.Resolve<Player>(playerKeyFactory.Invoke()));
+                b.Resolve<Player>(playerKeyFactory.Invoke(b.State)));
         }
 
-        public static GameBuilder RegisterFixedTimer(this GameBuilder builder, string key, Func<TimeSpan> periodFactory)
+        public static GameBuilder<T> RegisterFixedTimer<T>(this GameBuilder<T> builder, string key, Func<T, TimeSpan> periodFactory)
         {
             return builder.Register<Timer>(key, b =>
-                new FixedTimer(periodFactory.Invoke()));
+                new FixedTimer(periodFactory.Invoke(b.State)));
         }
 
-        public static GameBuilder RegisterInfinityTimer(this GameBuilder builder, string key)
+        public static GameBuilder<T> RegisterInfinityTimer<T>(this GameBuilder<T> builder, string key)
         {
             return builder.Register<Timer>(key, b =>
                 new InfinityTimer());
         }
         
-        public static GameBuilder RegisterArtificialIntelligence(this GameBuilder builder, string key)
+        public static GameBuilder<T> RegisterArtificialIntelligence<T>(this GameBuilder<T> builder, string key)
         {
             return builder.Register<IArtificialIntelligence>(key, b =>
                 new ArtificialIntelligence.ArtificialIntelligence(
                     b.Resolve<IPlayAction>()));
         }
 
-        public static GameBuilder RegisterFakeAftificialIntelligence(this GameBuilder builder, string key)
+        public static GameBuilder<T> RegisterFakeAftificialIntelligence<T>(this GameBuilder<T> builder, string key)
         {
             return builder.Register<IArtificialIntelligence>(key, b =>
                 new FakeArtificialIntelligence(
                     b.Resolve<IPlayAction>()));
         }
 
-        public static GameBuilder RegisterPlayAction(this GameBuilder builder, string key)
+        public static GameBuilder<T> RegisterPlayAction<T>(this GameBuilder<T> builder, string key)
         {
             return builder.Register<IPlayAction>(key, b =>
             {

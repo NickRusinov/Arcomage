@@ -27,6 +27,12 @@ namespace Arcomage.WebApi.Client.Models.Game
         public ResultModel Result { get; set; }
 
         [JsonProperty, JsonRequired]
+        public int CurrentPlayerKind { get; set; }
+
+        [JsonProperty, JsonRequired]
+        public int UserPlayerKind { get; set; }
+
+        [JsonProperty, JsonRequired]
         public int DiscardOnly { get; set; }
 
         [JsonProperty, JsonRequired]

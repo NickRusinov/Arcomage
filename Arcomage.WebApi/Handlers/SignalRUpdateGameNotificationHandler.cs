@@ -21,13 +21,14 @@ namespace Arcomage.WebApi.Handlers
 
         public void Handle(AfterPlayCardGameNotification notification)
         {
-            var model = Mapper.Map<GameModel>((notification.GameContext, notification.Game));
-
             var firstUser = notification.GameContext.FirstUser.Id.ToString();
             var secondUser = notification.GameContext.SecondUser.Id.ToString();
-            var users = new[] { firstUser, secondUser };
 
-            playGameHubContext.Clients.Users(users).Update(model);
+            var firstUserModel = Mapper.Map<GameModel>((notification.GameContext, notification.GameContext.FirstUser, notification.Game));
+            var secondUserModel = Mapper.Map<GameModel>((notification.GameContext, notification.GameContext.SecondUser, notification.Game));
+
+            playGameHubContext.Clients.User(firstUser).Update(firstUserModel);
+            playGameHubContext.Clients.User(secondUser).Update(secondUserModel);
         }
     }
 }
