@@ -13,11 +13,11 @@ namespace Arcomage.Unity.Framework
 {
     public class UnityHttpClient : IHttpClient
     {
-        private readonly string baseUrl;
+        private readonly Uri baseUrl;
 
         private readonly Func<UnityWebRequest, Task<string>> sendWebRequest;
 
-        public UnityHttpClient(string baseUrl, Func<UnityWebRequest, Task<string>> sendWebRequest)
+        public UnityHttpClient(Uri baseUrl, Func<UnityWebRequest, Task<string>> sendWebRequest)
         {
             this.baseUrl = baseUrl;
             this.sendWebRequest = sendWebRequest;
@@ -30,7 +30,8 @@ namespace Arcomage.Unity.Framework
 
         public Task<string> Get(string url)
         {
-            var webRequest = UnityWebRequest.Get(baseUrl + url);
+            var uri = new Uri(baseUrl, url);
+            var webRequest = UnityWebRequest.Get(uri.ToString());
 
             return Send(webRequest);
         }
@@ -43,7 +44,8 @@ namespace Arcomage.Unity.Framework
             if (dictionaryData.Count == 0)
                 dictionaryData.Add(Guid.NewGuid().ToString("N"), Guid.NewGuid().ToString("N"));
 
-            var webRequest = UnityWebRequest.Post(baseUrl + url, dictionaryData);
+            var uri = new Uri(baseUrl, url);
+            var webRequest = UnityWebRequest.Post(uri.ToString(), dictionaryData);
 
             return Send(webRequest);
         }

@@ -17,7 +17,7 @@ namespace Arcomage.Unity.Framework.Scripts
 
         public IHttpClient Open()
         {
-            var httpClient = new UnityHttpClient(BaseUrl, SendWebRequest);
+            var httpClient = new UnityHttpClient(new Uri(BaseUrl), SendWebRequest);
             httpClient.TraceWriter = new UnityLogTextWriter();
             httpClient.Headers.Add(Global.Authorization.GetAuthorizationHeader(), Global.Authorization.GetAuthorizationToken());
             httpClient.Headers.Add("Content-Type", "application/json");

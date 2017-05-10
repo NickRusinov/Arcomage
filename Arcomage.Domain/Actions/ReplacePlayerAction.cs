@@ -31,7 +31,7 @@ namespace Arcomage.Domain.Actions
 
             game.Players.Kind = NextPlayerKind(game.Players.Kind);
 
-            return nextWhenReplacedPlayerAction.Play(game, player, playResult);
+            return nextWhenReplacedPlayerAction.Play(game, game.Players.CurrentPlayer, playResult);
         }
 
         public bool CanPlay(Game game, Player player, PlayResult playResult)
@@ -39,7 +39,7 @@ namespace Arcomage.Domain.Actions
             if (game.PlayAgain - 1 != 0)
                 return nextWhenNotReplacedPlayerAction.CanPlay(game, player, playResult);
 
-            return nextWhenReplacedPlayerAction.CanPlay(game, player, playResult);
+            return nextWhenReplacedPlayerAction.CanPlay(game, game.Players.CurrentPlayer, playResult);
         }
     }
 }

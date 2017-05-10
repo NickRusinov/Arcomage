@@ -23,6 +23,9 @@ namespace Arcomage.Unity.Configuration
 
             builder.RegisterType<GetVersionRequestHandler>()
                 .AsImplementedInterfaces();
+
+            builder.RegisterType<PlayRequestHandler>()
+                .AsImplementedInterfaces();
         }
     }
 }

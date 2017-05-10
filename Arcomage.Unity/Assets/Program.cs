@@ -15,8 +15,11 @@ namespace Arcomage.Unity
         {
             Debug.Log("Инициализация игры");
 
+            var stopwatch = System.Diagnostics.Stopwatch.StartNew();
             var autofacConfiguration = new AutofacConfiguration();
             var container = autofacConfiguration.Configure();
+
+            Debug.Log("Время на инициализацию игры: " + stopwatch.Elapsed);
 
             Global.UseContainer(container);
             Application.logMessageReceived += (m, st, lt) => Global.Logger.Log(m, st, lt);

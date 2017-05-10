@@ -138,7 +138,7 @@ namespace Arcomage.Unity.GameScene.Views
             while (addedFromHandAnimationCount != 0 || addedFromInitAnimationCount != 0)
                 yield return null;
 
-            foreach (var cardScript in historyCardViewCollection)
+            foreach (var cardScript in historyCardViewCollection.Where(v => v))
             {
                 var localCardScript = cardScript;
                 

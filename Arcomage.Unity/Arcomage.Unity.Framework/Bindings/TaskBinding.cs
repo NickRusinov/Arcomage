@@ -4,10 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace Arcomage.Unity.Framework.Bindings
 {
-    public class TaskBinding<T>
+    public sealed class TaskBinding<T>
     {
         private readonly Task<T> task;
 
@@ -61,16 +62,26 @@ namespace Arcomage.Unity.Framework.Bindings
 
         public IEnumerator StartCoroutine()
         {
+            Debug.Log($"Задача {task.Id} начала выполнение");
             yield return new TaskYieldInstruction(task);
 
-            if (task.Status == TaskStatus.RanToCompletion && successHandlers != null)
-                successHandlers.Invoke(task);
+            if (task.Status == TaskStatus.RanToCompletion)
+            {
+                Debug.Log($"Задача {task.Id} завершена успешно с результатом {task.Result}");
+                successHandlers?.Invoke(task);
+            }
 
-            if (task.Status == TaskStatus.Faulted && failureHandlers != null)
-                failureHandlers.Invoke(task);
+            if (task.Status == TaskStatus.Faulted)
+            {
+                Debug.Log($"Задача {task.Id} завершена неуспешно с исключением {task.Exception}");
+                failureHandlers?.Invoke(task);
+            }
 
-            if (task.Status == TaskStatus.Canceled && cancelHandlers != null)
-                cancelHandlers.Invoke(task);
+            if (task.Status == TaskStatus.Canceled)
+            {
+                Debug.Log($"Задача {task.Id} отменена");
+                cancelHandlers?.Invoke(task);
+            }
         }
     }
 }

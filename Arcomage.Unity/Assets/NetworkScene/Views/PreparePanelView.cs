@@ -21,9 +21,10 @@ namespace Arcomage.Unity.NetworkScene.Views
 
         public void OnEnable()
         {
-            Bind(Global.Mediator.Send(new ConnectGameRequest(), CancellationToken.None)
-                .ContinueWith(t => Global.Mediator.Send(new PlayRequest(), CancellationToken.None)))
-                .OnSuccess(t => ConnectedEvent.Invoke())
+            Bind(Global.Mediator.Send(new ConnectGameRequest(), CancellationToken.None))
+                .OnSuccess(t => Bind(Global.Mediator.Send(new PlayRequest(), CancellationToken.None))
+                    .OnSuccess(tt => ConnectedEvent.Invoke())
+                    .OnFailure(tt => OnConnectGameFailure()))
                 .OnFailure(t => OnConnectGameFailure());
         }
 
