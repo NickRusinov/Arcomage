@@ -89,7 +89,7 @@ namespace Arcomage.Unity.GameScene.Views
         private IEnumerator OnInitCard(HistoryCardViewModel cardViewModel, int index)
         {
             var cardTemplate = СardTemplates[index % СardTemplates.Length];
-            var cardObject = HistoryСardFactory.CreateCard(cardTemplate, cardViewModel);
+            HistoryСardFactory.CreateCard(cardTemplate, cardViewModel);
 
             yield break;
         }

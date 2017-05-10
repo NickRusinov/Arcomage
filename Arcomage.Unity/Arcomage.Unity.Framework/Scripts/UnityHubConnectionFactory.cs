@@ -15,11 +15,14 @@ namespace Arcomage.Unity.Framework.Scripts
 
         public HubConnection Open()
         {
+            var authorizationHeader = Global.Authorization.GetAuthorizationHeader();
+            var authorizationToken = Global.Authorization.GetAuthorizationToken();
+
             var hubConnection = new HubConnection(BaseUrl);
             hubConnection.TransportConnectTimeout = TimeSpan.FromSeconds(30);
             hubConnection.TraceLevel = TraceLevels.All;
             hubConnection.TraceWriter = new UnityLogTextWriter();
-            hubConnection.Headers.Add(Global.Authorization.GetAuthorizationHeader(), Global.Authorization.GetAuthorizationToken());
+            hubConnection.Headers.Add(authorizationHeader, authorizationToken);
 
             return hubConnection;
         }
