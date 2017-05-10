@@ -60,6 +60,7 @@ namespace Arcomage.Unity.GameScene.Views
         protected override void OnViewModel(HistoryViewModel viewModel)
         {
             Bind(viewModel, h => h.Cards as IList<HistoryCardViewModel>)
+                .OnInit((m, i) => StartCoroutine(OnInitCard(m, i)))
                 .OnAdded((m, i) => StartCoroutine(OnAddedCard(m, i)))
                 .OnReplaced((_, m, i) => StartCoroutine(OnReplacedCard(m, i)))
                 .OnReplaced((_, m, i) => StartCoroutine(OnAddedCard(m, i)));
@@ -81,8 +82,20 @@ namespace Arcomage.Unity.GameScene.Views
         }
 
         /// <summary>
-        /// Добавление карты в историю. В случае добавления первой карты в историю, предыдущая история очищается.
-        /// Воспроизводится анимация перемещения карты
+        /// Инициализация карт в истории. Анимации перемещения карт не воспроизводятся.
+        /// </summary>
+        /// <param name="cardViewModel">Модель представления карты, добавляемой в историю</param>
+        /// <param name="index">Номер добавляемой карты</param>
+        private IEnumerator OnInitCard(HistoryCardViewModel cardViewModel, int index)
+        {
+            var cardTemplate = СardTemplates[index % СardTemplates.Length];
+            var cardObject = HistoryСardFactory.CreateCard(cardTemplate, cardViewModel);
+
+            yield break;
+        }
+
+        /// <summary>
+        /// Добавление карты в историю. Воспроизводится анимация перемещения карты
         /// </summary>
         /// <param name="cardViewModel">Модель представления карты, добавляемой в историю</param>
         /// <param name="index">Номер добавляемой карты</param>
@@ -129,6 +142,12 @@ namespace Arcomage.Unity.GameScene.Views
             pushedCardObject = null;
         }
 
+        /// <summary>
+        /// Замена карт истории старых на новые. Воспроизводится анимация перемещения всех карт в истории за пределы 
+        /// игрового поля.
+        /// </summary>
+        /// <param name="cardViewModel">Модель представления карты, добавляемой в историю</param>
+        /// <param name="index">Номер добавляемой карты</param>
         private IEnumerator OnReplacedCard(HistoryCardViewModel cardViewModel, int index)
         {
             var historyCardViewCollection = GetComponentsInChildren<HistoryCardView>();
