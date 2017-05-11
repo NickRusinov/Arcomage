@@ -12,11 +12,20 @@ namespace Arcomage.Unity.Configuration
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.Register(c => new Mediator(
-                    BuildSingleInstanceFactory(c.Resolve<IComponentContext>()),
-                    BuildMultiInstanceFactory(c.Resolve<IComponentContext>())))
-                .AsImplementedInterfaces()
+            builder.RegisterType<Mediator>()
+                .As<IMediator>()
                 .InstancePerLifetimeScope();
+
+            builder.Register(c => BuildSingleInstanceFactory(c.Resolve<IComponentContext>()))
+                .InstancePerLifetimeScope();
+
+            builder.Register(c => BuildMultiInstanceFactory(c.Resolve<IComponentContext>()))
+                .InstancePerLifetimeScope();
+
+            builder.RegisterAssemblyTypes(ThisAssembly)
+                .Where(t => t.Name.EndsWith("RequestHandler"))
+                .AsImplementedInterfaces()
+                .PreserveExistingDefaults();
         }
 
         private static SingleInstanceFactory BuildSingleInstanceFactory(IComponentContext context)

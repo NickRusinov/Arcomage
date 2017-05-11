@@ -19,17 +19,32 @@ namespace Arcomage.Unity.Configuration
                 .PropertiesAutowired()
                 .InstancePerLifetimeScope();
 
-            builder.Register(c => c.Resolve<Settings>().IsNetwork ?
-                (GameExecutor)c.Resolve<NetworkGameExecutor>() : 
-                c.Resolve<SingleGameExecutor>());
+            builder.RegisterType<SingleGameExecutor>()
+                .Named<GameExecutor>("SingleGameExecutor");
 
-            builder.Register(c => c.Resolve<Settings>().IsNetwork ?
-                (IAsyncRequestHandler<PlayCardRequest>)c.Resolve<NetworkPlayCardRequestHandler>() :
-                c.Resolve<SinglePlayCardRequestHandler>());
+            builder.RegisterType<NetworkGameExecutor>()
+                .Named<GameExecutor>("NetworkGameExecutor");
 
-            builder.Register(c => c.Resolve<Settings>().IsNetwork ?
-                (IAsyncRequestHandler<DiscardCardRequest>)c.Resolve<NetworkDiscardCardRequestHandler>() :
-                c.Resolve<SingleDiscardCardRequestHandler>());
+            builder.RegisterType<SinglePlayCardRequestHandler>()
+                .Named<IAsyncRequestHandler<PlayCardRequest>>("SinglePlayCardRequestHandler");
+
+            builder.RegisterType<NetworkPlayCardRequestHandler>()
+                .Named<IAsyncRequestHandler<PlayCardRequest>>("NetworkPlayCardRequestHandler");
+
+            builder.RegisterType<SingleDiscardCardRequestHandler>()
+                .Named<IAsyncRequestHandler<DiscardCardRequest>>("SingleDiscardCardRequestHandler");
+
+            builder.RegisterType<NetworkDiscardCardRequestHandler>()
+                .Named<IAsyncRequestHandler<DiscardCardRequest>>("NetworkDiscardCardRequestHandler");
+
+            builder.Register(c => c.ResolveNamed<GameExecutor>(
+                c.Resolve<Settings>().IsNetwork ? "NetworkGameExecutor" : "SingleGameExecutor"));
+
+            builder.Register(c => c.ResolveNamed<IAsyncRequestHandler<PlayCardRequest>>(
+                c.Resolve<Settings>().IsNetwork ? "NetworkPlayCardRequestHandler" : "SinglePlayCardRequestHandler"));
+
+            builder.Register(c => c.ResolveNamed<IAsyncRequestHandler<DiscardCardRequest>>(
+                c.Resolve<Settings>().IsNetwork ? "NetworkDiscardCardRequestHandler" : "SingleDiscardCardRequestHandler"));
         }
     }
 }

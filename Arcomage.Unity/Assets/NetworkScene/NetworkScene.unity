@@ -2453,6 +2453,7 @@ MonoBehaviour:
   - GameFinishedTowerBuildText
   - GameFinishedTowerDestroyText
   - GameFinishedWinnerText
+  - GameYouPlayText
   - MenuExitButtonText
   - MenuNetworkPlayButtonText
   - MenuSinglePlayButtonText
@@ -4313,6 +4314,14 @@ MonoBehaviour:
     overrideObjectLanguageCode: 
   - objectType: 0
     textValue: "\u041F\u043E\u0431\u0435\u0434\u0438\u043B {0}"
+    thisGameObject: {fileID: 0}
+    thisAudioClip: {fileID: 0}
+    thisTexture: {fileID: 0}
+    thisTextAsset: {fileID: 0}
+    overrideLocalizedObject: 0
+    overrideObjectLanguageCode: 
+  - objectType: 0
+    textValue: "\u0412\u0430\u0448 \u0445\u043E\u0434"
     thisGameObject: {fileID: 0}
     thisAudioClip: {fileID: 0}
     thisTexture: {fileID: 0}
