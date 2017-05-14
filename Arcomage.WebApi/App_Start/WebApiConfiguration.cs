@@ -5,14 +5,19 @@ using System.Linq;
 using System.Web.Http;
 using System.Web.Http.Dependencies;
 using Autofac;
+using NLog;
 using Owin;
 
 namespace Arcomage.WebApi
 {
     public class WebApiConfiguration
     {
+        private static readonly Logger logger = LogManager.GetCurrentClassLogger();
+
         public void Configure(IAppBuilder app, IContainer container)
         {
+            logger.Info("Конфигурация WebApi");
+
             var httpConfiguration = new HttpConfiguration();
             httpConfiguration.MapHttpAttributeRoutes();
             httpConfiguration.DependencyResolver = container.Resolve<IDependencyResolver>();

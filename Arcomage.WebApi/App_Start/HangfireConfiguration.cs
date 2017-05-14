@@ -8,13 +8,18 @@ using Hangfire.MemoryStorage;
 using Hangfire.Dashboard;
 using System.Configuration;
 using Arcomage.Network.Jobs;
+using NLog;
 
 namespace Arcomage.WebApi
 {
     public class HangfireConfiguration
     {
+        private static readonly Logger logger = LogManager.GetCurrentClassLogger();
+
         public void Configure(IAppBuilder app, IContainer container)
         {
+            logger.Info("Конфигурация Hangfire");
+
             GlobalConfiguration.Configuration
                 //.UseSqlServerStorage("Data Source=(local);Initial Catalog=Arcomagic;Integrated Security=True")
                 .UseStorage(new MemoryStorage())
