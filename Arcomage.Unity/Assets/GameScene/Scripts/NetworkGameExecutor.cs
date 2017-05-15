@@ -29,6 +29,7 @@ namespace Arcomage.Unity.GameScene.Scripts
         {
             GameModel gameModel = null;
             playGameHubClient.OnUpdate += gm => Interlocked.Exchange(ref gameModel, gm);
+            playGameHubClient.Start();
             
             var viewModel = viewModelUpdater.Update(settings.GameModel);
 
