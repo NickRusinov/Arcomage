@@ -14,10 +14,34 @@ namespace Arcomage.Unity.Framework.Bindings
             return binding;
         }
 
+        public static ActionBinding OnChangedAndInit(this ActionBinding binding, Action action)
+        {
+            binding.Init += action;
+            binding.Changed += action;
+
+            return binding;
+        }
+
         public static ActionBinding<TSource> OnChangedAndInit<TSource>(this ActionBinding<TSource> binding, Action action)
         {
             binding.Init += action;
             binding.Changed += action;
+
+            return binding;
+        }
+
+        public static ValueBinding<TValue> OnChangedAndInit<TValue>(this ValueBinding<TValue> binding, Action<TValue> action)
+        {
+            binding.Changed += (oldValue, newValue) => action(newValue);
+            binding.Init += action;
+
+            return binding;
+        }
+
+        public static ValueBinding<TValue> OnChangedAndInit<TValue>(this ValueBinding<TValue> binding, Predicate<TValue> predicate, Action<TValue> action)
+        {
+            binding.Changed += (oldValue, newValue) => { if (predicate(newValue)) action(newValue); };
+            binding.Init += newValue => { if (predicate(newValue)) action(newValue); };
 
             return binding;
         }

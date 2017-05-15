@@ -672,14 +672,13 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 224: {fileID: 269138747}
-  - 222: {fileID: 269138748}
   m_Layer: 5
   m_Name: RulePanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &269138747
 RectTransform:
   m_ObjectHideFlags: 0
@@ -699,12 +698,6 @@ RectTransform:
   m_AnchoredPosition: {x: 1280, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &269138748
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 269138746}
 --- !u!1 &295949186
 GameObject:
   m_ObjectHideFlags: 0
@@ -1243,7 +1236,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 224: {fileID: 460455579}
-  - 222: {fileID: 460455580}
+  - 114: {fileID: 460455580}
   m_Layer: 5
   m_Name: SettingsPanel
   m_TagString: Untagged
@@ -1279,12 +1272,26 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &460455580
-CanvasRenderer:
+--- !u!114 &460455580
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 460455578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bb43db30e4b78b43bfe0312560adffb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FirstPlayerInput: {fileID: 219943192}
+  SecondPlayerInput: {fileID: 781294330}
+  DeckText: {fileID: 809985770}
+  DeckListView: {fileID: 1140801142}
+  RuleText: {fileID: 195973041}
+  RuleListView: {fileID: 1119589737}
+  PlayButton: {fileID: 251599401}
+  Animator: {fileID: 1363638934}
+  SceneManager: {fileID: 537403667}
 --- !u!1 &488226727
 GameObject:
   m_ObjectHideFlags: 0
@@ -1419,7 +1426,7 @@ RectTransform:
   m_Father: {fileID: 627062278}
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1466,9 +1473,6 @@ GameObject:
   - 4: {fileID: 537403664}
   - 114: {fileID: 537403663}
   - 114: {fileID: 537403667}
-  - 114: {fileID: 537403665}
-  - 114: {fileID: 537403666}
-  - 114: {fileID: 537403668}
   m_Layer: 0
   m_Name: SettingsScene
   m_TagString: Untagged
@@ -1487,7 +1491,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47f8c046e5b27bc47aa1a27d7939ac6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Settings: {fileID: 1363638933}
+  Settings: {fileID: 460455580}
 --- !u!4 &537403664
 Transform:
   m_ObjectHideFlags: 0
@@ -1501,32 +1505,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
---- !u!114 &537403665
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 537403662}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee7c462c11c5e2d499035a594702cf05, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Prefab: {fileID: 1000012830278612, guid: a156265e291a5f746b01daf709dd7732, type: 2}
-  Animator: {fileID: 1363638934}
---- !u!114 &537403666
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 537403662}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f8cd2b83d84770346bb926fbc123c2d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Prefab: {fileID: 1000012830278612, guid: 7607e0926c5b83a44b00ef87cf9311ae, type: 2}
-  Animator: {fileID: 1363638934}
 --- !u!114 &537403667
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1538,33 +1516,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65e86bfc6fcf1ab489d233d045075dac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &537403668
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 537403662}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -945100758, guid: aed6dbf8d3fa40e468089d61512a466d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  BackHandler:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 537403667}
-        m_MethodName: LoadMenuScene
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
 --- !u!1 &627062277
 GameObject:
   m_ObjectHideFlags: 0
@@ -2090,7 +2041,7 @@ RectTransform:
   m_Father: {fileID: 309866246}
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2135,14 +2086,13 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 224: {fileID: 1058097454}
-  - 222: {fileID: 1058097455}
   m_Layer: 5
   m_Name: DeckPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1058097454
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2162,12 +2112,6 @@ RectTransform:
   m_AnchoredPosition: {x: 1280, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &1058097455
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1058097453}
 --- !u!1 &1119589736
 GameObject:
   m_ObjectHideFlags: 0
@@ -2179,6 +2123,7 @@ GameObject:
   - 114: {fileID: 1119589739}
   - 114: {fileID: 1119589738}
   - 114: {fileID: 1119589737}
+  - 114: {fileID: 1119589741}
   m_Layer: 5
   m_Name: Content
   m_TagString: Untagged
@@ -2197,7 +2142,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c95a9dba18fa554ca8f31efc40440a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RuleFactory: {fileID: 537403666}
+  RuleFactory: {fileID: 1119589741}
 --- !u!114 &1119589738
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2249,6 +2194,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
+--- !u!114 &1119589741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1119589736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8cd2b83d84770346bb926fbc123c2d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Prefab: {fileID: 1000012830278612, guid: 7607e0926c5b83a44b00ef87cf9311ae, type: 2}
+  Animator: {fileID: 1363638934}
 --- !u!1 &1140801138
 GameObject:
   m_ObjectHideFlags: 0
@@ -2260,6 +2218,7 @@ GameObject:
   - 114: {fileID: 1140801141}
   - 114: {fileID: 1140801140}
   - 114: {fileID: 1140801142}
+  - 114: {fileID: 1140801143}
   m_Layer: 5
   m_Name: Content
   m_TagString: Untagged
@@ -2329,7 +2288,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8eb1fa6aac59de45ac2fe0b22cf6254, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DeckFactory: {fileID: 537403665}
+  DeckFactory: {fileID: 1140801143}
+--- !u!114 &1140801143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1140801138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee7c462c11c5e2d499035a594702cf05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Prefab: {fileID: 1000012830278612, guid: a156265e291a5f746b01daf709dd7732, type: 2}
+  Animator: {fileID: 1363638934}
 --- !u!224 &1146910565
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2545,7 +2517,6 @@ GameObject:
   - 223: {fileID: 1363638931}
   - 114: {fileID: 1363638930}
   - 114: {fileID: 1363638929}
-  - 114: {fileID: 1363638933}
   - 95: {fileID: 1363638934}
   m_Layer: 5
   m_Name: Settings
@@ -2632,25 +2603,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1363638933
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1363638928}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9bb43db30e4b78b43bfe0312560adffb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  FirstPlayerInput: {fileID: 219943192}
-  SecondPlayerInput: {fileID: 781294330}
-  DeckText: {fileID: 809985770}
-  DeckListView: {fileID: 1140801142}
-  RuleText: {fileID: 195973041}
-  RuleListView: {fileID: 1119589737}
-  PlayButton: {fileID: 251599401}
-  SceneManager: {fileID: 537403667}
 --- !u!95 &1363638934
 Animator:
   serializedVersion: 3
@@ -3331,6 +3283,7 @@ MonoBehaviour:
   - GameFinishedTowerBuildText
   - GameFinishedTowerDestroyText
   - GameFinishedWinnerText
+  - GameYouPlayText
   - MenuExitButtonText
   - MenuNetworkPlayButtonText
   - MenuSinglePlayButtonText
@@ -5191,6 +5144,14 @@ MonoBehaviour:
     overrideObjectLanguageCode: 
   - objectType: 0
     textValue: "\u041F\u043E\u0431\u0435\u0434\u0438\u043B {0}"
+    thisGameObject: {fileID: 0}
+    thisAudioClip: {fileID: 0}
+    thisTexture: {fileID: 0}
+    thisTextAsset: {fileID: 0}
+    overrideLocalizedObject: 0
+    overrideObjectLanguageCode: 
+  - objectType: 0
+    textValue: "\u0412\u0430\u0448 \u0445\u043E\u0434"
     thisGameObject: {fileID: 0}
     thisAudioClip: {fileID: 0}
     thisTexture: {fileID: 0}

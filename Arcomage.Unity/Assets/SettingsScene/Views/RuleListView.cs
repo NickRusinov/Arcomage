@@ -19,5 +19,15 @@ namespace Arcomage.Unity.SettingsScene.Views
             foreach (var ruleViewModel in viewModel.RuleCollection)
                 RuleFactory.CreateRule(transform, ruleViewModel);
         }
+
+        private void OnEnable()
+        {
+            ViewModel.IsShow = true;
+        }
+
+        private void OnDisable()
+        {
+            ViewModel.IsShow = false;
+        }
     }
 }

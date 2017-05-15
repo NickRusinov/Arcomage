@@ -19,5 +19,15 @@ namespace Arcomage.Unity.SettingsScene.Views
             foreach (var deckViewModel in viewModel.DeckCollection)
                 DeckFactory.CreateDeck(transform, deckViewModel);
         }
+
+        private void OnEnable()
+        {
+            ViewModel.IsShow = true;
+        }
+
+        private void OnDisable()
+        {
+            ViewModel.IsShow = false;
+        }
     }
 }

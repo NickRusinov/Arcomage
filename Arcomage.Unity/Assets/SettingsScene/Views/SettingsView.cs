@@ -36,6 +36,9 @@ namespace Arcomage.Unity.SettingsScene.Views
         [Tooltip("Кнопка запуска игры")]
         public Button PlayButton;
 
+        [Tooltip("Аниматор, анимирующий появление и скрытие списков выбора")]
+        public Animator Animator;
+
         [Tooltip("Менеджер сцен")]
         public UnitySceneManager SceneManager;
 
@@ -55,6 +58,11 @@ namespace Arcomage.Unity.SettingsScene.Views
 
             Bind(viewModel.Settings, s => s.Rule)
                 .OnChangedAndInit(r => RuleText.identifier = "Rule" + r.Identifier + "Name");
+
+            Bind(() => Input.GetKeyDown(KeyCode.Escape))
+                .OnChangedAndInit(x => x && viewModel.DeckList.IsShow, x => Animator.Play("HideDeckAnimation"))
+                .OnChangedAndInit(x => x && viewModel.RuleList.IsShow, x => Animator.Play("HideRuleAnimation"))
+                .OnChangedAndInit(x => x && !viewModel.DeckList.IsShow && !viewModel.RuleList.IsShow, x => SceneManager.LoadMenuScene());
 
             FirstPlayerInput.onEndEdit
                 .AddListener(s => viewModel.Settings.FirstPlayer = s);

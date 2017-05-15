@@ -5,20 +5,23 @@ using System.Text;
 
 namespace Arcomage.Unity.Framework.Bindings
 {
-    public sealed class ActionBinding : Binding
+    public sealed class ActionBinding<TSource> : Binding
     {
         private bool init;
 
-        private readonly Action action;
+        private readonly TSource source;
 
-        public ActionBinding(Action action)
+        private readonly Action<TSource> action;
+
+        public ActionBinding(TSource source, Action<TSource> action)
         {
+            this.source = source;
             this.action = action;
         }
 
         public override void Update()
         {
-            action.Invoke();
+            action.Invoke(source);
 
             if (!init)
             {

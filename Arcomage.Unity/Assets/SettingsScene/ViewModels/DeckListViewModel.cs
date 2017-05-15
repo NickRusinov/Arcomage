@@ -8,5 +8,7 @@ namespace Arcomage.Unity.SettingsScene.ViewModels
     public class DeckListViewModel
     {
         public ICollection<DeckViewModel> DeckCollection { get; set; }
+
+        public bool IsShow { get; set; }
     }
 }
