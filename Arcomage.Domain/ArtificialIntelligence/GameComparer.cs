@@ -40,11 +40,11 @@ namespace Arcomage.Domain.ArtificialIntelligence
         /// <returns>Результат сравнения</returns>
         public int Compare(Game x, Game y)
         {
-            if (x.Rule.IsWin(x))
-                return +1;
+            bool currentIsWin = x.Rule.IsWin(x);
+            bool adversaryIsWin = y.Rule.IsWin(y);
 
-            if (y.Rule.IsWin(y))
-                return -1;
+            if (currentIsWin || adversaryIsWin)
+                return currentIsWin.CompareTo(adversaryIsWin);
 
             var currentWeight = GetWeight(x);
             var adversaryWeight = GetWeight(y);
