@@ -29,18 +29,21 @@ namespace Arcomage.Domain.ArtificialIntelligence
         }
 
         /// <inheritdoc/>
-        public Task<PlayResult> Execute(Game game, Player player)
+        public async Task<PlayResult> Execute(Game game, Player player)
         {
             var isFirstPlayer = ReferenceEquals(game.Players.FirstPlayer, player);
 
             var comparer = new GameComparer(
                 isFirstPlayer ? PlayerKind.First : PlayerKind.Second,
                 isFirstPlayer ? PlayerKind.Second : PlayerKind.First);
+
+            await Delay(TimeSpan.FromSeconds(1));
             
-            return Task.Factory.StartNew(() => GetPossiblePlay(game)
+            return GetPossiblePlay(game)
                 .OrderByDescending(p => p.Key, comparer)
-                .Select(p => new PlayResult?(p.Value))
-                .FirstOrDefault() ?? new PlayResult(0, false));
+                .Select(p => p.Value)
+                .DefaultIfEmpty(new PlayResult(0, false))
+                .First();
         }
         
         /// <summary>
