@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNet.SignalR.Client;
 using static System.Threading.Tasks.TaskContinuationOptions;
@@ -16,7 +18,8 @@ namespace Arcomage.WebApi.Client.Hubs
         /// <summary>
         /// Хранит список подключенных событий хаба
         /// </summary>
-        private readonly Dictionary<Delegate, IDisposable> hubSubscriptions = new Dictionary<Delegate, IDisposable>();
+        private readonly ConcurrentDictionary<Delegate, IDisposable> hubSubscriptions = 
+            new ConcurrentDictionary<Delegate, IDisposable>();
         
         /// <summary>
         /// Фабрика для создания подключению к хабу
@@ -37,6 +40,11 @@ namespace Arcomage.WebApi.Client.Hubs
         /// Прокси серверного хаба
         /// </summary>
         private IHubProxy hubProxy;
+
+        /// <summary>
+        /// Таймер, поддерживающий постоянное соединение с серверным хабом
+        /// </summary>
+        private Timer hubTimer;
 
         /// <summary>
         /// Инициализирует экземпляр класса <see cref="ApplicationHubClient"/>
@@ -60,12 +68,17 @@ namespace Arcomage.WebApi.Client.Hubs
         protected IHubProxy HubProxy => hubProxy = hubProxy ?? HubConnection.CreateHubProxy(hubName);
 
         /// <summary>
+        /// Таймер, поддерживающий постоянное соединение с серверным хабом
+        /// </summary>
+        protected Timer HubTimer => hubTimer = hubTimer ?? new Timer(x => HubConnection.Start());
+
+        /// <summary>
         /// Устанавливает соединение с серверным хабом
         /// </summary>
         /// <returns>Операция соединения с серверным хабом</returns>
         public virtual Task Start()
         {
-            return HubConnection.Start();
+            return HubConnection.Start().ContinueWith(t => HubTimer.Change(5000, 5000), ExecuteSynchronously);
         }
 
         /// <summary>
@@ -73,7 +86,11 @@ namespace Arcomage.WebApi.Client.Hubs
         /// </summary>
         public virtual void Stop()
         {
+            hubTimer?.Dispose();
+            hubTimer = null;
+
             hubConnection?.Stop();
+            hubConnection = null;
         }
 
         /// <summary>
@@ -94,7 +111,7 @@ namespace Arcomage.WebApi.Client.Hubs
         /// <param name="subscription">Подписка на добавленное событие хаба</param>
         protected virtual void AddSubscription(Delegate @delegate, IDisposable subscription)
         {
-            hubSubscriptions.Add(@delegate, subscription);
+            hubSubscriptions.TryAdd(@delegate, subscription);
         }
 
         /// <summary>
@@ -103,11 +120,8 @@ namespace Arcomage.WebApi.Client.Hubs
         /// <param name="delegate">Удаленное событие хаба</param>
         protected virtual void RemoveSubscription(Delegate @delegate)
         {
-            if (hubSubscriptions.TryGetValue(@delegate, out var subscription))
-            {
-                hubSubscriptions.Remove(@delegate);
+            if (hubSubscriptions.TryRemove(@delegate, out var subscription))
                 subscription.Dispose();
-            }
         }
         
         /// <summary>
