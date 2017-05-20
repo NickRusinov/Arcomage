@@ -7,16 +7,13 @@ using MediatR;
 
 namespace Arcomage.Network.Requests
 {
-    public class GetOrAddUserRequest : IRequest<UserContext>
+    public class GetOrAddUserRequest : IRequest<User>
     {
-        public GetOrAddUserRequest(string name, UserKind kind)
+        public GetOrAddUserRequest(string name)
         {
             Name = name;
-            Kind = kind;
         }
 
         public string Name { get; set; }
-
-        public UserKind Kind { get; set; }
     }
 }

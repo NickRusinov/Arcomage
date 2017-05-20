@@ -24,8 +24,8 @@ namespace Arcomage.WebApi.Handlers
             var firstUser = notification.GameContext.FirstUser.Id.ToString();
             var secondUser = notification.GameContext.SecondUser.Id.ToString();
 
-            var firstUserModel = Mapper.Map<GameModel>((notification.GameContext, notification.GameContext.FirstUser, notification.Game));
-            var secondUserModel = Mapper.Map<GameModel>((notification.GameContext, notification.GameContext.SecondUser, notification.Game));
+            var firstUserModel = Mapper.Map<GameModel>((notification.GameContext, notification.GameContext.FirstUser, notification.GameContext.Game));
+            var secondUserModel = Mapper.Map<GameModel>((notification.GameContext, notification.GameContext.SecondUser, notification.GameContext.Game));
 
             playGameHubContext.Clients.User(firstUser).Update(firstUserModel);
             playGameHubContext.Clients.User(secondUser).Update(secondUserModel);

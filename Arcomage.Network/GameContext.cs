@@ -3,26 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Arcomage.Domain;
 
 namespace Arcomage.Network
 {
     public class GameContext
     {
-        public static GameContext New(UserContext firstUser, UserContext secondUser)
-        {
-            return new GameContext
-            {
-                Id = Guid.NewGuid(),
-                JobId = "",
-                Version = 0,
-                State = GameState.None,
-                StartedDate = null,
-                FinishedDate = null,
-                FirstUser = firstUser,
-                SecondUser = secondUser,
-            };
-        }
-
         public Guid Id { get; set; }
 
         public string JobId { get; set; }
@@ -37,8 +23,10 @@ namespace Arcomage.Network
 
         public DateTime? CancelledDate { get; set; }
 
-        public UserContext FirstUser { get; set; }
+        public Game Game { get; set; }
 
-        public UserContext SecondUser { get; set; }
+        public User FirstUser { get; set; }
+
+        public User SecondUser { get; set; }
     }
 }

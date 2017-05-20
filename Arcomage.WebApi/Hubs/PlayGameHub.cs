@@ -20,18 +20,18 @@ namespace Arcomage.WebApi.Hubs
 
         public async Task PlayCard(int cardIndex)
         {
-            var gameContext = await mediator.Send(new GetPlayingGameRequest(Identity.UserContext)) ??
+            var gameContext = await mediator.Send(new GetPlayingGameRequest(Identity.User)) ??
                 throw new HubException();
 
-            await mediator.Send(new PlayCardGameRequest(gameContext, Identity.UserContext, cardIndex));
+            await mediator.Send(new PlayCardGameRequest(gameContext, Identity.User, cardIndex));
         }
 
         public async Task DiscardCard(int cardIndex)
         {
-            var gameContext = await mediator.Send(new GetPlayingGameRequest(Identity.UserContext)) ??
+            var gameContext = await mediator.Send(new GetPlayingGameRequest(Identity.User)) ??
                 throw new HubException();
 
-            await mediator.Send(new DiscardCardGameRequest(gameContext, Identity.UserContext, cardIndex));
+            await mediator.Send(new DiscardCardGameRequest(gameContext, Identity.User, cardIndex));
         }
     }
 }

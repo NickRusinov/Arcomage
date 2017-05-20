@@ -9,11 +9,11 @@ namespace Arcomage.Network.Requests
 {
     public class GetPlayingGameRequest : IRequest<GameContext>
     {
-        public GetPlayingGameRequest(UserContext userContext)
+        public GetPlayingGameRequest(User user)
         {
-            UserContext = userContext;
+            User = user;
         }
 
-        public UserContext UserContext { get; set; }
+        public User User { get; set; }
     }
 }

@@ -11,9 +11,9 @@ namespace Arcomage.Network.Handlers
 {
     public class UpdateVersionGameNotificationHandler : IAsyncNotificationHandler<AfterPlayCardGameNotification>
     {
-        private readonly IGameContextRepository gameContextRepository;
+        private readonly IRepository<GameContext> gameContextRepository;
 
-        public UpdateVersionGameNotificationHandler(IGameContextRepository gameContextRepository)
+        public UpdateVersionGameNotificationHandler(IRepository<GameContext> gameContextRepository)
         {
             this.gameContextRepository = gameContextRepository;
         }

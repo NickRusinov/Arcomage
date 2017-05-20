@@ -9,16 +9,16 @@ using MediatR;
 
 namespace Arcomage.Network.Handlers
 {
-    public class MemoryGetConnectingUsersRequestHandler : IRequestHandler<GetConnectingUsersRequest, IEnumerable<UserContext>>
+    public class MemoryGetConnectingUsersRequestHandler : IRequestHandler<GetConnectingUsersRequest, IEnumerable<User>>
     {
-        private readonly ConcurrentDictionary<Guid, UserContext> userStorage;
+        private readonly ConcurrentDictionary<Guid, User> userStorage;
 
-        public MemoryGetConnectingUsersRequestHandler(ConcurrentDictionary<Guid, UserContext> userStorage)
+        public MemoryGetConnectingUsersRequestHandler(ConcurrentDictionary<Guid, User> userStorage)
         {
             this.userStorage = userStorage;
         }
 
-        public IEnumerable<UserContext> Handle(GetConnectingUsersRequest message)
+        public IEnumerable<User> Handle(GetConnectingUsersRequest message)
         {
             return userStorage.Values
                 .Where(uc => uc.State.HasFlag(UserState.Connecting)).ToList();

@@ -9,16 +9,16 @@ namespace Arcomage.Network.Requests
 {
     public class PlayCardGameRequest : IRequest
     {
-        public PlayCardGameRequest(GameContext gameContext, UserContext userContext, int index)
+        public PlayCardGameRequest(GameContext gameContext, User user, int index)
         {
             GameContext = gameContext;
-            UserContext = userContext;
+            User = user;
             Index = index;
         }
 
         public GameContext GameContext { get; set; }
 
-        public UserContext UserContext { get; set; }
+        public User User { get; set; }
 
         public int Index { get; set; }
     }

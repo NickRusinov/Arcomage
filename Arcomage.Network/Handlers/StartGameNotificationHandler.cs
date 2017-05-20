@@ -11,26 +11,24 @@ namespace Arcomage.Network.Handlers
 {
     public class StartGameNotificationHandler : IAsyncNotificationHandler<StartGameNotification>
     {
-        private readonly IGameContextRepository gameContextRepository;
+        private readonly IRepository<GameContext> gameContextRepository;
 
-        private readonly IUserContextRepository userContextRepository;
+        private readonly IRepository<User> userRepository;
         
-        public StartGameNotificationHandler(IGameContextRepository gameContextRepository, IUserContextRepository userContextRepository)
+        public StartGameNotificationHandler(IRepository<GameContext> gameContextRepository, IRepository<User> userRepository)
         {
             this.gameContextRepository = gameContextRepository;
-            this.userContextRepository = userContextRepository;
+            this.userRepository = userRepository;
         }
 
         public async Task Handle(StartGameNotification message)
         {
             await gameContextRepository.Update(message.GameContext,
-                gc => gc.State = GameState.Playing,
-                gc => gc.StartedDate = DateTime.UtcNow);
+                new Action<GameContext>(gc => gc.State = GameState.Started) +
+                new Action<GameContext>(gc => gc.StartedDate = DateTime.UtcNow));
 
-            await userContextRepository.Update(message.GameContext.FirstUser,
-                uc => uc.State = UserState.Playing);
-            await userContextRepository.Update(message.GameContext.SecondUser,
-                uc => uc.State = UserState.Playing);
+            await userRepository.Update(message.GameContext.FirstUser, u => u.State = UserState.Playing);
+            await userRepository.Update(message.GameContext.SecondUser, u => u.State = UserState.Playing);
         }
     }
 }

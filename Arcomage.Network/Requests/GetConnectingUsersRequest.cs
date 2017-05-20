@@ -7,7 +7,7 @@ using MediatR;
 
 namespace Arcomage.Network.Requests
 {
-    public class GetConnectingUsersRequest : IRequest<IEnumerable<UserContext>>
+    public class GetConnectingUsersRequest : IRequest<IEnumerable<User>>
     {
 
     }

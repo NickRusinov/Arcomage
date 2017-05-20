@@ -15,29 +15,29 @@ namespace Arcomage.WebApi.Hubs
     {
         private readonly IMediator mediator;
 
-        private readonly IUserContextRepository userContextRepository;
+        private readonly IRepository<User> userRepository;
 
-        public ConnectGameHub(IMediator mediator, IUserContextRepository userContextRepository)
+        public ConnectGameHub(IMediator mediator, IRepository<User> userRepository)
         {
             this.mediator = mediator;
-            this.userContextRepository = userContextRepository;
+            this.userRepository = userRepository;
         }
         
         public async Task Connect()
         {
-            var gameContext = await mediator.Send(new GetPlayingGameRequest(Identity.UserContext));
+            var gameContext = await mediator.Send(new GetPlayingGameRequest(Identity.User));
             if (gameContext != null)
             {
                 Clients.Users(new[] { gameContext.FirstUser.Id.ToString(), gameContext.SecondUser.Id.ToString() }).Connected(gameContext.Id);
                 return;
             }
 
-            await userContextRepository.Update(Identity.UserContext, uc => uc.State = UserState.Connecting);
+            await userRepository.Update(Identity.User, u => u.State = UserState.Connecting);
         }
 
         public async Task Disconnect()
         {
-            var gameContext = await mediator.Send(new GetPlayingGameRequest(Identity.UserContext));
+            var gameContext = await mediator.Send(new GetPlayingGameRequest(Identity.User));
             if (gameContext != null)
                 await mediator.Send(new CancelGameRequest(gameContext));
         }

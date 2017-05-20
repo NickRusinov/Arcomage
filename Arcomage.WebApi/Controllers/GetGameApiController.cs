@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
+using Arcomage.Network;
 using Arcomage.Network.Repositories;
 using Arcomage.WebApi.Models.Game;
 using AutoMapper;
@@ -13,13 +14,10 @@ namespace Arcomage.WebApi.Controllers
     [Authorize]
     public class GetGameApiController : ApplicationApiController
     {
-        private readonly IGameRepository gameRepository;
+        private readonly IRepository<GameContext> gameContextRepository;
 
-        private readonly IGameContextRepository gameContextRepository;
-
-        public GetGameApiController(IGameRepository gameRepository, IGameContextRepository gameContextRepository)
+        public GetGameApiController(IRepository<GameContext> gameContextRepository)
         {
-            this.gameRepository = gameRepository;
             this.gameContextRepository = gameContextRepository;
         }
 
@@ -29,10 +27,7 @@ namespace Arcomage.WebApi.Controllers
             var gameContext = await gameContextRepository.GetById(id) ??
                 throw new HttpException();
 
-            var game = await gameRepository.GetById(gameContext.Id) ??
-                throw new HttpException();
-
-            return Mapper.Map<GameModel>((gameContext, Identity.UserContext, game));
+            return Mapper.Map<GameModel>((gameContext, Identity.User, gameContext.Game));
         }
     }
 }

@@ -117,20 +117,11 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="NotAddedNewGame" xml:space="preserve">
-    <value>Не удалось сохранить созданную игровую сессию</value>
-  </data>
   <data name="NotAddedNewGameContext" xml:space="preserve">
     <value>Не удалось сохранить созданную игровую сессию</value>
   </data>
-  <data name="NotFoundActiveGame" xml:space="preserve">
-    <value>Не найдена текущая активная игра</value>
-  </data>
   <data name="NotFoundActiveGameContext" xml:space="preserve">
     <value>Не найдена текущая активная игра</value>
-  </data>
-  <data name="NotFoundActiveUserContext" xml:space="preserve">
-    <value>Не найден текущий активный игрок</value>
   </data>
   <data name="NotPlayedHumanPlayer" xml:space="preserve">
     <value>Текущий активный игрок не может сделать ход</value>

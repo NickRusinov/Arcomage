@@ -5,48 +5,37 @@ using System.Text;
 using System.Threading.Tasks;
 using Arcomage.Domain;
 using Arcomage.Domain.Players;
-using Arcomage.Network.Repositories;
 using Arcomage.Network.Requests;
 using MediatR;
 
 namespace Arcomage.Network.Handlers
 {
-    public class PlayGameRequestHandler : IAsyncRequestHandler<PlayCardGameRequest>, IAsyncRequestHandler<DiscardCardGameRequest>
+    public class PlayGameRequestHandler : IRequestHandler<PlayCardGameRequest>, IRequestHandler<DiscardCardGameRequest>
     {
-        private readonly IGameRepository gameRepository;
-
-        public PlayGameRequestHandler(IGameRepository gameRepository)
+        public void Handle(PlayCardGameRequest message)
         {
-            this.gameRepository = gameRepository;
-        }
-
-        public async Task Handle(PlayCardGameRequest message)
-        {
-            var humanPlayer = await GetHumanPlayer(message.GameContext, message.UserContext);
+            var humanPlayer = GetHumanPlayer(message.GameContext, message.User);
 
             humanPlayer.SetPlayResult(new PlayResult(message.Index, true));
         }
 
-        public async Task Handle(DiscardCardGameRequest message)
+        public void Handle(DiscardCardGameRequest message)
         {
-            var humanPlayer = await GetHumanPlayer(message.GameContext, message.UserContext);
+            var humanPlayer = GetHumanPlayer(message.GameContext, message.User);
 
             humanPlayer.SetPlayResult(new PlayResult(message.Index, false));
         }
 
-        private async Task<HumanPlayer> GetHumanPlayer(GameContext gameContext, UserContext userContext)
+        private HumanPlayer GetHumanPlayer(GameContext gameContext, User user)
         {
-            var game = await gameRepository.GetById(gameContext.Id) ??
-                throw new NetworkException(NetworkResources.NotFoundActiveGame);
+            if (gameContext.FirstUser.Id == user.Id && gameContext.Game.Players.Kind != PlayerKind.First)
+                throw new NetworkException(Resources.NotPlayedHumanPlayer);
 
-            if (gameContext.FirstUser.Id == userContext.Id && game.Players.Kind != PlayerKind.First)
-                throw new NetworkException(NetworkResources.NotPlayedHumanPlayer);
+            if (gameContext.SecondUser.Id == user.Id && gameContext.Game.Players.Kind != PlayerKind.Second)
+                throw new NetworkException(Resources.NotPlayedHumanPlayer);
 
-            if (gameContext.SecondUser.Id == userContext.Id && game.Players.Kind != PlayerKind.Second)
-                throw new NetworkException(NetworkResources.NotPlayedHumanPlayer);
-
-            if (!(game.Players.CurrentPlayer is HumanPlayer humanPlayer))
-                throw new NetworkException(NetworkResources.NotPlayedHumanPlayer);
+            if (!(gameContext.Game.Players.CurrentPlayer is HumanPlayer humanPlayer))
+                throw new NetworkException(Resources.NotPlayedHumanPlayer);
 
             return humanPlayer;
         }

@@ -14,26 +14,26 @@ namespace Arcomage.Network.Jobs
     {
         private readonly IMediator mediator;
 
-        private readonly IGameRepository gameRepository;
+        private readonly IRepository<GameContext> gameContextRepository;
 
-        public PlayGameJob(IMediator mediator, IGameRepository gameRepository)
+        public PlayGameJob(IMediator mediator, IRepository<GameContext> gameContextRepository)
         {
             this.mediator = mediator;
-            this.gameRepository = gameRepository;
+            this.gameContextRepository = gameContextRepository;
         }
 
-        public async Task Start(GameContext gameContext)
+        public async Task Start(Guid id)
         {
-            var game = await gameRepository.GetById(gameContext.Id);
-            var root = new RootPlayAction(game.PlayAction);
+            var gameContext = await gameContextRepository.GetById(id);
+            var root = new RootPlayAction(gameContext.Game.PlayAction);
 
             await mediator.Publish(new StartGameNotification(gameContext));
 
-            while (!game.Rule.IsWin(game))
+            while (!gameContext.Game.Rule.IsWin(gameContext.Game))
             {
-                await mediator.Publish(new BeforePlayCardGameNotification(gameContext, game));
-                await root.WaitPlay(game);
-                await mediator.Publish(new AfterPlayCardGameNotification(gameContext, game));
+                await mediator.Publish(new BeforePlayCardGameNotification(gameContext));
+                await root.WaitPlay(gameContext.Game);
+                await mediator.Publish(new AfterPlayCardGameNotification(gameContext));
             }
 
             await mediator.Publish(new StopGameNotification(gameContext));

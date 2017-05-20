@@ -21,23 +21,15 @@ namespace Arcomage.WebApi.Controllers
         [HttpGet, Route("~/api/game/connecting")]
         public async Task<Guid?> GetConnecting()
         {
-            var gameContext = await mediator.Send(new GetPlayingGameRequest(Identity.UserContext));
+            var gameContext = await mediator.Send(new GetPlayingGameRequest(Identity.User));
 
             return gameContext?.Id;
         }
 
-        //[HttpPost, Route("~/api/game/connect")]
-        //public async Task<Guid?> Connect()
-        //{
-        //    var gameContext = await connectGameService.ConnectGame(Identity.UserContext);
-
-        //    return gameContext?.Id;
-        //}
-
         [HttpPost, Route("~/api/game/disconnect")]
         public async Task<Guid?> Disconnect()
         {
-            var gameContext = await mediator.Send(new GetPlayingGameRequest(Identity.UserContext));
+            var gameContext = await mediator.Send(new GetPlayingGameRequest(Identity.User));
             if (gameContext != null)
                 await mediator.Send(new CancelGameRequest(gameContext));
 

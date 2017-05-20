@@ -22,14 +22,14 @@ namespace Arcomage.Network {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class NetworkResources {
+    internal class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal NetworkResources() {
+        internal Resources() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace Arcomage.Network {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Arcomage.Network.NetworkResources", typeof(NetworkResources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Arcomage.Network.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -63,15 +63,6 @@ namespace Arcomage.Network {
         /// <summary>
         ///   Looks up a localized string similar to Не удалось сохранить созданную игровую сессию.
         /// </summary>
-        internal static string NotAddedNewGame {
-            get {
-                return ResourceManager.GetString("NotAddedNewGame", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Не удалось сохранить созданную игровую сессию.
-        /// </summary>
         internal static string NotAddedNewGameContext {
             get {
                 return ResourceManager.GetString("NotAddedNewGameContext", resourceCulture);
@@ -81,27 +72,9 @@ namespace Arcomage.Network {
         /// <summary>
         ///   Looks up a localized string similar to Не найдена текущая активная игра.
         /// </summary>
-        internal static string NotFoundActiveGame {
-            get {
-                return ResourceManager.GetString("NotFoundActiveGame", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Не найдена текущая активная игра.
-        /// </summary>
         internal static string NotFoundActiveGameContext {
             get {
                 return ResourceManager.GetString("NotFoundActiveGameContext", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Не найден текущий активный игрок.
-        /// </summary>
-        internal static string NotFoundActiveUserContext {
-            get {
-                return ResourceManager.GetString("NotFoundActiveUserContext", resourceCulture);
             }
         }
         

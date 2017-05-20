@@ -2,7 +2,6 @@
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
-using Arcomage.Domain;
 using Arcomage.Network;
 using Arcomage.Network.Handlers;
 using Arcomage.Network.Repositories;
@@ -19,16 +18,12 @@ namespace Arcomage.WebApi
                 .UsingConstructor()
                 .SingleInstance();
 
-            builder.RegisterType<ConcurrentDictionary<Guid, UserContext>>()
-                .UsingConstructor()
-                .SingleInstance();
-
-            builder.RegisterType<ConcurrentDictionary<Guid, Game>>()
+            builder.RegisterType<ConcurrentDictionary<Guid, User>>()
                 .UsingConstructor()
                 .SingleInstance();
 
             builder.RegisterAssemblyTypes(typeof(GameContext).Assembly)
-                .InNamespaceOf<IGameRepository>()
+                .InNamespaceOf<MemoryGameContextRepository>()
                 .AsImplementedInterfaces()
                 .InstancePerLifetimeScope();
 

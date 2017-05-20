@@ -22,19 +22,19 @@ namespace Arcomage.WebApi.Controllers
         [HttpPost, Route("~/api/game/play")]
         public async Task PlayCard(int cardIndex)
         {
-            var gameContext = await mediator.Send(new GetPlayingGameRequest(Identity.UserContext)) ??
+            var gameContext = await mediator.Send(new GetPlayingGameRequest(Identity.User)) ??
                 throw new HttpException();
 
-            await mediator.Send(new PlayCardGameRequest(gameContext, Identity.UserContext, cardIndex));
+            await mediator.Send(new PlayCardGameRequest(gameContext, Identity.User, cardIndex));
         }
 
         [HttpPost, Route("~/api/game/discard")]
         public async Task DiscardCard(int cardIndex)
         {
-            var gameContext = await mediator.Send(new GetPlayingGameRequest(Identity.UserContext)) ??
+            var gameContext = await mediator.Send(new GetPlayingGameRequest(Identity.User)) ??
                 throw new HttpException();
 
-            await mediator.Send(new DiscardCardGameRequest(gameContext, Identity.UserContext, cardIndex));
+            await mediator.Send(new DiscardCardGameRequest(gameContext, Identity.User, cardIndex));
         }
     }
 }

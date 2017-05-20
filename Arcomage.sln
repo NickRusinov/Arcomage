@@ -13,6 +13,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Arcomage.Domain.Tests", "Ar
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Arcomage.Network", "Arcomage.Network\Arcomage.Network.csproj", "{8AE2CE86-BAA5-4790-95CC-A23FF0837CCE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Arcomage.Network.PostgreSql", "Arcomage.Network.PostgreSql\Arcomage.Network.PostgreSql.csproj", "{7DDD23FC-BAEB-45D9-8446-5AA710C96CDB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Arcomage.Network.Migrations", "Arcomage.Network.Migrations\Arcomage.Network.Migrations.csproj", "{06B6CFAE-B3E0-45F6-AC99-B0BE3D4CFD16}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,14 @@ Global
 		{8AE2CE86-BAA5-4790-95CC-A23FF0837CCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8AE2CE86-BAA5-4790-95CC-A23FF0837CCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8AE2CE86-BAA5-4790-95CC-A23FF0837CCE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7DDD23FC-BAEB-45D9-8446-5AA710C96CDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DDD23FC-BAEB-45D9-8446-5AA710C96CDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DDD23FC-BAEB-45D9-8446-5AA710C96CDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DDD23FC-BAEB-45D9-8446-5AA710C96CDB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{06B6CFAE-B3E0-45F6-AC99-B0BE3D4CFD16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06B6CFAE-B3E0-45F6-AC99-B0BE3D4CFD16}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06B6CFAE-B3E0-45F6-AC99-B0BE3D4CFD16}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06B6CFAE-B3E0-45F6-AC99-B0BE3D4CFD16}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

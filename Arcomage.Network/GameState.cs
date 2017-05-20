@@ -11,12 +11,12 @@ namespace Arcomage.Network
     {
         None      = 0x0000_0000,
 
-        Playing   = 0x0000_0001,
+        Started   = 0x0000_0001,
 
         Finished  = 0x0000_0002,
 
         Cancelled = 0x0000_0004,
 
-        All      = Playing | Finished | Cancelled,
+        All      = Started | Finished | Cancelled,
     }
 }

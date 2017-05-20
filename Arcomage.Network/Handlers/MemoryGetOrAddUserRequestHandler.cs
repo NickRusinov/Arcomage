@@ -10,22 +10,22 @@ using static System.StringComparison;
 
 namespace Arcomage.Network.Handlers
 {
-    public class MemoryGetOrAddUserRequestHandler : IRequestHandler<GetOrAddUserRequest, UserContext>
+    public class MemoryGetOrAddUserRequestHandler : IRequestHandler<GetOrAddUserRequest, User>
     {
-        private readonly ConcurrentDictionary<Guid, UserContext> userStorage;
+        private readonly ConcurrentDictionary<Guid, User> userStorage;
 
-        public MemoryGetOrAddUserRequestHandler(ConcurrentDictionary<Guid, UserContext> userStorage)
+        public MemoryGetOrAddUserRequestHandler(ConcurrentDictionary<Guid, User> userStorage)
         {
             this.userStorage = userStorage;
         }
 
-        public UserContext Handle(GetOrAddUserRequest message)
+        public User Handle(GetOrAddUserRequest message)
         {
-            var userContext = userStorage.Values
+            var user = userStorage.Values
                 .Where(uc => string.Equals(uc.Name, message.Name, OrdinalIgnoreCase))
-                .SingleOrDefault() ?? UserContext.New(message.Name, message.Kind);
+                .SingleOrDefault() ?? new User { Id = Guid.NewGuid(), Name = message.Name };
 
-            return userStorage.GetOrAdd(userContext.Id, userContext);
+            return userStorage.GetOrAdd(user.Id, user);
         }
     }
 }

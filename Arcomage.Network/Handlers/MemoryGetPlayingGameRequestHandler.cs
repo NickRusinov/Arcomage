@@ -21,8 +21,8 @@ namespace Arcomage.Network.Handlers
         public GameContext Handle(GetPlayingGameRequest message)
         {
             return gameStorage.Values
-                .Where(gc => gc.State.HasFlag(GameState.Playing))
-                .Where(gc => gc.FirstUser.Id == message.UserContext.Id || gc.SecondUser.Id == message.UserContext.Id)
+                .Where(gc => gc.State.HasFlag(GameState.Started))
+                .Where(gc => gc.FirstUser.Id == message.User.Id || gc.SecondUser.Id == message.User.Id)
                 .FirstOrDefault();
         }
     }

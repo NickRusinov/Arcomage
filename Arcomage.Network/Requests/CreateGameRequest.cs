@@ -9,14 +9,14 @@ namespace Arcomage.Network.Requests
 {
     public class CreateGameRequest : IRequest<GameContext>
     {
-        public CreateGameRequest(UserContext firstUserContext, UserContext secondUserContext)
+        public CreateGameRequest(User firstUser, User secondUser)
         {
-            FirstUserContext = firstUserContext;
-            SecondUserContext = secondUserContext;
+            FirstUser = firstUser;
+            SecondUser = secondUser;
         }
 
-        public UserContext FirstUserContext { get; set; }
+        public User FirstUser { get; set; }
 
-        public UserContext SecondUserContext { get; set; }
+        public User SecondUser { get; set; }
     }
 }

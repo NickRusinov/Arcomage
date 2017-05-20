@@ -9,16 +9,16 @@ namespace Arcomage.Network.Requests
 {
     public class DiscardCardGameRequest : IRequest
     {
-        public DiscardCardGameRequest(GameContext gameContext, UserContext userContext, int index)
+        public DiscardCardGameRequest(GameContext gameContext, User user, int index)
         {
             GameContext = gameContext;
-            UserContext = userContext;
+            User = user;
             Index = index;
         }
 
         public GameContext GameContext { get; set; }
 
-        public UserContext UserContext { get; set; }
+        public User User { get; set; }
 
         public int Index { get; set; }
     }

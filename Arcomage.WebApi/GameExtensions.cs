@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using Arcomage.Domain;
 using Arcomage.Domain.Cards;
 using Arcomage.Domain.Players;
@@ -46,12 +45,12 @@ namespace Arcomage.WebApi
             return "";
         }
 
-        public static PlayerKind GetPlayerKind(this GameContext gameContext, UserContext userContext)
+        public static PlayerKind GetPlayerKind(this GameContext gameContext, User user)
         {
-            if (gameContext.FirstUser.Id == userContext.Id)
+            if (gameContext.FirstUser.Id == user.Id)
                 return PlayerKind.First;
 
-            if (gameContext.SecondUser.Id == userContext.Id)
+            if (gameContext.SecondUser.Id == user.Id)
                 return PlayerKind.Second;
 
             throw new InvalidOperationException();

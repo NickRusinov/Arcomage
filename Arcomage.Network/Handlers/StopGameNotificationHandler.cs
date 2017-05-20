@@ -11,26 +11,24 @@ namespace Arcomage.Network.Handlers
 {
     public class StopGameNotificationHandler : IAsyncNotificationHandler<StopGameNotification>
     {
-        private readonly IGameContextRepository gameContextRepository;
+        private readonly IRepository<GameContext> gameContextRepository;
 
-        private readonly IUserContextRepository userContextRepository;
+        private readonly IRepository<User> userRepository;
 
-        public StopGameNotificationHandler(IGameContextRepository gameContextRepository, IUserContextRepository userContextRepository)
+        public StopGameNotificationHandler(IRepository<GameContext> gameContextRepository, IRepository<User> userRepository)
         {
             this.gameContextRepository = gameContextRepository;
-            this.userContextRepository = userContextRepository;
+            this.userRepository = userRepository;
         }
 
         public async Task Handle(StopGameNotification message)
         {
             await gameContextRepository.Update(message.GameContext,
-                gc => gc.State = GameState.Finished,
-                gc => gc.CancelledDate = DateTime.UtcNow);
+                new Action<GameContext>(gc => gc.State = GameState.Finished) +
+                new Action<GameContext>(gc => gc.CancelledDate = DateTime.UtcNow));
 
-            await userContextRepository.Update(message.GameContext.FirstUser,
-                uc => uc.State = UserState.None);
-            await userContextRepository.Update(message.GameContext.SecondUser,
-                uc => uc.State = UserState.None);
+            await userRepository.Update(message.GameContext.FirstUser, u => u.State = UserState.None);
+            await userRepository.Update(message.GameContext.SecondUser, u => u.State = UserState.None);
         }
     }
 }

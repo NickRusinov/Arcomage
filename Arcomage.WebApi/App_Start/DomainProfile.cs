@@ -20,7 +20,7 @@ namespace Arcomage.WebApi
     {
         public DomainProfile()
         {
-            CreateMap<(GameContext c, UserContext u, Game g), GameModel>()
+            CreateMap<(GameContext c, User u, Game g), GameModel>()
                 .ForMember(m => m.FirstPlayer, exp => exp.ResolveUsing(t => (t.c.FirstUser, t.g.Players.FirstPlayer)))
                 .ForMember(m => m.SecondPlayer, exp => exp.ResolveUsing(t => (t.c.SecondUser, t.g.Players.SecondPlayer)))
                 .ForMember(m => m.History, exp => exp.ResolveUsing(t => t.g.History))
@@ -34,8 +34,8 @@ namespace Arcomage.WebApi
                 .ForMember(m => m.DiscardOnly, exp => exp.MapFrom(t => t.g.DiscardOnly))
                 .ForMember(m => m.Version, exp => exp.MapFrom(t => t.c.Version));
 
-            CreateMap<(UserContext c, Player p), GameModel.PlayerModel>()
-                .ForMember(m => m.Name, exp => exp.ResolveUsing(t => t.c.Id.ToString()))
+            CreateMap<(User u, Player p), GameModel.PlayerModel>()
+                .ForMember(m => m.Name, exp => exp.ResolveUsing(t => t.u.Id.ToString()))
                 .ForMember(m => m.Buildings, exp => exp.ResolveUsing(t => t.p.Buildings))
                 .ForMember(m => m.Resources, exp => exp.ResolveUsing(t => t.p.Resources));
 

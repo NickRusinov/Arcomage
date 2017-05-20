@@ -14,9 +14,9 @@ namespace Arcomage.Network.Jobs
     {
         private readonly IMediator mediator;
 
-        private readonly IGameContextRepository gameContextRepository;
+        private readonly IRepository<GameContext> gameContextRepository;
 
-        public CreateGameJob(IMediator mediator, IGameContextRepository gameContextRepository)
+        public CreateGameJob(IMediator mediator, IRepository<GameContext> gameContextRepository)
         {
             this.mediator = mediator;
             this.gameContextRepository = gameContextRepository;
@@ -26,25 +26,24 @@ namespace Arcomage.Network.Jobs
         {
             while (true)
             {
-                var userContextEnumerable = await mediator.Send(new GetConnectingUsersRequest());
-                var userContextList = userContextEnumerable.ToList();
+                var getConnectingUsersRequest = new GetConnectingUsersRequest();
+                var userList = (await mediator.Send(getConnectingUsersRequest)).ToList();
 
-                for (var i = 0; i < userContextList.Count / 2; ++i)
+                for (var i = 0; i < userList.Count / 2; ++i)
                 {
-                    var createGameRequest = new CreateGameRequest(userContextList[i], userContextList[i + 1]);
+                    var createGameRequest = new CreateGameRequest(userList[i], userList[i + 1]);
                     var gameContext = await mediator.Send(createGameRequest);
 
-                    var jobId = BackgroundJob.Enqueue<PlayGameJob>(j => j.Start(gameContext));
+                    var jobId = BackgroundJob.Enqueue<PlayGameJob>(j => j.Start(gameContext.Id));
                     await gameContextRepository.Update(gameContext, gc => gc.JobId = jobId);
                 }
 
-                if (userContextList.Count % 2 == 1)
+                if (userList.Count % 2 == 1)
                 {
-                    var computerUserContext = UserContext.New("Computer Player", UserKind.Computer);
-                    var createGameRequest = new CreateGameRequest(userContextList[userContextList.Count - 1], computerUserContext);
+                    var createGameRequest = new CreateGameRequest(userList[userList.Count - 1], User.ComputerUser);
                     var gameContext = await mediator.Send(createGameRequest);
 
-                    var jobId = BackgroundJob.Enqueue<PlayGameJob>(j => j.Start(gameContext));
+                    var jobId = BackgroundJob.Enqueue<PlayGameJob>(j => j.Start(gameContext.Id));
                     await gameContextRepository.Update(gameContext, gc => gc.JobId = jobId);
                 }
 

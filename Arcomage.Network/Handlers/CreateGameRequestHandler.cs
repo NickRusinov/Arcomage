@@ -14,28 +14,22 @@ namespace Arcomage.Network.Handlers
     {
         private readonly GameBuilder<GameContext> gameBuilder;
 
-        private readonly IGameRepository gameRepository;
+        private readonly IRepository<GameContext> gameContextRepository;
 
-        private readonly IGameContextRepository gameContextRepository;
-
-        public CreateGameRequestHandler(GameBuilder<GameContext> gameBuilder, IGameRepository gameRepository, IGameContextRepository gameContextRepository)
+        public CreateGameRequestHandler(GameBuilder<GameContext> gameBuilder, IRepository<GameContext> gameContextRepository)
         {
             this.gameBuilder = gameBuilder;
-            this.gameRepository = gameRepository;
             this.gameContextRepository = gameContextRepository;
         }
 
         public async Task<GameContext> Handle(CreateGameRequest message)
         {
-            var gameContext = GameContext.New(message.FirstUserContext, message.SecondUserContext);
+            var gameContext = new GameContext { Id = Guid.NewGuid(), FirstUser = message.FirstUser, SecondUser = message.SecondUser };
             var gameBuilderContext = gameBuilder.CreateContext(gameContext);
-            var game = gameBuilderContext.Resolve<Game>();
+            gameContext.Game = gameBuilderContext.Resolve<Game>();
 
             if (!await gameContextRepository.Add(gameContext))
-                throw new NetworkException(NetworkResources.NotAddedNewGameContext);
-
-            if (!await gameRepository.Add(gameContext.Id, game))
-                throw new NetworkException(NetworkResources.NotAddedNewGame);
+                throw new NetworkException(Resources.NotAddedNewGameContext);
 
             return gameContext;
         }
