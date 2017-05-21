@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using Autofac;
-using Owin;
-using Hangfire;
-using Hangfire.MemoryStorage;
-using Hangfire.Dashboard;
 using System.Configuration;
+using System.Linq;
 using Arcomage.Network.Jobs;
+using Autofac;
+using Hangfire;
+using Hangfire.Dashboard;
+using Hangfire.PostgreSql;
 using NLog;
+using Owin;
 
 namespace Arcomage.WebApi
 {
@@ -21,8 +21,7 @@ namespace Arcomage.WebApi
             logger.Info("Конфигурация Hangfire");
 
             GlobalConfiguration.Configuration
-                //.UseSqlServerStorage("Data Source=(local);Initial Catalog=Arcomagic;Integrated Security=True")
-                .UseStorage(new MemoryStorage())
+                .UseStorage(new PostgreSqlStorage("ApplicationConnectionString"))
                 .UseAutofacActivator(container, false)
                 .UseNLogLogProvider();
 

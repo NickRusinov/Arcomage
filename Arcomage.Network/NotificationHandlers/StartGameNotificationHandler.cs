@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Arcomage.Network.Repositories;
 using Arcomage.Network.Notifications;
 using MediatR;
 
-namespace Arcomage.Network.Handlers
+namespace Arcomage.Network.NotificationHandlers
 {
     public class StartGameNotificationHandler : IAsyncNotificationHandler<StartGameNotification>
     {

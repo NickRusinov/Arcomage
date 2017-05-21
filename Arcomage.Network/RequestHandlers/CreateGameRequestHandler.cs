@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Arcomage.Domain;
-using Arcomage.Network.Repositories;
 using Arcomage.Network.Requests;
 using MediatR;
 
-namespace Arcomage.Network.Handlers
+namespace Arcomage.Network.RequestHandlers
 {
     public class CreateGameRequestHandler : IAsyncRequestHandler<CreateGameRequest, GameContext>
     {

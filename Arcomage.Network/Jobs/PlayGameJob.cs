@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using Arcomage.Domain.Actions;
 using Arcomage.Network.Notifications;
-using Arcomage.Network.Repositories;
 using MediatR;
 
 namespace Arcomage.Network.Jobs

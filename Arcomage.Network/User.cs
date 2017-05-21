@@ -16,5 +16,7 @@ namespace Arcomage.Network
         public string Name { get; set; }
 
         public UserState State { get; set; }
+
+        public DateTime Timestamp { get; set; }
     }
 }

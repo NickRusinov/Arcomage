@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Arcomage.Network.Repositories
+namespace Arcomage.Network
 {
     public interface IRepository<T>
     {

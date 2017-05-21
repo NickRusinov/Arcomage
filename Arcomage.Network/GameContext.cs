@@ -28,5 +28,7 @@ namespace Arcomage.Network
         public User FirstUser { get; set; }
 
         public User SecondUser { get; set; }
+
+        public DateTime Timestamp { get; set; }
     }
 }

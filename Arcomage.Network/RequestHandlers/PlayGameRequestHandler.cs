@@ -8,7 +8,7 @@ using Arcomage.Domain.Players;
 using Arcomage.Network.Requests;
 using MediatR;
 
-namespace Arcomage.Network.Handlers
+namespace Arcomage.Network.RequestHandlers
 {
     public class PlayGameRequestHandler : IRequestHandler<PlayCardGameRequest>, IRequestHandler<DiscardCardGameRequest>
     {

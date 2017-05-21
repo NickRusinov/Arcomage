@@ -182,7 +182,7 @@
     <Compile Include="App_Start\DomainProfile.cs" />
     <Compile Include="App_Start\HangfireConfiguration.cs" />
     <Compile Include="App_Start\MediatRModule.cs" />
-    <Compile Include="App_Start\NetworkModule.cs" />
+    <Compile Include="App_Start\PostgresqlModule.cs" />
     <Compile Include="App_Start\SignalRConfiguration.cs" />
     <Compile Include="App_Start\SignalRModule.cs" />
     <Compile Include="App_Start\UnityAuthorizationMiddleware.cs" />

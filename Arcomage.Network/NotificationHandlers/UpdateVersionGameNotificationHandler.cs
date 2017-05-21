@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Arcomage.Network.Notifications;
-using Arcomage.Network.Repositories;
 using MediatR;
 
-namespace Arcomage.Network.Handlers
+namespace Arcomage.Network.NotificationHandlers
 {
     public class UpdateVersionGameNotificationHandler : IAsyncNotificationHandler<AfterPlayCardGameNotification>
     {
