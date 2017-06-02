@@ -4,10 +4,13 @@
     <TargetFramework>net46</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="Autofac" Version="4.4.0" />
+    <PackageReference Include="Hangfire.Core" Version="1.6.12" />
     <PackageReference Include="MediatR" Version="3.0.1" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Arcomage.Domain\Arcomage.Domain.csproj" />
+    <ProjectReference Include="..\Arcomage.Network\Arcomage.Network.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Properties\Resources.Designer.cs">
@@ -20,7 +23,7 @@
     <EmbeddedResource Update="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <CustomToolNamespace>Arcomage.Network</CustomToolNamespace>
+      <CustomToolNamespace>Arcomage.Network.Hangfire</CustomToolNamespace>
     </EmbeddedResource>
   </ItemGroup>
 </Project>

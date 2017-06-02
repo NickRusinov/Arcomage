@@ -22,10 +22,10 @@ namespace Arcomage.Network.PostgreSql.RequestHandlers
         public async Task<GameContext> Handle(GetPlayingGameRequest message)
         {
             var query = await transaction.Connection.QueryAsync<GameContext, User, User, GameContext>(
-                "SELECT * FROM GameContext gc \n" +
-                "LEFT OUTER JOIN User u1 ON gc.FirstUser = u1.Id \n" +
-                "LEFT OUTER JOIN User u2 ON gc.SecondUser = u2.Id \n" +
-                "WHERE gc.State = @State AND (gc.FirstUser = @UserId OR gc.SecondUser = @UserId)",
+                "SELECT * FROM public.gamecontext gc \n" +
+                "LEFT OUTER JOIN public.user u1 ON gc.firstuserid = u1.id \n" +
+                "LEFT OUTER JOIN public.user u2 ON gc.seconduserid = u2.id \n" +
+                "WHERE gc.state = @State AND (gc.firstuserid = @UserId OR gc.seconduserid = @UserId)",
                 (gc, u1, u2) => { gc.FirstUser = u1; gc.SecondUser = u2; return gc; },
                 new { State = GameState.Started, UserId = message.User.Id }, transaction);
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Http;
+using Arcomage.Network.Notifications;
 using Arcomage.Network.Requests;
 using MediatR;
 
@@ -31,7 +32,7 @@ namespace Arcomage.WebApi.Controllers
         {
             var gameContext = await mediator.Send(new GetPlayingGameRequest(Identity.User));
             if (gameContext != null)
-                await mediator.Send(new CancelGameRequest(gameContext));
+                await mediator.Publish(new CancelGameNotification(gameContext));
 
             return gameContext?.Id;
         }

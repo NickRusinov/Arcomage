@@ -8,7 +8,7 @@ using Autofac;
 
 namespace Arcomage.WebApi
 {
-    public class DomainModule : Module
+    public class DomainModule : ApplicationModule
     {
         protected override void Load(ContainerBuilder builder)
         {

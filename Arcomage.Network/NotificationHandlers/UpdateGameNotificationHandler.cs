@@ -8,19 +8,22 @@ using MediatR;
 
 namespace Arcomage.Network.NotificationHandlers
 {
-    public class UpdateVersionGameNotificationHandler : IAsyncNotificationHandler<AfterPlayCardGameNotification>
+    public class UpdateGameNotificationHandler : IAsyncNotificationHandler<AfterPlayCardGameNotification>
     {
         private readonly IRepository<GameContext> gameContextRepository;
 
-        public UpdateVersionGameNotificationHandler(IRepository<GameContext> gameContextRepository)
+        public UpdateGameNotificationHandler(IRepository<GameContext> gameContextRepository)
         {
             this.gameContextRepository = gameContextRepository;
         }
 
         public async Task Handle(AfterPlayCardGameNotification notification)
         {
+            var game = notification.GameContext.Game;
+
             await gameContextRepository.Update(notification.GameContext,
-                gc => gc.Version++);
+                new Action<GameContext>(gc => gc.Game = game) +
+                new Action<GameContext>(gc => gc.Version++));
         }
     }
 }

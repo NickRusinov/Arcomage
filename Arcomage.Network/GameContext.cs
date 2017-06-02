@@ -7,10 +7,8 @@ using Arcomage.Domain;
 
 namespace Arcomage.Network
 {
-    public class GameContext
+    public class GameContext : Entity
     {
-        public Guid Id { get; set; }
-
         public string JobId { get; set; }
 
         public int Version { get; set; }
@@ -29,6 +27,8 @@ namespace Arcomage.Network
 
         public User SecondUser { get; set; }
 
-        public DateTime Timestamp { get; set; }
+        public Guid FirstUserId { get; set; }
+
+        public Guid SecondUserId { get; set; }
     }
 }

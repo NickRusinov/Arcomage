@@ -1,20 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using Arcomage.WebApi.Hubs;
 using Autofac;
 using Autofac.Integration.SignalR;
 using Microsoft.AspNet.SignalR;
 using Microsoft.AspNet.SignalR.Infrastructure;
+using SignalR.Extras.Autofac;
 
 namespace Arcomage.WebApi
 {
-    public class SignalRModule : Module
+    public class SignalRModule : ApplicationModule
     {
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterHubs(ThisAssembly);
+            builder.RegisterLifetimeHubManager();
 
             builder.RegisterType<AutofacDependencyResolver>()
                 .AsImplementedInterfaces()

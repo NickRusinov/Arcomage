@@ -23,7 +23,12 @@ namespace Arcomage.Network.RequestHandlers
 
         public async Task<GameContext> Handle(CreateGameRequest message)
         {
-            var gameContext = new GameContext { Id = Guid.NewGuid(), FirstUser = message.FirstUser, SecondUser = message.SecondUser };
+            var gameContext = new GameContext
+            {
+                Id = Guid.NewGuid(),
+                FirstUser = message.FirstUser, FirstUserId = message.FirstUser.Id,
+                SecondUser = message.SecondUser, SecondUserId = message.SecondUser.Id
+            };
             var gameBuilderContext = gameBuilder.CreateContext(gameContext);
             gameContext.Game = gameBuilderContext.Resolve<Game>();
 

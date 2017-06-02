@@ -5,11 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using MediatR;
 
-namespace Arcomage.Network.Requests
+namespace Arcomage.Network.Notifications
 {
-    public class CancelGameRequest : IRequest
+    public class CancelGameNotification : INotification
     {
-        public CancelGameRequest(GameContext gameContext)
+        public CancelGameNotification(GameContext gameContext)
         {
             GameContext = gameContext;
         }

@@ -11,5 +11,13 @@ namespace Arcomage.Network.Migrations
     public class VersionTableMetaData : DefaultVersionTableMetaData
     {
         public override string SchemaName => "migration";
+
+        public override string TableName => "versioninfo";
+
+        public override string ColumnName => "version";
+
+        public override string AppliedOnColumnName => "appliedon";
+
+        public override string DescriptionColumnName => "description";
     }
 }

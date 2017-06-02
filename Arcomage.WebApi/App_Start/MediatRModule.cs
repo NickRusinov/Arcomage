@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Arcomage.Network;
-using Arcomage.Network.PostgreSql.Repositories;
+using Arcomage.WebApi.Infrastructure;
 using Autofac;
 using MediatR;
 
 namespace Arcomage.WebApi
 {
-    public class MediatRModule : Module
+    public class MediatRModule : ApplicationModule
     {
         protected override void Load(ContainerBuilder builder)
         {
@@ -22,10 +21,15 @@ namespace Arcomage.WebApi
             builder.Register(c => BuildMultiInstanceFactory(c.Resolve<IComponentContext>()))
                 .InstancePerLifetimeScope();
 
-            builder.RegisterAssemblyTypes(ThisAssembly, typeof(GameContext).Assembly, typeof(Repository<>).Assembly)
+            builder.RegisterAssemblyTypes(ThisAssembly, NetworkAssembly, NetworkPostgreSqlAssembly)
                 .Where(t => t.Name.EndsWith("RequestHandler") || t.Name.EndsWith("NotificationHandler"))
                 .AsImplementedInterfaces()
                 .InstancePerLifetimeScope();
+
+            // TODO Автоматическая регистрация PipelineBehavior
+            builder.RegisterGeneric(typeof(NLogPipelineBehavior<,>))
+                .AsImplementedInterfaces()
+                .SingleInstance();
 
             SingleInstanceFactory BuildSingleInstanceFactory(IComponentContext c) =>
                 t => c.ResolveOptional(t);

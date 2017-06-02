@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 namespace Arcomage.Network
 {
     public interface IRepository<T>
+        where T : Entity
     {
         Task<T> GetById(Guid id);
 

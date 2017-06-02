@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Linq;
 using System.Threading.Tasks;
 using Arcomage.Network.Requests;
 using Autofac;
 using MediatR;
 using Microsoft.Owin;
-using static System.StringComparison;
 
 namespace Arcomage.WebApi
 {
@@ -27,9 +25,8 @@ namespace Arcomage.WebApi
         {
             var owinContext = new OwinContext(environment);
             var authenticate = owinContext.Request.Headers.Get("UnityAuthorization");
-            var authenticateAllow = ConfigurationManager.AppSettings.Get("UnityAuthorizationAllow");
 
-            if (bool.TrueString.Equals(authenticateAllow, OrdinalIgnoreCase) && authenticate != null)
+            if (WebConfig.UnityAuthorizationAllow && authenticate != null)
             {
                 using (var innerLifetimeScope = lifetimeScope.BeginLifetimeScope())
                 {

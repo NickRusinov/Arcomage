@@ -6,7 +6,7 @@ using Autofac.Integration.WebApi;
 
 namespace Arcomage.WebApi
 {
-    public class WebApiModule : Module
+    public class WebApiModule : ApplicationModule
     {
         protected override void Load(ContainerBuilder builder)
         {

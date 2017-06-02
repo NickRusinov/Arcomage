@@ -19,12 +19,14 @@ namespace Arcomage.Network.PostgreSql.RequestHandlers
             this.transaction = transaction;
         }
 
-        public Task<IEnumerable<User>> Handle(GetConnectingUsersRequest message)
+        public async Task<IEnumerable<User>> Handle(GetConnectingUsersRequest message)
         {
-            return transaction.Connection.QueryAsync<User>(
-                "SELECT * FROM User \n" +
-                "WHERE State = @State",
+            var userCollection = await transaction.Connection.QueryAsync<User>(
+                "SELECT * FROM public.user \n" +
+                "WHERE state = @State",
                 new { State = UserState.Connecting }, transaction);
+
+            return userCollection.ToList();
         }
     }
 }

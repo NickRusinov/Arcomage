@@ -19,15 +19,19 @@ namespace Arcomage.Network.PostgreSql.RequestHandlers
             this.transaction = transaction;
         }
 
-        public Task<User> Handle(GetOrAddUserRequest message)
+        public async Task<User> Handle(GetOrAddUserRequest message)
         {
-            return transaction.Connection.QuerySingleAsync<User>(
-                "INSERT INTO User \n" +
-                "(Id, Name, Timestamp) \n" +
-                "VALUES (@Id, @Name, DEFAULT) \n" +
-                "ON CONFLICT (Name) DO NOTHING \n" +
-                "RETURNING *",
-                new { Id = Guid.NewGuid(), Name = message.Name }, transaction);
+            return 
+                await transaction.Connection.QuerySingleOrDefaultAsync<User>(
+                    "SELECT * FROM public.user \n" +
+                    "WHERE name = @Name",
+                    new { Name = message.Name }, transaction) ??
+
+                await transaction.Connection.QuerySingleOrDefaultAsync<User>(
+                    "INSERT INTO public.user (id, name, state, timestamp) \n" +
+                    "VALUES (@Id, @Name, @State, DEFAULT) \n" +
+                    "ON CONFLICT (name) DO NOTHING RETURNING *",
+                    new { Id = Guid.NewGuid(), Name = message.Name, State = UserState.None }, transaction);
         }
     }
 }

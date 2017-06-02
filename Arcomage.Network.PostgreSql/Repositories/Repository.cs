@@ -3,39 +3,53 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using AutoMapper;
 using Dapper;
 using Npgsql;
 
 namespace Arcomage.Network.PostgreSql.Repositories
 {
-    public class Repository<T> : IRepository<T>
-        where T : class
+    public abstract class Repository<T> : IRepository<T>
+        where T : Entity
     {
+        protected static readonly string tableName;
+
+        protected static readonly string columnNames;
+
+        protected static readonly string columnValues;
+
         protected readonly NpgsqlTransaction transaction;
 
-        protected readonly IMapper mapper;
+        static Repository()
+        {
+            var propertyArray = typeof(T).GetProperties()
+                .Where(p => !typeof(Entity).IsAssignableFrom(p.PropertyType)).ToArray();
 
-        protected readonly string tableName;
+            var propertyNamesCollection = propertyArray
+                .Select(p => p.Name.ToLower());
+            var propertyValuesCollection = propertyArray
+                .Select(p => p.Name != "Timestamp" ? "@" + p.Name : "DEFAULT");
 
-        protected readonly string columnNames;
+            tableName = typeof(T).Name.ToLower();
+            columnNames = string.Join(", ", propertyNamesCollection);
+            columnValues = string.Join(", ", propertyValuesCollection);
+        }
 
-        protected readonly string columnValues;
-        
-        public Repository(NpgsqlTransaction transaction, IMapper mapper)
+        protected Repository(NpgsqlTransaction transaction)
         {
             this.transaction = transaction;
-            this.mapper = mapper;
-            tableName = typeof(T).Name;
-            columnNames = string.Join(", ", typeof(T).GetProperties().Select(p => p.Name));
-            columnValues = string.Join(", ", typeof(T).GetProperties().Select(p => p.Name != "Timestamp" ? "@" + p.Name : "DEFAULT"));
+        }
+        
+        protected virtual void UpdateEntity(T entity, T dbEntity)
+        {
+            entity.Id = dbEntity.Id;
+            entity.Timestamp = dbEntity.Timestamp;
         }
 
         public virtual async Task<T> GetById(Guid id)
         {
             var entity = await transaction.Connection.QuerySingleOrDefaultAsync<T>(
-                $"SELECT * FROM {tableName} \n" +
-                $"WHERE Id = @Id", 
+                $"SELECT * FROM public.{tableName} \n" +
+                $"WHERE id = @Id", 
                 new { Id = id }, transaction);
 
             return entity;
@@ -44,8 +58,8 @@ namespace Arcomage.Network.PostgreSql.Repositories
         public virtual async Task<bool> DeleteById(Guid id)
         {
             var rowAffect = await transaction.Connection.ExecuteAsync(
-                $"DELETE FROM {tableName} \n" +
-                $"WHERE Id = @Id",
+                $"DELETE FROM public.{tableName} \n" +
+                $"WHERE id = @Id",
                 new { Id = id }, transaction);
 
             return rowAffect != 0;
@@ -54,8 +68,7 @@ namespace Arcomage.Network.PostgreSql.Repositories
         public virtual async Task<bool> Add(T entity)
         {
             var rowAffect = await transaction.Connection.ExecuteAsync(
-                $"INSERT INTO {tableName} \n" +
-                $"({columnNames}) \n" +
+                $"INSERT INTO public.{tableName} ({columnNames}) \n" +
                 $"VALUES ({columnValues})",
                 entity, transaction);
 
@@ -65,12 +78,10 @@ namespace Arcomage.Network.PostgreSql.Repositories
         public virtual async Task<bool> Save(T entity)
         {
             var rowAffect = await transaction.Connection.ExecuteAsync(
-                $"INSERT INTO {tableName} \n" +
-                $"({columnNames}) \n" +
+                $"INSERT INTO public.{tableName} ({columnNames}) \n" +
                 $"VALUES ({columnValues}) \n" +
-                $"ON CONFLICT (Id) DO UPDATE \n" +
-                $"SET ({columnNames}) = \n" +
-                $"({columnValues})",
+                $"ON CONFLICT (id) DO UPDATE \n" +
+                $"SET ({columnNames}) = ({columnValues})",
                 entity, transaction);
 
             return rowAffect != 0;
@@ -78,36 +89,22 @@ namespace Arcomage.Network.PostgreSql.Repositories
 
         public virtual async Task<bool> Update(T entity, Action<T> update)
         {
-            var updateEntity = mapper.Map<T>(entity);
+            var updateEntity = await transaction.Connection.QuerySingleOrDefaultAsync<T>(
+                $"SELECT * FROM public.{tableName} \n" +
+                $"WHERE id = @Id \n" +
+                $"FOR UPDATE",
+                entity, transaction);
 
-            while (true)
-            {
-                update.Invoke(updateEntity);
+            UpdateEntity(entity, updateEntity);
+            update.Invoke(entity);
 
-                var rowAffect = await transaction.Connection.ExecuteAsync(
-                    $"UPDATE {tableName} \n" +
-                    $"SET ({columnNames}) = \n" +
-                    $"({columnValues}) \n" +
-                    $"WHERE Id = @Id AND Timestamp = @Timestamp",
-                    entity, transaction);
+            var rowAffect = await transaction.Connection.ExecuteAsync(
+                $"UPDATE public.{tableName} \n" +
+                $"SET ({columnNames}) = ({columnValues}) \n" +
+                $"WHERE id = @Id AND timestamp = @Timestamp",
+                entity, transaction);
 
-                if (rowAffect == 0)
-                {
-                    mapper.Map(updateEntity, entity);
-                    return true;
-                }
-                
-                updateEntity = await transaction.Connection.QuerySingleOrDefaultAsync<T>(
-                    $"SELECT * FROM {tableName} \n" +
-                    $"WHERE Id = @Id",
-                    entity, transaction);
-
-                if (updateEntity == null)
-                {
-                    mapper.Map(entity, entity);
-                    return false;
-                }
-            }
+            return rowAffect != 0;
         }
     }
 }

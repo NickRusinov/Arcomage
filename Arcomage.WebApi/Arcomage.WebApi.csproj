@@ -126,6 +126,9 @@
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="SignalR.Extras.Autofac, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SignalR.Extras.Autofac.1.2.0\lib\net45\SignalR.Extras.Autofac.dll</HintPath>
+    </Reference>
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.IdentityModel.Tokens.Jwt, Version=5.1.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -175,9 +178,12 @@
     <Compile Include="ApplicationPrincipal.cs" />
     <Compile Include="ApplicationUserIdProvider.cs" />
     <Compile Include="App_Start\AndroidAuthorizationMiddleware.cs" />
+    <Compile Include="App_Start\ApplicationModule.cs" />
     <Compile Include="App_Start\AuthorizationConfiguration.cs" />
     <Compile Include="App_Start\AutofacConfiguration.cs" />
     <Compile Include="App_Start\AutoMapperConfiguration.cs" />
+    <Compile Include="App_Start\AutoMapperModule.cs" />
+    <Compile Include="App_Start\DapperConfiguration.cs" />
     <Compile Include="App_Start\DomainModule.cs" />
     <Compile Include="App_Start\DomainProfile.cs" />
     <Compile Include="App_Start\HangfireConfiguration.cs" />
@@ -188,18 +194,21 @@
     <Compile Include="App_Start\UnityAuthorizationMiddleware.cs" />
     <Compile Include="App_Start\WebApiConfiguration.cs" />
     <Compile Include="App_Start\WebApiModule.cs" />
+    <Compile Include="App_Start\WebConfig.cs" />
     <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\ApplicationApiController.cs" />
     <Compile Include="Controllers\ConnectGameApiController.cs" />
     <Compile Include="Controllers\GetGameApiController.cs" />
     <Compile Include="Controllers\PlayGameApiController.cs" />
     <Compile Include="GameExtensions.cs" />
+    <Compile Include="Infrastructure\NLogPipelineBehavior.cs" />
     <Compile Include="Handlers\SignalRStartGameNotificationHandler.cs" />
     <Compile Include="Hubs\ApplicationHub.cs" />
     <Compile Include="Hubs\IConnectGameClient.cs" />
     <Compile Include="Hubs\IPlayGameClient.cs" />
     <Compile Include="Hubs\ConnectGameHub.cs" />
     <Compile Include="Hubs\PlayGameHub.cs" />
+    <Compile Include="Infrastructure\NLogHangfireFilter.cs" />
     <Compile Include="Models\About\VersionModel.cs" />
     <Compile Include="Models\Game\GameModel.cs" />
     <Compile Include="Handlers\SignalRUpdateGameNotificationHandler.cs" />
@@ -210,6 +219,10 @@
     <ProjectReference Include="..\Arcomage.Domain\Arcomage.Domain.csproj">
       <Project>{c8270b38-0b3c-4d16-8f05-d96f26e4d995}</Project>
       <Name>Arcomage.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Arcomage.Network.Hangfire\Arcomage.Network.Hangfire.csproj">
+      <Project>{f8d7ca27-f1b5-4dd2-87e3-75fba6eaf0be}</Project>
+      <Name>Arcomage.Network.Hangfire</Name>
     </ProjectReference>
     <ProjectReference Include="..\Arcomage.Network.Migrations\Arcomage.Network.Migrations.csproj">
       <Project>{06b6cfae-b3e0-45f6-ac99-b0be3d4cfd16}</Project>
@@ -226,6 +239,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <Content Include="web.appsettings.config" />
+    <Content Include="web.connectionstrings.config" />
+    <Content Include="web.nlog.config" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

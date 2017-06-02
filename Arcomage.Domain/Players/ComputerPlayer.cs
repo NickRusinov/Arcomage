@@ -21,7 +21,6 @@ namespace Arcomage.Domain.Players
         /// <summary>
         /// Алгоритм ИИ компьютерного игрока
         /// </summary>
-        [NonSerialized]
         private readonly IArtificialIntelligence artificialIntelligence;
 
         /// <summary>

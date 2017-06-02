@@ -3,28 +3,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Arcomage.Network.Requests;
-using Hangfire;
+using Arcomage.Network.Notifications;
 using MediatR;
 
-namespace Arcomage.Network.RequestHandlers
+namespace Arcomage.Network.NotificationHandlers
 {
-    public class CancelGameRequestHandler : IAsyncRequestHandler<CancelGameRequest>
+    public class CancelGameNotificationHandler : IAsyncNotificationHandler<CancelGameNotification>
     {
         private readonly IRepository<GameContext> gameContextRepository;
 
         private readonly IRepository<User> userRepository;
 
-        public CancelGameRequestHandler(IRepository<GameContext> gameContextRepository, IRepository<User> userRepository)
+        public CancelGameNotificationHandler(IRepository<GameContext> gameContextRepository, IRepository<User> userRepository)
         {
             this.gameContextRepository = gameContextRepository;
             this.userRepository = userRepository;
         }
 
-        public async Task Handle(CancelGameRequest message)
+        public async Task Handle(CancelGameNotification message)
         {
-            BackgroundJob.Delete(message.GameContext.JobId);
-
             await gameContextRepository.Update(message.GameContext,
                 new Action<GameContext>(gc => gc.State = GameState.Cancelled) +
                 new Action<GameContext>(gc => gc.CancelledDate = DateTime.UtcNow));
