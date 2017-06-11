@@ -4,6 +4,14 @@
     <TargetFramework>net46</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="09_CreateQuartzTablesMigration.Down.sql" />
+    <None Remove="09_CreateQuartzTablesMigration.Up.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="09_CreateQuartzTablesMigration.Down.sql" />
+    <EmbeddedResource Include="09_CreateQuartzTablesMigration.Up.sql" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="FluentMigrator" Version="1.6.2" />
   </ItemGroup>
   <ItemGroup>

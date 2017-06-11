@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Autofac;
 using Microsoft.AspNet.SignalR;
 using NLog;
@@ -12,7 +13,7 @@ namespace Arcomage.WebApi
     {
         private static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
-        public void Configure(IAppBuilder app, IContainer container)
+        public Task Configure(IAppBuilder app, IContainer container)
         {
             logger.Info("Конфигурация SignalR");
 
@@ -20,6 +21,8 @@ namespace Arcomage.WebApi
             hubConfiguration.Resolver = container.Resolve<IDependencyResolver>();
 
             app.MapSignalR(hubConfiguration);
+
+            return Task.CompletedTask;
         }
     }
 }

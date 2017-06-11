@@ -101,7 +101,7 @@ PlayerSettings:
   xboxOneDisableKinectGpuReservation: 0
   singlePassStereoRendering: 0
   protectGraphicsMemory: 0
-  AndroidBundleVersionCode: 5
+  AndroidBundleVersionCode: 7
   AndroidMinSdkVersion: 14
   AndroidPreferredInstallLocation: 1
   aotOptions: 
@@ -164,7 +164,7 @@ PlayerSettings:
   iOSDeviceRequirements: []
   iOSURLSchemes: []
   appleDeveloperTeamID: 
-  AndroidTargetDevice: 0
+  AndroidTargetDevice: 4
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
   AndroidKeystoreName: D:/Projects/Arcomage/Arcomage.Unity/Arcomage.keystore

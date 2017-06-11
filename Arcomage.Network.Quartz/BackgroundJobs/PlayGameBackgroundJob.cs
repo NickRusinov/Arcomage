@@ -7,14 +7,20 @@ using Arcomage.Domain.Actions;
 using Arcomage.Network.Notifications;
 using Autofac;
 using MediatR;
+using Quartz;
 
-namespace Arcomage.Network.Hangfire.BackgroundJobs
+namespace Arcomage.Network.Quartz.BackgroundJobs
 {
     /// <summary>
     /// Процесс, выполняющий игровой цикл для одной отдельной игровой сессии
     /// </summary>
-    public class PlayGameBackgroundJob
+    public class PlayGameBackgroundJob : IJob
     {
+        /// <summary>
+        /// Ключ для передачи идентифкатора игры типа <see cref="Guid"/>
+        /// </summary>
+        public static readonly string IdKey = "Id";
+
         /// <summary>
         /// Контейнер зависимостей для создания экземпляров сервисов
         /// </summary>
@@ -32,105 +38,118 @@ namespace Arcomage.Network.Hangfire.BackgroundJobs
         /// <summary>
         /// Запускает процесс, выполняющий цикл для одной отдельной игровой сессии с указнным идентифкатором
         /// </summary>
-        /// <param name="id">Идентифкатор игровой сессии</param>
+        /// <param name="context">Контекст выполнения процесса</param>
         /// <returns>Задача, представляющая выполнение процесса</returns>
-        public async Task Start(Guid id)
+        public async Task Execute(IJobExecutionContext context)
         {
-            GameContext gameContext;
-            using (var scope = lifetimeScope.BeginLifetimeScope())
-                gameContext = await InvokeGetGameContext(scope, id);
-
-            using (var scope = lifetimeScope.BeginLifetimeScope())
-                await InvokeStartGame(scope, gameContext);
+            var id = (Guid)context.Get(IdKey);
+            
+            var gameContext = await InvokeGetGameContext(context, id);
+            
+            await InvokeStartGame(context, gameContext);
 
             var root = new RootPlayAction(gameContext.Game.PlayAction);
             while (!gameContext.Game.Rule.IsWin(gameContext.Game))
             {
-                using (var scope = lifetimeScope.BeginLifetimeScope())
-                    await InvokeBeforePlayCardGame(scope, gameContext);
+                await InvokeBeforePlayCardGame(context, gameContext);
 
+                context.CancellationToken.ThrowIfCancellationRequested();
                 await root.WaitPlay(gameContext.Game);
-
-                using (var scope = lifetimeScope.BeginLifetimeScope())
-                    await InvokeAfterPlayCardGame(scope, gameContext);
+                context.CancellationToken.ThrowIfCancellationRequested();
+                
+                await InvokeAfterPlayCardGame(context, gameContext);
             }
-
-            using (var scope = lifetimeScope.BeginLifetimeScope())
-                await InvokeStopGame(scope, gameContext);
+            
+            await InvokeStopGame(context, gameContext);
         }
 
         /// <summary>
         /// Выполняет получение экземпляра игровой сессии с указанным идентифкатором в указанной облати действия 
         /// контейнера зависимостей
         /// </summary>
-        /// <param name="scope">Область действия контейнера зависимостей</param>
+        /// <param name="context">Контекст выполнения процесса</param>
         /// <param name="id">Идентификатор игровой сессии</param>
         /// <returns>Задача, представляющая получение экземпляра игровой сессии</returns>
-        private async Task<GameContext> InvokeGetGameContext(ILifetimeScope scope, Guid id)
+        private async Task<GameContext> InvokeGetGameContext(IJobExecutionContext context, Guid id)
         {
-            var gameContextRepository = scope.Resolve<IRepository<GameContext>>();
+            using (var scope = lifetimeScope.BeginLifetimeScope())
+            {
+                var gameContextRepository = scope.Resolve<IRepository<GameContext>>();
 
-            return await gameContextRepository.GetById(id);
+                return await gameContextRepository.GetById(id);
+            }
         }
 
         /// <summary>
         /// Выполняет операцию по оповещению о начале игровой сессии в указанной области действия контейнера 
         /// зависимостей
         /// </summary>
-        /// <param name="scope">Область действия контейнера зависимостей</param>
+        /// <param name="context">Контекст выполнения процесса</param>
         /// <param name="gameContext">Игровая сессия</param>
         /// <returns>Задача, представляющая операцию</returns>
-        private async Task InvokeStartGame(ILifetimeScope scope, GameContext gameContext)
+        private async Task InvokeStartGame(IJobExecutionContext context, GameContext gameContext)
         {
-            var mediator = scope.Resolve<IMediator>();
+            using (var scope = lifetimeScope.BeginLifetimeScope())
+            {
+                var mediator = scope.Resolve<IMediator>();
 
-            var startGameNotification = new StartGameNotification(gameContext);
-            await mediator.Publish(startGameNotification);
+                var startGameNotification = new StartGameNotification(gameContext);
+                await mediator.Publish(startGameNotification, context.CancellationToken);
+            }
         }
 
         /// <summary>
         /// Выполняет операцию по оповещению о окончании игровой сессии в указанной области действия контейнера 
         /// зависимостей
         /// </summary>
-        /// <param name="scope">Область действия контейнера зависимостей</param>
+        /// <param name="context">Контекст выполнения процесса</param>
         /// <param name="gameContext">Игровая сессия</param>
         /// <returns>Задача, представляющая операцию</returns>
-        private async Task InvokeStopGame(ILifetimeScope scope, GameContext gameContext)
+        private async Task InvokeStopGame(IJobExecutionContext context, GameContext gameContext)
         {
-            var mediator = scope.Resolve<IMediator>();
+            using (var scope = lifetimeScope.BeginLifetimeScope())
+            {
+                var mediator = scope.Resolve<IMediator>();
 
-            var stopGameNotification = new StopGameNotification(gameContext);
-            await mediator.Publish(stopGameNotification);
+                var stopGameNotification = new StopGameNotification(gameContext);
+                await mediator.Publish(stopGameNotification, context.CancellationToken);
+            }
         }
 
         /// <summary>
         /// Выполняет операцию по оповещению перед началом игрового хода в указанной области действия контейнера
         /// зависимостей
         /// </summary>
-        /// <param name="scope">Область действия контейнера зависимостей</param>
+        /// <param name="context">Контекст выполнения процесса</param>
         /// <param name="gameContext">Игровая сессия</param>
         /// <returns>Задача, представляющпя операцию</returns>
-        private async Task InvokeBeforePlayCardGame(ILifetimeScope scope, GameContext gameContext)
+        private async Task InvokeBeforePlayCardGame(IJobExecutionContext context, GameContext gameContext)
         {
-            var mediator = scope.Resolve<IMediator>();
+            using (var scope = lifetimeScope.BeginLifetimeScope())
+            {
+                var mediator = scope.Resolve<IMediator>();
 
-            var beforePlayCardGameNotification = new BeforePlayCardGameNotification(gameContext);
-            await mediator.Publish(beforePlayCardGameNotification);
+                var beforePlayCardGameNotification = new BeforePlayCardGameNotification(gameContext);
+                await mediator.Publish(beforePlayCardGameNotification, context.CancellationToken);
+            }
         }
 
         /// <summary>
         /// Выполняет операцию по оповещению после завершения игрового хода в указанной области действия контейнера
         /// зависимостей
         /// </summary>
-        /// <param name="scope">Область действия контейнера зависимостей</param>
+        /// <param name="context">Контекст выполнения процесса</param>
         /// <param name="gameContext">Игровая сессия</param>
         /// <returns>Задача, представляющпя операцию</returns>
-        private async Task InvokeAfterPlayCardGame(ILifetimeScope scope, GameContext gameContext)
+        private async Task InvokeAfterPlayCardGame(IJobExecutionContext context, GameContext gameContext)
         {
-            var mediator = scope.Resolve<IMediator>();
-            
-            var afterPlayCardGameNotification = new AfterPlayCardGameNotification(gameContext);
-            await mediator.Publish(afterPlayCardGameNotification);
+            using (var scope = lifetimeScope.BeginLifetimeScope())
+            {
+                var mediator = scope.Resolve<IMediator>();
+
+                var afterPlayCardGameNotification = new AfterPlayCardGameNotification(gameContext);
+                await mediator.Publish(afterPlayCardGameNotification, context.CancellationToken);
+            }
         }
     }
 }

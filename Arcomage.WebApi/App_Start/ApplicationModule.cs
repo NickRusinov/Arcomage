@@ -10,14 +10,14 @@ namespace Arcomage.WebApi
     {
         protected override Assembly ThisAssembly => GetExecutingAssembly();
 
-        protected Assembly DomainAssembly => Assembly.Load("Arcomage.Domain");
+        public static Assembly DomainAssembly => Assembly.Load("Arcomage.Domain");
 
-        protected Assembly NetworkAssembly => Assembly.Load("Arcomage.Network");
+        public static Assembly NetworkAssembly => Assembly.Load("Arcomage.Network");
 
-        protected Assembly NetworkHangfireAssembly => Assembly.Load("Arcomage.Network.Hangfire");
+        public static Assembly NetworkQuartzAssembly => Assembly.Load("Arcomage.Network.Quartz");
 
-        protected Assembly NetworkMigrationsAssembly => Assembly.Load("Arcomage.Network.Migrations");
+        public static Assembly NetworkMigrationsAssembly => Assembly.Load("Arcomage.Network.Migrations");
 
-        protected Assembly NetworkPostgreSqlAssembly => Assembly.Load("Arcomage.Network.PostgreSql");
+        public static Assembly NetworkPostgreSqlAssembly => Assembly.Load("Arcomage.Network.PostgreSql");
     }
 }

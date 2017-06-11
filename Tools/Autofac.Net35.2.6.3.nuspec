@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<package xmlns='http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd'>
+  <metadata>
+    <id>Autofac.Net35</id>
+    <version>2.6.3</version>
+    <authors>Autofac</authors>
+    <owners>Autofac Contributors</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <licenseUrl>http://www.opensource.org/licenses/mit-license.php</licenseUrl>
+    <projectUrl>http://autofac.org/</projectUrl>
+    <iconUrl>https://cloud.githubusercontent.com/assets/1156571/13684110/16b8f152-e6bf-11e5-84ae-22c66c6d351a.png</iconUrl>
+    <description>Autofac is an IoC container for Microsoft .NET. It manages the dependencies between classes so that applications stay easy to change as they grow in size and complexity.</description>
+    <summary>Core assembly for the Autofac Inversion of Control container.</summary>
+    <releaseNotes>Release notes are at https://github.com/autofac/Autofac/releases</releaseNotes>
+    <tags>autofac,di,ioc,dependencyinjection</tags>
+  </metadata>
+  <files>
+    <file src='Autofac.dll' target='lib/net35' />
+	<file src='Autofac.xml' target='lib/net35' />
+  </files>
+</package>

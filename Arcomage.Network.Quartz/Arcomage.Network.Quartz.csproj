@@ -5,8 +5,8 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Autofac" Version="4.4.0" />
-    <PackageReference Include="Hangfire.Core" Version="1.6.12" />
     <PackageReference Include="MediatR" Version="3.0.1" />
+    <PackageReference Include="Quartz" Version="3.0.0-alpha2" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Arcomage.Domain\Arcomage.Domain.csproj" />
@@ -23,7 +23,7 @@
     <EmbeddedResource Update="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <CustomToolNamespace>Arcomage.Network.Hangfire</CustomToolNamespace>
+      <CustomToolNamespace>Arcomage.Network.Quartz</CustomToolNamespace>
     </EmbeddedResource>
   </ItemGroup>
 </Project>

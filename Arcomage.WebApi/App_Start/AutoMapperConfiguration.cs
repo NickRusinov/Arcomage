@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Threading.Tasks;
 using Autofac;
 using AutoMapper;
 using AutoMapper.Configuration;
@@ -14,7 +15,7 @@ namespace Arcomage.WebApi
     {
         private static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
-        public void Configure(IAppBuilder app, IContainer container)
+        public Task Configure(IAppBuilder app, IContainer container)
         {
             logger.Info("Конфигурация AutoMapper");
 
@@ -24,6 +25,8 @@ namespace Arcomage.WebApi
 
             Mapper.Initialize(configuration);
             Mapper.AssertConfigurationIsValid();
+
+            return Task.CompletedTask;
         }
     }
 }

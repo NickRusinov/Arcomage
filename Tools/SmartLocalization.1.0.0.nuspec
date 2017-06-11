@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='utf-8'?>
+<package xmlns='http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd'>
+  <metadata>
+    <id>SmartLocalization</id>
+    <version>1.0.0</version>
+    <authors>Unity</authors>
+    <description>Smart localization</description>
+  </metadata>
+  <files>
+    <file src='SmartLocalization_Runtime.dll' target='lib/net35' />
+  </files>
+</package>

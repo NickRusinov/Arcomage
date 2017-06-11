@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='utf-8'?>
+<package xmlns='http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd'>
+  <metadata>
+    <id>MediatR.Net35</id>
+    <version>3.0.1</version>
+    <authors>Jimmy Bogard</authors>
+    <owners>Jimmy Bogard</owners>
+    <licenseUrl>https://github.com/jbogard/MediatR/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/jbogard/MediatR</projectUrl>
+    <iconUrl>https://raw.githubusercontent.com/jbogard/MediatR/master/assets/logo/gradient_128x128.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Simple, unambitious mediator implementation in .NET</description>
+    <copyright>Copyright Jimmy Bogard</copyright>
+    <tags>mediator,request,response,queries,commands,notifications</tags>
+  </metadata>
+  <files>
+    <file src='MediatR.dll' target='lib/net35' />
+	<file src='MediatR.xml' target='lib/net35' />
+  </files>
+</package>

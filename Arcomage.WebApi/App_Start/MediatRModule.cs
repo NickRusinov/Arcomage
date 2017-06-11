@@ -21,7 +21,8 @@ namespace Arcomage.WebApi
             builder.Register(c => BuildMultiInstanceFactory(c.Resolve<IComponentContext>()))
                 .InstancePerLifetimeScope();
 
-            builder.RegisterAssemblyTypes(ThisAssembly, NetworkAssembly, NetworkPostgreSqlAssembly)
+            builder.RegisterAssemblyTypes(ThisAssembly, NetworkAssembly, NetworkQuartzAssembly, 
+                    NetworkPostgreSqlAssembly)
                 .Where(t => t.Name.EndsWith("RequestHandler") || t.Name.EndsWith("NotificationHandler"))
                 .AsImplementedInterfaces()
                 .InstancePerLifetimeScope();

@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='utf-8'?>
+<package xmlns='http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd'>
+  <metadata>
+    <id>CrystalQuartz.Remote</id>
+    <version>5.0.0-alpha1</version>
+    <authors>Eugene Guryanov</authors>
+    <owners>Eugene Guryanov</owners>
+    <licenseUrl>http://dev.perl.org/licenses/</licenseUrl>
+    <projectUrl>https://github.com/guryanovev/CrystalQuartz</projectUrl>
+    <tags>.NET ASP.NET Quartz.NET Scheduler Job Trigger</tags>
+    <description>Installs CrystalQuartz panel (pluggable Qurtz.NET viewer) using remote scheduler provider. Note that you should set remote scheduler URI after the installation.</description>
+    <dependencies>
+      <group>
+        <dependency id='Quartz' version='3.0.0-alpha2' />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src='..\bin\Merged\CrystalQuartz.Web.dll' target='lib' />
+    <file src='..\bin\Debug\CrystalQuartz.Core.dll' target='lib' />
+    <file src='..\src\CrystalQuartz.Build\Assets\Remote\Web.config.transform' target='content' />
+  </files>
+</package>

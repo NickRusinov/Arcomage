@@ -14,16 +14,25 @@ namespace Arcomage.WebApi
         public void Configuration(IAppBuilder app)
         {
             logger.Info("Запуск приложения");
-            logger.Info("Конфигурация приложения");
 
-            var container = new AutofacConfiguration().Configure(app);
+            Configure(app).GetAwaiter().GetResult();
+        }
 
-            new AutoMapperConfiguration().Configure(app, container);
-            new DapperConfiguration().Configure(app, container);
-            new HangfireConfiguration().Configure(app, container);
-            new AuthorizationConfiguration().Configure(app, container);
-            new SignalRConfiguration().Configure(app, container);
-            new WebApiConfiguration().Configure(app, container);
+        private async Task Configure(IAppBuilder app)
+        {
+            logger.Info("Начало конфигурации приложения");
+
+            var container = await new AutofacConfiguration().Configure(app);
+
+            await new AutoMapperConfiguration().Configure(app, container);
+            await new DapperConfiguration().Configure(app, container);
+            await new MigrationsConfiguration().Configure(app, container);
+            await new QuartzConfiguration().Configure(app, container);
+            await new AuthorizationConfiguration().Configure(app, container);
+            await new SignalRConfiguration().Configure(app, container);
+            await new WebApiConfiguration().Configure(app, container);
+
+            logger.Info("Завершение конфигурации приложения");
         }
     }
 }

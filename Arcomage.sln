@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26228.4
+VisualStudioVersion = 15.0.26430.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Arcomage.Domain", "Arcomage.Domain\Arcomage.Domain.csproj", "{C8270B38-0B3C-4D16-8F05-D96F26E4D995}"
 EndProject
@@ -16,6 +16,13 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Arcomage.Network.PostgreSql", "Arcomage.Network.PostgreSql\Arcomage.Network.PostgreSql.csproj", "{7DDD23FC-BAEB-45D9-8446-5AA710C96CDB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Arcomage.Network.Migrations", "Arcomage.Network.Migrations\Arcomage.Network.Migrations.csproj", "{06B6CFAE-B3E0-45F6-AC99-B0BE3D4CFD16}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Arcomage.Network.Quartz", "Arcomage.Network.Quartz\Arcomage.Network.Quartz.csproj", "{2A8FD812-C4E1-439B-9A62-A144A8B470C1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{090EA8AB-DB34-4998-8CF7-7B3F7AA03339}"
+	ProjectSection(SolutionItems) = preProject
+		nuget.config = nuget.config
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +58,10 @@ Global
 		{06B6CFAE-B3E0-45F6-AC99-B0BE3D4CFD16}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{06B6CFAE-B3E0-45F6-AC99-B0BE3D4CFD16}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{06B6CFAE-B3E0-45F6-AC99-B0BE3D4CFD16}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A8FD812-C4E1-439B-9A62-A144A8B470C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A8FD812-C4E1-439B-9A62-A144A8B470C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A8FD812-C4E1-439B-9A62-A144A8B470C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A8FD812-C4E1-439B-9A62-A144A8B470C1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

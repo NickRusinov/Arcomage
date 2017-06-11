@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='utf-8'?>
+<package xmlns='http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd'>
+  <metadata>
+    <id>UnityEngine</id>
+    <version>1.0.0</version>
+	<authors>Unity</authors>
+	<description>Unity engine</description>
+  </metadata>
+  <files>
+    <file src='UnityEditor.dll' target='lib/net35' />
+	<file src='UnityEditor.xml' target='lib/net35' />
+	<file src='UnityEngine.dll' target='lib/net35' />
+	<file src='UnityEngine.xml' target='lib/net35' />
+	<file src='UnityEngine.Networking.dll' target='lib/net35' />
+	<file src='UnityEngine.Networking.xml' target='lib/net35' />
+	<file src='UnityEngine.UI.dll' target='lib/net35' />
+	<file src='UnityEngine.UI.xml' target='lib/net35' />
+  </files>
+</package>

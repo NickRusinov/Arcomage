@@ -4,33 +4,21 @@
     <TargetFrameworks>net35</TargetFrameworks>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="UnityEngine">
-      <HintPath>$(SolutionDir)..\Tools\UnityEngine\UnityEngine.dll</HintPath>
+    <PackageReference Include="Autofac.Net35" Version="2.6.3" />
+    <PackageReference Include="MediatR.Net35" Version="3.0.1" />
+    <PackageReference Include="SmartLocalization" Version="1.0.0" />
+    <PackageReference Include="UnityEngine" Version="1.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
+    <PackageReference Include="Nivot.SignalR.Client.Net35" Version="2.0.0" />
+    <PackageReference Include="TaskParallelLibrary" Version="1.0.2856" />
+    <PackageReference Include="AsyncBridge.Net35" Version="0.2.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Arcomage.WebApi.Client">
+      <HintPath>$(SolutionDir)Assets\Plugins\Arcomage.WebApi.Client.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>$(SolutionDir)..\Tools\UnityEngine\UnityEngine.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="Autofac">
-      <HintPath>$(SolutionDir)Assets\Plugins\Autofac.dll</HintPath>
-    </Reference>
-    <Reference Include="MediatR">
-      <HintPath>$(SolutionDir)Assets\Plugins\MediatR.dll</HintPath>
-    </Reference>
-    <Reference Include="Nivot.SignalR.Client.Net35">
-      <HintPath>$(SolutionDir)Assets\Plugins\Nivot.SignalR.Client.Net35.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Threading">
-      <HintPath>$(SolutionDir)Assets\Plugins\System.Threading.dll</HintPath>
-    </Reference>
-    <Reference Include="AsyncBridge.Net35">
-      <HintPath>$(SolutionDir)Assets\Plugins\AsyncBridge.Net35.dll</HintPath>
-    </Reference>
-    <Reference Include="Netwonsoft.Json">
-      <HintPath>$(SolutionDir)Assets\Plugins\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="SmartLocalization_Runtime">
-      <HintPath>$(SolutionDir)Assets\Plugins\SmartLocalization_Runtime.dll</HintPath>
-    </Reference>
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="$(SolutionDir)Arcomage.Unity.Framework\Arcomage.Unity.Framework.csproj" />
   </ItemGroup>
   <Target Name="Unity" AfterTargets="Build" Condition=" '$(TargetFramework)' == 'net35' ">

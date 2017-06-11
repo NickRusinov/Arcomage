@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Threading.Tasks;
 using System.Web;
 using Autofac;
 using Autofac.Features.ResolveAnything;
@@ -14,7 +15,7 @@ namespace Arcomage.WebApi
     {
         private static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
-        public IContainer Configure(IAppBuilder app)
+        public Task<IContainer> Configure(IAppBuilder app)
         {
             logger.Info("Конфигурация Autofac");
 
@@ -23,7 +24,7 @@ namespace Arcomage.WebApi
             builder.RegisterAssemblyModules(Assembly.GetExecutingAssembly());
             builder.Register(c => HttpContext.Current.GetOwinContext()).AsSelf();
 
-            return builder.Build();
+            return Task.FromResult(builder.Build());
         }
     }
 }

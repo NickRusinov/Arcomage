@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Dependencies;
 using Autofac;
@@ -14,7 +15,7 @@ namespace Arcomage.WebApi
     {
         private static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
-        public void Configure(IAppBuilder app, IContainer container)
+        public Task Configure(IAppBuilder app, IContainer container)
         {
             logger.Info("Конфигурация WebApi");
 
@@ -26,6 +27,8 @@ namespace Arcomage.WebApi
             traceWriter.TraceSource = new TraceSource("WebApi");
 
             app.UseWebApi(httpConfiguration);
+
+            return Task.CompletedTask;
         }
     }
 }

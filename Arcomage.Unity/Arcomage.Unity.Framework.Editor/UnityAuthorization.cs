@@ -8,7 +8,7 @@ namespace Arcomage.Unity.Framework.Editor
 {
     public class UnityAuthorization : Authorization
     {
-        private string authorizationToken;
+        private static string authorizationToken;
 
         public override string GetAuthorizationHeader()
         {
