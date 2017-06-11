@@ -71,7 +71,7 @@ namespace Arcomage.Unity.SettingsScene.Views
                 .AddListener(s => viewModel.Settings.SecondPlayer = s);
 
             PlayButton.onClick
-                .AddListener(() => Bind(Global.Mediator.Send(new PlayRequest(), CancellationToken.None))
+                .AddListener(() => Bind(Scene.Mediator.Send(new PlayRequest(), CancellationToken.None))
                     .OnSuccess(_ => SceneManager.LoadGameScene()));
         }
     }

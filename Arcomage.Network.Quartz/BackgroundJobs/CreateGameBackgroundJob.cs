@@ -98,11 +98,11 @@ namespace Arcomage.Network.Quartz.BackgroundJobs
                     var playGameTriggerKey = QuartzKeyGenerator.TriggerForPlayGame(gameContext);
                     
                     var playGameJob = JobBuilder.Create<PlayGameBackgroundJob>().WithIdentity(playGameJobKey)
+                        .UsingJobData(PlayGameBackgroundJob.IdKey, gameContext.Id.ToString())
                         .RequestRecovery().Build();
                     var playGameTrigger = TriggerBuilder.Create().WithIdentity(playGameTriggerKey)
-                        .StartNow().WithSimpleSchedule().Build();
-
-                    playGameJob.JobDataMap.Put(PlayGameBackgroundJob.IdKey, gameContext.Id);
+                        .WithSimpleSchedule().StartNow()
+                        .Build();
 
                     await context.Scheduler.ScheduleJob(playGameJob, playGameTrigger);
                 }

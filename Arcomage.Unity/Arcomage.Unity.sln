@@ -4,6 +4,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 15.0.26430.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Arcomage.Unity", "Arcomage.Unity.csproj", "{4A9A9EC0-861A-5733-DCFD-382EE7F33CC9}"
+	ProjectSection(ProjectDependencies) = postProject
+		{3EC36F52-09C2-495B-9FB8-6CA2FC0D0925} = {3EC36F52-09C2-495B-9FB8-6CA2FC0D0925}
+		{A39A8B52-2C50-4360-A266-863DFF39E151} = {A39A8B52-2C50-4360-A266-863DFF39E151}
+		{7897ED90-E489-4F23-B6F8-263E4FA37EE3} = {7897ED90-E489-4F23-B6F8-263E4FA37EE3}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Arcomage.Unity.Framework", "Arcomage.Unity.Framework\Arcomage.Unity.Framework.csproj", "{A39A8B52-2C50-4360-A266-863DFF39E151}"
 EndProject
@@ -11,7 +16,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Arcomage.Unity.Framework.Ed
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Arcomage.Unity.Framework.Android", "Arcomage.Unity.Framework.Android\Arcomage.Unity.Framework.Android.csproj", "{7897ED90-E489-4F23-B6F8-263E4FA37EE3}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3C020156-B614-4EAF-B3E3-9811E0A69815}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9273C949-F185-4AC5-BC82-506659C5B180}"
 	ProjectSection(SolutionItems) = preProject
 		nuget.config = nuget.config
 	EndProjectSection

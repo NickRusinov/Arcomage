@@ -27,7 +27,7 @@ namespace Arcomage.Unity.NetworkScene.Views
 
         public void OnEnable()
         {
-            Bind(Global.Mediator.Send(new GetVersionRequest(), CancellationToken.None))
+            Bind(Scene.Mediator.Send(new GetVersionRequest(), CancellationToken.None))
                 .OnSuccess(t => OnGetVersionCorrectSuccess(t.Result), t => t.Result.Version == 0)
                 .OnSuccess(t => OnGetVersionIncorrectSuccess(t.Result), t => t.Result.Version != 0)
                 .OnFailure(t => OnGetVersionFailure());
@@ -35,7 +35,7 @@ namespace Arcomage.Unity.NetworkScene.Views
 
         private void OnGetVersionCorrectSuccess(VersionModel versionModel)
         {
-            Bind(Global.Mediator.Send(new GetConnectingGameRequest(), CancellationToken.None))
+            Bind(Scene.Mediator.Send(new GetConnectingGameRequest(), CancellationToken.None))
                 .OnSuccess(t => OnGetConnectingGameExistsSuccess(), t => t.Result.HasValue)
                 .OnSuccess(t => OnGetConnectingGameNotExistsSuccess(), t => !t.Result.HasValue)
                 .OnFailure(t => OnGetConnectingGameFailure());

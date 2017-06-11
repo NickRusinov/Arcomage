@@ -1954,8 +1954,6 @@ GameObject:
   - 4: {fileID: 1462564882}
   - 114: {fileID: 1462564881}
   - 114: {fileID: 1462564886}
-  - 114: {fileID: 1462564883}
-  - 114: {fileID: 1462564884}
   - 114: {fileID: 1462564887}
   m_Layer: 0
   m_Name: NetworkScene
@@ -1991,30 +1989,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
---- !u!114 &1462564883
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1462564880}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -2137722505, guid: aed6dbf8d3fa40e468089d61512a466d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  BaseUrl: http://arcomagic.ru
---- !u!114 &1462564884
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1462564880}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -505309611, guid: aed6dbf8d3fa40e468089d61512a466d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  BaseUrl: http://arcomagic.ru
 --- !u!114 &1462564886
 MonoBehaviour:
   m_ObjectHideFlags: 0

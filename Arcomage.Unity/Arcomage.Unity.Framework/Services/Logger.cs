@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
-namespace Arcomage.Unity.Framework
+namespace Arcomage.Unity.Framework.Services
 {
     public abstract class Logger
     {

@@ -25,7 +25,7 @@ namespace Arcomage.Unity.NetworkScene.Views
 
         public void OnDisconnectClick()
         {
-            Bind(Global.Mediator.Send(new DisconnectGameRequest(), CancellationToken.None))
+            Bind(Scene.Mediator.Send(new DisconnectGameRequest(), CancellationToken.None))
                 .OnSuccess(t => OnDisconnectSuccess())
                 .OnFailure(t => OnDisconnectFailure());
         }

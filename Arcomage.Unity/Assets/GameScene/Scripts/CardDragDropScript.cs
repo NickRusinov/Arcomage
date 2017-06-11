@@ -71,10 +71,10 @@ namespace Arcomage.Unity.GameScene.Scripts
                 var cardExecuteTask = (Task)TaskEx.FromResult<object>(null);
 
                 if (transform.position.y - initialPosition.y >= +25f && cardViewModel.IsPlay)
-                    cardExecuteTask = Global.Mediator.Send(new PlayCardRequest(cardViewModel.Index), CancellationToken.None);
+                    cardExecuteTask = Scene.Mediator.Send(new PlayCardRequest(cardViewModel.Index), CancellationToken.None);
 
                 if (transform.position.y - initialPosition.y <= -25f && cardViewModel.IsDiscard)
-                    cardExecuteTask = Global.Mediator.Send(new DiscardCardRequest(cardViewModel.Index), CancellationToken.None);
+                    cardExecuteTask = Scene.Mediator.Send(new DiscardCardRequest(cardViewModel.Index), CancellationToken.None);
 
                 StartCoroutine(CardTranslate(gameObject, initialPosition, cardExecuteTask));
             }

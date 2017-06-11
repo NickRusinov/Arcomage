@@ -42,7 +42,7 @@ namespace Arcomage.Network.Quartz.BackgroundJobs
         /// <returns>Задача, представляющая выполнение процесса</returns>
         public async Task Execute(IJobExecutionContext context)
         {
-            var id = (Guid)context.Get(IdKey);
+            var id = new Guid(context.MergedJobDataMap.GetString(IdKey));
             
             var gameContext = await InvokeGetGameContext(context, id);
             

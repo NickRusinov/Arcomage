@@ -2,23 +2,30 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Arcomage.Unity.Framework.Services;
 using Arcomage.WebApi.Client;
 using Microsoft.AspNet.SignalR.Client;
-using UnityEngine;
 
-namespace Arcomage.Unity.Framework.Scripts
+namespace Arcomage.Unity.Framework
 {
-    public class UnityHubConnectionFactory : MonoBehaviour, IHubConnectionFactory
+    public class UnityHubConnectionFactory : IHubConnectionFactory
     {
-        [Tooltip("Адрес веб-сервера игры")]
-        public string BaseUrl;
+        private readonly string baseUrl;
+
+        private readonly Authorization authorization;
+
+        public UnityHubConnectionFactory(string baseUrl, Authorization authorization)
+        {
+            this.baseUrl = baseUrl;
+            this.authorization = authorization;
+        }
 
         public HubConnection Open()
         {
-            var authorizationHeader = Global.Authorization.GetAuthorizationHeader();
-            var authorizationToken = Global.Authorization.GetAuthorizationToken();
+            var authorizationHeader = authorization.GetAuthorizationHeader();
+            var authorizationToken = authorization.GetAuthorizationToken();
 
-            var hubConnection = new HubConnection(BaseUrl);
+            var hubConnection = new HubConnection(baseUrl);
             hubConnection.TransportConnectTimeout = TimeSpan.FromSeconds(30);
             hubConnection.TraceLevel = TraceLevels.All;
             hubConnection.TraceWriter = new UnityLogTextWriter();

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Arcomage.Unity.Framework;
-using Arcomage.Unity.Framework.Scripts;
+using Arcomage.Unity.Framework.Services;
 using Arcomage.Unity.Shared.Scripts;
 using Autofac;
 
@@ -13,17 +13,20 @@ namespace Arcomage.Unity.Configuration
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.Register(c => c.Resolve<Scene>().GetComponent<UnityHttpClientFactory>())
-                .AsSelf().AsImplementedInterfaces();
+            builder.Register(c => new UnityHttpClientFactory(AppSettings.Url, c.Resolve<Authorization>(), 
+                    c.Resolve<Scene>()))
+                .AsSelf().AsImplementedInterfaces()
+                .InstancePerLifetimeScope();
 
-            builder.Register(c => c.Resolve<Scene>().GetComponent<UnityHubConnectionFactory>())
-                .AsSelf().AsImplementedInterfaces();
+            builder.Register(c => new UnityHubConnectionFactory(AppSettings.Url, c.Resolve<Authorization>()))
+                .AsSelf().AsImplementedInterfaces()
+                .InstancePerLifetimeScope();
 
-            builder.Register(c => c.Resolve<Scene>().GetComponent<UnityDispatcher>())
-                .AsSelf().AsImplementedInterfaces();
+            builder.RegisterType<UnityDispatcher>()
+                .InstancePerLifetimeScope();
 
-            builder.Register(c => c.Resolve<Scene>().GetComponent<UnitySceneManager>())
-                .AsSelf().AsImplementedInterfaces();
+            builder.RegisterType<UnitySceneManager>()
+                .InstancePerLifetimeScope();
         }
     }
 }

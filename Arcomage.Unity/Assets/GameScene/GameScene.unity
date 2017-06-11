@@ -16111,7 +16111,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CauseText: {fileID: 651192746}
   WinnerText: {fileID: 1714859312}
-  SceneManager: {fileID: 1871480640}
+  SceneManager: {fileID: 0}
 --- !u!1 &983070456
 GameObject:
   m_ObjectHideFlags: 0
@@ -34968,10 +34968,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1871480639}
   - 114: {fileID: 1871480638}
-  - 114: {fileID: 1871480643}
-  - 114: {fileID: 1871480642}
   - 114: {fileID: 1871480640}
-  - 114: {fileID: 1871480644}
   - 114: {fileID: 1871480641}
   m_Layer: 0
   m_Name: GameScene
@@ -35044,41 +35041,6 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
---- !u!114 &1871480642
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1871480637}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -505309611, guid: aed6dbf8d3fa40e468089d61512a466d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  BaseUrl: http://arcomagic.ru
---- !u!114 &1871480643
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1871480637}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -2137722505, guid: aed6dbf8d3fa40e468089d61512a466d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  BaseUrl: http://arcomagic.ru
---- !u!114 &1871480644
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1871480637}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1226806510, guid: aed6dbf8d3fa40e468089d61512a466d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1878927405
 GameObject:
   m_ObjectHideFlags: 0

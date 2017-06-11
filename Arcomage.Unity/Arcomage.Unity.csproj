@@ -94,6 +94,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\AppSettings.cs" />
     <Compile Include="Assets\Configuration\AutofacConfiguration.cs" />
     <Compile Include="Assets\Configuration\GameSceneModule.cs" />
     <Compile Include="Assets\Configuration\MediatRModule.cs" />

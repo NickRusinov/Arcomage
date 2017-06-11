@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -38,6 +39,28 @@ namespace Arcomage.Unity.Framework
             var rectTransform = (RectTransform)transform;
             var rectFromTransform = (RectTransform)fromTransform;
             transform.position = fromTransform.position + Vector3.Scale(rectFromTransform.rect.size, rectTransform.pivot - rectFromTransform.pivot);
+        }
+
+        public static void StartCoroutine(this MonoBehaviour monoBehaviour, Action action)
+        {
+            monoBehaviour.StartCoroutine(ExecuteCoroutine());
+
+            IEnumerator ExecuteCoroutine()
+            {
+                action.Invoke();
+                yield break;
+            }
+        }
+
+        public static void StartCoroutine<T>(this MonoBehaviour monoBehaviour, Action<T> action, T arg)
+        {
+            monoBehaviour.StartCoroutine(ExecuteCoroutine());
+
+            IEnumerator ExecuteCoroutine()
+            {
+                action.Invoke(arg);
+                yield break;
+            }
         }
 
         public static void TryDestroyObject(this Component component)

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
-namespace Arcomage.Unity.Framework.Android
+namespace Arcomage.Unity.Framework.Android.Services
 {
-    public class AndroidLogger : Logger
+    public class AndroidLogger : Framework.Services.Logger
     {
         private bool isHasBeenException;
 

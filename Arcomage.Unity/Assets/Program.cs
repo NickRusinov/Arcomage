@@ -21,8 +21,7 @@ namespace Arcomage.Unity
 
             Debug.Log("Время на инициализацию игры: " + stopwatch.Elapsed);
 
-            Global.UseContainer(container);
-            Application.logMessageReceived += (m, st, lt) => Global.Logger.Log(m, st, lt);
+            Scene.Initialize(container);
         }
     }
 }

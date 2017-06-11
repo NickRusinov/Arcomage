@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Arcomage.Unity.Framework
+namespace Arcomage.Unity.Framework.Services
 {
     public abstract class Authorization
     {
