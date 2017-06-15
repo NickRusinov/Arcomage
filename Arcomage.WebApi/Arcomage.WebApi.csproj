@@ -241,7 +241,7 @@
     <Content Include="web.nlog.config">
       <SubType>Designer</SubType>
     </Content>
-    <None Include="web.quartz.config" />
+    <Content Include="web.quartz.config" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

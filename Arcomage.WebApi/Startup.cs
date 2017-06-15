@@ -15,7 +15,8 @@ namespace Arcomage.WebApi
         {
             logger.Info("Запуск приложения");
 
-            Configure(app).GetAwaiter().GetResult();
+            var configureTask = Configure(app);
+            logger.SwallowAsync(configureTask).GetAwaiter().GetResult();
         }
 
         private async Task Configure(IAppBuilder app)
