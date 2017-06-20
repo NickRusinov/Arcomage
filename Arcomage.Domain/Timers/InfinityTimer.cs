@@ -23,5 +23,11 @@ namespace Arcomage.Domain.Timers
         {
             return Delay(-1, token);
         }
+
+        /// <inheritdoc/>
+        public override void Reset()
+        {
+
+        }
     }
 }

@@ -25,5 +25,11 @@ namespace Arcomage.Domain.Timers
         /// <param name="token">Токен завершения счета таймера</param>
         /// <returns>Задачу, представляющую периода таймера</returns>
         public abstract Task Start(CancellationToken token);
+
+        /// <summary>
+        /// Останавливает отсчет запущенного игрового таймера. После зстановки таймера, остаток времени 
+        /// устанавливается в значение по умолчанию.
+        /// </summary>
+        public abstract void Reset();
     }
 }

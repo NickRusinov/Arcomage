@@ -23,7 +23,7 @@ namespace Arcomage.Domain.Timers
         /// <summary>
         /// Время начала периода времени
         /// </summary>
-        private DateTime startDateTime;
+        private DateTime? startDateTime;
 
         /// <summary>
         /// Инициализирует экземпляр класса <see cref="FixedTimer"/>
@@ -35,7 +35,7 @@ namespace Arcomage.Domain.Timers
         }
 
         /// <inheritdoc/>
-        public override TimeSpan TimeRest => startDateTime - Now + fixedPeriod;
+        public override TimeSpan TimeRest => startDateTime.GetValueOrDefault(Now) - Now + fixedPeriod;
 
         /// <inheritdoc/>
         public override Task Start(CancellationToken token)
@@ -43,6 +43,12 @@ namespace Arcomage.Domain.Timers
             startDateTime = Now;
 
             return Delay(fixedPeriod, token);
+        }
+
+        /// <inheritdoc/>
+        public override void Reset()
+        {
+            startDateTime = null;
         }
     }
 }
