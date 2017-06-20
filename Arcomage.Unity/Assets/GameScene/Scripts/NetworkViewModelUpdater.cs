@@ -30,11 +30,14 @@ namespace Arcomage.Unity.GameScene.Scripts
 
         private GameViewModel Update(GameViewModel viewModel, GameModel model)
         {
+            var leftPlayer = model.UserPlayerKind == 0 ? model.FirstPlayer : model.SecondPlayer;
+            var rightPlayer = model.UserPlayerKind == 0 ? model.SecondPlayer : model.FirstPlayer;
+
             viewModel = viewModel ?? new GameViewModel();
-            viewModel.LeftBuildings = Update(viewModel.LeftBuildings, model.FirstPlayer.Buildings);
-            viewModel.LeftResources = Update(viewModel.LeftResources, model.FirstPlayer.Resources, model.FirstPlayer); // TODO
-            viewModel.RightBuildings = Update(viewModel.RightBuildings, model.SecondPlayer.Buildings);
-            viewModel.RightResources = Update(viewModel.RightResources, model.SecondPlayer.Resources, model.SecondPlayer); // TODO
+            viewModel.LeftBuildings = Update(viewModel.LeftBuildings, leftPlayer.Buildings);
+            viewModel.LeftResources = Update(viewModel.LeftResources, leftPlayer.Resources, leftPlayer);
+            viewModel.RightBuildings = Update(viewModel.RightBuildings, rightPlayer.Buildings);
+            viewModel.RightResources = Update(viewModel.RightResources, rightPlayer.Resources, rightPlayer);
             viewModel.FinishedMenu = Update(viewModel.FinishedMenu, model.Result ?? new GameModel.ResultModel());
             viewModel.Hand = Update(viewModel.Hand, model.Hand);
             viewModel.History = Update(viewModel.History, model.History);
@@ -60,7 +63,8 @@ namespace Arcomage.Unity.GameScene.Scripts
             return viewModel;
         }
 
-        private ResourcesViewModel Update(ResourcesViewModel viewModel, GameModel.ResourcesModel model, GameModel.PlayerModel playerModel)
+        private ResourcesViewModel Update(ResourcesViewModel viewModel, GameModel.ResourcesModel model, 
+            GameModel.PlayerModel playerModel)
         {
             viewModel = viewModel ?? new ResourcesViewModel();
             viewModel.Name = playerModel.Name;
@@ -113,7 +117,8 @@ namespace Arcomage.Unity.GameScene.Scripts
             return viewModel;
         }
 
-        private HistoryCardViewModel Update(HistoryCardViewModel viewModel, GameModel.HistoryCardModel model, int index)
+        private HistoryCardViewModel Update(HistoryCardViewModel viewModel, GameModel.HistoryCardModel model, 
+            int index)
         {
             if (viewModel != null && viewModel.Id != model.Index)
                 viewModel = new HistoryCardViewModel();

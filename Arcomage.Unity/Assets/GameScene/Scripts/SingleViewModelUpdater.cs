@@ -35,13 +35,18 @@ namespace Arcomage.Unity.GameScene.Scripts
 
         private GameViewModel Update(GameViewModel viewModel, Game game, ClassicRuleInfo ruleInfo)
         {
+            var leftPlayerKind = settings.PlayerKind;
+            var rightPlayerKind = PlayerSet.NextPlayerKind(settings.PlayerKind);
+            var leftPlayer = game.Players[leftPlayerKind];
+            var rightPlayer = game.Players[rightPlayerKind];
+
             viewModel = viewModel ?? new GameViewModel();
-            viewModel.LeftBuildings = Update(viewModel.LeftBuildings, game.Players[settings.PlayerKind].Buildings, ruleInfo);
-            viewModel.LeftResources = Update(viewModel.LeftResources, game.Players[settings.PlayerKind].Resources, settings.PlayerKind);
-            viewModel.RightBuildings = Update(viewModel.RightBuildings, game.Players[PlayerSet.NextPlayerKind(settings.PlayerKind)].Buildings, ruleInfo);
-            viewModel.RightResources = Update(viewModel.RightResources, game.Players[PlayerSet.NextPlayerKind(settings.PlayerKind)].Resources, PlayerSet.NextPlayerKind(settings.PlayerKind));
+            viewModel.LeftBuildings = Update(viewModel.LeftBuildings, leftPlayer.Buildings, ruleInfo);
+            viewModel.LeftResources = Update(viewModel.LeftResources, leftPlayer.Resources, leftPlayerKind);
+            viewModel.RightBuildings = Update(viewModel.RightBuildings, rightPlayer.Buildings, ruleInfo);
+            viewModel.RightResources = Update(viewModel.RightResources, rightPlayer.Resources, rightPlayerKind);
             viewModel.FinishedMenu = Update(viewModel.FinishedMenu, game);
-            viewModel.Hand = Update(viewModel.Hand, game, game.Players[settings.PlayerKind], game.Players[settings.PlayerKind].Hand);
+            viewModel.Hand = Update(viewModel.Hand, game, leftPlayer, leftPlayer.Hand);
             viewModel.History = Update(viewModel.History, game.History);
             viewModel.Timer = Update(viewModel.Timer, game.Timer);
             viewModel.CurrentPlayerKind = game.Players.Kind;
@@ -52,7 +57,8 @@ namespace Arcomage.Unity.GameScene.Scripts
             return viewModel;
         }
 
-        private BuildingsViewModel Update(BuildingsViewModel viewModel, BuildingSet buildingSet, ClassicRuleInfo ruleInfo)
+        private BuildingsViewModel Update(BuildingsViewModel viewModel, BuildingSet buildingSet, 
+            ClassicRuleInfo ruleInfo)
         {
             viewModel = viewModel ?? new BuildingsViewModel();
             viewModel.Wall = buildingSet.Wall;
@@ -63,7 +69,8 @@ namespace Arcomage.Unity.GameScene.Scripts
             return viewModel;
         }
 
-        private ResourcesViewModel Update(ResourcesViewModel viewModel, ResourceSet resourceSet, PlayerKind playerKind)
+        private ResourcesViewModel Update(ResourcesViewModel viewModel, ResourceSet resourceSet, 
+            PlayerKind playerKind)
         {
             viewModel = viewModel ?? new ResourcesViewModel();
             viewModel.Name = settings.GetName(playerKind);
