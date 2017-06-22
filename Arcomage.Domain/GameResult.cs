@@ -25,7 +25,9 @@ namespace Arcomage.Domain
         /// <param name="isTowerBuild">Игрок победил, построив собственную башню</param>
         /// <param name="isTowerDestroy">Игрок победил, разрушив башню соперника</param>
         /// <param name="isResourcesAccumulate">Игрок победил, собрав собственные ресурсы</param>
-        public GameResult(PlayerKind player, bool isTowerBuild, bool isTowerDestroy, bool isResourcesAccumulate)
+        /// <param name="isTimeout">Игрок победил по таймауту</param>
+        public GameResult(PlayerKind player, bool isTowerBuild, bool isTowerDestroy, bool isResourcesAccumulate,
+            bool isPlayerTimeout)
             : this()
         {
             Contract.Requires(Enum.IsDefined(typeof(PlayerKind), player));
@@ -34,6 +36,7 @@ namespace Arcomage.Domain
             IsTowerBuild = isTowerBuild;
             IsTowerDestroy = isTowerDestroy;
             IsResourcesAccumulate = isResourcesAccumulate;
+            IsPlayerTimeout = isPlayerTimeout;
         }
 
         /// <summary>
@@ -55,6 +58,11 @@ namespace Arcomage.Domain
         /// Игрок победил, собрав собственные ресурсы
         /// </summary>
         public bool IsResourcesAccumulate { get; }
+
+        /// <summary>
+        /// Игрок победил по таймауту
+        /// </summary>
+        public bool IsPlayerTimeout { get; }
 
         /// <summary>
         /// Оператор преобразования результата игры в булевое значение. Если <paramref name="x"/> равен 

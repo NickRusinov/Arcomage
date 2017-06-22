@@ -752,6 +752,9 @@
 	<data name="GameFinishedPlayButtonText" xml:space="preserve">
 		<value>Заново</value>
 	</data>
+	<data name="GameFinishedPlayerTimeoutText" xml:space="preserve">
+		<value>Игра закончена по таймауту</value>
+	</data>
 	<data name="GameFinishedResourcesAccumulateText" xml:space="preserve">
 		<value>Накопив гору ресурсов</value>
 	</data>

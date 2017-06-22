@@ -34,11 +34,11 @@ namespace Arcomage.Unity.Configuration
                 .OnActivated(ea => ea.Instance.RuleCollection = new List<RuleViewModel>
                 {
                     ea.Context.Resolve<RuleViewModel>(new NamedParameter("RuleInfo",
-                        new ClassicRuleInfo("EmpireCapital", 2, 5, 2, 5, 2, 5, 5, 20, 50, 150))),
+                        new ClassicRuleInfo("EmpireCapital", 2, 5, 2, 5, 2, 5, 5, 20, 50, 150, 3))),
                     ea.Context.Resolve<RuleViewModel>(new NamedParameter("RuleInfo",
-                        new ClassicRuleInfo("TigersLake", 5, 25, 5, 25, 5, 25, 10, 20, 150, 400))),
+                        new ClassicRuleInfo("TigersLake", 5, 25, 5, 25, 5, 25, 10, 20, 150, 400, 3))),
                     ea.Context.Resolve<RuleViewModel>(new NamedParameter("RuleInfo",
-                        new ClassicRuleInfo("EastRiver", 3, 5, 3, 5, 3, 5, 10, 20, 75, 200))),
+                        new ClassicRuleInfo("EastRiver", 3, 5, 3, 5, 3, 5, 10, 20, 75, 200, 3))),
                 })
                 .InstancePerLifetimeScope();
 

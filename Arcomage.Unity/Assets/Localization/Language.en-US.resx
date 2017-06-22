@@ -752,6 +752,9 @@
 	<data name="GameFinishedPlayButtonText" xml:space="preserve">
 		<value>Play again</value>
 	</data>
+	<data name="GameFinishedPlayerTimeoutText" xml:space="preserve">
+		<value>Player timeout</value>
+	</data>
 	<data name="GameFinishedResourcesAccumulateText" xml:space="preserve">
 		<value>Accumulate resources</value>
 	</data>

@@ -36,7 +36,7 @@ namespace Arcomage.Domain.Actions
             var timerTask = game.Timer.Start(cts.Token);
             await cts.CancelWhenAny(playTask, timerTask);
 
-            var playResult = playTask.DefaultIfCancel(new PlayResult(0, false)).GetAwaiter().GetResult();
+            var playResult = playTask.DefaultIfCancel(new PlayResult(0, false, false, true)).GetAwaiter().GetResult();
             var gameResult = Play(game, game.Players.CurrentPlayer, playResult).GetAwaiter().GetResult();
 
             return gameResult;

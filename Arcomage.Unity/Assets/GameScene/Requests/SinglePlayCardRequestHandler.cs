@@ -19,7 +19,7 @@ namespace Arcomage.Unity.GameScene.Requests
 
         public Task Handle(PlayCardRequest message)
         {
-            player.SetPlayResult(new PlayResult(message.Index, true));
+            player.SetPlayResult(new PlayResult(message.Index, true, false, false));
 
             return TaskEx.FromResult<object>(null);
         }

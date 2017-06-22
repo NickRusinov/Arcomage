@@ -117,8 +117,8 @@ namespace Arcomage.Unity.GameScene.Scripts
             viewModel.Identifier = card.GetIdentifier();
             viewModel.Kind = card.Kind;
             viewModel.Price = card.Price;
-            viewModel.IsPlay = game.PlayAction.CanPlay(game, player, new PlayResult(index, true));
-            viewModel.IsDiscard = game.PlayAction.CanPlay(game, player, new PlayResult(index, false));
+            viewModel.IsPlay = game.PlayAction.CanPlay(game, player, new PlayResult(index, true, false, false));
+            viewModel.IsDiscard = game.PlayAction.CanPlay(game, player, new PlayResult(index, false, true, false));
 
             return viewModel;
         }

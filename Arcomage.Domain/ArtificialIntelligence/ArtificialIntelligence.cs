@@ -42,7 +42,7 @@ namespace Arcomage.Domain.ArtificialIntelligence
             return GetPossiblePlay(game)
                 .OrderByDescending(p => p.Key, comparer)
                 .Select(p => p.Value)
-                .DefaultIfEmpty(new PlayResult(0, false))
+                .DefaultIfEmpty(new PlayResult(0, false, true, false))
                 .First();
         }
         
@@ -56,7 +56,7 @@ namespace Arcomage.Domain.ArtificialIntelligence
             for (var i = 0; i < game.Players.CurrentPlayer.Hand.Cards.Count; ++i)
             {
                 var cloneGame = Copy(game);
-                var playResult = new PlayResult(i, true);
+                var playResult = new PlayResult(i, true, false, false);
 
                 if (playAction.CanPlay(cloneGame, cloneGame.Players.CurrentPlayer, playResult))
                 {
@@ -69,7 +69,7 @@ namespace Arcomage.Domain.ArtificialIntelligence
             for (var i = 0; i < game.Players.CurrentPlayer.Hand.Cards.Count; ++i)
             {
                 var cloneGame = Copy(game);
-                var playResult = new PlayResult(i, false);
+                var playResult = new PlayResult(i, false, true, false);
 
                 if (playAction.CanPlay(cloneGame, cloneGame.Players.CurrentPlayer, playResult))
                 {

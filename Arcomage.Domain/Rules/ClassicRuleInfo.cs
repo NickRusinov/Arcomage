@@ -25,7 +25,9 @@ namespace Arcomage.Domain.Rules
         /// <param name="tower">Высота башни</param>
         /// <param name="maxTower">Необходимая высота башни для победы</param>
         /// <param name="maxResources">Необходимое количество ресурсов для победы</param>
-        public ClassicRuleInfo(string identifier, int quarry, int bricks, int magic, int gems, int dungeons, int recruits, int wall, int tower, int maxTower, int maxResources)
+        /// <param name="timeout">Количество ходов, пропуск которых приведет к поражению по таймауту</param>
+        public ClassicRuleInfo(string identifier, int quarry, int bricks, int magic, int gems, int dungeons, 
+            int recruits, int wall, int tower, int maxTower, int maxResources, int timeout)
             : base(identifier)
         {
             Quarry = quarry;
@@ -38,6 +40,7 @@ namespace Arcomage.Domain.Rules
             Tower = tower;
             MaxTower = maxTower;
             MaxResources = maxResources;
+            Timeout = timeout;
         }
 
         /// <summary>
@@ -89,5 +92,10 @@ namespace Arcomage.Domain.Rules
         /// Необходимое количество ресурсов для победы
         /// </summary>
         public int MaxResources { get; }
+
+        /// <summary>
+        /// Количество ходов, пропуск которых приведет к поражению по таймауту
+        /// </summary>
+        public int Timeout { get; }
     }
 }

@@ -21,15 +21,18 @@ namespace Arcomage.Domain
         /// Инициализирует экземпляр структуры <see cref="PlayResult"/>
         /// </summary>
         /// <param name="card">Номер карты на руках игрока</param>
-        /// <param name="isPlay">true для активации карты, и false для ее сброса</param>
-        public PlayResult(int card, bool isPlay)
+        /// <param name="isPlay">Карта активарована</param>
+        /// <param name="isDiscard">Карта сброшена</param>
+        /// <param name="isTimeout">Карта сброшена по таймауту</param>
+        public PlayResult(int card, bool isPlay, bool isDiscard, bool isTimeout)
             : this()
         {
             Contract.Requires(card >= 0);
 
             Card = card;
             IsPlay = isPlay;
-            IsDiscard = !isPlay;
+            IsDiscard = isDiscard;
+            IsTimeout = isTimeout;
         }
 
         /// <summary>
@@ -46,6 +49,11 @@ namespace Arcomage.Domain
         /// Решение о сбросе карты
         /// </summary>
         public bool IsDiscard { get; }
+
+        /// <summary>
+        /// Карта сброшена по таймауту
+        /// </summary>
+        public bool IsTimeout { get; }
 
         /// <summary>
         /// Оператор преобразования результата хода игрока в булевое значение. Если <paramref name="x"/> равен 

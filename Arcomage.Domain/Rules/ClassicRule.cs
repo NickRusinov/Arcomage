@@ -42,7 +42,8 @@ namespace Arcomage.Domain.Rules
         /// <inheritdoc/>
         public override ResourceSet CreateResources()
         {
-            return new ResourceSet(ruleInfo.Quarry, ruleInfo.Bricks, ruleInfo.Magic, ruleInfo.Gems, ruleInfo.Dungeons, ruleInfo.Recruits);
+            return new ResourceSet(ruleInfo.Quarry, ruleInfo.Bricks, ruleInfo.Magic, ruleInfo.Gems, ruleInfo.Dungeons,
+                ruleInfo.Recruits);
         }
 
         /// <inheritdoc/>
@@ -76,15 +77,18 @@ namespace Arcomage.Domain.Rules
             var losePlayer = game.Players[losePlayerKind];
 
             if (winPlayer.Buildings.Tower >= ruleInfo.MaxTower)
-                return new GameResult(winPlayerKind, true, false, false);
+                return new GameResult(winPlayerKind, true, false, false, false);
 
             if (losePlayer.Buildings.Tower <= 0)
-                return new GameResult(winPlayerKind, false, true, false);
+                return new GameResult(winPlayerKind, false, true, false, false);
 
             if (winPlayer.Resources.Bricks >= ruleInfo.MaxResources &&
                 winPlayer.Resources.Gems >= ruleInfo.MaxResources &&
                 winPlayer.Resources.Recruits >= ruleInfo.MaxResources)
-                return new GameResult(winPlayerKind, false, false, true);
+                return new GameResult(winPlayerKind, false, false, true, false);
+
+            if (losePlayer.Timeout >= ruleInfo.Timeout)
+                return new GameResult(winPlayerKind, false, false, false, true);
 
             return GameResult.None;
         }

@@ -16,6 +16,11 @@ namespace Arcomage.Domain.Players
     public abstract class Player
     {
         /// <summary>
+        /// Количество последовательных ходов игрока, пропущенных по таймауту
+        /// </summary>
+        public int Timeout { get; set; }
+
+        /// <summary>
         /// Строения игрока
         /// </summary>
         public abstract BuildingSet Buildings { get; }

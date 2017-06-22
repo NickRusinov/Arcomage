@@ -16,7 +16,7 @@ namespace Arcomage.Unity.Shared.Scripts
 
         public string SecondPlayer = LanguageManager.Instance.GetTextValue("SettingsSecondPlayerDefaultName");
 
-        public RuleInfo Rule = new ClassicRuleInfo("EmpireCapital", 2, 5, 2, 5, 2, 5, 5, 20, 50, 150);
+        public RuleInfo Rule = new ClassicRuleInfo("EmpireCapital", 2, 5, 2, 5, 2, 5, 5, 20, 50, 150, 3);
 
         public DeckInfo Deck = new ClassicDeckInfo("Classic", new Random());
 

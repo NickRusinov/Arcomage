@@ -19,7 +19,7 @@ namespace Arcomage.Unity.GameScene.Requests
 
         public Task Handle(DiscardCardRequest message)
         {
-            player.SetPlayResult(new PlayResult(message.Index, false));
+            player.SetPlayResult(new PlayResult(message.Index, false, true, false));
 
             return TaskEx.FromResult<object>(null);
         }

@@ -30,10 +30,10 @@ namespace Arcomage.Domain.ArtificialIntelligence
         {
             await Delay(TimeSpan.FromSeconds(1));
 
-            if (playAction.CanPlay(game, player, new PlayResult(0, true)))
-                return new PlayResult(0, true);
+            if (playAction.CanPlay(game, player, new PlayResult(0, true, false, false)))
+                return new PlayResult(0, true, false, false);
 
-            return new PlayResult(0, false);
+            return new PlayResult(0, false, true, false);
         }
     }
 }

@@ -767,6 +767,9 @@
 	<data name="GameFinishedWinnerText" xml:space="preserve">
 		<value>Win {0}</value>
 	</data>
+	<data name="GameYouPlayText" xml:space="preserve">
+		<value>Play</value>
+	</data>
 	<data name="MenuExitButtonText" xml:space="preserve">
 		<value>Exit</value>
 	</data>
@@ -848,7 +851,7 @@
 	<data name="SettingsSecondPlayerText" xml:space="preserve">
 		<value>Player's name #2</value>
 	</data>
-	<data name="GameYouPlayText" xml:space="preserve">
-		<value>Play</value>
+	<data name="GameFinishedPlayerTimeoutText" xml:space="preserve">
+		<value>Player timeout</value>
 	</data>
 </root>

@@ -31,7 +31,7 @@ namespace Arcomage.Domain
                 .RegisterArtificialIntelligence(null)
                 .RegisterInfinityTimer(null)
                 .RegisterPlayerSet(null, _ => PlayerKind.First)
-                .RegisterClassicRule(null, _ => new ClassicRuleInfo("Classic", 2, 5, 2, 5, 2, 5, 5, 20, 50, 150))
+                .RegisterClassicRule(null, _ => new ClassicRuleInfo("Classic", 2, 5, 2, 5, 2, 5, 5, 20, 50, 150, 5))
                 .RegisterClassicDeck(null, _ => new ClassicDeckInfo("Classic", new Random()));
         }
 
@@ -189,7 +189,8 @@ namespace Arcomage.Domain
                 var replaceCardAction = new ReplaceCardAction(finishBeforeReplacePlayerAction);
                 var addHistoryAction = new AddHistoryAction(replaceCardAction);
                 var resetTimerAction = new ResetTimerAction(addHistoryAction);
-                var activateCardAction = new ActivateCardAction(resetTimerAction);
+                var timeoutCardAction = new TimeoutCardAction(resetTimerAction);
+                var activateCardAction = new ActivateCardAction(timeoutCardAction);
                 var finishedPlayAction = new FinishGameAction(activateCardAction);
                 var rootPlayAction = new RootPlayAction(finishedPlayAction);
 

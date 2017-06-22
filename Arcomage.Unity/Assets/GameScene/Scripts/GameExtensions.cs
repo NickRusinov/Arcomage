@@ -33,7 +33,10 @@ namespace Arcomage.Unity.GameScene.Scripts
             if (gameResult.IsResourcesAccumulate)
                 return "ResourcesAccumulate";
 
-            return "";
+            if (gameResult.IsPlayerTimeout)
+                return "PlayerTimeout";
+
+            return null;
         }
 
         public static string GetName(this SingleSettings settings, PlayerKind playerKind)
@@ -44,7 +47,7 @@ namespace Arcomage.Unity.GameScene.Scripts
             if (playerKind == PlayerKind.Second)
                 return settings.SecondPlayer;
 
-            return "";
+            return null;
         }
     }
 }

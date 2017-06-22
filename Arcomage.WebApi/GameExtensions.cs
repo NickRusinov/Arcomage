@@ -31,6 +31,9 @@ namespace Arcomage.WebApi
             if (gameResult.IsResourcesAccumulate)
                 return "ResourcesAccumulate";
 
+            if (gameResult.IsPlayerTimeout)
+                return "PlayerTimeout";
+
             return "";
         }
 
@@ -42,7 +45,7 @@ namespace Arcomage.WebApi
             if (playerKind == PlayerKind.Second)
                 return settings.SecondUser.Id.ToString();
 
-            return "";
+            throw new InvalidOperationException();
         }
 
         public static PlayerKind GetPlayerKind(this GameContext gameContext, User user)

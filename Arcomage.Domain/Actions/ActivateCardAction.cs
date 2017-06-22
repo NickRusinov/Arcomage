@@ -44,8 +44,11 @@ namespace Arcomage.Domain.Actions
             var resource = player.Resources[card.Kind];
 
             var canPlay = true;
-            canPlay &= playResult.IsDiscard || card.Price <= resource.Value;
-            canPlay &= playResult.IsDiscard || game.Players.CurrentPlayer != player || game.DiscardOnly <= 0;
+            if (playResult.IsPlay)
+            {
+                canPlay &= card.Price <= resource.Value;
+                canPlay &= game.Players.CurrentPlayer != player || game.DiscardOnly <= 0;
+            }
 
             return canPlay && nextAction.CanPlay(game, player, playResult);
         }
